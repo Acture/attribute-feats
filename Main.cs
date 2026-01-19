@@ -3,7 +3,7 @@ using UnityModManagerNet;
 using UnityEngine.UI;
 using HarmonyLib;
 
-namespace MyFirstMod
+namespace AttributeFeats
 {
 	static class Main
 	{

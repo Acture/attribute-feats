@@ -1,111 +1,142 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk" InitialTargets="GenerateCustomPropsFile">
 
-  <PropertyGroup>
-	<LangVersion>latest</LangVersion>
-	<!-- Set to net46 for Kingmaker -->
-	<TargetFramework>net472</TargetFramework>
-    <RootNamespace>attribute_feats</RootNamespace>
-    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-    <EnableNETAnalyzers>True</EnableNETAnalyzers>
-    <AssemblyVersion>0.0.1</AssemblyVersion>
-    <FileVersion>0.0.1</FileVersion>
-    <RepositoryType>git</RepositoryType>
-    <SignAssembly>False</SignAssembly>
-  </PropertyGroup>
+	<!-- If GamePath.props exists, import it (generated or user-provided) -->
+	<Import Project="$(MSBuildProjectDirectory)\GamePath.props" Condition="Exists('$(MSBuildProjectDirectory)\GamePath.props')" />
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<!-- or net481 if you want -->
+		<!-- <TargetFramework>net481</TargetFramework> -->
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
-  </PropertyGroup>
+		<AssemblyName>attribute_feats</AssemblyName>
+		<RootNamespace>attribute_feats</RootNamespace>
+		<LangVersion>latest</LangVersion>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
-  <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>G:\SteamLibrary\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\UnityModManager\0Harmony.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>G:\SteamLibrary\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>G:\SteamLibrary\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>G:\SteamLibrary\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>G:\SteamLibrary\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityModManager">
-      <HintPath>G:\SteamLibrary\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\UnityModManager\UnityModManager.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 
-  <ItemGroup>
-    <None Update="Info.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+		<!-- Where Owlcat writes Player.log (you can keep this default) -->
+		<WrathData>$(LocalAppData)Low\Owlcat Games\Pathfinder Wrath Of The Righteous</WrathData>
 
-  <ItemGroup>
-    <Reference Update="System">
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
+		<!-- Resolve WrathInstallDir fallback chain -->
+		<!-- Prefer: /p:WrathInstallDir=... -->
+		<WrathInstallDir Condition="'$(WrathInstallDir)'==''">$(WrathPath)</WrathInstallDir>
+		<!-- Prefer: /p:WrathPath=... (compat) -->
+		<WrathInstallDir Condition="'$(WrathInstallDir)'==''">$([System.Environment]::GetEnvironmentVariable('WrathPath'))</WrathInstallDir>
+		<WrathInstallDir Condition="'$(WrathInstallDir)'==''">$([System.Environment]::GetEnvironmentVariable('WRATH_PATH'))</WrathInstallDir>
 
-  <ItemGroup>
-    <Reference Update="System.Core">
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
+		<!-- Output -->
+		<OutputPath>bin\$(Configuration)\</OutputPath>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Reference Update="System.Data">
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
+	<!-- Fail fast if still not resolved (after GenerateCustomPropsFile has run) -->
+	<Target Name="EnsureWrathInstallDir" BeforeTargets="PrepareForBuild" Condition="'$(WrathInstallDir)'==''">
+		<Error Text="WrathInstallDir is not set. Provide /p:WrathInstallDir=... or set env WrathPath/WRATH_PATH or make sure Player.log exists under $(WrathData)." />
+	</Target>
 
-  <ItemGroup>
-    <Reference Update="System.Drawing">
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
+	<!-- Helpful diagnostics -->
+	<Target Name="PrintPaths" BeforeTargets="CoreCompile">
+		<Message Text="WrathInstallDir=$(WrathInstallDir)" Importance="High" />
+		<Message Text="UMM=$(WrathInstallDir)\Wrath_Data\Managed\UnityModManager\UnityModManager.dll" Importance="High" />
+	</Target>
 
-  <ItemGroup>
-    <Reference Update="System.IO.Compression.FileSystem">
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
+	<!-- References -->
+	<ItemGroup>
+		<!-- Unity / Core / Owlcat -->
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\Unity*.dll" />
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\Core*.dll" />
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\Owlcat*.dll" />
 
-  <ItemGroup>
-    <Reference Update="System.Numerics">
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
+		<!-- Game assemblies -->
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\Assembly-CSharp.dll" />
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\Assembly-CSharp-firstpass.dll" />
 
-  <ItemGroup>
-    <Reference Update="System.Runtime.Serialization">
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
+		<!-- UnityModManager + Harmony -->
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\UnityModManager\UnityModManager.dll" />
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\UnityModManager\0Harmony.dll" />
 
-  <ItemGroup>
-    <Reference Update="System.Xml">
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
+		<!-- Common deps -->
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\Newtonsoft.Json.dll" />
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\UniRx.dll" Private="false" Condition="Exists('$(WrathInstallDir)\Wrath_Data\Managed\UniRx.dll')" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Reference Update="System.Xml.Linq">
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
+	<!-- Content -->
+	<ItemGroup>
+		<None Include="Info.json" CopyToOutputDirectory="PreserveNewest" />
+		<!-- add more json/assets as needed -->
+		<!-- <None Include="NewLocalizedStrings.json" CopyToOutputDirectory="PreserveNewest" /> -->
+	</ItemGroup>
+
+	<!-- NuGet (optional but useful) -->
+	<ItemGroup>
+		<PackageReference Include="ILRepack.MSBuild.Task" Version="2.0.13" />
+		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+		<PackageReference Include="WW-Blueprint-Core" Version="2.8.6" />
+		<!-- If you want auto-publicize features like the example -->
+		<PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" IncludeAssets="build; contentfiles" Version="0.4.2" PrivateAssets="all" />
+		<PackageReference Include="MicroUtils.HarmonyAnalyzers" Version="*" />
+	</ItemGroup>
+
+	<!-- Deploy to Mods folder + zip -->
+	<Target Name="Deploy" AfterTargets="Build">
+		<ItemGroup>
+			<!-- everything in output -->
+			<_All Include="$(TargetDir)\**\*.*" />
+
+			<!-- keep non-build artifacts but remove noise -->
+			<_Files Include="@(_All)" />
+			<_Files Remove="$(TargetDir)\**\*.cache" />
+			<_Files Remove="$(TargetDir)\**\UnityModManager.xml" />
+
+			<!-- always include our dll/pdb -->
+			<_Files Include="$(TargetDir)\$(AssemblyName).dll" />
+			<_Files Include="$(TargetDir)\$(AssemblyName).pdb" Condition="Exists('$(TargetDir)\$(AssemblyName).pdb')" />
+
+			<!-- delete leftover files not in _Files -->
+			<_ToDelete Include="@(_All)" />
+			<_ToDelete Remove="@(_Files)" />
+		</ItemGroup>
+
+		<MakeDir Directories="$(WrathInstallDir)\Mods\$(AssemblyName)" />
+		<Copy SourceFiles="@(_Files)" DestinationFiles="@(_Files->'$(WrathInstallDir)\Mods\$(AssemblyName)\%(RecursiveDir)%(Filename)%(Extension)')" />
+
+		<Delete Files="@(_ToDelete)" />
+
+		<PropertyGroup>
+			<_ZipOut>$(MSBuildProjectDirectory)\bin\$(Configuration)\..\$(AssemblyName).zip</_ZipOut>
+		</PropertyGroup>
+
+		<ZipDirectory SourceDirectory="$(TargetDir)" DestinationFile="$(_ZipOut)" Overwrite="true" />
+	</Target>
+
+	<!-- Auto-generate GamePath.props by parsing Player.log when WrathInstallDir is still empty -->
+	<Target Name="GenerateCustomPropsFile" Condition="'$(WrathInstallDir)'==''">
+		<PropertyGroup>
+			<_PlayerLog>$(WrathData)\Player.log</_PlayerLog>
+			<_MonoPathRegex>^Mono path\[0\] = '(.*?)/Wrath_Data/Managed'$</_MonoPathRegex>
+		</PropertyGroup>
+
+		<Message Text="WrathInstallDir not set; trying to parse: $(_PlayerLog)" Importance="High" Condition="Exists('$(_PlayerLog)')" />
+		<Message Text="Player.log not found at: $(_PlayerLog). You can launch the game once, or set WrathInstallDir/WrathPath." Importance="High" Condition="!Exists('$(_PlayerLog)')" />
+
+		<Exec Command="findstr /C:&quot;Mono path[0]&quot; &quot;$(_PlayerLog)&quot;" IgnoreExitCode="true" ConsoleToMSBuild="true" Condition="Exists('$(_PlayerLog)')">
+			<Output TaskParameter="ConsoleOutput" PropertyName="_MonoPathLine" />
+		</Exec>
+
+		<PropertyGroup Condition="'$(_MonoPathLine)'!=''">
+			<WrathInstallDir>$([System.Text.RegularExpressions.Regex]::Match($(_MonoPathLine), $(_MonoPathRegex)).Groups[1].Value)</WrathInstallDir>
+		</PropertyGroup>
+
+		<Error Text="Failed to parse WrathInstallDir from Player.log. Set /p:WrathInstallDir=... or env WrathPath/WRATH_PATH." Condition="'$(WrathInstallDir)'==''" />
+
+		<WriteLinesToFile File="$(MSBuildProjectDirectory)\GamePath.props" Lines="&lt;Project xmlns='http://schemas.microsoft.com/developer/msbuild/2003'&gt;&#xD;&#xA;  &lt;PropertyGroup&gt;&#xD;&#xA;    &lt;WrathInstallDir&gt;$(WrathInstallDir)&lt;/WrathInstallDir&gt;&#xD;&#xA;  &lt;/PropertyGroup&gt;&#xD;&#xA;&lt;/Project&gt;" Overwrite="true" Encoding="utf-8" />
+
+		<Message Text="Generated GamePath.props with WrathInstallDir=$(WrathInstallDir)" Importance="High" />
+	</Target>
+
+	<!-- Optional: delete generated props on clean -->
+	<Target Name="DeleteCustomPropsFile" BeforeTargets="Clean">
+		<Delete Files="$(MSBuildProjectDirectory)\GamePath.props" Condition="Exists('$(MSBuildProjectDirectory)\GamePath.props')" />
+	</Target>
 
 </Project>

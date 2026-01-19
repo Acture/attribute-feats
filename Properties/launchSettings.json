@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "attribute feats": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "WrathPath": "G:\\SteamLibrary\\steamapps\\common\\Pathfinder Second Adventure"
+      }
+    }
+  }
+}
