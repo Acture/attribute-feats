@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 Directory.Build.user.props
+/GamePath.props

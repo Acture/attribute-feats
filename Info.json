@@ -1,10 +1,10 @@
 ﻿{
-  "Id": "attribute_feats",
-  "DisplayName": "Attribute Feats",
-  "Author": "acturea",
-  "Version": "0.0.1",
-  "ManagerVersion": "0.21.3",
-  "Requirements": [],
-  "AssemblyName": "AttributeFeats.dll",
-  "EntryMethod": "AttributeFeats.Main.Load"
+	"Id": "AttributeFeats",
+	"DisplayName": "Attribute Feats",
+	"Author": "acturea",
+	"Version": "0.0.1",
+	"ManagerVersion": "0.21.3",
+	"Requirements": [],
+	"AssemblyName": "AttributeFeats.dll",
+	"EntryMethod": "AttributeFeats.Main.Load"
 }

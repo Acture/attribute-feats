@@ -8,8 +8,8 @@
 		<!-- or net481 if you want -->
 		<!-- <TargetFramework>net481</TargetFramework> -->
 
-		<AssemblyName>attribute_feats</AssemblyName>
-		<RootNamespace>attribute_feats</RootNamespace>
+		<AssemblyName>AttributeFeats</AssemblyName>
+		<RootNamespace>AttributeFeats</RootNamespace>
 		<LangVersion>latest</LangVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
