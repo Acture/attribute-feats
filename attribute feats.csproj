@@ -82,7 +82,7 @@
 	  </Compile>
 	</ItemGroup>
 	<ItemGroup>
-	  <None Update="AttributeFeats\Info.json" CopyToOutputDirectory="PreserveNewest" />
+	  <None Update="Info.json" CopyToOutputDirectory="PreserveNewest" />
 	  <None Update="Properties\Settings.settings">
 	    <Generator>SettingsSingleFileGenerator</Generator>
 	    <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -92,33 +92,36 @@
 	<!-- Deploy to Mods folder + zip -->
 	<Target Name="Deploy" AfterTargets="Build">
 		<ItemGroup>
-			<!-- everything in output -->
-			<_All Include="$(TargetDir)\**\*.*" />
-
-			<!-- keep non-build artifacts but remove noise -->
-			<_Files Include="@(_All)" />
-			<_Files Remove="$(TargetDir)\**\*.cache" />
-			<_Files Remove="$(TargetDir)\**\UnityModManager.xml" />
-
-			<!-- always include our dll/pdb -->
-			<_Files Include="$(TargetDir)\$(AssemblyName).dll" />
-			<_Files Include="$(TargetDir)\$(AssemblyName).pdb" Condition="Exists('$(TargetDir)\$(AssemblyName).pdb')" />
-
-			<!-- delete leftover files not in _Files -->
-			<_ToDelete Include="@(_All)" />
-			<_ToDelete Remove="@(_Files)" />
+			<Files Include="$(TargetDir)\**\*.*" />
+			<Files Remove="$(TargetDir)\**\*.dll" />
+			<Files Remove="$(TargetDir)\**\*.pdb" />
+			<Files Remove="$(TargetDir)\**\*.cache" />
+			<Files Remove="$(TargetDir)\**\UnityModManager.xml" />
+			<Files Include="$(TargetDir)\**\$(AssemblyName).dll" />
+			<Files Include="$(TargetDir)\**\$(AssemblyName).pdb" />
+			<ToDelete Include="$(TargetDir)\**\*.*" />
+			<ToDelete Remove="@(Files)" />
 		</ItemGroup>
 
-		<MakeDir Directories="$(WrathInstallDir)\Mods\$(AssemblyName)" />
-		<Copy SourceFiles="@(_Files)" DestinationFiles="@(_Files->'$(WrathInstallDir)\Mods\$(AssemblyName)\%(RecursiveDir)%(Filename)%(Extension)')" />
+		<Copy SourceFiles="@(Files)" DestinationFiles="@(Files->'$(WrathInstallDir)\Mods\$(AssemblyName)\%(RecursiveDir)%(Filename)%(Extension)')" />
+		<Delete Files="@(ToDelete)" />
+		<ZipDirectory SourceDirectory="$(MSBuildProjectDirectory)\$(OutputPath)" DestinationFile="$(MSBuildProjectDirectory)\$(OutputPath)\..\$(AssemblyName)-$(Version).zip" Overwrite="true" />
+	</Target>	<Target Name="Deploy" AfterTargets="Build">
+		<ItemGroup>
+			<Files Include="$(TargetDir)\**\*.*" />
+			<Files Remove="$(TargetDir)\**\*.dll" />
+			<Files Remove="$(TargetDir)\**\*.pdb" />
+			<Files Remove="$(TargetDir)\**\*.cache" />
+			<Files Remove="$(TargetDir)\**\UnityModManager.xml" />
+			<Files Include="$(TargetDir)\**\$(AssemblyName).dll" />
+			<Files Include="$(TargetDir)\**\$(AssemblyName).pdb" />
+			<ToDelete Include="$(TargetDir)\**\*.*" />
+			<ToDelete Remove="@(Files)" />
+		</ItemGroup>
 
-		<Delete Files="@(_ToDelete)" />
-
-		<PropertyGroup>
-			<_ZipOut>$(MSBuildProjectDirectory)\bin\$(Configuration)\..\$(AssemblyName).zip</_ZipOut>
-		</PropertyGroup>
-
-		<ZipDirectory SourceDirectory="$(TargetDir)" DestinationFile="$(_ZipOut)" Overwrite="true" />
+		<Copy SourceFiles="@(Files)" DestinationFiles="@(Files->'$(WrathInstallDir)\Mods\$(AssemblyName)\%(RecursiveDir)%(Filename)%(Extension)')" />
+		<Delete Files="@(ToDelete)" />
+		<ZipDirectory SourceDirectory="$(MSBuildProjectDirectory)\$(OutputPath)" DestinationFile="$(MSBuildProjectDirectory)\$(OutputPath)\..\$(AssemblyName)-$(Version).zip" Overwrite="true" />
 	</Target>
 
 	<!-- Auto-generate GamePath.props by parsing Player.log when WrathInstallDir is still empty -->
