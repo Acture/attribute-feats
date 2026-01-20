@@ -2,19 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
-using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
-using BlueprintCore.Blueprints.References;
-using BlueprintCore.Utils; // LocalizationTool 在这里（你这版没有 AddString）
-using BlueprintCore.Utils.Types;                // ContextValues
-using Kingmaker.UnitLogic.Mechanics.Properties; // UnitProperty
+using BlueprintCore.Utils;
 
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.Localization;
-using Kingmaker.UnitLogic.FactLogic;
-using Kingmaker.UnitLogic.Mechanics;
-using AttributeFeats.New_Component;
 
 namespace AttributeFeats.New_Feats
 {
@@ -87,7 +80,6 @@ namespace AttributeFeats.New_Feats
 			StatType.BonusCasterLevel,
 		};
 
-		// ✅ 用 CreateString 直接创建本地化字符串（你这版没有 AddString）
 		private static LocalizedString L(string key, string value, bool tagEncyclopediaEntries = true)
 			=> LocalizationTool.CreateString(key, value, tagEncyclopediaEntries);
 		private static bool Initialized;
@@ -155,7 +147,6 @@ namespace AttributeFeats.New_Feats
 				),
 			};
 
-			// 互斥：每个 feat 禁止同时拥有另外 5 个
 			foreach (var f in feats)
 			{
 				var fc = FeatureConfigurator.For(f);
@@ -164,13 +155,6 @@ namespace AttributeFeats.New_Feats
 				fc.Configure();
 			}
 
-			//// 加入通用专长池
-			//foreach (var f in feats)
-			//{
-			//	FeatureSelectionConfigurator.For(FeatureSelectionRefs.BasicFeatSelection)
-			//		.AddToAllFeatures(f)
-			//		.Configure();
-			//}
 		}
 
 
@@ -189,19 +173,14 @@ namespace AttributeFeats.New_Feats
 				.SetDisplayName(L(nameKey, nameValue, tagEncyclopediaEntries: false))
 				.SetDescription(L(descKey, descValue, tagEncyclopediaEntries: true));
 
-			// X -> 六维属性（含 X->X 自指）
 			foreach (var abil in AbilityStats)
 				cfg.AddDerivativeStatBonus(baseStat: baseStat, descriptor: Desc, derivativeStat: abil);
 
-			// X -> 全覆盖派生项
 			foreach (var t in DerivedTargets)
 				cfg.AddDerivativeStatBonus(baseStat: baseStat, descriptor: Desc, derivativeStat: t);
 
 
-			// 只监听主属性变化
 			cfg.AddRecalculateOnStatChange(stat: baseStat);
-
-
 
 
 			return cfg.Configure();

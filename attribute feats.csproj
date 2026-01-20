@@ -5,8 +5,11 @@
 
 	<PropertyGroup>
 		<TargetFramework>net48</TargetFramework>
-		<!-- or net481 if you want -->
-		<!-- <TargetFramework>net481</TargetFramework> -->
+		<OutputType>Library</OutputType>
+		<Version>0.0.1</Version>
+		<AssemblyVersion>0.0.1</AssemblyVersion>
+		<FileVersion>0.0.1</FileVersion>
+		<Authors>AuthorName</Authors>
 
 		<AssemblyName>AttributeFeats</AssemblyName>
 		<RootNamespace>AttributeFeats</RootNamespace>
@@ -61,11 +64,6 @@
 	</ItemGroup>
 
 	<!-- Content -->
-	<ItemGroup>
-		<None Include="Info.json" CopyToOutputDirectory="PreserveNewest" />
-		<!-- add more json/assets as needed -->
-		<!-- <None Include="NewLocalizedStrings.json" CopyToOutputDirectory="PreserveNewest" /> -->
-	</ItemGroup>
 
 	<!-- NuGet (optional but useful) -->
 	<ItemGroup>
@@ -75,6 +73,20 @@
 		<!-- If you want auto-publicize features like the example -->
 		<PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" IncludeAssets="build; contentfiles" Version="0.4.2" PrivateAssets="all" />
 		<PackageReference Include="MicroUtils.HarmonyAnalyzers" Version="*" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Properties\Settings.Designer.cs">
+	    <DesignTimeSharedInput>True</DesignTimeSharedInput>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Settings.settings</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+	<ItemGroup>
+	  <None Update="AttributeFeats\Info.json" CopyToOutputDirectory="PreserveNewest" />
+	  <None Update="Properties\Settings.settings">
+	    <Generator>SettingsSingleFileGenerator</Generator>
+	    <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+	  </None>
 	</ItemGroup>
 
 	<!-- Deploy to Mods folder + zip -->
