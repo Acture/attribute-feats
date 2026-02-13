@@ -3,11 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Utils;
-
+using BlueprintCore.Utils.Types;
+using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Classes.Spells;
+using Kingmaker.Designers.Mechanics.Buffs;
+using Kingmaker.Designers.Mechanics.Facts;
+using Kingmaker.ElementsSystem;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.Localization;
+using Kingmaker.UnitLogic;
+using Kingmaker.UnitLogic.Abilities;
+using Kingmaker.UnitLogic.Class;
+using Kingmaker.UnitLogic.FactLogic;
+using Kingmaker.UnitLogic.Mechanics;
+using Kingmaker.UnitLogic.Mechanics.Actions;
+using Kingmaker.UnitLogic.Mechanics.Components;
 
 namespace AttributeFeats.New_Feats
 {
@@ -33,29 +45,14 @@ namespace AttributeFeats.New_Feats
 			StatType.Intelligence,
 			StatType.Wisdom,
 			StatType.Charisma,
-		};
 
-		private static readonly StatType[] DerivedTargets = new[]
-		{
 			StatType.AC,
 
 			StatType.Initiative,
-			
+
 			StatType.SaveFortitude,
 			StatType.SaveReflex,
 			StatType.SaveWill,
-
-
-
-
-
-			StatType.AdditionalCMB,
-			StatType.AdditionalCMD,
-			StatType.Reach,
-
-			StatType.BaseAttackBonus,
-			StatType.AdditionalDamage,
-			StatType.AttackOfOpportunityCount,
 
 			StatType.Speed,
 
@@ -171,13 +168,66 @@ namespace AttributeFeats.New_Feats
 		{
 			var cfg = FeatureConfigurator.New(internalName, guid, FeatureGroup.Feat)
 				.SetDisplayName(L(nameKey, nameValue, tagEncyclopediaEntries: false))
-				.SetDescription(L(descKey, descValue, tagEncyclopediaEntries: true));
+				.SetDescription(L(descKey, descValue, tagEncyclopediaEntries: true))
+				;
 
 			foreach (var abil in AbilityStats)
 				cfg.AddDerivativeStatBonus(baseStat: baseStat, descriptor: Desc, derivativeStat: abil);
 
-			foreach (var t in DerivedTargets)
-				cfg.AddDerivativeStatBonus(baseStat: baseStat, descriptor: Desc, derivativeStat: t);
+
+			cfg.AddContextRankConfig(
+				ContextRankConfigs.StatBonus(stat: baseStat)
+			);
+
+
+			cfg.AddComponent<IncreaseAllSpellsDC>(c =>
+			{
+				c.Value = new ContextValue()
+				{
+					ValueType = ContextValueType.Rank, 
+					ValueRank = AbilityRankType.Default
+				};
+				c.Descriptor = Desc;
+				c.SpellsOnly = false;
+			});
+
+			cfg.AddComponent<IncreaseCasterLevel>(c =>
+			{
+				c.Value = new ContextValue()
+				{
+					ValueType = ContextValueType.Rank,
+					ValueRank = AbilityRankType.Default
+				};
+				c.Descriptor = Desc;
+			});
+			cfg.AddComponent<AddSpellResistance>(c =>
+			{
+				c.Value = new ContextValue()
+				{
+					ValueType = ContextValueType.Rank,
+					ValueRank = AbilityRankType.Default
+				};
+			});
+			cfg.AddComponent<SpellPenetrationBonus>(c =>
+			{
+				c.Value = new ContextValue()
+				{
+					ValueType = ContextValueType.Rank,
+					ValueRank = AbilityRankType.Default
+				};
+			});
+
+			cfg.AddComponent<AddAbilityUseTrigger>(c => {
+				c.FromSpellbook = true;
+				c.Action = new ActionList
+				{
+					Actions = new GameAction[] {
+				new ContextActionCastSpell() {
+					MarkAsChild = true,
+				}
+		}
+				};
+			});
 
 
 			cfg.AddRecalculateOnStatChange(stat: baseStat);

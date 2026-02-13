@@ -22,5 +22,14 @@ namespace AttributeFeats.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.0.2")]
+        public string version {
+            get {
+                return ((string)(this["version"]));
+            }
+        }
     }
 }
