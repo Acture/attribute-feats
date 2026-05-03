@@ -68,29 +68,92 @@ jobs:
         with:
           dotnet-version: '8.x'
 
-      # ── 5. Game libraries ────────────────────────────────────────────────────
-      # The project references proprietary DLLs shipped with the game.
-      # Store them in a private repository and add two secrets to this repo:
-      #   GAME_LIBS_REPO  – owner/repo  (e.g. "YourOrg/wotr-managed-libs")
-      #   GAME_LIBS_TOKEN – a PAT with "repo" read scope for that private repo
+      # ── 5. Download game libraries via DepotDownloader ───────────────────────
+      # DepotDownloader pulls the exact game files from Steam directly.
+      # No separate DLL repo to maintain — the CI always gets the current version.
       #
-      # Expected layout inside that private repo (mirrors the game install):
-      #   Wrath_Data/
-      #     Managed/
-      #       Assembly-CSharp.dll
-      #       Assembly-CSharp-firstpass.dll
-      #       Unity*.dll  |  Core*.dll  |  Owlcat*.dll
-      #       Newtonsoft.Json.dll
-      #       UniRx.dll               (optional)
-      #       UnityModManager/
-      #         UnityModManager.dll
-      #         0Harmony.dll
-      - name: Checkout game libraries
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ secrets.GAME_LIBS_REPO }}
-          token: ${{ secrets.GAME_LIBS_TOKEN }}
-          path: game-libs
+      # Required secrets (Settings → Secrets and variables → Actions):
+      #   STEAM_USERNAME  – your Steam account username
+      #   STEAM_PASSWORD  – your Steam account password
+      #
+      # Pathfinder: Wrath of the Righteous
+      #   AppID : 1184370
+      #   DepotID: 1184372  (Windows game data depot)
+      #
+      # Only the Managed folder is downloaded to keep the job fast.
+      - name: Download DepotDownloader
+        shell: pwsh
+        run: |
+          $url  = "https://github.com/SteamRE/DepotDownloader/releases/latest/download/DepotDownloader-windows-x64.zip"
+          $dest = "$env:RUNNER_TEMP\depotdownloader.zip"
+          Invoke-WebRequest -Uri $url -OutFile $dest
+          Expand-Archive -Path $dest -DestinationPath "$env:RUNNER_TEMP\DepotDownloader"
+          Write-Host "DepotDownloader ready"
+
+      - name: Download game managed files from Steam
+        shell: pwsh
+        env:
+          STEAM_USER: ${{ secrets.STEAM_USERNAME }}
+          STEAM_PASS: ${{ secrets.STEAM_PASSWORD }}
+        run: |
+          $dd   = "$env:RUNNER_TEMP\DepotDownloader\DepotDownloader.exe"
+          $dest = "${{ github.workspace }}\game-libs"
+          # AppID 1184370 = Pathfinder: Wrath of the Righteous
+          # DepotID 1184372 = Windows depot
+          # Exclude UnityModManager sub-folder — those DLLs come from UMM releases below
+          & $dd `
+            -app 1184370 `
+            -depot 1184372 `
+            -username "$env:STEAM_USER" `
+            -password "$env:STEAM_PASS" `
+            -remember-password `
+            -dir "$dest" `
+            -regex "Wrath_Data/Managed/(?!UnityModManager).*\.dll"
+          if ($LASTEXITCODE -ne 0) { throw "DepotDownloader failed" }
+          Write-Host "Game files downloaded to $dest"
+
+      # ── 5b. Download Unity Mod Manager (UMM) ─────────────────────────────────
+      # UMM is NOT part of the Steam depot — players install it separately.
+      # It is open-source on GitHub, so we fetch the latest release directly.
+      # No secrets required.
+      - name: Download Unity Mod Manager
+        shell: pwsh
+        run: |
+          $ummDir = "${{ github.workspace }}\game-libs\Wrath_Data\Managed\UnityModManager"
+          New-Item -ItemType Directory -Force -Path $ummDir | Out-Null
+
+          # Fetch latest release metadata from GitHub API
+          $release = Invoke-RestMethod `
+            -Uri "https://api.github.com/repos/newman55/unity-mod-manager/releases/latest" `
+            -Headers @{ "User-Agent" = "GitHub-Actions" }
+
+          # Find the zip asset
+          $asset = $release.assets | Where-Object { $_.name -like "*.zip" } | Select-Object -First 1
+          if (-not $asset) { throw "No zip asset found in UMM release" }
+
+          Write-Host "Downloading UMM $($release.tag_name): $($asset.browser_download_url)"
+          $zipPath = "$env:RUNNER_TEMP\umm.zip"
+          Invoke-WebRequest -Uri $asset.browser_download_url -OutFile $zipPath
+
+          # Extract only the two DLLs we need
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          $zip = [System.IO.Compression.ZipFile]::OpenRead($zipPath)
+          foreach ($entry in $zip.Entries) {
+            if ($entry.Name -in @("UnityModManager.dll", "0Harmony.dll")) {
+              $target = Join-Path $ummDir $entry.Name
+              [System.IO.Compression.ZipFileExtensions]::ExtractToFile($entry, $target, $true)
+              Write-Host "Extracted: $($entry.Name)"
+            }
+          }
+          $zip.Dispose()
+
+          # Verify both files are present
+          @("UnityModManager.dll", "0Harmony.dll") | ForEach-Object {
+            if (-not (Test-Path (Join-Path $ummDir $_))) {
+              throw "$_ not found in UMM release zip"
+            }
+          }
+          Write-Host "UMM DLLs ready at $ummDir"
 
       # ── 6. Restore & Build ───────────────────────────────────────────────────
       - name: Restore NuGet packages
@@ -143,3 +206,4 @@ jobs:
           tag_name: ${{ steps.tag.outputs.name }}
           generate_release_notes: true
           files: ${{ steps.zip.outputs.path }}
+

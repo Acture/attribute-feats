@@ -10,35 +10,21 @@ And I hate Visual Studio.
 
 ## Releasing (CI/CD)
 
-Releases are fully automated via GitHub Actions — no local build needed.
+Releases are fully automated via GitHub Actions — no local build needed, no separate repo to maintain.
 
-### One-time setup: game library secrets
+The workflow uses **[DepotDownloader](https://github.com/SteamRE/DepotDownloader)** to pull the game's managed DLLs directly from Steam at build time, and downloads **[Unity Mod Manager](https://github.com/newman55/unity-mod-manager)** from its GitHub releases automatically. Whenever the game or UMM updates, the next release picks up the new files with zero manual work.
 
-The project references proprietary DLLs that ship with the game and cannot be committed here.
-Store them in a **private** GitHub repository with this layout (mirroring the game install):
+### One-time setup: Steam secrets
 
-```
-Wrath_Data/
-  Managed/
-    Assembly-CSharp.dll
-    Assembly-CSharp-firstpass.dll
-    Unity*.dll
-    Core*.dll
-    Owlcat*.dll
-    Newtonsoft.Json.dll
-    UniRx.dll               ← optional
-    UnityModManager/
-      UnityModManager.dll
-      0Harmony.dll
-```
-
-Then add two **repository secrets** to this repo
+Add two **repository secrets** to this repo
 (`Settings → Secrets and variables → Actions → New repository secret`):
 
-| Secret name       | Value                                              |
-|-------------------|----------------------------------------------------|
-| `GAME_LIBS_REPO`  | `owner/repo` of the private game-libs repository   |
-| `GAME_LIBS_TOKEN` | A GitHub PAT with **`repo` read** scope for it     |
+| Secret name      | Value                        |
+|------------------|------------------------------|
+| `STEAM_USERNAME` | Your Steam account username  |
+| `STEAM_PASSWORD` | Your Steam account password  |
+
+> **Tip:** It is recommended to use a separate Steam account (a "bot" account) that owns the game, so your main account credentials are not stored in GitHub.
 
 ### Publish a release
 
@@ -47,7 +33,7 @@ Then add two **repository secrets** to this repo
 git tag v0.1.0
 git push origin v0.1.0
 ```
-The workflow triggers automatically, builds, and creates a GitHub Release with the mod zip attached.
+The workflow triggers automatically, downloads the latest game DLLs from Steam, builds, and creates a GitHub Release with the mod zip attached.
 
 **Option B — manual dispatch:**
 Go to `Actions → Release → Run workflow`, enter the version (e.g. `0.1.0`), and click **Run workflow**.
