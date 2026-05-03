@@ -21,7 +21,6 @@ using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
-using UnityModManagerNet;
 
 namespace AttributeFeats.New_Feats
 {
@@ -34,25 +33,6 @@ namespace AttributeFeats.New_Feats
 		public const string wis_main_to_everything = "41584589-3703-41c8-9a51-809805c921ad";
 		public const string cha_main_to_everything = "e16525c7-ec29-4904-a69c-8b35f0c60a95";
 	}
-
-	public class ModSettings : UnityModManager.ModSettings
-	{
-		public bool EnableAttributes = true;
-		public bool EnableBattles = true;
-		public bool EnableSavings = true;
-		public bool EnableChecks = true;
-		public bool EnableSkills = true;
-		public bool EnableCaster = true;
-
-
-		public ContextRankProgression progression = ContextRankProgression.AsIs;
-
-		public override void Save(UnityModManager.ModEntry modEntry)
-		{
-			Save(this, modEntry);
-		}
-	}
-
 
 	internal static class MainAbilityToEverything_Feats
 	{
