@@ -2,15 +2,20 @@ using System;
 using System.Collections.Generic;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+using BlueprintCore.Conditions.Builder;
+using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Mechanics;
+using Kingmaker.Utility;
 
 namespace AttributeFeats.New_Feats
 {
@@ -131,12 +136,34 @@ namespace AttributeFeats.New_Feats
                         "Charisma",
                         "The Battle Hears You.",
                         "Force of personality bends the rhythm of the fight around you, every command landing with the certainty of a will that expects obedience.",
-                        "While active, adds your Charisma modifier (untyped) to attack rolls. You suffer a penalty equal to your Charisma modifier to AC."),
+                        "While active, allies within 30 feet gain an untyped bonus to attack rolls equal to your Charisma modifier. You suffer a penalty equal to your Charisma modifier to AC."),
                     configureBuff: buff =>
                     {
-                        // A proper ally aura needs extra supporting aura blueprints beyond the 18 preallocated stance assets, so this Wave 1 version keeps the Charisma tradeoff self-only.
-                        return buff
+                        var allyBuff = BuffConfigurator.New("CommandingPresenceAllyBuff", Guids.Stance.AllyBuff.CommandingPresence)
+                            .SetDisplayName(Common.L("Stance_Cha.AllyBuff.Name", "Commanding Presence"))
+                            .SetDescription(Common.L(
+                                "Stance_Cha.AllyBuff.Desc",
+                                "<i>Stance · Charisma</i>\n<i>The Battle Hears You.</i> Your ally fights under the shelter of your certainty.\n\n<b>Effect:</b> Grants an untyped bonus to attack rolls equal to the Commanding Presence user's Charisma modifier while within 30 feet.",
+                                tagEncyclopediaEntries: true));
+                        AddRanks(allyBuff, StatType.Charisma, includeNegativeRank: false);
+                        var configuredAllyBuff = allyBuff
                             .AddContextStatBonus(StatType.AdditionalAttackBonus, Common.Rank(), descriptor: Desc)
+                            .AddRecalculateOnStatChange(stat: StatType.Charisma)
+                            .Configure();
+
+                        var areaEffect = AbilityAreaEffectConfigurator.New("CommandingPresenceArea", Guids.Stance.AreaEffect.CommandingPresence)
+                            .SetAffectEnemies(false)
+                            .SetAffectDead(false)
+                            .SetShape(AreaEffectShape.Cylinder)
+                            .SetSize(new Feet(30))
+                            .AddAbilityAreaEffectBuff(
+                                configuredAllyBuff,
+                                checkConditionEveryRound: true,
+                                condition: ConditionsBuilder.New().IsAlly().IsCaster(negate: true))
+                            .Configure();
+
+                        return buff
+                            .AddAreaEffect(areaEffect)
                             .AddContextStatBonus(StatType.AC, Common.Rank(), descriptor: Desc, multiplier: -1);
                     }),
             };

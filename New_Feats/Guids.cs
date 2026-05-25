@@ -86,6 +86,16 @@ namespace AttributeFeats.New_Feats
                 public const string Wis = "0386566e-3fff-4010-b8a8-34d55faba381";
                 public const string Cha = "da9409aa-e360-4aef-964e-0b700968a6a9";
             }
+
+            public static class AllyBuff
+            {
+                public const string CommandingPresence = "5e2e946d-7572-40ac-b901-8f347e3fee5a";
+            }
+
+            public static class AreaEffect
+            {
+                public const string CommandingPresence = "ed66e352-8aee-49e6-8ec2-bb7bba386fee";
+            }
         }
 
         public static class Conditional
@@ -101,6 +111,18 @@ namespace AttributeFeats.New_Feats
                 public const string EndlessResolve = "fd56886a-08aa-4088-86cf-75628422f950";
                 public const string Vendetta = "77ce625c-6936-4f84-97ef-396b2dc6260a";
                 public const string PatientHunter = "c64eb9ab-c904-4252-9c89-4d13ae1327fb";
+            }
+        }
+
+        public static class Conditional2 // Berserker's Last Stand, Tactical Reading
+        {
+            public const string BerserkersLastStand = "eeff8a1f-d105-4aca-9901-b8ca5630f38f";
+            public const string TacticalReading = "76b84599-7b1d-44f2-a5f3-fff3e7c65999";
+
+            public static class TriggerBuff
+            {
+                public const string BerserkersLastStand = "054d1cf0-8118-43ef-acd6-e65c57f36006";
+                public const string TacticalReading = "f55c6d0e-87e2-4924-9cbd-ab1114829934";
             }
         }
 
@@ -122,6 +144,13 @@ namespace AttributeFeats.New_Feats
                 public const string CalculatedGrip = "07ca886f-fe82-4baa-a84e-495f338b78d2";
                 public const string UnyieldingWill = "9c1fb2c2-8732-4348-88c1-f6bfe544dff0";
             }
+        }
+
+        public static class ExtendedReplacement2 // 3 more attribute-themed
+        {
+            public const string BrutalDefender = "e8eb1eba-d6e8-4f55-862f-5485457b5699"; // Str→CMD
+            public const string LightfootDefense = "6cfe15bc-b05d-40eb-9434-a9b48d69fcb3"; // Dex→AC unarmored
+            public const string IronEndurance = "8254961c-b81a-48ac-9202-e470018d112c"; // Con→HP/level
         }
 
         public static class ReactiveArmor
@@ -175,6 +204,30 @@ namespace AttributeFeats.New_Feats
             }
         }
 
+        public static class SummonerSacrifice // Family 25
+        {
+            public static class Feature
+            {
+                public const string BodyOfMyPact = "83c8873a-40ea-43ed-b279-a56a5ebd03a7";
+                public const string DoubledBond = "d442fba8-51c8-48dd-a069-1e0a183fb27f";
+                public const string EmpoweredSacrifice = "c54e8935-a046-4d9d-bc8b-276db4ce0c74";
+            }
+
+            public static class OuterBuff
+            {
+                public const string BodyOfMyPact = "2e2be264-a177-4fd1-ae09-4b890c4b62e5";
+                public const string DoubledBond = "7828a4de-12ff-4b40-9beb-9e3cc1c057ce";
+                public const string EmpoweredSacrifice = "01b11574-0bd9-417c-9b06-110b3a15c16d";
+            }
+
+            public static class InnerBuff
+            {
+                public const string BodyOfMyPact = "8c69d379-3be9-4f4f-8b10-5ae940b4d55e";
+                public const string DoubledBond = "84e3137e-a1e8-4338-a334-421f58a24a6e";
+                public const string EmpoweredSacrifice = "52c404a4-f11a-476b-954f-a7d39d3ed1a4";
+            }
+        }
+
         public static class SpellTag
         {
             public static class School
@@ -196,6 +249,34 @@ namespace AttributeFeats.New_Feats
                 public const string StormChannel = "c740ed3e-53b3-4619-b0cd-fde8827af9dc";
                 public const string EtchingMind = "8626c648-1c99-4022-ac10-ce3fe3e60341";
                 public const string ResonantVoice = "f5949405-4682-4911-96ba-fe7754ba951b";
+            }
+        }
+
+        public static class SpellTagDescriptor2 // 4 more descriptors
+        {
+            public const string EthericMind = "fc85d95a-79af-4607-9404-fd0b9f8ff117"; // Force, Int
+            public const string RadiantSoul = "4abca6af-b57f-47a5-bf87-d216ad6ccbf6"; // Positive Energy, Cha
+            public const string HollowHeart = "4230836e-24d4-4a2b-9b59-59787a4f220b"; // Negative Energy, Wis
+            public const string SubtleTyrant = "628e7fd3-75be-4b67-b785-c4e0bc6247ea"; // Mind-Affecting, Cha
+        }
+
+        public static class PolearmMaster // Family 12
+        {
+            public static class Feature
+            {
+                public const string PolearmMaster = "85389c3d-b584-4cdf-b12a-cac0fd766796";
+            }
+        }
+
+        public static class DistanceDamage // Family 24
+        {
+            public const string AggressorsEdge = "2d2024c2-4944-4036-9649-a1f6702ca084";
+            public const string MarksmansFocus = "499dd915-5ee9-4d3b-acf8-484e401d9835";
+            public const string OptimalRange = "f05016c7-5126-4053-bc6b-0283d9b28eca";
+
+            public static class Buff
+            {
+                public const string FlatBonus = "96c9d080-65e6-4339-9019-d0fa3c63ae48";
             }
         }
     }

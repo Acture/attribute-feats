@@ -2,6 +2,8 @@ using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+using BlueprintCore.Conditions.Builder;
+using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
@@ -27,11 +29,15 @@ namespace AttributeFeats.New_Feats
             var firstBloodBuff = CreateFirstBloodBuff();
             var vendettaBuff = CreateVendettaBuff();
             var patientHunterBuff = CreatePatientHunterBuff();
+            var berserkersLastStandBuff = CreateBerserkersLastStandBuff();
+            var tacticalReadingBuff = CreateTacticalReadingBuff();
 
             CreateEndlessResolve(endlessResolveBuff);
             CreateFirstBlood(firstBloodBuff);
             CreateVendetta(vendettaBuff);
             CreatePatientHunter(patientHunterBuff);
+            CreateBerserkersLastStand(berserkersLastStandBuff);
+            CreateTacticalReading(tacticalReadingBuff);
         }
 
         private static ContextValue SimpleValue(int value)
@@ -39,6 +45,15 @@ namespace AttributeFeats.New_Feats
 
         private static ActionsBuilder ApplySelfBuff(BlueprintBuff buff, int rounds)
             => ActionsBuilder.New().ApplyBuff(buff.ToReference<BlueprintBuffReference>(), ContextDuration.Fixed(rounds), toCaster: true);
+
+        private static ActionsBuilder ApplySelfBuff(string buffGuid, int duration, DurationRate rate)
+            => ActionsBuilder.New().ApplyBuff(buffGuid, ContextDuration.Fixed(duration, rate), toCaster: true);
+
+        private static ActionsBuilder ApplySelfBuffIfMissing(string buffGuid, int duration, DurationRate rate)
+            => ActionsBuilder.New().Conditional(
+                conditions: ConditionsBuilder.New().CasterHasFact(buffGuid, negate: true).Build(),
+                ifTrue: ApplySelfBuff(buffGuid, duration, rate).Build(),
+                ifFalse: ActionsBuilder.New().Build());
 
         private static ActionsBuilder RemoveSelfBuff(BlueprintBuff buff)
             => ActionsBuilder.New().RemoveBuff(buff.ToReference<BlueprintBuffReference>(), toCaster: true);
@@ -139,6 +154,36 @@ namespace AttributeFeats.New_Feats
                 .Configure();
         }
 
+        private static BlueprintBuff CreateBerserkersLastStandBuff()
+        {
+            return NewBuff(
+                    internalName: "BerserkersLastStandTriggerBuff",
+                    guid: Guids.Conditional2.TriggerBuff.BerserkersLastStand,
+                    nameKey: "Conditional_BerserkersLastStand.Buff.Name",
+                    nameValue: "Berserker's Last Stand",
+                    descKey: "Conditional_BerserkersLastStand.Buff.Desc",
+                    descValue: "Berserker's Last Stand is active, adding your Strength modifier as an untyped bonus to attack rolls and damage while applying an equal untyped penalty to AC.",
+                    baseStat: StatType.Strength)
+                .AddContextStatBonus(StatType.AdditionalAttackBonus, Common.Rank(), descriptor: ModifierDescriptor.None)
+                .AddContextStatBonus(StatType.AdditionalDamage, Common.Rank(), descriptor: ModifierDescriptor.None)
+                .AddContextStatBonus(StatType.AC, Common.Rank(), descriptor: ModifierDescriptor.None, multiplier: -1)
+                .Configure();
+        }
+
+        private static BlueprintBuff CreateTacticalReadingBuff()
+        {
+            return NewBuff(
+                    internalName: "TacticalReadingTriggerBuff",
+                    guid: Guids.Conditional2.TriggerBuff.TacticalReading,
+                    nameKey: "Conditional_TacticalReading.Buff.Name",
+                    nameValue: "Tactical Reading",
+                    descKey: "Conditional_TacticalReading.Buff.Desc",
+                    descValue: "Tactical Reading is active, adding your Intelligence modifier as an untyped bonus to attack rolls until combat ends.",
+                    baseStat: StatType.Intelligence)
+                .AddContextStatBonus(StatType.AdditionalAttackBonus, Common.Rank(), descriptor: ModifierDescriptor.None)
+                .Configure();
+        }
+
         private static BlueprintFeature CreateEndlessResolve(BlueprintBuff buff)
         {
             return NewFeature(
@@ -199,6 +244,39 @@ namespace AttributeFeats.New_Feats
                     combatStartActions: ApplySelfBuff(buff, 1),
                     combatEndActions: RemoveSelfBuff(buff))
                 .AddNewRoundTrigger(newRoundActions: ApplySelfBuff(buff, 1))
+                .Configure();
+        }
+
+        private static BlueprintFeature CreateBerserkersLastStand(BlueprintBuff buff)
+        {
+            return NewFeature(
+                    internalName: "BerserkersLastStand",
+                    guid: Guids.Conditional2.BerserkersLastStand,
+                    nameKey: "Conditional_BerserkersLastStand.Name",
+                    nameValue: "Berserker's Last Stand",
+                    descKey: "Conditional_BerserkersLastStand.Desc",
+                    descValue: "<i>Conditional · Strength</i>\n<i>Rage at the Brink.</i> With death close enough to taste, survival becomes a brutal bargain: strike harder, stand looser, and trust fury more than caution.\n\n<b>Effect:</b> While you are below 25% health, gain a buff that adds your Strength modifier as an untyped bonus to weapon attack rolls and damage, and applies an untyped penalty to AC equal to your Strength modifier.\n\n<b>Restrictions:</b> Mutually exclusive with the Strength Main Attribute Mastery feat.")
+                .AddBuffOnHealthTickingTrigger(healthPercent: 0.25f, triggeredBuff: buff.ToReference<BlueprintBuffReference>())
+                .AddRecalculateOnStatChange(stat: StatType.Strength)
+                .Configure();
+        }
+
+        private static BlueprintFeature CreateTacticalReading(BlueprintBuff buff)
+        {
+            return NewFeature(
+                    internalName: "TacticalReading",
+                    guid: Guids.Conditional2.TacticalReading,
+                    nameKey: "Conditional_TacticalReading.Name",
+                    nameValue: "Tactical Reading",
+                    descKey: "Conditional_TacticalReading.Desc",
+                    descValue: "<i>Conditional · Intelligence</i>\n<i>Pattern Secured.</i> One exchange is enough to reveal the fight's hidden logic, and once the pattern is solved your weapon follows conclusions instead of guesses.\n\n<b>Effect:</b> After your first weapon attack in combat resolves, gain a buff until the end of combat that adds your Intelligence modifier as an untyped bonus to attack rolls.\n\n<b>Restrictions:</b> Mutually exclusive with the Intelligence Main Attribute Mastery feat.")
+                .AddCombatStateTrigger(
+                    combatStartActions: RemoveSelfBuff(buff),
+                    combatEndActions: RemoveSelfBuff(buff))
+                .AddInitiatorAttackWithWeaponTrigger(
+                    action: ApplySelfBuffIfMissing(Guids.Conditional2.TriggerBuff.TacticalReading, 10, DurationRate.Minutes),
+                    actionsOnInitiator: true,
+                    triggerBeforeAttack: false)
                 .Configure();
         }
     }

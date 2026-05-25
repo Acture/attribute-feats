@@ -155,6 +155,52 @@ namespace AttributeFeats.New_Feats
                     "The force of your presence hardens into defiance, making every attempt to move or break you feel like a personal insult.",
                     "Adds your Charisma modifier as an untyped bonus to CMD.",
                     "This feat can be combined with other Extended Replacement feats."));
+
+            CreateExtendedFeat(
+                StatType.Strength,
+                StatType.AdditionalCMD,
+                "BrutalDefender",
+                Guids.ExtendedReplacement2.BrutalDefender,
+                "Extended_BrutalDefender.Name",
+                "Brutal Defender",
+                "Extended_BrutalDefender.Desc",
+                BuildExtendedDescription(
+                    "Strength",
+                    "Hold the Line by Force.",
+                    "Raw power sets your footing and dares the enemy to move you, turning every contest of balance into a test of whose body yields first.",
+                    "Adds your Strength modifier as an untyped bonus to CMD.",
+                    "This feat can be combined with other Extended Replacement feats."));
+
+            CreateExtendedFeat(
+                StatType.Dexterity,
+                StatType.AC,
+                "LightfootDefense",
+                Guids.ExtendedReplacement2.LightfootDefense,
+                "Extended_LightfootDefense.Name",
+                "Lightfoot Defense",
+                "Extended_LightfootDefense.Desc",
+                BuildExtendedDescription(
+                    "Dexterity",
+                    "Untouched in Motion.",
+                    "Footwork keeps danger a step behind you, and every clean shift of weight turns light armor or bare skin into enough defense to matter.",
+                    "Adds your Dexterity modifier as an untyped bonus to AC while wearing no armor or light armor.",
+                    "Applies only while wearing no armor or light armor. This feat can be combined with other Extended Replacement feats."),
+                CreateLightOrNoArmorRestriction());
+
+            CreateExtendedFeat(
+                StatType.Constitution,
+                StatType.HitPoints,
+                "IronEndurance",
+                Guids.ExtendedReplacement2.IronEndurance,
+                "Extended_IronEndurance.Name",
+                "Iron Endurance",
+                "Extended_IronEndurance.Desc",
+                BuildExtendedDescription(
+                    "Constitution",
+                    "Reserve in the Flesh.",
+                    "Endurance does more than keep you upright; it deepens the body's reserve, leaving more of you standing between pain and collapse.",
+                    "Adds your Constitution modifier as an untyped bonus to Hit Points.",
+                    "This feat can be combined with other Extended Replacement feats."));
         }
 
         private static BlueprintFeature CreateWeaponInsight(

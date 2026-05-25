@@ -27,6 +27,8 @@ namespace AttributeFeats
         public bool EnableBAB = false;
         public bool EnablePowerMode = false;
 
+        public bool EnableMutex = true;
+
         public PowerLevel powerLevel = PowerLevel.Balanced;
 
         public override void Save(UnityModManager.ModEntry modEntry)

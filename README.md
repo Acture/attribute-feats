@@ -6,7 +6,7 @@ A Pathfinder: Wrath of the Righteous mod that adds **build-enabling** feats base
 
 ## Feat Families
 
-**0.1.0 total:** Main (6) + Specialized (24) + Stance (6) + Conditional (4) + Replacement (9) + Summon (6) + ReactiveArmor (2) + Derived (6) + SpellTag (13) = **76 feats**.
+**0.1.1 total:** Main (6) + Specialized (24) + Stance (6) + Conditional (6) + Replacement (12) + Summon (6) + SummonerSacrifice (3) + ReactiveArmor (2) + Derived (6) + SpellTag (17) + PolearmMaster (1) + DistanceDamage (3) = **92 feats**.
 
 ### Main Attribute Mastery (6 feats, mutually exclusive)
 
@@ -39,7 +39,7 @@ A Pathfinder: Wrath of the Righteous mod that adds **build-enabling** feats base
 | Centered Mind | Wisdom |
 | Commanding Presence | Charisma |
 
-### Conditional Trigger (4 feats)
+### Conditional Trigger (6 feats)
 
 | Feat | Attribute |
 |---|---|
@@ -47,8 +47,10 @@ A Pathfinder: Wrath of the Righteous mod that adds **build-enabling** feats base
 | First Blood | Dexterity |
 | Vendetta | Charisma |
 | Patient Hunter | Wisdom |
+| Berserker's Last Stand | Strength |
+| Tactical Reading | Intelligence |
 
-### Replacement (9 feats)
+### Replacement (12 feats)
 
 **Weapon Insight (6)**
 
@@ -61,13 +63,16 @@ A Pathfinder: Wrath of the Righteous mod that adds **build-enabling** feats base
 | Predictive Cut | Wisdom |
 | Theatrical Combat | Charisma |
 
-**Extended Replacement (3)**
+**Extended Replacement (6)**
 
-| Feat | Attribute |
-|---|---|
-| Inner Sentinel | Wisdom |
-| Calculated Grip | Intelligence |
-| Unyielding Will | Charisma |
+| Feat | Attribute | Effect |
+|---|---|---|
+| Inner Sentinel | Wisdom | Wis-to-AC when unarmored |
+| Calculated Grip | Intelligence | Int-to-CMB |
+| Unyielding Will | Charisma | Cha-to-CMD |
+| Brutal Defender | Strength | Str-to-CMD |
+| Lightfoot Defense | Dexterity | Dex-to-AC when unarmored (extended pool) |
+| Iron Endurance | Constitution | Con-to-HP scaling |
 
 ### Greater Summoning (6 feats)
 
@@ -92,9 +97,28 @@ A Pathfinder: Wrath of the Righteous mod that adds **build-enabling** feats base
 - Soul Bulwark
 - Sword Saint
 
-### Spell Tag Specialist (13 feats)
+### Spell Tag Specialist (17 feats)
 - **School (8):** Pure Warder, Master Caller, Seer's Edge, Heart's Tyrant, Spellforge, Veilweaver, Death Speaker, Shape-Shifter
-- **Descriptor (5):** Inner Flame, Frozen Heart, Storm Channel, Etching Mind, Resonant Voice
+- **Descriptor (9):** Inner Flame, Frozen Heart, Storm Channel, Etching Mind, Resonant Voice, Etheric Mind (Force / Int), Radiant Soul (Positive Energy / Cha), Hollow Heart (Negative Energy / Wis), Subtle Tyrant (Mind-Affecting / Cha)
+
+### Summoner Sacrifice (3 feats)
+
+Trade your own ability scores for amplified buffs to your summoned creatures (via the same `SummonedUnitBuff` pattern as Greater Summoning).
+
+- **Body of My Pact** — −all six attributes on self, +equal value to every attribute on summons (1:1)
+- **Doubled Bond** — −half on self, +full on summons (1:2 transfer)
+- **Empowered Sacrifice** — −Charisma on self, +Strength on summons
+
+### Polearm Master (1 feat)
+- **Polearm Master** — reach × 2 with the −4 weapon damage tradeoff. Classic spear/pike trade.
+
+### Distance-Based Damage (3 feats)
+
+Distance-gated +4 weapon damage triggers; pick the band that fits your build.
+
+- **Aggressor's Edge** — +4 damage at ≤ 10 ft (in your face)
+- **Marksman's Focus** — +4 damage at ≥ 30 ft (long range)
+- **Optimal Range** — +4 damage at the 15–25 ft sweet spot
 
 ## Settings
 
@@ -104,6 +128,7 @@ A Pathfinder: Wrath of the Righteous mod that adds **build-enabling** feats base
 |---|---|---|
 | Power Level | `Balanced` | `Balanced`: full scaling for attributes, defenses, maneuvers, skills, caster level, and spell penetration; reduced scaling for spell DC, BAB, and Power Mode bonuses. `Legacy_AllFull`: all rank-based Main feat bonuses use full modifier scaling. |
 | Include Self in Attribute Stack | OFF | A Main feat may add its chosen attribute to itself. |
+| **Enable Mutex** | **ON** | When ON, each family enforces its intra-family mutex. When OFF, every mutex prerequisite is skipped — you may take every feat at once. Cross-family same-attribute mutex was removed in 0.1.1 regardless of this toggle. |
 | EnableAttributes | ON | Adds Main feat bonuses to the six ability scores. |
 | EnableDefenses | ON | Enables AC, CMD, saving throw, and initiative scaling. |
 | EnableManeuvers | ON | Enables Combat Maneuver Bonus scaling. |
@@ -117,24 +142,24 @@ A Pathfinder: Wrath of the Righteous mod that adds **build-enabling** feats base
 
 ## Stacking Rules
 
-- Each family keeps its own intra-family mutex rules (for example: Main 6-way, each Specialized subfamily 6-way, Stance 6-way, Weapon Insight 6-way, Greater Summoning 6-way, Spell Tag School 8-way, and Spell Tag Descriptor 5-way).
-- `Main(X)` is mutually exclusive with same-attribute Specialized feats.
-- The 0.1.0 release mutex pass also blocks same-attribute Stance, Weapon Insight, themed Conditional, Extended Replacement, and Spell Tag feats where that attribute identity would otherwise double-count.
-- Different-attribute combinations stack normally (for example: `Apex Predator` + `Stoic Vigilance` + `Polymath's Touch` + `Theatrical Combat`).
+- Each family enforces its own intra-family mutex (controlled by `EnableMutex`): Main 6-way, each Specialized subfamily 6-way, Stance 6-way, Weapon Insight 6-way, Greater Summoning 6-way, Summoner Sacrifice 3-way, Spell Tag School 8-way, Spell Tag Descriptor 9-way.
+- **Cross-family same-attribute mutex was removed in 0.1.1.** Combinations like `Apex Predator` (Str Main) + `Titan's Stance` (Str Defensive) + `Brutal Stance` (Str Stance) are now allowed — same-attribute stacking is a deliberate build option, not a bug.
+- Set `EnableMutex = OFF` in mod settings to disable every mutex prerequisite (including intra-family). You can then take any combination of feats; gather every Specialized stat-bonus for a single attribute, or every Stance, etc. Use at your own risk — this is a power option, not the intended baseline.
 - Main feats use **Inherent** bonuses; most non-Main bonuses are **Untyped** or use stat replacement, so cross-attribute combinations remain the intended way to build.
 - Some effects, such as Wisdom-to-AC style bonuses, may also stack with compatible vanilla class features. That is intentional for build-enabler playstyles.
 
 ## Installation (Unity Mod Manager)
 
 1. Install [Unity Mod Manager](https://www.nexusmods.com/site/mods/21) for Pathfinder: Wrath of the Righteous.
-2. Build or download `AttributeFeats-0.1.0.zip`.
+2. Build or download `AttributeFeats-0.1.1.zip`.
 3. Drop the zip into UMM.
 4. Enable the mod in-game.
 
 ## Save Compatibility
 
-- **0.1.0 resets mod settings; reconfigure once after upgrade.**
-- Existing saves should still load, but this is a large redesign from 0.0.x, so backing up saves first is recommended.
+- **0.1.1 → 0.1.x is non-breaking.** Settings carry over; XML serialization adds the new `EnableMutex` field as `true` by default.
+- **0.1.0 → 0.1.1 upgrades** keep all existing feats (GUIDs unchanged). New feats appear in the level-up feat list and Commanding Presence Stance now applies its 30-ft ally aura correctly.
+- 0.0.x → 0.1.x is a redesign; back up saves first.
 
 ## Building from Source
 

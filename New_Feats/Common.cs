@@ -79,6 +79,11 @@ namespace AttributeFeats.New_Feats
                 return;
             }
 
+            if (Main.Settings != null && !Main.Settings.EnableMutex)
+            {
+                return;
+            }
+
             FeatureConfigurator.For(a)
                 .AddPrerequisiteNoFeature(b)
                 .Configure();

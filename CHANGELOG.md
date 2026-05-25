@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.1.1 — Mutex Relaxation + 17 New Feats
+
+### Mutex Redesign
+- **Cross-family same-attribute mutex removed.** Combinations like Apex Predator (Str Main) + Titan's Stance (Str Defensive) + Brutal Stance (Str Stance) now stack freely. The old release-time `MutexPass` cross-attribute pass is gone; only intra-family mutex remains.
+- **New `EnableMutex` setting (default ON).** When OFF, every mutex prerequisite is skipped, including intra-family. Pick this for full collector / power-stack play; leave ON for the curated baseline.
+
+### Added (17 new feats)
+- **Conditional Trigger expansion (+2):** Berserker's Last Stand (Str, HP < 25%), Tactical Reading (Int, first attack of combat).
+- **Extended Replacement expansion (+3):** Brutal Defender (Str → CMD), Lightfoot Defense (Dex → AC unarmored), Iron Endurance (Con → HP).
+- **Spell Tag Descriptor expansion (+4):** Etheric Mind (Force / Int), Radiant Soul (Positive Energy / Cha), Hollow Heart (Negative Energy / Wis), Subtle Tyrant (Mind-Affecting / Cha). Each follows the same `+half mod` chosen-descriptor / `−half mod` other-descriptors tradeoff pattern.
+- **Summoner Sacrifice (+3, Family 25):** Body of My Pact (1:1 transfer), Doubled Bond (1:2 transfer), Empowered Sacrifice (Cha → Str focused trade). Built on the same `SummonedUnitBuff` nested-buff pattern as Greater Summoning. Intra-family 3-way mutex.
+- **Polearm Master (+1, Family 12):** Reach × 2 with a −4 weapon damage tradeoff. Classic spear/pike sweet spot, opt-in.
+- **Distance Damage (+3, Family 24):** Aggressor's Edge (≤10 ft), Marksman's Focus (≥30 ft), Optimal Range (15–25 ft). Each grants +4 damage in its band via `AddContextStatBonus` + `AddInitiatorAttackWithWeaponTrigger` + `ContextConditionDistanceToTarget`.
+
+### Fixed
+- **Commanding Presence Stance** now applies its 30-ft Charisma-to-attack aura to allies. The 0.1.0 release shipped a self-only buff fallback because GUID exhaustion blocked the aura blueprint; the aura is now wired up via `AddAreaEffect` with a 30 ft cylinder filtered by `IsAlly()` and `IsCaster(negate: true)`.
+
+### Changed
+- README now lists `EnableMutex` in the settings table and updates the Stacking Rules section to reflect the cross-family mutex removal.
+- Foundation GUIDs extended by 26 (nested classes for Conditional2, ExtendedReplacement2, SpellTagDescriptor2, PolearmMaster.Feature, DistanceDamage, SummonerSacrifice, plus the two Commanding Presence aura blueprints).
+
+### Save Compatibility
+- 0.1.0 saves load without change; 17 new feats appear in level-up lists.
+- `EnableMutex` defaults to ON for upgrading installs (matches 0.1.0 mutex strictness minus the cross-family removal).
+
 ## 0.1.0 — Build Enabler Redesign
 
 ### Breaking Changes

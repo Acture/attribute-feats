@@ -19,6 +19,13 @@ namespace AttributeFeats.New_Feats
     internal static class SpellTagFeats
     {
         private static readonly ModifierDescriptor Desc = ModifierDescriptor.None;
+        private const SpellDescriptor PositiveEnergyDescriptor = SpellDescriptor.Cure
+            | SpellDescriptor.RestoreHP
+            | SpellDescriptor.ChannelPositiveHeal
+            | SpellDescriptor.ChannelPositiveHarm;
+        private const SpellDescriptor NegativeEnergyDescriptor = SpellDescriptor.ChannelNegativeHeal
+            | SpellDescriptor.ChannelNegativeHarm
+            | SpellDescriptor.NegativeLevel;
         private static readonly SpellSchool[] Schools =
         {
             SpellSchool.Abjuration,
@@ -38,6 +45,10 @@ namespace AttributeFeats.New_Feats
             SpellDescriptor.Electricity,
             SpellDescriptor.Acid,
             SpellDescriptor.Sonic,
+            SpellDescriptor.Force,
+            PositiveEnergyDescriptor,
+            NegativeEnergyDescriptor,
+            SpellDescriptor.MindAffecting,
         };
 
         private static bool Initialized;
@@ -184,6 +195,34 @@ namespace AttributeFeats.New_Feats
                     descriptor: SpellDescriptor.Sonic,
                     attribute: StatType.Charisma,
                     loreText: "<i>Sound Given Command.</i> Tone bends around your presence until every word, note, and shockwave lands with irresistible force.")),
+                CreateDescriptorFeat(new DescriptorFeatDefinition(
+                    internalName: "EthericMind",
+                    displayName: "Etheric Mind",
+                    guid: Guids.SpellTagDescriptor2.EthericMind,
+                    descriptor: SpellDescriptor.Force,
+                    attribute: StatType.Intelligence,
+                    loreText: "<i>Thought Given Impact.</i> Your intellect gives raw force a precise vector, turning invisible pressure into a theorem the world is forced to obey.")),
+                CreateDescriptorFeat(new DescriptorFeatDefinition(
+                    internalName: "RadiantSoul",
+                    displayName: "Radiant Soul",
+                    guid: Guids.SpellTagDescriptor2.RadiantSoul,
+                    descriptor: PositiveEnergyDescriptor,
+                    attribute: StatType.Charisma,
+                    loreText: "<i>Grace That Rekindles.</i> Your presence makes renewal feel inevitable, and positive energy answers with a brilliance that floods every healing surge and sacred flare.")),
+                CreateDescriptorFeat(new DescriptorFeatDefinition(
+                    internalName: "HollowHeart",
+                    displayName: "Hollow Heart",
+                    guid: Guids.SpellTagDescriptor2.HollowHeart,
+                    descriptor: NegativeEnergyDescriptor,
+                    attribute: StatType.Wisdom,
+                    loreText: "<i>Stillness Beyond Breath.</i> You know the quiet shape left when life recedes, and negative energy follows that insight with chilling obedience.")),
+                CreateDescriptorFeat(new DescriptorFeatDefinition(
+                    internalName: "SubtleTyrant",
+                    displayName: "Subtle Tyrant",
+                    guid: Guids.SpellTagDescriptor2.SubtleTyrant,
+                    descriptor: SpellDescriptor.MindAffecting,
+                    attribute: StatType.Charisma,
+                    loreText: "<i>Will Behind the Smile.</i> You lace every charm and compulsion with undeniable authority, making minds yield before they realize they were ever under siege.")),
             };
 
             AddFamilyMutex(schools);
@@ -378,6 +417,14 @@ namespace AttributeFeats.New_Feats
                     return "Acid";
                 case SpellDescriptor.Sonic:
                     return "Sonic";
+                case SpellDescriptor.Force:
+                    return "Force";
+                case PositiveEnergyDescriptor:
+                    return "Positive Energy";
+                case NegativeEnergyDescriptor:
+                    return "Negative Energy";
+                case SpellDescriptor.MindAffecting:
+                    return "Mind-Affecting";
                 default:
                     return descriptor.ToString();
             }

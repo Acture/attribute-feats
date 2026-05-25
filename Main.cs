@@ -85,6 +85,8 @@ namespace AttributeFeats
             GUILayout.BeginVertical("box");
             changed |= ToggleSetting(ref s.IncludeSelfInAttributeStack, "Include Self in Attribute Stack — a Main feat may add its chosen attribute to itself (default: OFF)");
             GUILayout.Label("<color=grey><size=11>Leave this off for the redesign baseline. Turning it on restores recursive self-stacking behavior.</size></color>");
+            changed |= ToggleSetting(ref s.EnableMutex, "Enable Mutual Exclusivity — enforce intra-family mutex rules (default: ON)");
+            GUILayout.Label("<color=grey><size=11>When ON, each family enforces its intra-family mutex (Main 6-way, Specialized 6-way per subfamily, Stance 6-way, Weapon Insight 6-way, Greater Summoning 6-way, Summoner Sacrifice 3-way, Spell Tag school 8-way + descriptor 9-way). When OFF, all mutex prerequisites are skipped — you may take every feat at once. Cross-family same-attribute mutex is removed in 0.1.1 regardless of this toggle.</size></color>");
             GUILayout.EndVertical();
 
             GUILayout.Space(10);

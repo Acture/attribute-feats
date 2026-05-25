@@ -159,13 +159,15 @@ namespace AttributeFeats.New_Feats
 
             foreach (var feat in feats)
             {
-                var configurator = FeatureConfigurator.For(feat);
-                foreach (var other in feats.Where(other => other != feat))
-                {
-                    configurator.AddPrerequisiteNoFeature(other);
-                }
+                FeatureConfigurator.For(feat).Configure();
+            }
 
-                configurator.Configure();
+            for (var i = 0; i < feats.Count; i++)
+            {
+                for (var j = i + 1; j < feats.Count; j++)
+                {
+                    Common.AddBidirectionalMutex(feats[i], feats[j]);
+                }
             }
         }
 
