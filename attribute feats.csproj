@@ -6,9 +6,9 @@
 	<PropertyGroup>
 		<TargetFramework>net48</TargetFramework>
 		<OutputType>Library</OutputType>
-		<Version>0.0.2</Version>
-		<AssemblyVersion>0.0.2</AssemblyVersion>
-		<FileVersion>0.0.2</FileVersion>
+		<Version>0.1.0</Version>
+		<AssemblyVersion>0.1.0</AssemblyVersion>
+		<FileVersion>0.1.0</FileVersion>
 		<Authors>AuthorName</Authors>
 
 		<AssemblyName>AttributeFeats</AssemblyName>
@@ -91,22 +91,6 @@
 
 	<!-- Deploy to Mods folder + zip -->
 	<Target Name="Deploy" AfterTargets="Build">
-		<ItemGroup>
-			<Files Include="$(TargetDir)\**\*.*" />
-			<Files Remove="$(TargetDir)\**\*.dll" />
-			<Files Remove="$(TargetDir)\**\*.pdb" />
-			<Files Remove="$(TargetDir)\**\*.cache" />
-			<Files Remove="$(TargetDir)\**\UnityModManager.xml" />
-			<Files Include="$(TargetDir)\**\$(AssemblyName).dll" />
-			<Files Include="$(TargetDir)\**\$(AssemblyName).pdb" />
-			<ToDelete Include="$(TargetDir)\**\*.*" />
-			<ToDelete Remove="@(Files)" />
-		</ItemGroup>
-
-		<Copy SourceFiles="@(Files)" DestinationFiles="@(Files->'$(WrathInstallDir)\Mods\$(AssemblyName)\%(RecursiveDir)%(Filename)%(Extension)')" />
-		<Delete Files="@(ToDelete)" />
-		<ZipDirectory SourceDirectory="$(MSBuildProjectDirectory)\$(OutputPath)" DestinationFile="$(MSBuildProjectDirectory)\$(OutputPath)\..\$(AssemblyName)-$(Version).zip" Overwrite="true" />
-	</Target>	<Target Name="Deploy" AfterTargets="Build">
 		<ItemGroup>
 			<Files Include="$(TargetDir)\**\*.*" />
 			<Files Remove="$(TargetDir)\**\*.dll" />

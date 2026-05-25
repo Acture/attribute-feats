@@ -1,292 +1,278 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
-using BlueprintCore.Utils;
-using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Designers.Mechanics.Buffs;
 using Kingmaker.Designers.Mechanics.Facts;
-using Kingmaker.ElementsSystem;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
-using Kingmaker.Globalmap.State.InputManager;
-using Kingmaker.Localization;
-using Kingmaker.UnitLogic;
-using Kingmaker.UnitLogic.Abilities;
-using Kingmaker.UnitLogic.Class;
 using Kingmaker.UnitLogic.FactLogic;
-using Kingmaker.UnitLogic.Mechanics;
-using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 
 namespace AttributeFeats.New_Feats
 {
-	internal static class Guids
-	{
-		public const string str_main_to_everything = "a4c66462-a423-4a2f-8b26-770ea03d2ce0";
-		public const string dex_main_to_everything = "0963babc-0579-4bb3-a33a-23949b47e68b";
-		public const string con_main_to_everything = "52506f39-5c40-4780-b677-68336c44dcaa";
-		public const string int_main_to_everything = "df0cb753-5704-42a0-bad0-627757af281f";
-		public const string wis_main_to_everything = "41584589-3703-41c8-9a51-809805c921ad";
-		public const string cha_main_to_everything = "e16525c7-ec29-4904-a69c-8b35f0c60a95";
-	}
+    internal static class MainAbilityToEverything_Feats
+    {
+        private static readonly ModifierDescriptor Desc = ModifierDescriptor.Inherent;
 
-	internal static class MainAbilityToEverything_Feats
-	{
-		private static readonly ModifierDescriptor Desc = ModifierDescriptor.Inherent;
+        private static readonly StatType[] AttributeStats =
+        {
+            StatType.Strength,
+            StatType.Dexterity,
+            StatType.Constitution,
+            StatType.Intelligence,
+            StatType.Wisdom,
+            StatType.Charisma,
+        };
 
-		private static readonly StatType[] AttributeStats = new[]
-		{
-			StatType.Strength,
-			StatType.Dexterity,
-			StatType.Constitution,
-			StatType.Intelligence,
-			StatType.Wisdom,
-			StatType.Charisma,
-		};
-		private static readonly StatType[] BattleStats = new[]
-		{
-			StatType.BaseAttackBonus,
-			StatType.AdditionalAttackBonus,
-			StatType.AdditionalDamage,
-			StatType.AttackOfOpportunityCount,
-			StatType.AC,
-			StatType.AdditionalCMB,
-			StatType.AdditionalCMD,
+        private static readonly StatType[] DefenseStats =
+        {
+            StatType.AC,
+            StatType.AdditionalCMD,
+            StatType.SaveFortitude,
+            StatType.SaveReflex,
+            StatType.SaveWill,
+            StatType.Initiative,
+        };
 
-			StatType.HitPoints,
-			StatType.Initiative,
-			StatType.Speed,
-			StatType.SneakAttack,
-			StatType.Reach,
-		};
-		private static readonly StatType[] SaveStats = new[]
-		{
-			StatType.SaveFortitude,
-			StatType.SaveReflex,
-			StatType.SaveWill,
-		};
-		private static readonly StatType[] CheckStats = new[]
-		{
-			StatType.CheckBluff,
-			StatType.CheckDiplomacy,
-			StatType.CheckIntimidate,
-		};
-		private static readonly StatType[] SkillStats = new[]
-		{
-			StatType.SkillAthletics,
-			StatType.SkillKnowledgeArcana,
-			StatType.SkillKnowledgeWorld,
-			StatType.SkillLoreNature,
-			StatType.SkillLoreReligion,
-			StatType.SkillMobility,
-			StatType.SkillPerception,
-			StatType.SkillPersuasion,
-			StatType.SkillStealth,
-			StatType.SkillThievery,
-			StatType.SkillUseMagicDevice,
-		};
+        private static readonly StatType[] ManeuverStats =
+        {
+            StatType.AdditionalCMB,
+        };
 
-		private static readonly StatType[] CasterStats = new[]
-		{
-			StatType.BonusCasterLevel,
-		};
+        private static readonly StatType[] BABStats =
+        {
+            StatType.BaseAttackBonus,
+        };
 
+        private static readonly StatType[] PowerStats =
+        {
+            StatType.AdditionalAttackBonus,
+            StatType.AdditionalDamage,
+            StatType.AttackOfOpportunityCount,
+            StatType.SneakAttack,
+            StatType.HitPoints,
+            StatType.Speed,
+        };
 
+        private static readonly StatType[] CheckStats =
+        {
+            StatType.CheckBluff,
+            StatType.CheckDiplomacy,
+            StatType.CheckIntimidate,
+        };
 
+        private static readonly StatType[] SkillStats =
+        {
+            StatType.SkillAthletics,
+            StatType.SkillKnowledgeArcana,
+            StatType.SkillKnowledgeWorld,
+            StatType.SkillLoreNature,
+            StatType.SkillLoreReligion,
+            StatType.SkillMobility,
+            StatType.SkillPerception,
+            StatType.SkillPersuasion,
+            StatType.SkillStealth,
+            StatType.SkillThievery,
+            StatType.SkillUseMagicDevice,
+        };
 
-		private static LocalizedString L(string key, string value, bool tagEncyclopediaEntries = true)
-			=> LocalizationTool.CreateString(key, value, tagEncyclopediaEntries);
-		private static bool Initialized;
+        private static readonly StatType[] SkilledStats = SkillStats.Concat(CheckStats).ToArray();
+        private static bool Initialized;
 
+        public static void ConfigureAll()
+        {
+            if (Initialized) return;
+            Initialized = true;
 
-		public static void ConfigureAll()
-		{
-			if (Initialized) return;
-			Initialized = true;
-			var feats = new List<BlueprintFeature>
-			{
-				CreateOne(
-					StatType.Strength,
-					"StrMainToEverything",
-					Guids.str_main_to_everything,
-					"StrMainToEverything.Name",
-					"Main Attribute: Strength",
-					"StrMainToEverything.Description",
-					"Choose Strength as your main attribute. Its modifier is added to all attributes (including itself) and to AC, saving throws, initiative, skills, BAB, additional damage, and speed. Mutually exclusive with other main-attribute feats."
-				),
-				CreateOne(
-					StatType.Dexterity,
-					"DexMainToEverything",
-					Guids.dex_main_to_everything,
-					"DexMainToEverything.Name",
-					"Main Attribute: Dexterity",
-					"DexMainToEverything.Description",
-					"Choose Dexterity as your main attribute. Its modifier is added to all attributes (including itself) and to AC, saving throws, initiative, skills, BAB, additional damage, and speed. Mutually exclusive with other main-attribute feats."
-				),
-				CreateOne(
-					StatType.Constitution,
-					"ConMainToEverything",
-					Guids.con_main_to_everything,
-					"ConMainToEverything.Name",
-					"Main Attribute: Constitution",
-					"ConMainToEverything.Description",
-					"Choose Constitution as your main attribute. Its modifier is added to all attributes (including itself) and to AC, saving throws, initiative, skills, BAB, additional damage, and speed. Mutually exclusive with other main-attribute feats."
-				),
-				CreateOne(
-					StatType.Intelligence,
-					"IntMainToEverything",
-					Guids.int_main_to_everything,
-					"IntMainToEverything.Name",
-					"Main Attribute: Intelligence",
-					"IntMainToEverything.Description",
-					"Choose Intelligence as your main attribute. Its modifier is added to all attributes (including itself) and to AC, saving throws, initiative, skills, BAB, additional damage, and speed. Mutually exclusive with other main-attribute feats."
-				),
-				CreateOne(
-					StatType.Wisdom,
-					"WisMainToEverything",
-					Guids.wis_main_to_everything,
-					"WisMainToEverything.Name",
-					"Main Attribute: Wisdom",
-					"WisMainToEverything.Description",
-					"Choose Wisdom as your main attribute. Its modifier is added to all attributes (including itself) and to AC, saving throws, initiative, skills, BAB, additional damage, and speed. Mutually exclusive with other main-attribute feats."
-				),
-				CreateOne(
-					StatType.Charisma,
-					"ChaMainToEverything",
-					Guids.cha_main_to_everything,
-					"ChaMainToEverything.Name",
-					"Main Attribute: Charisma",
-					"ChaMainToEverything.Description",
-					"Choose Charisma as your main attribute. Its modifier is added to all attributes (including itself) and to AC, saving throws, initiative, skills, BAB, additional damage, and speed. Mutually exclusive with other main-attribute feats."
-				),
-			};
+            var feats = new List<BlueprintFeature>
+            {
+                CreateOne(
+                    StatType.Strength,
+                    "ApexPredator",
+                    Guids.str_main_to_everything,
+                    "MainAttr_Str.Name",
+                    "Apex Predator",
+                    "MainAttr_Str.Desc",
+                    BuildDescription(
+                        "Strength",
+                        "Unchallenged Hunger.",
+                        "You rule through raw might, turning every contest into proof that physical dominance is destiny.")),
+                CreateOne(
+                    StatType.Dexterity,
+                    "EmbodiedGrace",
+                    Guids.dex_main_to_everything,
+                    "MainAttr_Dex.Name",
+                    "Embodied Grace",
+                    "MainAttr_Dex.Desc",
+                    BuildDescription(
+                        "Dexterity",
+                        "Perfect Motion.",
+                        "Grace and precision make every motion deliberate, until the world seems to move at the pace you allow.")),
+                CreateOne(
+                    StatType.Constitution,
+                    "LivingBulwark",
+                    Guids.con_main_to_everything,
+                    "MainAttr_Con.Name",
+                    "Living Bulwark",
+                    "MainAttr_Con.Desc",
+                    BuildDescription(
+                        "Constitution",
+                        "The Body Endures.",
+                        "Endurance answers every threat; what others call punishment, you survive until it becomes power.")),
+                CreateOne(
+                    StatType.Intelligence,
+                    "ArchitectOfSelf",
+                    Guids.int_main_to_everything,
+                    "MainAttr_Int.Name",
+                    "Architect of Self",
+                    "MainAttr_Int.Desc",
+                    BuildDescription(
+                        "Intelligence",
+                        "Self as Design.",
+                        "You refine yourself like a theorem, reshaping weakness through calculation, discipline, and exact design.")),
+                CreateOne(
+                    StatType.Wisdom,
+                    "WellspringOfInsight",
+                    Guids.wis_main_to_everything,
+                    "MainAttr_Wis.Name",
+                    "Wellspring of Insight",
+                    "MainAttr_Wis.Desc",
+                    BuildDescription(
+                        "Wisdom",
+                        "Seeing the Pattern.",
+                        "Insight threads through every choice, letting perception and intuition guide even the smallest action.")),
+                CreateOne(
+                    StatType.Charisma,
+                    "CrownOfWill",
+                    Guids.cha_main_to_everything,
+                    "MainAttr_Cha.Name",
+                    "Crown of Will",
+                    "MainAttr_Cha.Desc",
+                    BuildDescription(
+                        "Charisma",
+                        "Sovereign Presence.",
+                        "The force of your will bends the moment around you, making confidence a weapon and resolve a crown.")),
+            };
 
-			foreach (var f in feats)
-			{
-				var fc = FeatureConfigurator.For(f);
-				foreach (var other in feats.Where(x => x != f))
-					fc.AddPrerequisiteNoFeature(other);
-				fc.Configure();
-			}
+            foreach (var feat in feats)
+            {
+                var configurator = FeatureConfigurator.For(feat);
+                foreach (var other in feats.Where(other => other != feat))
+                {
+                    configurator.AddPrerequisiteNoFeature(other);
+                }
 
-		}
+                configurator.Configure();
+            }
+        }
 
-		private static void AddRank(FeatureConfigurator cfg, StatType stat, ContextRankProgression prog)
-		{
-			// 创建基础配置
-			var config = ContextRankConfigs.StatBonus(stat: stat, min: 0);
+        private static string BuildDescription(string attributeName, string loreTitle, string loreBody)
+            => $"<i>Main Attribute Mastery · {attributeName}</i>\n<i>{loreTitle}</i> {loreBody}\n\n<b>Effect:</b> Adds your {attributeName} modifier as an inherent bonus to enabled attributes, defenses, maneuvers, skills/checks, caster bonuses, Base Attack Bonus, and Power Mode bonuses from the mod settings. If self-stacking is enabled it also adds to {attributeName}, and Reach becomes a fixed +1 when Power Mode is enabled.\n\n<b>Restrictions:</b> Mutually exclusive with the other Main Attribute Mastery feats.";
 
-			// 根据枚举值，链式调用对应的封装方法
-			switch (prog)
-			{
-				case ContextRankProgression.AsIs:
-					break;
-				case ContextRankProgression.Div2:
-					config.WithDiv2Progression();
-					break;
-				case ContextRankProgression.HalfMore:
-					config.WithHalfMoreProgression();
-					break;
-				default:
-					break;
-			}
+        private static BlueprintFeature CreateOne(
+            StatType baseStat,
+            string internalName,
+            string guid,
+            string nameKey,
+            string nameValue,
+            string descKey,
+            string descValue)
+        {
+            var cfg = FeatureConfigurator.New(internalName, guid, FeatureGroup.Feat)
+                .SetDisplayName(Common.L(nameKey, nameValue))
+                .SetDescription(Common.L(descKey, descValue, tagEncyclopediaEntries: true));
 
-			cfg.AddContextRankConfig(config);
-		}
+            var settings = Main.Settings ?? new ModSettings();
+            Common.AddRank(cfg, baseStat, AbilityRankType.Default, Common.ResolveProgression(settings.powerLevel, ScalingIntent.Full));
+            Common.AddRank(cfg, baseStat, AbilityRankType.StatBonus, Common.ResolveProgression(settings.powerLevel, ScalingIntent.Half));
 
+            void AddContextBonuses(IEnumerable<StatType> stats, AbilityRankType rankType)
+            {
+                foreach (var stat in stats)
+                {
+                    cfg.AddComponent<AddContextStatBonus>(c =>
+                    {
+                        c.Stat = stat;
+                        c.Descriptor = Desc;
+                        c.Value = Common.Rank(rankType);
+                    });
+                }
+            }
 
+            if (settings.EnableAttributes)
+            {
+                var attributeStats = settings.IncludeSelfInAttributeStack
+                    ? AttributeStats
+                    : AttributeStats.Where(stat => stat != baseStat);
+                AddContextBonuses(attributeStats, AbilityRankType.Default);
+            }
 
-		private static BlueprintFeature CreateOne(
-			StatType baseStat,
-			string internalName,
-			string guid,
-			string nameKey,
-			string nameValue,
-			string descKey,
-			string descValue)
-		{
-			var cfg = FeatureConfigurator.New(internalName, guid, FeatureGroup.Feat)
-				.SetDisplayName(L(nameKey, nameValue, tagEncyclopediaEntries: false))
-				.SetDescription(L(descKey, descValue, tagEncyclopediaEntries: true))
-				;
-			var s = Main.Settings;
+            if (settings.EnableDefenses)
+                AddContextBonuses(DefenseStats, AbilityRankType.Default);
 
-			AddRank(cfg, baseStat, s.progression);
+            if (settings.EnableManeuvers)
+                AddContextBonuses(ManeuverStats, AbilityRankType.Default);
 
-			Action<StatType[]> addBonuses = (stats) => {
-				foreach (var stat in stats)
-				{
-					cfg.AddComponent<AddContextStatBonus>(c => {
-						c.Stat = stat;
-						c.Descriptor = Desc;
-						c.Value = new ContextValue { ValueType = ContextValueType.Rank };
-					});
-				}
-			};
+            if (settings.EnableSkills && settings.EnableChecks)
+            {
+                AddContextBonuses(SkilledStats, AbilityRankType.Default);
+            }
+            else
+            {
+                if (settings.EnableSkills)
+                    AddContextBonuses(SkillStats, AbilityRankType.Default);
 
-			if (s.EnableAttributes) addBonuses(AttributeStats);
-			if (s.EnableBattles) addBonuses(BattleStats);
-			if (s.EnableSavings) addBonuses(SaveStats);
-			if (s.EnableChecks) addBonuses(CheckStats);
-			if (s.EnableSkills) addBonuses(SkillStats);
+                if (settings.EnableChecks)
+                    AddContextBonuses(CheckStats, AbilityRankType.Default);
+            }
 
-			if (s.EnableCaster)
-			{
-				addBonuses(CasterStats);
+            if (settings.EnableBAB)
+                AddContextBonuses(BABStats, AbilityRankType.StatBonus);
 
+            if (settings.EnablePowerMode)
+            {
+                AddContextBonuses(PowerStats, AbilityRankType.StatBonus);
+                cfg.AddComponent<AddStatBonus>(c =>
+                {
+                    c.Stat = StatType.Reach;
+                    c.Value = 1;
+                    c.Descriptor = Desc;
+                });
+            }
 
-				cfg.AddComponent<IncreaseAllSpellsDC>(c =>
-				{
-					c.Value = new ContextValue()
-					{
-						ValueType = ContextValueType.Rank,
-						ValueRank = AbilityRankType.Default
-					};
-					c.Descriptor = Desc;
-					c.SpellsOnly = false;
-				});
+            if (settings.EnableCasterDC)
+            {
+                cfg.AddComponent<IncreaseAllSpellsDC>(c =>
+                {
+                    c.Value = Common.Rank(AbilityRankType.StatBonus);
+                    c.Descriptor = Desc;
+                    c.SpellsOnly = false;
+                });
+            }
 
-				cfg.AddComponent<IncreaseCasterLevel>(c =>
-				{
-					c.Value = new ContextValue()
-					{
-						ValueType = ContextValueType.Rank,
-						ValueRank = AbilityRankType.Default
-					};
-					c.Descriptor = Desc;
-				});
-				cfg.AddComponent<SpellPenetrationBonus>(c =>
-				{
-					c.Value = new ContextValue()
-					{
-						ValueType = ContextValueType.Rank,
-						ValueRank = AbilityRankType.Default
-					};
-				});
+            if (settings.EnableCasterLevel)
+            {
+                cfg.AddComponent<IncreaseCasterLevel>(c =>
+                {
+                    c.Value = Common.Rank(AbilityRankType.Default);
+                    c.Descriptor = Desc;
+                });
+            }
 
+            if (settings.EnableSpellPenetration)
+            {
+                cfg.AddComponent<SpellPenetrationBonus>(c =>
+                {
+                    c.Value = Common.Rank(AbilityRankType.Default);
+                    c.Descriptor = Desc;
+                });
+            }
 
-				cfg.AddComponent<AddAbilityUseTrigger>(c =>
-				{
-					c.FromSpellbook = true;
-					c.Action = new ActionList
-					{
-						Actions = new GameAction[] {
-							new ContextActionCastSpell() {
-								MarkAsChild = true,
-							}
-						}
-					};
-				});
-
-			}
-			cfg.AddRecalculateOnStatChange(stat: baseStat);
-
-
-			return cfg.Configure();
-		}
-	}
+            cfg.AddRecalculateOnStatChange(stat: baseStat);
+            return cfg.Configure();
+        }
+    }
 }
