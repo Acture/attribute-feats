@@ -92,6 +92,7 @@ namespace AttributeFeats.New_Feats
             return BuffConfigurator.New(internalName, guid)
                 .SetDisplayName(Common.L(nameKey, nameEn, nameZh))
                 .SetDescription(Common.L(descKey, descEn, descZh))
+                .SetIconIfPresent(internalName)
                 .SetStacking(StackingType.Replace)
                 .AddContextRankConfig(ContextRankConfigs.StatBonus(baseStat, ModifierDescriptor.None, AbilityRankType.Default, min: 0))
                 .AddRecalculateOnStatChange(stat: baseStat);
@@ -108,7 +109,8 @@ namespace AttributeFeats.New_Feats
         {
             return FeatureConfigurator.New(internalName, guid, FeatureGroup.Feat)
                 .SetDisplayName(Common.L(nameKey, nameEn, nameZh))
-                .SetDescription(Common.L(descKey, desc.en, desc.zh, tagEncyclopediaEntries: true));
+                .SetDescription(Common.L(descKey, desc.en, desc.zh, tagEncyclopediaEntries: true))
+                .SetIconIfPresent(internalName);
         }
 
         private static (string en, string zh) BuildConditionalDescription(

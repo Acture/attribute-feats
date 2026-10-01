@@ -214,6 +214,7 @@ namespace AttributeFeats.New_Feats
                     "<i>Derived · Caster Level to Temporary Hit Points</i>\nA reserve of radiant psychic force gathers around your soul for the span of the fight, absorbing damage before your mortal flesh yields.",
                     "<i>衍生属性 · 施法者等级转化临时生命</i>\n璀璨心能屏障在战斗期间护佑周身，在血肉凡胎受创前优先抵御伤害。",
                     tagEncyclopediaEntries: true))
+                .SetIconIfPresent("SoulBulwark")
                 .SetStacking(StackingType.Replace)
                 .AddContextRankConfig(ContextRankConfigs.CasterLevel(min: 0))
                 .AddTemporaryHitPointsFromAbilityValue(descriptor: Desc, removeWhenHitPointsEnd: false, value: Common.Rank())
@@ -229,6 +230,7 @@ namespace AttributeFeats.New_Feats
                     "<i>Derived · Caster Level to Temporary Hit Points</i>\nThe soul keeps its own vigil, calling protective strength into place whenever a fight begins.",
                     "<i>衍生属性 · 施法者等级转化临时生命</i>\n神识常驻清明，每当战端初起便即刻激发生命护壁。",
                     tagEncyclopediaEntries: true))
+                .SetIconIfPresent("SoulBulwark")
                 .AddCombatStateTrigger(
                     combatStartActions: ActionsBuilder.New().ApplyBuff(
                         buff: SoulBulwarkTempBuffGuid,
@@ -253,7 +255,8 @@ namespace AttributeFeats.New_Feats
             (string en, string zh) desc)
             => FeatureConfigurator.New(internalName, guid, FeatureGroup.Feat)
                 .SetDisplayName(Common.L(nameKey, nameEn, nameZh))
-                .SetDescription(Common.L(descKey, desc.en, desc.zh, tagEncyclopediaEntries: true));
+                .SetDescription(Common.L(descKey, desc.en, desc.zh, tagEncyclopediaEntries: true))
+                .SetIconIfPresent(internalName);
 
         private static (string en, string zh) BuildDescription(
             string subtitleEn,

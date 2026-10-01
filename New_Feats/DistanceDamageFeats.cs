@@ -85,6 +85,7 @@ namespace AttributeFeats.New_Feats
                     "DistanceDamage.Buff.Desc",
                     "Distance Damage is active, granting a +4 untyped bonus to damage for the current weapon attack.",
                     "距离伤害已激活，为当前武器攻击提供+4无类型伤害加值。"))
+                .SetIconIfPresent("DistanceDamageFlatBonusBuff")
                 .SetStacking(StackingType.Replace)
                 .AddContextStatBonus(StatType.AdditionalDamage, SimpleValue(4), descriptor: Desc)
                 .Configure();
@@ -109,6 +110,7 @@ namespace AttributeFeats.New_Feats
             return FeatureConfigurator.New(internalName, featureGuid, FeatureGroup.Feat)
                 .SetDisplayName(Common.L($"DistanceDamage_{internalName}.Name", nameEn, nameZh))
                 .SetDescription(Common.L($"DistanceDamage_{internalName}.Desc", desc.en, desc.zh, tagEncyclopediaEntries: true))
+                .SetIconIfPresent(internalName)
                 .AddInitiatorAttackWithWeaponTrigger(action: applyBuff, triggerBeforeAttack: true)
                 .AddInitiatorAttackWithWeaponTrigger(
                     action: ActionsBuilder.New().RemoveBuff(Guids.DistanceDamage.Buff.FlatBonus, toCaster: false),

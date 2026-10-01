@@ -361,7 +361,8 @@ namespace AttributeFeats.New_Feats
                     $"{familyKey}_{attributeKey}.Desc",
                     desc.en,
                     desc.zh,
-                    tagEncyclopediaEntries: true));
+                    tagEncyclopediaEntries: true))
+                .SetIconIfPresent(internalName);
 
             Common.AddRank(cfg, baseStat, AbilityRankType.Default, Common.ResolveProgression(settings.powerLevel, ScalingIntent.Full));
             if (family == SpecializedFamily.Arcane)

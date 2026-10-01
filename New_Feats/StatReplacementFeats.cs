@@ -251,7 +251,8 @@ namespace AttributeFeats.New_Feats
         {
             var cfg = FeatureConfigurator.New(internalName, guid, FeatureGroup.Feat)
                 .SetDisplayName(Common.L(nameKey, nameEn, nameZh))
-                .SetDescription(Common.L(descKey, desc.en, desc.zh, tagEncyclopediaEntries: true));
+                .SetDescription(Common.L(descKey, desc.en, desc.zh, tagEncyclopediaEntries: true))
+                .SetIconIfPresent(internalName);
 
             AddWeaponInsightReplacements(cfg, baseStat);
             return cfg.Configure();
@@ -271,7 +272,8 @@ namespace AttributeFeats.New_Feats
         {
             var cfg = FeatureConfigurator.New(internalName, guid, FeatureGroup.Feat)
                 .SetDisplayName(Common.L(nameKey, nameEn, nameZh))
-                .SetDescription(Common.L(descKey, desc.en, desc.zh, tagEncyclopediaEntries: true));
+                .SetDescription(Common.L(descKey, desc.en, desc.zh, tagEncyclopediaEntries: true))
+                .SetIconIfPresent(internalName);
 
             Common.AddRank(cfg, baseStat, AbilityRankType.Default, ContextRankProgression.AsIs);
             cfg.AddContextStatBonus(

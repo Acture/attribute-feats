@@ -253,7 +253,8 @@ namespace AttributeFeats.New_Feats
         {
             var buff = BuffConfigurator.New($"{internalName}Buff", buffGuid)
                 .SetDisplayName(Common.L($"{keyPrefix}.Buff.Name", displayNameEn, displayNameZh))
-                .SetDescription(Common.L($"{keyPrefix}.Buff.Desc", description.en, description.zh, tagEncyclopediaEntries: true));
+                .SetDescription(Common.L($"{keyPrefix}.Buff.Desc", description.en, description.zh, tagEncyclopediaEntries: true))
+                .SetIconIfPresent(internalName);
             AddRanks(buff, baseStat, includeNegativeRank);
             var configuredBuff = configureBuff(buff)
                 .AddRecalculateOnStatChange(stat: baseStat)
@@ -262,6 +263,7 @@ namespace AttributeFeats.New_Feats
             var activatable = ActivatableAbilityConfigurator.New($"{internalName}Activatable", activatableGuid)
                 .SetDisplayName(Common.L($"{keyPrefix}.Activatable.Name", displayNameEn, displayNameZh))
                 .SetDescription(Common.L($"{keyPrefix}.Activatable.Desc", description.en, description.zh, tagEncyclopediaEntries: true))
+                .SetIconIfPresent(internalName)
                 .SetBuff(configuredBuff)
                 .SetActivationType(AbilityActivationType.Immediately)
                 .SetDeactivateIfCombatEnded(false)
@@ -272,6 +274,7 @@ namespace AttributeFeats.New_Feats
             return FeatureConfigurator.New(internalName, featureGuid, FeatureGroup.Feat)
                 .SetDisplayName(Common.L($"{keyPrefix}.Feature.Name", displayNameEn, displayNameZh))
                 .SetDescription(Common.L($"{keyPrefix}.Feature.Desc", description.en, description.zh, tagEncyclopediaEntries: true))
+                .SetIconIfPresent(internalName)
                 .AddFacts(new List<Blueprint<BlueprintUnitFactReference>> { activatable })
                 .Configure();
         }

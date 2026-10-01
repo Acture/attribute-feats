@@ -297,7 +297,8 @@ namespace AttributeFeats.New_Feats
                     $"SpellTag_School_{definition.InternalName}.Desc",
                     desc.en,
                     desc.zh,
-                    tagEncyclopediaEntries: true));
+                    tagEncyclopediaEntries: true))
+                .SetIconIfPresent(definition.InternalName);
 
             Common.AddRank(cfg, definition.Attribute, AbilityRankType.Default, ContextRankProgression.Div2);
 
@@ -359,7 +360,8 @@ namespace AttributeFeats.New_Feats
                     $"SpellTag_Descriptor_{definition.InternalName}.Desc",
                     desc.en,
                     desc.zh,
-                    tagEncyclopediaEntries: true));
+                    tagEncyclopediaEntries: true))
+                .SetIconIfPresent(definition.InternalName);
 
             Common.AddRank(cfg, definition.Attribute, AbilityRankType.Default, ContextRankProgression.Div2);
 

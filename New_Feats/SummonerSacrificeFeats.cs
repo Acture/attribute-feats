@@ -99,6 +99,7 @@ namespace AttributeFeats.New_Feats
             var innerBuff = BuffConfigurator.New($"{internalName}InnerBuff", innerBuffGuid)
                 .SetDisplayName(localizedName)
                 .SetDescription(localizedDescription)
+                .SetIconIfPresent(internalName)
                 .AddSummonedUnitBuff();
             AddStatBonuses(innerBuff, summonBonuses);
             var configuredInnerBuff = innerBuff.Configure();
@@ -106,6 +107,7 @@ namespace AttributeFeats.New_Feats
             var outerBuff = BuffConfigurator.New($"{internalName}OuterBuff", outerBuffGuid)
                 .SetDisplayName(localizedName)
                 .SetDescription(localizedDescription)
+                .SetIconIfPresent(internalName)
                 .AddOnSpawnBuff(buff: configuredInnerBuff, isInfinity: true);
             AddStatBonuses(outerBuff, selfBonuses);
             var configuredOuterBuff = outerBuff.Configure();
@@ -113,6 +115,7 @@ namespace AttributeFeats.New_Feats
             return FeatureConfigurator.New(internalName, featureGuid, FeatureGroup.Feat)
                 .SetDisplayName(localizedName)
                 .SetDescription(localizedDescription)
+                .SetIconIfPresent(internalName)
                 .AddFacts(new() { configuredOuterBuff })
                 .Configure();
         }
