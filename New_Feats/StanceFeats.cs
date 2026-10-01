@@ -226,7 +226,7 @@ namespace AttributeFeats.New_Feats
                 .SetDeactivateIfOwnerUnconscious(true)
                 .Configure();
 
-            return FeatureConfigurator.New(internalName, featureGuid, FeatureGroup.Feat)
+            return FeatSelection.Stance.NewFeat(internalName, featureGuid)
                 .SetDisplayName(Common.L($"{keyPrefix}.Feature.Name", displayName))
                 .SetDescription(Common.L($"{keyPrefix}.Feature.Desc", description, tagEncyclopediaEntries: true))
                 .AddFacts(new List<Blueprint<BlueprintUnitFactReference>> { activatable })

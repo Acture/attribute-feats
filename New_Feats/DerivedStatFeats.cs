@@ -230,7 +230,7 @@ namespace AttributeFeats.New_Feats
             string nameValue,
             string descKey,
             string description)
-            => FeatureConfigurator.New(internalName, guid, FeatureGroup.Feat)
+            => FeatSelection.DerivedStat.NewFeat(internalName, guid)
                 .SetDisplayName(Common.L(nameKey, nameValue))
                 .SetDescription(Common.L(descKey, description, tagEncyclopediaEntries: true));
 
