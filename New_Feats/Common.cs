@@ -9,6 +9,9 @@ using Kingmaker.Enums;
 using Kingmaker.Localization;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Components;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.ActivatableAbilities;
 
 namespace AttributeFeats.New_Feats
 {
@@ -134,6 +137,46 @@ namespace AttributeFeats.New_Feats
             FeatureConfigurator.For(b)
                 .AddPrerequisiteNoFeature(a)
                 .Configure();
+        }
+
+        public static FeatureConfigurator SetIconIfPresent(this FeatureConfigurator cfg, string internalName)
+        {
+            var icon = IconLoader.Get(internalName);
+            if (icon != null)
+            {
+                cfg.SetIcon(icon);
+            }
+            return cfg;
+        }
+
+        public static BuffConfigurator SetIconIfPresent(this BuffConfigurator cfg, string internalName)
+        {
+            var icon = IconLoader.Get(internalName);
+            if (icon != null)
+            {
+                cfg.SetIcon(icon);
+            }
+            return cfg;
+        }
+
+        public static ActivatableAbilityConfigurator SetIconIfPresent(this ActivatableAbilityConfigurator cfg, string internalName)
+        {
+            var icon = IconLoader.Get(internalName);
+            if (icon != null)
+            {
+                cfg.SetIcon(icon);
+            }
+            return cfg;
+        }
+
+        public static AbilityConfigurator SetIconIfPresent(this AbilityConfigurator cfg, string internalName)
+        {
+            var icon = IconLoader.Get(internalName);
+            if (icon != null)
+            {
+                cfg.SetIcon(icon);
+            }
+            return cfg;
         }
     }
 }

@@ -220,7 +220,8 @@ namespace AttributeFeats.New_Feats
         {
             var cfg = FeatureConfigurator.New(internalName, guid, FeatureGroup.Feat)
                 .SetDisplayName(Common.L(nameKey, nameEn, nameZh))
-                .SetDescription(Common.L(descKey, desc.en, desc.zh, tagEncyclopediaEntries: true));
+                .SetDescription(Common.L(descKey, desc.en, desc.zh, tagEncyclopediaEntries: true))
+                .SetIconIfPresent(internalName);
 
             var settings = Main.Settings ?? new ModSettings();
             Common.AddRank(cfg, baseStat, AbilityRankType.Default, Common.ResolveProgression(settings.powerLevel, ScalingIntent.Full));

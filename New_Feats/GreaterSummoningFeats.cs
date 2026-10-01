@@ -142,7 +142,8 @@ namespace AttributeFeats.New_Feats
 
             var innerBuff = BuffConfigurator.New($"{internalName}InnerBuff", innerBuffGuid)
                 .SetDisplayName(displayName)
-                .SetDescription(description);
+                .SetDescription(description)
+                .SetIconIfPresent(internalName);
             AddRank(innerBuff, baseStat);
             AddContextBonuses(innerBuff, buffedStats);
             var configuredInnerBuff = innerBuff.Configure();
@@ -150,12 +151,14 @@ namespace AttributeFeats.New_Feats
             var outerBuff = BuffConfigurator.New($"{internalName}OuterBuff", outerBuffGuid)
                 .SetDisplayName(displayName)
                 .SetDescription(description)
+                .SetIconIfPresent(internalName)
                 .AddOnSpawnBuff(buff: configuredInnerBuff, isInfinity: true)
                 .Configure();
 
             return FeatureConfigurator.New(internalName, featureGuid, FeatureGroup.Feat)
                 .SetDisplayName(displayName)
                 .SetDescription(description)
+                .SetIconIfPresent(internalName)
                 .AddFacts(new() { outerBuff })
                 .Configure();
         }

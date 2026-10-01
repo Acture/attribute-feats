@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" InitialTargets="GenerateCustomPropsFile">
+<Project Sdk="Microsoft.NET.Sdk" InitialTargets="GenerateCustomPropsFile">
 
 	<!-- If GamePath.props exists, import it (generated or user-provided) -->
 	<Import Project="$(MSBuildProjectDirectory)\GamePath.props" Condition="Exists('$(MSBuildProjectDirectory)\GamePath.props')" />
@@ -83,6 +83,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Update="Info.json" CopyToOutputDirectory="PreserveNewest" />
+	  <None Include="Icons\**\*.*" CopyToOutputDirectory="PreserveNewest" />
 	  <None Update="Properties\Settings.settings">
 	    <Generator>SettingsSingleFileGenerator</Generator>
 	    <LastGenOutput>Settings.Designer.cs</LastGenOutput>

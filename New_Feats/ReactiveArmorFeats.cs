@@ -50,7 +50,8 @@ namespace AttributeFeats.New_Feats
                     "ReactiveArmor_SpikedDefense.Desc",
                     BuildSpikedDefenseDescriptionEn(),
                     BuildSpikedDefenseDescriptionZh(),
-                    tagEncyclopediaEntries: true));
+                    tagEncyclopediaEntries: true))
+                .SetIconIfPresent("SpikedDefense");
 
             cfg.AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.AC, ModifierDescriptor.Armor, min: 0));
             cfg.AddTargetAttackWithWeaponTrigger(
@@ -91,6 +92,7 @@ namespace AttributeFeats.New_Feats
                     BuildBulwarkOfSteelDescriptionEn(),
                     BuildBulwarkOfSteelDescriptionZh(),
                     tagEncyclopediaEntries: true))
+                .SetIconIfPresent("BulwarkOfSteel")
                 .AddFactContextActions(
                     activated: refreshBuff,
                     deactivated: ActionsBuilder.New().RemoveBuff(Guids.ReactiveArmor.BulwarkOfSteelBuff),
@@ -107,6 +109,7 @@ namespace AttributeFeats.New_Feats
                     "ReactiveArmor_BulwarkOfSteelBuff.Desc",
                     "<i>Reactive Armor · Living Fortress</i>\nCitadel of Steel is active, granting temporary hit points each round equal to your current armor bonus.",
                     "<i>活性护甲 · 身化铁城</i>\n铸铁城阙已激活，每轮获得等同于你的护甲加值的临时生命值。"))
+                .SetIconIfPresent("BulwarkOfSteel")
                 .AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.AC, ModifierDescriptor.Armor, min: 0))
                 .AddComponent<TemporaryHitPointsFromAbilityValue>(c =>
                 {

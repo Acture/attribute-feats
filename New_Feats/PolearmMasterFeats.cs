@@ -18,6 +18,7 @@ namespace AttributeFeats.New_Feats
             FeatureConfigurator.New("PolearmMaster", Guids.PolearmMaster.Feature.PolearmMaster, FeatureGroup.Feat)
                 .SetDisplayName(Common.L("PolearmMaster.Name", "Polearm Master", "长柄武器宗师"))
                 .SetDescription(Common.L("PolearmMaster.Desc", BuildDescriptionEn(), BuildDescriptionZh(), tagEncyclopediaEntries: true))
+                .SetIconIfPresent("PolearmMaster")
                 .AddReachMultiplicator(Desc, multiplicator: 2)
                 .AddStatBonus(descriptor: Desc, stat: StatType.AdditionalDamage, value: -4)
                 .Configure();
