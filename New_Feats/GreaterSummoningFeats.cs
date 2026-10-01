@@ -123,7 +123,7 @@ namespace AttributeFeats.New_Feats
                 .AddOnSpawnBuff(buff: configuredInnerBuff, isInfinity: true)
                 .Configure();
 
-            return FeatureConfigurator.New(internalName, featureGuid, FeatureGroup.Feat)
+            return FeatSelection.GreaterSummoning.NewFeat(internalName, featureGuid)
                 .SetDisplayName(displayName)
                 .SetDescription(description)
                 .AddFacts(new() { outerBuff })

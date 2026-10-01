@@ -64,6 +64,9 @@
 	</ItemGroup>
 
 	<!-- Content -->
+	<ItemGroup>
+		<Compile Remove="tests\**\*.cs" />
+	</ItemGroup>
 
 	<!-- NuGet (optional but useful) -->
 	<ItemGroup>

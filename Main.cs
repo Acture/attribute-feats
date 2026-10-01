@@ -51,7 +51,8 @@ namespace AttributeFeats
             var s = Settings;
             var changed = false;
 
-            GUILayout.Label("<color=cyan><b>[ Global Scaling Configuration ] — Restart Required</b></color>");
+            GUILayout.Label("<color=cyan><b>[ Global Scaling Configuration ]</b></color>");
+            GUILayout.Label("Weapon Damage Mode applies immediately. Other settings require restarting.");
 
             GUILayout.BeginVertical("box");
             GUILayout.BeginHorizontal();
@@ -86,7 +87,25 @@ namespace AttributeFeats
             changed |= ToggleSetting(ref s.IncludeSelfInAttributeStack, "Include Self in Attribute Stack — a Main feat may add its chosen attribute to itself (default: OFF)");
             GUILayout.Label("<color=grey><size=11>Leave this off for the redesign baseline. Turning it on restores recursive self-stacking behavior.</size></color>");
             changed |= ToggleSetting(ref s.EnableMutex, "Enable Mutual Exclusivity — enforce intra-family mutex rules (default: ON)");
-            GUILayout.Label("<color=grey><size=11>When ON, each family enforces its intra-family mutex (Main 6-way, Specialized 6-way per subfamily, Stance 6-way, Weapon Insight 6-way, Greater Summoning 6-way, Summoner Sacrifice 3-way, Spell Tag school 8-way + descriptor 9-way). When OFF, all mutex prerequisites are skipped — you may take every feat at once. Cross-family same-attribute mutex is removed in 0.1.1 regardless of this toggle.</size></color>");
+            GUILayout.Label("<color=grey><size=11>When ON, each family enforces its intra-family mutex (Main 6-way, Specialized 6-way per subfamily, Stance 6-way, Weapon Insight 6-way, Weapon Damage 6-way, Greater Summoning 6-way, Summoner Sacrifice 3-way, Spell Tag school 8-way + descriptor 9-way). When OFF, all mutex prerequisites are skipped — you may take every feat at once. Cross-family same-attribute mutex is removed in 0.1.1 regardless of this toggle.</size></color>");
+            GUILayout.EndVertical();
+
+            GUILayout.Space(10);
+            GUILayout.Label("<color=green><b>[ Weapon Damage Feats ] — Applies Immediately</b></color>");
+            GUILayout.BeginVertical("box");
+            GUILayout.BeginHorizontal();
+            GUILayout.Label($"Weapon Damage Mode: <color=yellow>{s.WeaponDamage}</color>", GUILayout.Width(300));
+            GUILayout.FlexibleSpace();
+            if (GUILayout.Button("Switch Mode", GUILayout.Width(140)))
+            {
+                s.WeaponDamage = s.WeaponDamage == WeaponDamageMode.Replace ? WeaponDamageMode.Add : WeaponDamageMode.Replace;
+                changed = true;
+            }
+            GUILayout.EndHorizontal();
+            GUILayout.Label(s.WeaponDamage == WeaponDamageMode.Replace
+                ? "Replace: use the chosen attribute for weapon damage when better, preserving normal damage multipliers."
+                : "Add: keep normal weapon damage and add the chosen positive attribute modifier once.");
+            GUILayout.Label("<color=grey><size=11>Applies only to the new Weapon Damage feats, for their chosen weapon category. Requires a weapon that already applies an attribute to damage. Independent of Power Mode. Mode changes apply on the next damage calculation.</size></color>");
             GUILayout.EndVertical();
 
             GUILayout.Space(10);

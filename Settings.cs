@@ -30,6 +30,8 @@ namespace AttributeFeats
 
         public bool EnableMutex = true;
 
+        public WeaponDamageMode WeaponDamage = WeaponDamageMode.Replace;
+
         public PowerLevel powerLevel = PowerLevel.Balanced;
 
         public override void Save(UnityModManager.ModEntry modEntry)

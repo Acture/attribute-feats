@@ -15,7 +15,7 @@ namespace AttributeFeats.New_Feats
             if (Initialized) return;
             Initialized = true;
 
-            FeatureConfigurator.New("PolearmMaster", Guids.PolearmMaster.Feature.PolearmMaster, FeatureGroup.Feat)
+            FeatSelection.Root.NewFeat("PolearmMaster", Guids.PolearmMaster.Feature.PolearmMaster)
                 .SetDisplayName(Common.L("PolearmMaster.Name", "Polearm Master"))
                 .SetDescription(Common.L("PolearmMaster.Desc", BuildDescription(), tagEncyclopediaEntries: true))
                 .AddReachMultiplicator(Desc, multiplicator: 2)

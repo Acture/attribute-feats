@@ -298,7 +298,15 @@ namespace AttributeFeats.New_Feats
             var familyKey = GetFamilyKey(family);
             var familyName = GetFamilyDisplayName(family);
 
-            var cfg = FeatureConfigurator.New(internalName, guid, FeatureGroup.Feat)
+            var selection = family switch
+            {
+                SpecializedFamily.Defensive => FeatSelection.Defensive,
+                SpecializedFamily.Maneuver => FeatSelection.Maneuver,
+                SpecializedFamily.Skilled => FeatSelection.Skilled,
+                SpecializedFamily.Arcane => FeatSelection.Arcane,
+                _ => throw new System.ArgumentOutOfRangeException(nameof(family)),
+            };
+            var cfg = selection.NewFeat(internalName, guid)
                 .SetDisplayName(Common.L($"{familyKey}_{attributeKey}.Name", flavorName))
                 .SetDescription(Common.L(
                     $"{familyKey}_{attributeKey}.Desc",
