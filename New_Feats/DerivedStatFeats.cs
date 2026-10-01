@@ -67,12 +67,16 @@ namespace AttributeFeats.New_Feats
                 internalName: "ArcaneAegis",
                 guid: Guids.Derived.ArcaneAegis,
                 nameKey: "Derived_ArcaneAegis.Name",
-                nameValue: "Arcane Aegis",
+                nameEn: "Arcane Aegis",
+                nameZh: "魔能天衣",
                 descKey: "Derived_ArcaneAegis.Desc",
-                description: BuildDescription(
+                desc: BuildDescription(
                     "Caster Level to AC",
-                    "Spellwork settles around you like a second skin, turning disciplined magic into a ward that answers before steel can bite.",
-                    "Adds half your caster level as an untyped bonus to AC."))
+                    "施法者等级转化AC",
+                    "<i>Weave of Abjuration.</i> Residual arcane energy coats your form like an invisible mantle of deflection. Raw caster discipline turns every stray strand of magic into an instinctive ward that diverts lethal blades before they touch skin.",
+                    "<i>法脉流形。</i>奔涌的奥术源能如无形天衣披覆周身。施法者长年修习沉淀的法力底蕴化为本能护体气场，将近身斩杀的锐刃自毫厘间偏转卸劲。",
+                    "Adds half your caster level as an untyped bonus to AC.",
+                    "将你的施法者等级的一半作为无类型加值附加至防御等级（AC）。"))
                 .AddContextRankConfig(ContextRankConfigs.CasterLevel(min: 0).WithDiv2Progression())
                 .AddContextStatBonus(StatType.AC, Common.Rank(), descriptor: Desc)
                 .Configure();
@@ -84,12 +88,16 @@ namespace AttributeFeats.New_Feats
                 internalName: "MartialInsight",
                 guid: Guids.Derived.MartialInsight,
                 nameKey: "Derived_MartialInsight.Name",
-                nameValue: "Martial Insight",
+                nameEn: "War-Hardened Reflexes",
+                nameZh: "百战身魄",
                 descKey: "Derived_MartialInsight.Desc",
-                description: BuildDescription(
+                desc: BuildDescription(
                     "Base Attack Bonus to Saves",
-                    "Battle teaches you more than offense; every honed strike leaves behind the instinct to brace, turn, and endure.",
-                    "Adds half your base attack bonus as an untyped bonus to Fortitude, Reflex, and Will saving throws."))
+                    "基础攻击加值转化豁免",
+                    "<i>Battlefield Instincts.</i> Countless skirmishes have conditioned your reflexes into pure survival instinct. When a fireball explodes or a toxin seeps in, your combat-honed muscles and grit react before conscious thought can form.",
+                    "<i>铁血砥砺。</i>尸山血海的淬炼令机体生出超凡的求生直觉。无论是法术轰炸的炽烈余波，还是蚀骨剧毒的暗算浸染，千锤百炼的身魄皆能先于心念自发抵御。",
+                    "Adds half your base attack bonus as an untyped bonus to Fortitude, Reflex, and Will saving throws.",
+                    "将你的基础攻击加值（BAB）的一半作为无类型加值附加至强韧、反射与意志豁免检定。"))
                 .AddContextRankConfig(ContextRankConfigs.BaseAttack(min: 0).WithDiv2Progression());
 
             foreach (var stat in SaveStats)
@@ -106,12 +114,16 @@ namespace AttributeFeats.New_Feats
                 internalName: "SkilledDefender",
                 guid: Guids.Derived.SkilledDefender,
                 nameKey: "Derived_SkilledDefender.Name",
-                nameValue: "Skilled Defender",
+                nameEn: "Scholar's Positioning",
+                nameZh: "通识御敌",
                 descKey: "Derived_SkilledDefender.Desc",
-                description: BuildDescription(
+                desc: BuildDescription(
                     "Total Skill Ranks to AC",
-                    "A lifetime of practiced motions teaches you where danger gathers, and every mastered craft becomes another way to stay untouched.",
-                    "Adds one third of your total skill ranks as an untyped bonus to AC."))
+                    "技能总点数转化AC",
+                    "<i>Omnidisciplinary Awareness.</i> From architectural understanding of terrain to biological analysis of anatomy and athletic equilibrium, your encyclopedic expertise informs every step. You evade danger simply by never occupying a disadvantaged position.",
+                    "<i>博识兼修。</i>无论是对战场地势的建筑学洞察，还是对敌手骨肉机巧的生理解构，浩瀚的学识化作规避危局的无上准绳。知己知彼，步步先机，自立于不败之地。",
+                    "Adds one third of your total skill ranks as an untyped bonus to AC.",
+                    "将你所有技能总点数的三分之一作为无类型加值附加至防御等级（AC）。"))
                 .AddContextRankConfig(ContextRankConfigs.CustomProperty(SkilledDefenderSkillRanksPropertyGuid, min: 0).WithDivStepProgression(3))
                 .AddContextStatBonus(StatType.AC, Common.Rank(), descriptor: Desc)
                 .Configure();
@@ -123,12 +135,16 @@ namespace AttributeFeats.New_Feats
                 internalName: "MysticVitality",
                 guid: Guids.Derived.MysticVitality,
                 nameKey: "Derived_MysticVitality.Name",
-                nameValue: "Mystic Vitality",
+                nameEn: "Ley-Infused Vitality",
+                nameZh: "灵脉淬体",
                 descKey: "Derived_MysticVitality.Desc",
-                description: BuildDescription(
+                desc: BuildDescription(
                     "Caster Level to Hit Points",
-                    "Power does not stop at the edge of a spell; it sinks deeper, fortifying flesh and breath with enduring reserve.",
-                    "Adds your caster level as an untyped bonus to Hit Points."))
+                    "施法者等级转化生命",
+                    "<i>Arcane Font of Flesh.</i> Unbounded magical force saturates your organs, sinew, and blood. Rather than withering under eldritch power, your mortal biology is fundamentally strengthened, sustained by a perpetual reservoir of vital energy.",
+                    "<i>灵潮融血。</i>磅礴的奥能奔流日夜冲刷四肢百骸，肉身非但未被异界魔能侵蚀，反与本源法力彻底融汇，气血充盈饱满，化为生生不息的寿元洪流。",
+                    "Adds your caster level as an untyped bonus to Hit Points.",
+                    "将你的施法者等级作为无类型加值附加至生命值上限（HP）。"))
                 .AddContextRankConfig(ContextRankConfigs.CasterLevel(min: 0))
                 .AddContextStatBonus(StatType.HitPoints, Common.Rank(), descriptor: Desc)
                 .Configure();
@@ -140,12 +156,16 @@ namespace AttributeFeats.New_Feats
                 internalName: "SoulBulwark",
                 guid: Guids.Derived.SoulBulwark,
                 nameKey: "Derived_SoulBulwark.Name",
-                nameValue: "Soul Bulwark",
+                nameEn: "Dawn of the Soul",
+                nameZh: "法相初明",
                 descKey: "Derived_SoulBulwark.Desc",
-                description: BuildDescription(
+                desc: BuildDescription(
                     "Caster Level to Temporary Hit Points",
-                    "Your spirit rises to meet danger first, gathering spare strength into a barrier the moment battle begins.",
-                    "At the start of combat, you gain temporary hit points equal to your caster level."))
+                    "施法者等级转化临时生命",
+                    "<i>Spirit's Resplendent Vanguard.</i> At the first scent of bloodshed, your inner soul awakens with incandescent clarity. A blazing psychic barrier surges forth to envelope you, absorbing the initial brunt of hostile fury.",
+                    "<i>灵台定照。</i>杀意初现之际，本命法相灵光乍现，神华自生。一道璀璨耀目的心能罡气应激而发，在战端初启之刹那替身躯承受狂暴冲击。",
+                    "At the start of combat, you gain temporary hit points equal to your caster level.",
+                    "在战斗开始时，获得等同于你的施法者等级的临时生命值。"))
                 .AddFacts(facts: new List<Blueprint<BlueprintUnitFactReference>> { Guids.Derived.SoulBulwarkBuff })
                 .Configure();
         }
@@ -156,12 +176,16 @@ namespace AttributeFeats.New_Feats
                 internalName: "SwordSaint",
                 guid: Guids.Derived.SwordSaint,
                 nameKey: "Derived_SwordSaint.Name",
-                nameValue: "Sword Saint",
+                nameEn: "Blade of the Spell-Saint",
+                nameZh: "剑圣咒痕",
                 descKey: "Derived_SwordSaint.Desc",
-                description: BuildDescription(
+                desc: BuildDescription(
                     "Base Attack Bonus to Spell DC",
-                    "Martial rigor sharpens your spellcraft into a killing edge, making each incantation harder to deny or escape.",
-                    "Adds half your base attack bonus as an untyped bonus to the DC of all your spells."))
+                    "基础攻击加值转化法术DC",
+                    "<i>Synthesis of Steel and Sorcery.</i> The deadly discipline of weapon mastery infuses your incantations. Every gesture is delivered with the unerring finality of a master swordsman's coup de grâce, making your spells nearly impossible to resist.",
+                    "<i>剑咒合一。</i>将登峰造极的剑道杀意熔炼于每一道法咒之中。施法手势如宗师拔刀般决绝肃杀、无懈可击，令敌手神魂受摄，极难抵御法术威能。",
+                    "Adds half your base attack bonus as an untyped bonus to the DC of all your spells.",
+                    "将你的基础攻击加值（BAB）的一半作为无类型加值附加至所有法术的豁免难度等级（DC）。"))
                 .AddContextRankConfig(ContextRankConfigs.BaseAttack(min: 0).WithDiv2Progression())
                 .AddIncreaseAllSpellsDC(descriptor: Desc, spellsOnly: false, value: Common.Rank())
                 .Configure();
@@ -184,13 +208,11 @@ namespace AttributeFeats.New_Feats
         private static void CreateSoulBulwarkTempBuff()
         {
             BuffConfigurator.New("SoulBulwarkTempBuff", SoulBulwarkTempBuffGuid)
-                .SetDisplayName(Common.L("Derived_SoulBulwark.Temp.Name", "Soul Bulwark"))
+                .SetDisplayName(Common.L("Derived_SoulBulwark.Temp.Name", "Dawn of the Soul", "法相初明"))
                 .SetDescription(Common.L(
                     "Derived_SoulBulwark.Temp.Desc",
-                    BuildDescription(
-                        "Caster Level to Temporary Hit Points",
-                        "A reserve of force gathers around your soul for the span of the fight, ready to break before your body does.",
-                        "Grants temporary hit points equal to your caster level."),
+                    "<i>Derived · Caster Level to Temporary Hit Points</i>\nA reserve of radiant psychic force gathers around your soul for the span of the fight, absorbing damage before your mortal flesh yields.",
+                    "<i>衍生属性 · 施法者等级转化临时生命</i>\n璀璨心能屏障在战斗期间护佑周身，在血肉凡胎受创前优先抵御伤害。",
                     tagEncyclopediaEntries: true))
                 .SetStacking(StackingType.Replace)
                 .AddContextRankConfig(ContextRankConfigs.CasterLevel(min: 0))
@@ -201,13 +223,11 @@ namespace AttributeFeats.New_Feats
         private static void CreateSoulBulwarkTriggerBuff()
         {
             BuffConfigurator.New("SoulBulwarkTriggerBuff", Guids.Derived.SoulBulwarkBuff)
-                .SetDisplayName(Common.L("Derived_SoulBulwark.Buff.Name", "Soul Bulwark"))
+                .SetDisplayName(Common.L("Derived_SoulBulwark.Buff.Name", "Dawn of the Soul", "法相初明"))
                 .SetDescription(Common.L(
                     "Derived_SoulBulwark.Buff.Desc",
-                    BuildDescription(
-                        "Caster Level to Temporary Hit Points",
-                        "The soul keeps its own vigil, calling protective strength into place whenever a fight begins.",
-                        "At the start of combat, this feat refreshes Soul Bulwark's temporary hit points."),
+                    "<i>Derived · Caster Level to Temporary Hit Points</i>\nThe soul keeps its own vigil, calling protective strength into place whenever a fight begins.",
+                    "<i>衍生属性 · 施法者等级转化临时生命</i>\n神识常驻清明，每当战端初起便即刻激发生命护壁。",
                     tagEncyclopediaEntries: true))
                 .AddCombatStateTrigger(
                     combatStartActions: ActionsBuilder.New().ApplyBuff(
@@ -227,14 +247,25 @@ namespace AttributeFeats.New_Feats
             string internalName,
             string guid,
             string nameKey,
-            string nameValue,
+            string nameEn,
+            string nameZh,
             string descKey,
-            string description)
+            (string en, string zh) desc)
             => FeatureConfigurator.New(internalName, guid, FeatureGroup.Feat)
-                .SetDisplayName(Common.L(nameKey, nameValue))
-                .SetDescription(Common.L(descKey, description, tagEncyclopediaEntries: true));
+                .SetDisplayName(Common.L(nameKey, nameEn, nameZh))
+                .SetDescription(Common.L(descKey, desc.en, desc.zh, tagEncyclopediaEntries: true));
 
-        private static string BuildDescription(string subtitle, string lore, string effect)
-            => $"<i>Derived · {subtitle}</i>\n<i>{lore}</i>\n\n<b>Effect:</b> {effect}\n\n<b>Restrictions:</b> None. This feat is independent and stacks normally with other feat families.";
+        private static (string en, string zh) BuildDescription(
+            string subtitleEn,
+            string subtitleZh,
+            string loreEn,
+            string loreZh,
+            string effectEn,
+            string effectZh)
+        {
+            var en = $"<i>Derived · {subtitleEn}</i>\n{loreEn}\n\n<b>Effect:</b> {effectEn}\n\n<b>Restrictions:</b> None. This feat is independent and stacks normally with other feat families.";
+            var zh = $"<i>衍生属性 · {subtitleZh}</i>\n{loreZh}\n\n<b>效果：</b>{effectZh}\n\n<b>限制：</b>无。此专长独立生效，可与其他专长正常叠加。";
+            return (en, zh);
+        }
     }
 }

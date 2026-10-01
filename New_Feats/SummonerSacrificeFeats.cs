@@ -34,11 +34,15 @@ namespace AttributeFeats.New_Feats
                     featureGuid: Guids.SummonerSacrifice.Feature.BodyOfMyPact,
                     outerBuffGuid: Guids.SummonerSacrifice.OuterBuff.BodyOfMyPact,
                     innerBuffGuid: Guids.SummonerSacrifice.InnerBuff.BodyOfMyPact,
-                    displayName: "Body of My Pact",
-                    description: BuildDescription(
-                        modeName: "1:1 Trade",
-                        loreText: "<i>What you yield, your servants inherit.</i> You divide your strength, wit, and presence across every calling so your summoned allies arrive bearing the full weight of your sacrificed essence.",
-                        effectText: "You take a -4 untyped penalty to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Your summoned creatures gain a +4 untyped bonus to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma."),
+                    nameEn: "Martyr's Transference",
+                    nameZh: "形神替生",
+                    desc: BuildDescription(
+                        modeEn: "1:1 Trade",
+                        modeZh: "等价献祭",
+                        loreEn: "<i>What you surrender, your servants inherit.</i> You willingly drain your own vital energies, intellect, and worldly presence across the conjuration circle, feeding raw spirit directly into your minions to elevate them to terrifying heights.",
+                        loreZh: "<i>舍己塑灵。</i>割裂自身气血、灵慧与威仪，尽数灌入通灵法阵。以施法者本命元神为薪柴，换取召来异界使者全方位的惊世蜕变。",
+                        effectEn: "You take a -4 untyped penalty to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Your summoned creatures gain a +4 untyped bonus to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma.",
+                        effectZh: "你的力量、敏捷、体质、智力、感知和魅力承受-4无类型减值。你召唤的生物的力量、敏捷、体质、智力、感知和魅力获得+4无类型加值。"),
                     selfBonuses: CreateUniformBonuses(-4),
                     summonBonuses: CreateUniformBonuses(4)),
                 CreateFeat(
@@ -46,11 +50,15 @@ namespace AttributeFeats.New_Feats
                     featureGuid: Guids.SummonerSacrifice.Feature.DoubledBond,
                     outerBuffGuid: Guids.SummonerSacrifice.OuterBuff.DoubledBond,
                     innerBuffGuid: Guids.SummonerSacrifice.InnerBuff.DoubledBond,
-                    displayName: "Doubled Bond",
-                    description: BuildDescription(
-                        modeName: "1:2 Amplification",
-                        loreText: "<i>A lesser loss, a greater echo.</i> Your pact stretches each fragment of sacrificed essence across the circle twice over, letting your summons claim more power than you surrender.",
-                        effectText: "You take a -2 untyped penalty to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Your summoned creatures gain a +4 untyped bonus to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma."),
+                    nameEn: "Eldritch Crucible",
+                    nameZh: "双生法炼",
+                    desc: BuildDescription(
+                        modeEn: "1:2 Amplification",
+                        modeZh: "倍率谐振",
+                        loreEn: "<i>Asymmetrical Resonance.</i> Through arcane harmonic resonance, you stretch each spark of sacrificed essence across the summoning circle twofold. A minor toll upon your vessel unlocks disproportionate planar ascendancy.",
+                        loreZh: "<i>法脉谐振。</i>洞悉异界位面的回音法则，将献祭的精魄于通灵阵中激荡放大。微损施法本体，即可撬动受召军团成倍的位面威能。",
+                        effectEn: "You take a -2 untyped penalty to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Your summoned creatures gain a +4 untyped bonus to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma.",
+                        effectZh: "你的力量、敏捷、体质、智力、感知和魅力承受-2无类型减值。你召唤的生物的力量、敏捷、体质、智力、感知和魅力获得+4无类型加值。"),
                     selfBonuses: CreateUniformBonuses(-2),
                     summonBonuses: CreateUniformBonuses(4)),
                 CreateFeat(
@@ -58,11 +66,15 @@ namespace AttributeFeats.New_Feats
                     featureGuid: Guids.SummonerSacrifice.Feature.EmpoweredSacrifice,
                     outerBuffGuid: Guids.SummonerSacrifice.OuterBuff.EmpoweredSacrifice,
                     innerBuffGuid: Guids.SummonerSacrifice.InnerBuff.EmpoweredSacrifice,
-                    displayName: "Empowered Sacrifice",
-                    description: BuildDescription(
-                        modeName: "Focused Trade",
-                        loreText: "<i>Command traded for force.</i> You surrender a portion of your personal presence to drive raw physical might into the creatures that answer your call.",
-                        effectText: "You take a -4 untyped penalty to Charisma. Your summoned creatures gain a +8 untyped bonus to Strength."),
+                    nameEn: "Tribute of Iron Dominion",
+                    nameZh: "夺冕化蛮",
+                    desc: BuildDescription(
+                        modeEn: "Focused Trade",
+                        modeZh: "极意倾注",
+                        loreEn: "<i>Crown Surrendered to Claws.</i> You strip away the haughty grace of command, channeling raw monarchic authority into pure, brutal muscle. Your minions lose all subtlety, transfigured into hulking juggernauts of annihilation.",
+                        loreZh: "<i>折冠铸殛。</i>剥离统御者的从容仪度，将全部支配欲念熔铸为受召者撕碎万物的暴戾蛮力。麾下爪牙褪尽精巧，化作摧山撼岳的嗜血巨灵。",
+                        effectEn: "You take a -4 untyped penalty to Charisma. Your summoned creatures gain a +8 untyped bonus to Strength.",
+                        effectZh: "你的魅力承受-4无类型减值。你召唤的生物获得+8无类型力量加值。"),
                     selfBonuses: new[] { new StatBonus(StatType.Charisma, -4) },
                     summonBonuses: new[] { new StatBonus(StatType.Strength, 8) }),
             };
@@ -75,13 +87,14 @@ namespace AttributeFeats.New_Feats
             string featureGuid,
             string outerBuffGuid,
             string innerBuffGuid,
-            string displayName,
-            string description,
+            string nameEn,
+            string nameZh,
+            (string en, string zh) desc,
             IReadOnlyList<StatBonus> selfBonuses,
             IReadOnlyList<StatBonus> summonBonuses)
         {
-            var localizedName = Common.L($"SummonerSacrifice_{internalName}.Name", displayName);
-            var localizedDescription = Common.L($"SummonerSacrifice_{internalName}.Desc", description, tagEncyclopediaEntries: true);
+            var localizedName = Common.L($"SummonerSacrifice_{internalName}.Name", nameEn, nameZh);
+            var localizedDescription = Common.L($"SummonerSacrifice_{internalName}.Desc", desc.en, desc.zh, tagEncyclopediaEntries: true);
 
             var innerBuff = BuffConfigurator.New($"{internalName}InnerBuff", innerBuffGuid)
                 .SetDisplayName(localizedName)
@@ -134,8 +147,18 @@ namespace AttributeFeats.New_Feats
             }
         }
 
-        private static string BuildDescription(string modeName, string loreText, string effectText)
-            => $"<i>Summoner Sacrifice · {modeName}</i>\n{loreText}\n\n<b>Effect:</b> {effectText}\n\n<b>Restrictions:</b> Mutually exclusive with other Summoner Sacrifice feats.";
+        private static (string en, string zh) BuildDescription(
+            string modeEn,
+            string modeZh,
+            string loreEn,
+            string loreZh,
+            string effectEn,
+            string effectZh)
+        {
+            var en = $"<i>Summoner Sacrifice · {modeEn}</i>\n{loreEn}\n\n<b>Effect:</b> {effectEn}\n\n<b>Restrictions:</b> Mutually exclusive with other Summoner Sacrifice feats.";
+            var zh = $"<i>召唤献祭 · {modeZh}</i>\n{loreZh}\n\n<b>效果：</b>{effectZh}\n\n<b>限制：</b>与其他“召唤献祭”专长互斥。";
+            return (en, zh);
+        }
 
         private readonly struct StatBonus
         {
