@@ -4,35 +4,57 @@ namespace AttributeFeats.New_Feats
 {
     internal static class FeatRegistry
     {
-        private static bool Initialized;
+        private static bool InitializationAttempted;
 
+        /// <summary>
+        /// Attempts each registration independently, then publishes the available menus.
+        /// A partial attempt is not replayed because created blueprints cannot be rolled back.
+        /// </summary>
         public static void ConfigureAll()
         {
-            if (Initialized) return;
-            Initialized = true;
+            if (InitializationAttempted) return;
+            InitializationAttempted = true;
 
+            // Lambdas keep type loading and registration inside each exception boundary.
+            // Use &= so later steps still run after an earlier failure.
+            var succeeded = TryConfigureFamily(nameof(MainAbilityToEverything_Feats), () => MainAbilityToEverything_Feats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(SpecializedFeats), () => SpecializedFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(StanceFeats), () => StanceFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(ConditionalFeats), () => ConditionalFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(StatReplacementFeats), () => StatReplacementFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(ReactiveArmorFeats), () => ReactiveArmorFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(DerivedStatFeats), () => DerivedStatFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(GreaterSummoningFeats), () => GreaterSummoningFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(SpellTagFeats), () => SpellTagFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(SummonerSacrificeFeats), () => SummonerSacrificeFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(PolearmMasterFeats), () => PolearmMasterFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(DistanceDamageFeats), () => DistanceDamageFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(WeaponDamageFeats), () => WeaponDamageFeats.ConfigureAll());
+            succeeded &= TryConfigure(nameof(MutexPass), () => MutexPass.ApplyAll());
+
+            var menusSucceeded = false;
+            succeeded &= TryConfigure(nameof(FeatSelection), () => menusSucceeded = FeatSelection.ConfigureAll());
+            succeeded &= menusSucceeded;
+            Main.Log?.Log(succeeded
+                ? "AttributeFeats: registry initialized."
+                : "AttributeFeats: initialization finished with errors; some feats or menus may be unavailable. See the named failures above.");
+        }
+
+        private static bool TryConfigureFamily(string name, Action configure)
+            => TryConfigure(name, () => FeatSelection.CollectRegistration(configure));
+
+        /// <summary>Logs a failed registration step without preventing unrelated steps from running.</summary>
+        internal static bool TryConfigure(string name, Action configure)
+        {
             try
             {
-                MainAbilityToEverything_Feats.ConfigureAll();
-                try { SpecializedFeats.ConfigureAll(); } catch (TypeLoadException) { Main.Log.Log("AttributeFeats: SpecializedFeats not yet present"); }
-                try { StanceFeats.ConfigureAll(); } catch (TypeLoadException) { Main.Log.Log("AttributeFeats: StanceFeats not yet present"); }
-                try { ConditionalFeats.ConfigureAll(); } catch (TypeLoadException) { Main.Log.Log("AttributeFeats: ConditionalFeats not yet present"); }
-                try { StatReplacementFeats.ConfigureAll(); } catch (TypeLoadException) { Main.Log.Log("AttributeFeats: StatReplacementFeats not yet present"); }
-                try { ReactiveArmorFeats.ConfigureAll(); } catch (TypeLoadException) { Main.Log.Log("AttributeFeats: ReactiveArmorFeats not yet present"); }
-                try { DerivedStatFeats.ConfigureAll(); } catch (TypeLoadException) { Main.Log.Log("AttributeFeats: DerivedStatFeats not yet present"); }
-                try { GreaterSummoningFeats.ConfigureAll(); } catch (TypeLoadException) { Main.Log.Log("AttributeFeats: GreaterSummoningFeats not yet present"); }
-                try { SpellTagFeats.ConfigureAll(); } catch (TypeLoadException) { Main.Log.Log("AttributeFeats: SpellTagFeats not yet present"); }
-                try { SummonerSacrificeFeats.ConfigureAll(); } catch (TypeLoadException) { Main.Log.Log("AttributeFeats: SummonerSacrificeFeats not yet present"); }
-                try { PolearmMasterFeats.ConfigureAll(); } catch (TypeLoadException) { Main.Log.Log("AttributeFeats: PolearmMasterFeats not yet present"); }
-                try { DistanceDamageFeats.ConfigureAll(); } catch (TypeLoadException) { Main.Log.Log("AttributeFeats: DistanceDamageFeats not yet present"); }
-                WeaponDamageFeats.ConfigureAll();
-                try { MutexPass.ApplyAll(); } catch (TypeLoadException) { Main.Log.Log("AttributeFeats: MutexPass not yet present"); }
-                FeatSelection.ConfigureAll();
-                Main.Log.Log("AttributeFeats: registry initialized (Main=6, Specialized=24, Stance=6, Conditional=6, Replacement=12, Summon=6, SummonerSacrifice=3, ReactiveArmor=2, Derived=6, SpellTag=17, PolearmMaster=1, DistanceDamage=3, WeaponDamage=6 = 98 total)");
+                configure();
+                return true;
             }
-            catch (Exception e)
+            catch (Exception error)
             {
-                Main.Log.Log("AttributeFeats: registration failed - " + e);
+                Main.Log?.Log($"AttributeFeats: {name} failed - {error}");
+                return false;
             }
         }
     }

@@ -11,6 +11,9 @@
 - Organized the existing feats as **Attribute Feats → family → individual feat**, with 16 family menus containing 2–9 choices each. Polearm Master sits directly inside Attribute Feats.
 - Each family menu allows one feat per choice and remains available for later eligible choices. Existing feat GUIDs, effects, prerequisites, and mutual-exclusion rules are unchanged.
 
+### Fixed
+- A failed feat-family registration or family-menu configuration no longer skips unrelated families or the root-menu publication attempt. Menu entries from a failed registration batch are discarded so partially configured feats are not offered. Logs identify the failed step and distinguish partial initialization from success. Partial registrations are not replayed, avoiding duplicate blueprints.
+
 ## 0.1.1 — Mutex Relaxation + 17 New Feats
 
 ### Mutex Redesign

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
@@ -63,13 +64,40 @@ namespace AttributeFeats.New_Feats
                 .SetGroups(FeatureGroup.Feat)
                 .OnConfigure(feat => Feats[feat.AssetGuid] = feat);
 
-        public static void ConfigureAll()
+        /// <summary>
+        /// Collects a batch only if its registration finishes, including prerequisites and mutex.
+        /// On failure, removes its menu entries without deleting already-created blueprints.
+        /// </summary>
+        internal static void CollectRegistration(Action register)
         {
+            var snapshots = Families.Concat(new[] { Root })
+                .ToDictionary(family => family, family => family.Feats.ToArray());
+            try
+            {
+                register();
+            }
+            catch
+            {
+                foreach (var snapshot in snapshots)
+                {
+                    snapshot.Key.Feats.Clear();
+                    foreach (var feat in snapshot.Value)
+                        snapshot.Key.Feats.Add(feat.Key, feat.Value);
+                }
+                throw;
+            }
+        }
+
+        /// <summary>Publishes successful family menus even when another family's menu fails.</summary>
+        public static bool ConfigureAll()
+        {
+            var succeeded = true;
             foreach (var family in Families)
             {
-                family.Configure();
+                succeeded &= FeatRegistry.TryConfigure(family.Name, family.Configure);
             }
-            Root.Configure();
+            succeeded &= FeatRegistry.TryConfigure(Root.Name, Root.Configure);
+            return succeeded;
         }
 
         private void Configure()
