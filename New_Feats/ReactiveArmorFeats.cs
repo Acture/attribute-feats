@@ -44,7 +44,7 @@ namespace AttributeFeats.New_Feats
 
         private static void ConfigureSpikedDefense()
         {
-            var cfg = FeatureConfigurator.New("SpikedDefense", Guids.ReactiveArmor.SpikedDefense, FeatureGroup.Feat)
+            var cfg = FeatSelection.ReactiveArmor.NewFeat("SpikedDefense", Guids.ReactiveArmor.SpikedDefense)
                 .SetDisplayName(Common.L("ReactiveArmor_SpikedDefense.Name", "Spiked Defense"))
                 .SetDescription(Common.L("ReactiveArmor_SpikedDefense.Desc", BuildSpikedDefenseDescription(), tagEncyclopediaEntries: true));
 
@@ -80,7 +80,7 @@ namespace AttributeFeats.New_Feats
                         .Build(),
                     ifFalse: ActionsBuilder.New().Build());
 
-            FeatureConfigurator.New("BulwarkOfSteel", Guids.ReactiveArmor.BulwarkOfSteel, FeatureGroup.Feat)
+            FeatSelection.ReactiveArmor.NewFeat("BulwarkOfSteel", Guids.ReactiveArmor.BulwarkOfSteel)
                 .SetDisplayName(Common.L("ReactiveArmor_BulwarkOfSteel.Name", "Bulwark of Steel"))
                 .SetDescription(Common.L("ReactiveArmor_BulwarkOfSteel.Desc", BuildBulwarkOfSteelDescription(), tagEncyclopediaEntries: true))
                 .AddFactContextActions(

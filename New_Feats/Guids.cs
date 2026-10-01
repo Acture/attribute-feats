@@ -3,6 +3,39 @@ namespace AttributeFeats.New_Feats
 {
     public static class Guids
     {
+        public const string AttributeFeatsSelection = "849a4e94-bfaa-4c16-9d49-d5fd2096ac05";
+
+        public static class FeatSelections
+        {
+            public const string MainAttribute = "0fca3f71-f928-4a16-bc6d-a7670b7eb497";
+            public const string Defensive = "fa0ebb46-169d-4651-8727-d68171da976a";
+            public const string Maneuver = "84af69fb-32fe-4bfd-931b-c98349e59157";
+            public const string Skilled = "8488006d-b005-4f49-b8be-0c228b5ced5f";
+            public const string Arcane = "6c3a2022-f19c-45a2-8cf2-08c47508aab2";
+            public const string Stance = "4710986d-ee1f-4eb1-b40a-de2e1ac956db";
+            public const string Conditional = "0f1e99f0-b6b1-4172-b8b6-7a57aa0ea227";
+            public const string WeaponInsight = "da2b6738-7737-4435-b25f-defbafb26c6b";
+            public const string ExtendedReplacement = "3f2263db-3a85-4559-b558-59902482a88d";
+            public const string GreaterSummoning = "22872933-4618-433a-a24d-bf1effb041d6";
+            public const string SummonerSacrifice = "0cc8f077-1c30-4062-8e39-bb55bba7f2ca";
+            public const string ReactiveArmor = "4b5c1fc8-e3d7-4bce-8032-ee70ad9682b1";
+            public const string DerivedStat = "cce28abb-3eff-4ecc-83c7-d23d89be7434";
+            public const string SpellSchool = "2da24552-6b0c-43c7-8a75-1fc80051ba2c";
+            public const string SpellDescriptor = "90b325a4-0c45-4546-a562-52c4503a212b";
+            public const string DistanceDamage = "64c8eb89-87bf-4d13-8e05-ffc603c76c64";
+            public const string WeaponDamage = "2cdbd2a6-eef6-4d82-a91b-675cbe28e723";
+        }
+
+        public static class WeaponDamage
+        {
+            public const string Str = "ccfd2d35-5d5f-4e16-ac94-c09408f34ec9";
+            public const string Dex = "0b0ad630-9c43-42f3-bc5b-b60aa532681b";
+            public const string Con = "16a7b7c2-9149-4472-94c4-6b4837b63089";
+            public const string Int = "c7190587-853a-4f83-b2f8-f35a07058a47";
+            public const string Wis = "fe9d5c37-632e-41a8-801f-e03fd90e1642";
+            public const string Cha = "62b7b1f8-a093-401e-8c84-bb42028cbb59";
+        }
+
         // EXISTING Main feats — DO NOT CHANGE (save compatibility)
         public const string str_main_to_everything = "a4c66462-a423-4a2f-8b26-770ea03d2ce0";
         public const string dex_main_to_everything = "0963babc-0579-4bb3-a33a-23949b47e68b";

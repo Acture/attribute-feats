@@ -2,11 +2,15 @@
 
 A Pathfinder: Wrath of the Righteous mod that adds **build-enabling** feats based on character attributes. Choose a Main Attribute feat for broad cross-stat support, or mix focused families to build unconventional defenders, duelists, casters, and summoners.
 
-> **Design philosophy:** AttributeFeats is a *build enabler*, not a power booster. Default 0.1.0 settings open new archetypes without inflating raw damage or attack counts. Extra power is opt-in through `Power Level` and `EnablePowerMode`.
+> **Design philosophy:** AttributeFeats is a *build enabler*, not a power booster. Main feat defaults focus on build-enabling stats. Standalone Weapon Damage feats let you choose attribute-based damage without taking a Main feat; their default Replace mode avoids adding a second attribute bonus.
 
 ## Feat Families
 
-**0.1.1 total:** Main (6) + Specialized (24) + Stance (6) + Conditional (6) + Replacement (12) + Summon (6) + SummonerSacrifice (3) + ReactiveArmor (2) + Derived (6) + SpellTag (17) + PolearmMaster (1) + DistanceDamage (3) = **92 feats**.
+During character creation and level-up, expand **Attribute Feats**, then a **feat family**, then choose the **individual feat**. Each family has 2–9 choices; Polearm Master sits directly inside Attribute Feats because it has no variants. Each choice grants one feat, with no extra feat cost for either menu level. You can return to the same family at later feat choices, subject to the selected feat's usual prerequisites and mutual-exclusion rules. Existing characters keep their learned feats and effects.
+
+The 17 menus are Main Attribute Mastery, Defensive Adept, Maneuver Adept, Skilled Adept, Arcane Adept, Stance, Conditional Trigger, Weapon Insight, Extended Replacement, Greater Summoning, Summoner Sacrifice, Reactive Armor, Derived Stat Conversion, Spell School Specialist, Spell Descriptor Specialist, Distance Damage, and Weapon Damage.
+
+**Current total:** Main (6) + Specialized (24) + Stance (6) + Conditional (6) + Replacement (12) + Summon (6) + SummonerSacrifice (3) + ReactiveArmor (2) + Derived (6) + SpellTag (17) + PolearmMaster (1) + DistanceDamage (3) + WeaponDamage (6) = **98 feats** (92 in 0.1.1, plus 6 unreleased).
 
 ### Main Attribute Mastery (6 feats, mutually exclusive)
 
@@ -120,12 +124,26 @@ Distance-gated +4 weapon damage triggers; pick the band that fits your build.
 - **Marksman's Focus** — +4 damage at ≥ 30 ft (long range)
 - **Optimal Range** — +4 damage at the 15–25 ft sweet spot
 
+### Weapon Damage (6 feats)
+
+Choose **Attribute Feats → Weapon Damage → an attribute → a proficient weapon category**. The six attributes are Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Each choice costs one feat and changes only weapon damage for that category. You can choose the same attribute again for another category, but cannot take the exact same attribute/category twice.
+
+The **Weapon Damage Mode** setting offers two behaviors. Switching takes effect on the next damage calculation, including already learned feats; no restart or respec is needed:
+
+| Mode | Effect | Example: Str 12 (+1), Int 20 (+5), one-handed longsword |
+|---|---|---|
+| Replace (default) | Use the chosen modifier if it improves the existing attribute damage; retain the weapon's normal two-handed/off-hand multiplier. Existing Dexterity-to-damage is considered. | `1d8 + 5` |
+| Add | Keep normal damage and add the chosen positive modifier once, without two-handed/off-hand scaling of the extra bonus. | `1d8 + 1 + 5` |
+
+Both modes require an attack that already applies an attribute modifier to weapon damage. Ordinary crossbows and other attacks without a damage attribute receive no benefit. Neither mode changes attack rolls, spells, or other stats, and neither requires Power Mode. With `EnableMutex` on, this family allows one attribute; with it off, replacement uses the best applicable attribute while addition stacks the selected bonuses.
+
 ## Settings
 
-> Settings should be treated as restart-required after changes.
+> Weapon Damage Mode applies on the next damage calculation. Other settings require restarting.
 
 | Setting | Default | Effect |
 |---|---|---|
+| Weapon Damage Mode (`WeaponDamage`) | `Replace` | Standalone Weapon Damage feats use a better chosen attribute instead of the existing damage attribute. `Add` adds the positive chosen modifier once. Independent of Main feat settings and Power Mode. |
 | Power Level | `Balanced` | `Balanced`: full scaling for attributes, defenses, maneuvers, skills, caster level, and spell penetration; reduced scaling for spell DC, BAB, and Power Mode bonuses. `Legacy_AllFull`: all rank-based Main feat bonuses use full modifier scaling. |
 | Include Self in Attribute Stack | OFF | A Main feat may add its chosen attribute to itself. |
 | **Enable Mutex** | **ON** | When ON, each family enforces its intra-family mutex. When OFF, every mutex prerequisite is skipped — you may take every feat at once. Cross-family same-attribute mutex was removed in 0.1.1 regardless of this toggle. |
@@ -142,7 +160,7 @@ Distance-gated +4 weapon damage triggers; pick the band that fits your build.
 
 ## Stacking Rules
 
-- Each family enforces its own intra-family mutex (controlled by `EnableMutex`): Main 6-way, each Specialized subfamily 6-way, Stance 6-way, Weapon Insight 6-way, Greater Summoning 6-way, Summoner Sacrifice 3-way, Spell Tag School 8-way, Spell Tag Descriptor 9-way.
+- Each family enforces its own intra-family mutex (controlled by `EnableMutex`): Main 6-way, each Specialized subfamily 6-way, Stance 6-way, Weapon Insight 6-way, Weapon Damage 6-way, Greater Summoning 6-way, Summoner Sacrifice 3-way, Spell Tag School 8-way, Spell Tag Descriptor 9-way.
 - **Cross-family same-attribute mutex was removed in 0.1.1.** Combinations like `Apex Predator` (Str Main) + `Titan's Stance` (Str Defensive) + `Brutal Stance` (Str Stance) are now allowed — same-attribute stacking is a deliberate build option, not a bug.
 - Set `EnableMutex = OFF` in mod settings to disable every mutex prerequisite (including intra-family). You can then take any combination of feats; gather every Specialized stat-bonus for a single attribute, or every Stance, etc. Use at your own risk — this is a power option, not the intended baseline.
 - Main feats use **Inherent** bonuses; most non-Main bonuses are **Untyped** or use stat replacement, so cross-attribute combinations remain the intended way to build.
@@ -157,6 +175,7 @@ Distance-gated +4 weapon damage triggers; pick the band that fits your build.
 
 ## Save Compatibility
 
+- Existing feat GUIDs are unchanged. Settings files without `WeaponDamage` default to `Replace`; both damage modes use the same new feat GUIDs, so switching modes requires no respec.
 - **0.1.1 → 0.1.x is non-breaking.** Settings carry over; XML serialization adds the new `EnableMutex` field as `true` by default.
 - **0.1.0 → 0.1.1 upgrades** keep all existing feats (GUIDs unchanged). New feats appear in the level-up feat list and Commanding Presence Stance now applies its 30-ft ally aura correctly.
 - 0.0.x → 0.1.x is a redesign; back up saves first.
@@ -166,6 +185,11 @@ Distance-gated +4 weapon damage triggers; pick the band that fits your build.
 - Set `WrathInstallDir`, `WrathPath`, or `WRATH_PATH`, or let the project generate `GamePath.props` from `Player.log`.
 - Run `dotnet build "attribute feats.csproj"`.
 - The Deploy target copies files into the local UMM mod folder and creates a release zip in `bin\`.
+- To compile without deploying, run `dotnet msbuild "attribute feats.csproj" -restore -t:Compile -p:WrathInstallDir="<game directory>"`.
+- Run the standalone damage calculation checks with the .NET 10 SDK: `dotnet run --project tests/WeaponDamage.Tests`.
+- Run initialization failure checks with `dotnet run --project tests/Initialization.Tests`. These exercise the real registry and menu orchestration with stand-ins for game/BlueprintCore APIs and family creation; they do not start Unity or verify in-game UI behavior.
+- With Windows PowerShell 5.1, check settings compatibility using `powershell.exe -NoProfile -ExecutionPolicy Bypass -File tests/VerifySettings.ps1 -WrathInstallDir "<game directory>"`.
+- After compiling, verify live mode switching on an existing component with `powershell.exe -NoProfile -ExecutionPolicy Bypass -File tests/VerifyLiveWeaponDamageMode.ps1 -WrathInstallDir "<game directory>"`. This loads the compiled mod and game types without starting Unity.
 
 ## Changelog
 

@@ -234,7 +234,7 @@ namespace AttributeFeats.New_Feats
             var schoolName = GetSchoolName(definition.School);
             var attributeName = GetAttributeName(definition.Attribute);
             var settings = Main.Settings ?? new ModSettings();
-            var cfg = FeatureConfigurator.New(definition.InternalName, definition.Guid, FeatureGroup.Feat)
+            var cfg = FeatSelection.SpellSchool.NewFeat(definition.InternalName, definition.Guid)
                 .SetDisplayName(Common.L($"SpellTag_School_{definition.InternalName}.Name", definition.DisplayName))
                 .SetDescription(Common.L(
                     $"SpellTag_School_{definition.InternalName}.Desc",
@@ -302,7 +302,7 @@ namespace AttributeFeats.New_Feats
             var attributeName = GetAttributeName(definition.Attribute);
             var otherDescriptors = GetOtherDescriptorList(definition.Descriptor);
             var settings = Main.Settings ?? new ModSettings();
-            var cfg = FeatureConfigurator.New(definition.InternalName, definition.Guid, FeatureGroup.Feat)
+            var cfg = FeatSelection.SpellDescriptor.NewFeat(definition.InternalName, definition.Guid)
                 .SetDisplayName(Common.L($"SpellTag_Descriptor_{definition.InternalName}.Name", definition.DisplayName))
                 .SetDescription(Common.L(
                     $"SpellTag_Descriptor_{definition.InternalName}.Desc",

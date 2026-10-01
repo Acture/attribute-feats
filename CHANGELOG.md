@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- Six standalone Weapon Damage feats: select an attribute and a proficient weapon category, without taking a Main feat or enabling Power Mode.
+- Weapon Damage Mode setting: **Replace** (default) uses the chosen attribute when better, preserving native weapon damage multipliers; **Add** grants the positive chosen modifier once in addition to normal damage. Applies only to weapons already using an attribute for damage. Switching modes applies on the next damage calculation, including already learned feats, without restarting or respeccing.
+- Weapon Damage family menu, with repeat selection for different weapon categories and the existing optional intra-family mutex. The roster now has 98 feats across 17 family menus, plus Polearm Master directly in the root.
+
+### Changed
+- Organized the existing feats as **Attribute Feats → family → individual feat**, with 16 family menus containing 2–9 choices each. Polearm Master sits directly inside Attribute Feats.
+- Each family menu allows one feat per choice and remains available for later eligible choices. Existing feat GUIDs, effects, prerequisites, and mutual-exclusion rules are unchanged.
+
+### Fixed
+- A failed feat-family registration or family-menu configuration no longer skips unrelated families or the root-menu publication attempt. Menu entries from a failed registration batch are discarded so partially configured feats are not offered. Logs identify the failed step and distinguish partial initialization from success. Partial registrations are not replayed, avoiding duplicate blueprints.
+
 ## 0.1.1 — Mutex Relaxation + 17 New Feats
 
 ### Mutex Redesign

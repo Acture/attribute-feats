@@ -97,7 +97,7 @@ namespace AttributeFeats.New_Feats
             AddStatBonuses(outerBuff, selfBonuses);
             var configuredOuterBuff = outerBuff.Configure();
 
-            return FeatureConfigurator.New(internalName, featureGuid, FeatureGroup.Feat)
+            return FeatSelection.SummonerSacrifice.NewFeat(internalName, featureGuid)
                 .SetDisplayName(localizedName)
                 .SetDescription(localizedDescription)
                 .AddFacts(new() { configuredOuterBuff })
