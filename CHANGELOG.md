@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.2 — Comprehensive Naming, Lore & Bilingual (EN/ZH) Overhaul (P-831)
+
+### Naming & Worldbuilding Lore Overhaul
+- **Comprehensive D&D / Pathfinder Lore for All 92 Feats**: Infused every feat in the mod with evocative, mechanically aligned flavor text referencing Golarion traditions (Irori asceticism, Gorum's battle rage, Aldori dueling arts, Boneyard threshold mysteries, Nexian / Gebite arcanism, dwarven bulwarks, and celestial / fiendish planar bindings).
+- **Eliminated All Generic Naming Collisions**: Completely eradicated repetitive generic naming tropes (5× "Tactical...", 4× "Bulwark...", 3× "Stance...", 3× "Form..."). Every feat now features a unique, evocative title that directly mirrors its in-game tactical identity.
+- **Save-Compatibility Maintained**: All 92 feature GUIDs, internal blueprint names, and component mechanics remain 100% stable and untouched, preserving seamless save file compatibility.
+
+### Full Bilingual Localization (EN / ZH)
+- **Native Dual-Language Support**: Added comprehensive Chinese (`zhCN`) localization across all 92 feats, stances, temporary buffs, trigger auras, and parameter descriptors.
+- **Dynamic Runtime Locale Switching**: Wired `Common.L` and `Common.RefreshLocale()` to `LocalizationManager.OnLocaleChanged`, allowing seamless in-game language switching without needing to restart the game.
+
+### Bug Fixes & Clarifications
+- **Cleaned Obsolete Restriction Text**: Removed lingering 0.1.0 description text in Specialized feats that erroneously claimed mutual exclusivity with Main Attribute Mastery feats (cross-family mutex was removed in 0.1.1).
+- **Synchronized Documentation**: Updated `README.md` feat tables with the full roster of bilingual names and clear role summaries.
+
 ## 0.1.1 — Mutex Relaxation + 17 New Feats
 
 ### Mutex Redesign

@@ -141,6 +141,7 @@ namespace AttributeFeats
 
                     Log.Log("AttributeFeats: patching blueprints...");
                     FeatRegistry.ConfigureAll();
+                    Common.RefreshLocale();
                     Log.Log("AttributeFeats: done.");
                 }
                 catch (Exception e)

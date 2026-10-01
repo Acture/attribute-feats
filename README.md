@@ -10,115 +10,129 @@ A Pathfinder: Wrath of the Righteous mod that adds **build-enabling** feats base
 
 ### Main Attribute Mastery (6 feats, mutually exclusive)
 
-| Feat | Attribute |
-|---|---|
-| Apex Predator | Strength |
-| Embodied Grace | Dexterity |
-| Living Bulwark | Constitution |
-| Architect of Self | Intelligence |
-| Wellspring of Insight | Wisdom |
-| Crown of Will | Charisma |
+| Feat | 中文名称 | Attribute |
+|---|---|---|
+| Titan's Apotheosis | 泰坦登阶 | Strength |
+| Quicksilver Incarnate | 水银具现 | Dexterity |
+| Adamantine Vessel | 万劫金身 | Constitution |
+| Architect of Self | 灵枢架构师 | Intelligence |
+| Ocular of the Cosmos | 寰宇天心 | Wisdom |
+| Sovereign of Wills | 至高皇威 | Charisma |
 
 ### Specialized Adept (24 feats)
 
 | Family | Strength | Dexterity | Constitution | Intelligence | Wisdom | Charisma |
 |---|---|---|---|---|---|---|
-| Defensive | Titan's Stance | Flowing Form | Iron Bulwark | Calculated Defense | Stoic Vigilance | Indomitable Presence |
-| Maneuver | Crushing Grip | Deft Hand | Unyielding Hold | Tactical Bind | Predictive Lock | Domineering Throw |
-| Skilled | Practiced Hand | Effortless Skill | Tireless Practice | Polymath's Touch | Quiet Mastery | Inspired Versatility |
-| Arcane | Spell-Forged Will | Quickcast Reflex | Spell-Tempered Body | Scholar of the Weave | Oracle's Intuition | Sorcerous Presence |
+| **Defensive** | Iron Bastion Posture<br>(撼山不动岳) | Dance of the Zephyr<br>(凌波游虚步) | Impenetrable Citadel<br>(渊渟铁瓮躯) | Prescient Deflection<br>(灵台逆照枢) | Unshaken Center<br>(止水澄明境) | Regal Aura<br>(皇图霸道罡) |
+| **Maneuver** | Colossal Pincer<br>(崩岳裂碑抓) | Flickering Disarm<br>(穿林游丝手) | Anchor of Living Stone<br>(坚若磐陀锁) | Fulcrum Analysis<br>(洞虚枢机扣) | Way of the Reed<br>(随缘借力摔) | Commanding Subjugation<br>(慑心跪伏御) |
+| **Skilled** | Herculean Craft<br>(裂地开山巧) | Thief of Shadows<br>(乘影掠光步) | Plowman's Fortitude<br>(磨勘九死魄) | Sage's Archive<br>(琅嬛洞观算) | All-Seeing Intuition<br>(观机神会相) | Silver-Tongued Arbiter<br>(绝缨折冲辩) |
+| **Arcane** | Titan's Mana-Forge<br>(熔天燃髓力) | Flicker-Cast Cadence<br>(掣电弹指咒) | Blood-Wellspring Matrix<br>(鼎镬烹身脉) | Grand Arcanist's Lexicon<br>(万象演道谱) | Epiphany of the Leyline<br>(冥契通玄感) | Font of Primal Sorcery<br>(绝代天潢嗣) |
 
 ### Stance (6 feats)
 
-| Feat | Attribute |
-|---|---|
-| Brutal Stance | Strength |
-| Liquid Form | Dexterity |
-| Endless Vigor | Constitution |
-| Tactical Mind | Intelligence |
-| Centered Mind | Wisdom |
-| Commanding Presence | Charisma |
+| Feat | 中文名称 | Attribute |
+|---|---|---|
+| Berserker's Overrun | 破阵裂山势 | Strength |
+| Willow in the Gale | 惊鸿穿林势 | Dexterity |
+| Mountain's Deep Roots | 不动磐峰势 | Constitution |
+| Grandmaster's Gambit | 弈者静待势 | Intelligence |
+| Mirror of Still Waters | 明镜止水势 | Wisdom |
+| Vanguard's Banner | 金戈铁旌势 | Charisma |
 
 ### Conditional Trigger (6 feats)
 
-| Feat | Attribute |
-|---|---|
-| Endless Resolve | Constitution |
-| First Blood | Dexterity |
-| Vendetta | Charisma |
-| Patient Hunter | Wisdom |
-| Berserker's Last Stand | Strength |
-| Tactical Reading | Intelligence |
+| Feat | 中文名称 | Attribute | Trigger |
+|---|---|---|---|
+| Defiance at the Precipice | 绝境砥柱 | Constitution | HP < 50% |
+| Ambush of the Viper | 封喉首刃 | Dexterity | Combat round 1 |
+| Oath of Retribution | 复仇血誓 | Charisma | When hit |
+| Crane's Severance | 蓄势孤峰 | Wisdom | Missed attack |
+| Gorum's Last Stand | 狂神绝唱 | Strength | HP < 25% |
+| Cadence Decoded | 阅破机宜 | Intelligence | First weapon attack resolves |
 
 ### Replacement (12 feats)
 
 **Weapon Insight (6)**
 
-| Feat | Attribute |
-|---|---|
-| Crushing Form | Strength |
-| Duelist's Eye | Dexterity |
-| Iron Stance | Constitution |
-| Tactical Strike | Intelligence |
-| Predictive Cut | Wisdom |
-| Theatrical Combat | Charisma |
+| Feat | 中文名称 | Attribute |
+|---|---|---|
+| Titan's Momentum | 巨灵摧破 | Strength |
+| Aldori Finesse | 阿尔多里绝诣 | Dexterity |
+| Stout Grounding | 磐固千钧 | Constitution |
+| Geometer's Edge | 规矩之锋 | Intelligence |
+| Karmic Interception | 因果断隙 | Wisdom |
+| Swashbuckler's Flourish | 游侠华彩 | Charisma |
 
 **Extended Replacement (6)**
 
-| Feat | Attribute | Effect |
-|---|---|---|
-| Inner Sentinel | Wisdom | Wis-to-AC when unarmored |
-| Calculated Grip | Intelligence | Int-to-CMB |
-| Unyielding Will | Charisma | Cha-to-CMD |
-| Brutal Defender | Strength | Str-to-CMD |
-| Lightfoot Defense | Dexterity | Dex-to-AC when unarmored (extended pool) |
-| Iron Endurance | Constitution | Con-to-HP scaling |
+| Feat | 中文名称 | Attribute | Effect |
+|---|---|---|---|
+| Ascetic's Ward | 云水自真 | Wisdom | Wis-to-AC when unarmored/light armor |
+| Anatomical Leverage | 筋络推演 | Intelligence | Int-to-CMB |
+| Monarch's Stature | 帝胄岳立 | Charisma | Cha-to-CMD |
+| Titan's Footing | 巨灵固步 | Strength | Str-to-CMD |
+| Zephyr's Grace | 穿风灵步 | Dexterity | Dex-to-AC when unarmored/light armor |
+| Adamantine Mettle | 生机洪炉 | Constitution | Con-to-HP scaling |
 
 ### Greater Summoning (6 feats)
 
-| Feat | Attribute |
-|---|---|
-| Bloodline of Beasts | Strength |
-| Quickened Pact | Dexterity |
-| Vital Pact | Constitution |
-| Tactical Binding | Intelligence |
-| Insightful Summons | Wisdom |
-| Magnetic Calling | Charisma |
-
-### Reactive Armor (2 feats)
-- Spiked Defense
-- Bulwark of Steel
-
-### Derived Stat Conversion (6 feats)
-- Arcane Aegis
-- Martial Insight
-- Skilled Defender
-- Mystic Vitality
-- Soul Bulwark
-- Sword Saint
-
-### Spell Tag Specialist (17 feats)
-- **School (8):** Pure Warder, Master Caller, Seer's Edge, Heart's Tyrant, Spellforge, Veilweaver, Death Speaker, Shape-Shifter
-- **Descriptor (9):** Inner Flame, Frozen Heart, Storm Channel, Etching Mind, Resonant Voice, Etheric Mind (Force / Int), Radiant Soul (Positive Energy / Cha), Hollow Heart (Negative Energy / Wis), Subtle Tyrant (Mind-Affecting / Cha)
+| Feat | 中文名称 | Attribute | Buffed Summons Stat |
+|---|---|---|---|
+| Behemoth's Heritage | 比蒙遗脉 | Strength | Strength |
+| Zephyr's Covenant | 风灵疾契 | Dexterity | Dexterity & Speed |
+| Titan's Lifespring | 巨怪生机 | Constitution | Constitution |
+| Aegis of the Schema | 天元魔阵 | Intelligence | AC |
+| Empathic Communion | 神契灵犀 | Wisdom | Fortitude, Reflex, Will saves |
+| Dominator's Calling | 御统王令 | Charisma | Attack Bonus |
 
 ### Summoner Sacrifice (3 feats)
 
-Trade your own ability scores for amplified buffs to your summoned creatures (via the same `SummonedUnitBuff` pattern as Greater Summoning).
+Trade your own ability scores for amplified buffs to your summoned creatures.
 
-- **Body of My Pact** — −all six attributes on self, +equal value to every attribute on summons (1:1)
-- **Doubled Bond** — −half on self, +full on summons (1:2 transfer)
-- **Empowered Sacrifice** — −Charisma on self, +Strength on summons
+- **Martyr's Transference (形神替生)** — −4 to all six attributes on self, +4 to all six attributes on summons (1:1 trade)
+- **Eldritch Crucible (双生法炼)** — −2 to all six attributes on self, +4 to all six attributes on summons (1:2 amplification)
+- **Tribute of Iron Dominion (夺冕化蛮)** — −4 Charisma on self, +8 Strength on summons (focused trade)
+
+### Reactive Armor (2 feats)
+- **Barbed Carapace (逆鳞铁刺)** — In armor, return 1d6 + armor bonus as untyped retaliation damage on melee hit.
+- **Citadel of Steel (铸铁城阙)** — In medium/heavy armor, refresh temporary HP equal to armor bonus each round.
+
+### Derived Stat Conversion (6 feats)
+- **Arcane Aegis (魔能天衣)** — Half Caster Level to AC.
+- **War-Hardened Reflexes (百战身魄)** — Half BAB to all saving throws.
+- **Scholar's Positioning (通识御敌)** — One third of total Skill Ranks to AC.
+- **Ley-Infused Vitality (灵脉淬体)** — Caster Level to Max HP.
+- **Dawn of the Soul (法相初明)** — At combat start, gain temporary HP equal to Caster Level.
+- **Blade of the Spell-Saint (剑圣咒痕)** — Half BAB to Spell DC.
+
+### Spell Tag Specialist (17 feats)
+- **School (8):**
+  - Aegis of the Pure Warder / 绝界镇魔使 (Abjuration / Wis)
+  - Sovereign Gatekeeper / 统界辟门者 (Conjuration / Cha)
+  - Eye of the Chronomancer / 溯时先知 (Divination / Int)
+  - Sovereign of the Heart / 倾心国主 (Enchantment / Cha)
+  - Pyre of the Architect / 灾变筑城师 (Evocation / Int)
+  - Phantasmagoria Maestro / 织影幻圣 (Illusion / Cha)
+  - Harvester of the Boneyard / 冥河渡魂人 (Necromancy / Wis)
+  - Sculptor of Prime Matter / 塑质造化使 (Transmutation / Int)
+- **Descriptor (9):**
+  - Pyre of the Phoenix / 炽皇凤涅 (Fire / Cha)
+  - Stillness of the Glacial Void / 极渊玄冰 (Cold / Wis)
+  - Tempest-Dancer / 御雷疾影 (Electricity / Dex)
+  - Vitriolic Equation / 腐解算律 (Acid / Int)
+  - Herald of the Shattered Sky / 破霄神音 (Sonic / Cha)
+  - Axiom of Unseen Force / 虚空定则 (Force / Int)
+  - Fountain of Solar Dawn / 金阳圣晖 (Positive Energy / Cha)
+  - Vigil of the Gloom / 死寂枯荣 (Negative Energy / Wis)
+  - Puppeteer of the Mind / 惑魂主宰 (Mind-Affecting / Cha)
 
 ### Polearm Master (1 feat)
-- **Polearm Master** — reach × 2 with the −4 weapon damage tradeoff. Classic spear/pike trade.
+- **Polearm Master (长柄武器宗师)** — reach × 2 with the −4 weapon damage tradeoff.
 
 ### Distance-Based Damage (3 feats)
-
-Distance-gated +4 weapon damage triggers; pick the band that fits your build.
-
-- **Aggressor's Edge** — +4 damage at ≤ 10 ft (in your face)
-- **Marksman's Focus** — +4 damage at ≥ 30 ft (long range)
-- **Optimal Range** — +4 damage at the 15–25 ft sweet spot
+- **Point-Blank Ruin (咫尺绝杀)** — +4 damage at ≤ 10 ft.
+- **Horizon's Deadeye (苍穹神击)** — +4 damage at ≥ 30 ft.
+- **Harmonic Cleave (流光截角)** — +4 damage at 15–25 ft.
 
 ## Settings
 
@@ -143,7 +157,7 @@ Distance-gated +4 weapon damage triggers; pick the band that fits your build.
 ## Stacking Rules
 
 - Each family enforces its own intra-family mutex (controlled by `EnableMutex`): Main 6-way, each Specialized subfamily 6-way, Stance 6-way, Weapon Insight 6-way, Greater Summoning 6-way, Summoner Sacrifice 3-way, Spell Tag School 8-way, Spell Tag Descriptor 9-way.
-- **Cross-family same-attribute mutex was removed in 0.1.1.** Combinations like `Apex Predator` (Str Main) + `Titan's Stance` (Str Defensive) + `Brutal Stance` (Str Stance) are now allowed — same-attribute stacking is a deliberate build option, not a bug.
+- **Cross-family same-attribute mutex was removed in 0.1.1.** Combinations like `Titan's Apotheosis` (Str Main) + `Iron Bastion Posture` (Str Defensive) + `Berserker's Overrun` (Str Stance) are now allowed — same-attribute stacking is a deliberate build option, not a bug.
 - Set `EnableMutex = OFF` in mod settings to disable every mutex prerequisite (including intra-family). You can then take any combination of feats; gather every Specialized stat-bonus for a single attribute, or every Stance, etc. Use at your own risk — this is a power option, not the intended baseline.
 - Main feats use **Inherent** bonuses; most non-Main bonuses are **Untyped** or use stat replacement, so cross-attribute combinations remain the intended way to build.
 - Some effects, such as Wisdom-to-AC style bonuses, may also stack with compatible vanilla class features. That is intentional for build-enabler playstyles.
