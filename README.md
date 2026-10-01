@@ -187,6 +187,7 @@ Both modes require an attack that already applies an attribute modifier to weapo
 - The Deploy target copies files into the local UMM mod folder and creates a release zip in `bin\`.
 - To compile without deploying, run `dotnet msbuild "attribute feats.csproj" -restore -t:Compile -p:WrathInstallDir="<game directory>"`.
 - Run the standalone damage calculation checks with the .NET 10 SDK: `dotnet run --project tests/WeaponDamage.Tests`.
+- Run initialization failure checks with `dotnet run --project tests/Initialization.Tests`. These exercise the real registry and menu orchestration with stand-ins for game/BlueprintCore APIs and family creation; they do not start Unity or verify in-game UI behavior.
 - With Windows PowerShell 5.1, check settings compatibility using `powershell.exe -NoProfile -ExecutionPolicy Bypass -File tests/VerifySettings.ps1 -WrathInstallDir "<game directory>"`.
 - After compiling, verify live mode switching on an existing component with `powershell.exe -NoProfile -ExecutionPolicy Bypass -File tests/VerifyLiveWeaponDamageMode.ps1 -WrathInstallDir "<game directory>"`. This loads the compiled mod and game types without starting Unity.
 

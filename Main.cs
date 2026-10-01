@@ -160,7 +160,7 @@ namespace AttributeFeats
 
                     Log.Log("AttributeFeats: patching blueprints...");
                     FeatRegistry.ConfigureAll();
-                    Log.Log("AttributeFeats: done.");
+                    Log.Log("AttributeFeats: blueprint initialization attempt finished; see registration diagnostics above.");
                 }
                 catch (Exception e)
                 {
