@@ -3,6 +3,9 @@
 ## Documentation
 
 - Read [README.md](README.md) for the project and the complete notes workflow.
+- [doc/](doc/README.md) contains public documentation maintained with this code
+  repository. Put reviewed usage, configuration, integration and contributor
+  documentation there; keep the README as the entry point and CHANGELOG for releases.
 - Internal design, balance proposals, mod comparisons and testing research belong
   in [notes/attribute-feats/首页.md](notes/attribute-feats/首页.md) and its linked
   documents. This is a private submodule, not a directory of files to commit in
@@ -21,8 +24,10 @@
 - Commit and successfully push notes to their project branch before staging the
   parent repository's `notes` gitlink. Verify the notes HEAD is reachable from the
   published branch. Never commit a pointer to an unpublished local notes commit.
-- Public usage, installation, build instructions and release notes stay in the
-  public README and CHANGELOG. Code builds and public CI must work without the
+- Public documentation in `doc/`, README and CHANGELOG must be usable without
+  `notes/`. The submodule reference does not grant private-repository access;
+  ordinary users should clone with `--no-recurse-submodules`.
+  Code builds and public CI must work without the
   private submodule. Do not enable recursive checkout for public CI merely to
   obtain internal design notes.
 - Existing documents and any legacy doc branch remain until content and history

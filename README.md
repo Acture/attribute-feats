@@ -171,6 +171,17 @@ Distance-gated +4 weapon damage triggers; pick the band that fits your build.
 
 See [CHANGELOG.md](./CHANGELOG.md).
 
+## Documentation
+
+| Location | Audience and content | Access |
+|---|---|---|
+| [doc/](doc/README.md), README and CHANGELOG | Public usage, setup, supported behavior and contributor documentation | Included in the public code repository |
+| `notes/attribute-feats/` | Internal design drafts, investigations, experiment records and local mod inventories | Optional submodule; separate private-repository permission required |
+
+Publish reviewed, user-facing documentation in `doc/` with the code. Keep internal
+working records in `notes/`; public documentation and builds must remain usable
+without it.
+
 ## Internal design and research notes
 
 Design proposals, compatibility investigations and testing research live in the
@@ -180,16 +191,23 @@ repository and its `project/attribute-feats` branch. Only edit `attribute-feats/
 inside that repository. Public installation instructions and the changelog remain
 in this repository; building or using the mod does not require private notes access.
 
+Cloning or forking this public repository does not grant access to the private
+vault. The public `.gitmodules` file and gitlink expose its repository URL,
+configured branch and pinned commit ID, but do not contain the notes or their Git
+history. GitHub still requires separate authorization to fetch those contents.
+Without it, recursive cloning or initializing `notes/` will fail at that step;
+use the public clone command below instead.
+
 The central vault's [project onboarding guide](https://github.com/Acture/obsidian-vault/blob/master/项目接入.md)
 owns the shared workflow and push checks. The commands below apply it to this
 project; they do not set up another synchronization system.
 
 ### Clone and initialize
 
-For code only, use a normal clone:
+For public code and documentation, skip the optional private submodule:
 
 ```powershell
-git clone https://github.com/Acture/attribute-feats.git
+git clone --no-recurse-submodules https://github.com/Acture/attribute-feats.git
 ```
 
 With authenticated access to the private notes repository:
