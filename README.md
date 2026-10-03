@@ -6,7 +6,7 @@ A Pathfinder: Wrath of the Righteous mod that adds **build-enabling** feats base
 
 ## Feat Families
 
-**0.1.1 total:** Main (6) + Specialized (24) + Stance (6) + Conditional (6) + Replacement (12) + Summon (6) + SummonerSacrifice (3) + ReactiveArmor (2) + Derived (6) + SpellTag (17) + PolearmMaster (1) + DistanceDamage (3) = **92 feats**.
+**0.1.2 total:** Main (6) + Specialized (24) + Stance (6) + Conditional (6) + Replacement (12) + Summon (6) + SummonerSacrifice (3) + ReactiveArmor (2) + Derived (6) + SpellTag (17) + PolearmMaster (1) + DistanceDamage (3) = **92 feats**.
 
 ### Main Attribute Mastery (6 feats, mutually exclusive)
 
@@ -23,10 +23,10 @@ A Pathfinder: Wrath of the Righteous mod that adds **build-enabling** feats base
 
 | Family | Strength | Dexterity | Constitution | Intelligence | Wisdom | Charisma |
 |---|---|---|---|---|---|---|
-| **Defensive** | Iron Bastion Posture<br>(撼山不动岳) | Dance of the Zephyr<br>(凌波游虚步) | Impenetrable Citadel<br>(渊渟铁瓮躯) | Prescient Deflection<br>(灵台逆照枢) | Unshaken Center<br>(止水澄明境) | Regal Aura<br>(皇图霸道罡) |
-| **Maneuver** | Colossal Pincer<br>(崩岳裂碑抓) | Flickering Disarm<br>(穿林游丝手) | Anchor of Living Stone<br>(坚若磐陀锁) | Fulcrum Analysis<br>(洞虚枢机扣) | Way of the Reed<br>(随缘借力摔) | Commanding Subjugation<br>(慑心跪伏御) |
-| **Skilled** | Herculean Craft<br>(裂地开山巧) | Thief of Shadows<br>(乘影掠光步) | Plowman's Fortitude<br>(磨勘九死魄) | Sage's Archive<br>(琅嬛洞观算) | All-Seeing Intuition<br>(观机神会相) | Silver-Tongued Arbiter<br>(绝缨折冲辩) |
-| **Arcane** | Titan's Mana-Forge<br>(熔天燃髓力) | Flicker-Cast Cadence<br>(掣电弹指咒) | Blood-Wellspring Matrix<br>(鼎镬烹身脉) | Grand Arcanist's Lexicon<br>(万象演道谱) | Epiphany of the Leyline<br>(冥契通玄感) | Font of Primal Sorcery<br>(绝代天潢嗣) |
+| **Defensive** | Colossus Bastion<br>(巨灵重障) | Wind-Dancer's Shroud<br>(风舞虚影) | Inured Carapace<br>(百炼金身) | Analytical Aegis<br>(算律之盾) | Third Eye Vigil<br>(天目清照) | Majesty's Reproach<br>(凛然天威) |
+| **Maneuver** | Grip of the Behemoth<br>(比蒙扼击) | Fulcrum of the Viper<br>(灵蛇巧掣) | Deep-Root Clinch<br>(沉洋扼锁) | Anatomical Pivot<br>(机理断节) | Crane's Anticipation<br>(玄鹤听劲) | Audacious Overthrow<br>(叱喝倾山) |
+| **Skilled** | Giantwright's Craft<br>(巨匠巧工) | Thief-King's Panache<br>(妙手绝尘) | Ascetic Diligence<br>(苦行研磨) | Encyclopedic Synthesis<br>(格物万象) | Wanderer's Lucidity<br>(云水澄明) | Silver-Tongued Virtuoso<br>(锦绣天潢) |
+| **Arcane** | Mage-Hammer Inscription<br>(铁骨铸咒) | Somatic Velocity<br>(疾影手印) | Crucible of the Conduit<br>(鼎炉承法) | Archmage's Codex<br>(万法源流) | Gnostic Channel<br>(玄鉴通幽) | Sovereign Decrees<br>(天宪法旨) |
 
 ### Stance (6 feats)
 
@@ -45,10 +45,10 @@ A Pathfinder: Wrath of the Righteous mod that adds **build-enabling** feats base
 |---|---|---|---|
 | Defiance at the Precipice | 绝境砥柱 | Constitution | HP < 50% |
 | Ambush of the Viper | 封喉首刃 | Dexterity | Combat round 1 |
-| Oath of Retribution | 复仇血誓 | Charisma | When hit |
-| Crane's Severance | 蓄势孤峰 | Wisdom | Missed attack |
+| Oath of Retribution | 复仇血誓 | Charisma | Ally dies within 30 meters; 3 rounds |
+| Crane's Severance | 蓄势孤峰 | Wisdom | First weapon attack each round, including misses |
 | Gorum's Last Stand | 狂神绝唱 | Strength | HP < 25% |
-| Cadence Decoded | 阅破机宜 | Intelligence | First weapon attack resolves |
+| Cadence Decoded | 阅破机宜 | Intelligence | Weapon attack resolves; up to 10 minutes, removed at combat boundaries |
 
 ### Replacement (12 feats)
 
@@ -72,7 +72,7 @@ A Pathfinder: Wrath of the Righteous mod that adds **build-enabling** feats base
 | Monarch's Stature | 帝胄岳立 | Charisma | Cha-to-CMD |
 | Titan's Footing | 巨灵固步 | Strength | Str-to-CMD |
 | Zephyr's Grace | 穿风灵步 | Dexterity | Dex-to-AC when unarmored/light armor |
-| Adamantine Mettle | 生机洪炉 | Constitution | Con-to-HP scaling |
+| Adamantine Mettle | 生机洪炉 | Constitution | Con modifier to HP (minimum 0; added once) |
 
 ### Greater Summoning (6 feats)
 
@@ -102,8 +102,8 @@ Trade your own ability scores for amplified buffs to your summoned creatures.
 - **War-Hardened Reflexes (百战身魄)** — Half BAB to all saving throws.
 - **Scholar's Positioning (通识御敌)** — One third of total Skill Ranks to AC.
 - **Ley-Infused Vitality (灵脉淬体)** — Caster Level to Max HP.
-- **Dawn of the Soul (法相初明)** — At combat start, gain temporary HP equal to Caster Level.
-- **Blade of the Spell-Saint (剑圣咒痕)** — Half BAB to Spell DC.
+- **Dawn of the Soul (法相初明)** — At combat start, gain temporary HP equal to Caster Level, for up to 10 minutes or until combat ends.
+- **Blade of the Spell-Saint (剑圣咒痕)** — Half BAB to spell and ability save DC.
 
 ### Spell Tag Specialist (17 feats)
 - **School (8):**
@@ -127,12 +127,12 @@ Trade your own ability scores for amplified buffs to your summoned creatures.
   - Puppeteer of the Mind / 惑魂主宰 (Mind-Affecting / Cha)
 
 ### Polearm Master (1 feat)
-- **Polearm Master (长柄武器宗师)** — reach × 2 with the −4 weapon damage tradeoff.
+- **Long-Reach Gambit (长锋险势)** — reach × 2 with −4 weapon damage; applies to all weapon categories.
 
 ### Distance-Based Damage (3 feats)
 - **Point-Blank Ruin (咫尺绝杀)** — +4 damage at ≤ 10 ft.
-- **Horizon's Deadeye (苍穹神击)** — +4 damage at ≥ 30 ft.
-- **Harmonic Cleave (流光截角)** — +4 damage at 15–25 ft.
+- **Horizon's Deadeye (苍穹神击)** — +4 damage at > 29 ft.
+- **Harmonic Cleave (流光截角)** — +4 damage at > 14 ft. and ≤ 25 ft.
 
 ## Settings
 
@@ -157,7 +157,7 @@ Trade your own ability scores for amplified buffs to your summoned creatures.
 ## Stacking Rules
 
 - Each family enforces its own intra-family mutex (controlled by `EnableMutex`): Main 6-way, each Specialized subfamily 6-way, Stance 6-way, Weapon Insight 6-way, Greater Summoning 6-way, Summoner Sacrifice 3-way, Spell Tag School 8-way, Spell Tag Descriptor 9-way.
-- **Cross-family same-attribute mutex was removed in 0.1.1.** Combinations like `Titan's Apotheosis` (Str Main) + `Iron Bastion Posture` (Str Defensive) + `Berserker's Overrun` (Str Stance) are now allowed — same-attribute stacking is a deliberate build option, not a bug.
+- **Cross-family same-attribute mutex was removed in 0.1.1.** Combinations like `Titan's Apotheosis` (Str Main) + `Colossus Bastion` (Str Defensive) + `Berserker's Overrun` (Str Stance) are now allowed — same-attribute stacking is a deliberate build option, not a bug.
 - Set `EnableMutex = OFF` in mod settings to disable every mutex prerequisite (including intra-family). You can then take any combination of feats; gather every Specialized stat-bonus for a single attribute, or every Stance, etc. Use at your own risk — this is a power option, not the intended baseline.
 - Main feats use **Inherent** bonuses; most non-Main bonuses are **Untyped** or use stat replacement, so cross-attribute combinations remain the intended way to build.
 - Some effects, such as Wisdom-to-AC style bonuses, may also stack with compatible vanilla class features. That is intentional for build-enabler playstyles.
@@ -165,21 +165,28 @@ Trade your own ability scores for amplified buffs to your summoned creatures.
 ## Installation (Unity Mod Manager)
 
 1. Install [Unity Mod Manager](https://www.nexusmods.com/site/mods/21) for Pathfinder: Wrath of the Righteous.
-2. Build or download `AttributeFeats-0.1.1.zip`.
+2. Build or download `AttributeFeats-0.1.2.zip`.
 3. Drop the zip into UMM.
 4. Enable the mod in-game.
 
 ## Save Compatibility
 
 - **0.1.1 → 0.1.x is non-breaking.** Settings carry over; XML serialization adds the new `EnableMutex` field as `true` by default.
-- **0.1.0 → 0.1.1 upgrades** keep all existing feats (GUIDs unchanged). New feats appear in the level-up feat list and Commanding Presence Stance now applies its 30-ft ally aura correctly.
+- **0.1.0 → 0.1.1 upgrades** keep all existing feats (GUIDs unchanged). New feats appear in the level-up feat list and Commanding Presence Stance now has its 30-ft ally aura wired; its Charisma scaling source still requires in-game verification.
 - 0.0.x → 0.1.x is a redesign; back up saves first.
 
 ## Building from Source
 
 - Set `WrathInstallDir`, `WrathPath`, or `WRATH_PATH`, or let the project generate `GamePath.props` from `Player.log`.
 - Run `dotnet build "attribute feats.csproj"`.
+- To build and package only in this worktree, run `dotnet build "attribute feats.csproj" -c Release -p:DeployToGame=false`.
 - The Deploy target copies files into the local UMM mod folder and creates a release zip in `bin\`.
+
+## Text and Icon Audit
+
+All 92 feats have separate 128×128 PNG icons. Final names and short lore live in the embedded [FeatText.json](Localization/FeatText.json); rule templates remain with their implementations. See the [complete before/after catalog and validation limits](docs/P-831-review.md), [individual image prompts](docs/icon-manifest.json), and [icon contact sheet](docs/feat-icons.png).
+
+The settings UI and full rule-template resource migration remain in OSS-142 (formerly P-832). Real-game mechanism verification remains in OSS-59 (formerly P-812); source inspection and successful builds do not establish in-game effects.
 
 ## Changelog
 

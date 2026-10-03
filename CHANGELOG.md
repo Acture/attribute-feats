@@ -1,22 +1,14 @@
 # Changelog
 
-## 0.1.2 — Comprehensive Naming, Lore & Bilingual (EN/ZH) Overhaul (P-831)
+## 0.1.2 — Names, Lore and Icons (P-831 / OSS-77)
 
-### Naming & Worldbuilding Lore Overhaul
-- **Comprehensive D&D / Pathfinder Lore for All 92 Feats**: Infused every feat in the mod with evocative, mechanically aligned flavor text referencing Golarion traditions (Irori asceticism, Gorum's battle rage, Aldori dueling arts, Boneyard threshold mysteries, Nexian / Gebite arcanism, dwarven bulwarks, and celestial / fiendish planar bindings).
-- **Eliminated All Generic Naming Collisions**: Completely eradicated repetitive generic naming tropes (5× "Tactical...", 4× "Bulwark...", 3× "Stance...", 3× "Form..."). Every feat now features a unique, evocative title that directly mirrors its in-game tactical identity.
-- **Save-Compatibility Maintained**: All 92 feature GUIDs, internal blueprint names, and component mechanics remain 100% stable and untouched, preserving seamless save file compatibility.
-
-### Full Bilingual Localization (EN / ZH)
-- **Native Dual-Language Support**: Added comprehensive Chinese (`zhCN`) localization across all 92 feats, stances, temporary buffs, trigger auras, and parameter descriptors.
-- **Dynamic Runtime Locale Switching**: `Common.L` records EN/ZH text per key; a Harmony postfix on `LocalizationManager.OnLocaleChanged` (ordered after BlueprintCore's own postfix) re-applies the matching strings via `Common.RefreshLocale()`, so switching language in-game updates the mod without a restart.
-
-### Custom Icons
-- Added an `IconLoader` pipeline that loads PNGs from the mod's `Icons/` folder by feat internal name, with 13 bespoke icons for headline feats; feats without a matching file keep their vanilla icon.
-
-### Bug Fixes & Clarifications
-- **Cleaned Obsolete Restriction Text**: Removed lingering 0.1.0 description text in Specialized feats that erroneously claimed mutual exclusivity with Main Attribute Mastery feats (cross-family mutex was removed in 0.1.1).
-- **Synchronized Documentation**: Updated `README.md` feat tables with the full roster of bilingual names and clear role summaries.
+- Refined all 92 feat names and shortened their English/Chinese lore, preserving blueprint names, GUIDs, prerequisites, component values and triggers.
+- Embedded 196 bilingual name/lore entries in `Localization/FeatText.json`, with English and compiled-text fallbacks. Kept rules separate from flavor text.
+- Corrected descriptions of Balanced/Legacy scaling, settings gates, minimum modifiers, temporary HP, attack consumption, distance thresholds, multi-tag penalties and unrestricted weapon reach to match source behavior.
+- Completed 92 distinct 128×128 feat icons and mapped associated buffs and stance toggles to their parent artwork. Added a contact sheet and per-image prompt/provenance manifest.
+- Preserved locale refresh and encyclopedia links. Added resource/fallback checks, blueprint/mechanism comparison, asset coverage and release ZIP validation.
+- Added a workspace-only packaging option: `-p:DeployToGame=false`.
+- Added the full before/after audit in `docs/P-831-review.md`. Combat effects and game locale/layout behavior still need real-game validation under OSS-59; settings/full rule-template localization remains in OSS-142.
 
 ## 0.1.1 — Mutex Relaxation + 17 New Feats
 

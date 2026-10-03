@@ -33,13 +33,13 @@ namespace AttributeFeats.New_Feats
             CreateFeat(
                 internalName: "AggressorsEdge",
                 featureGuid: Guids.DistanceDamage.AggressorsEdge,
-                nameEn: "Point-Blank Ruin",
-                nameZh: "咫尺绝杀",
+                nameEn: Common.Text("DistanceDamage_AggressorsEdge.Name", "Point-Blank Ruin"),
+                nameZh: Common.Text("DistanceDamage_AggressorsEdge.Name", "咫尺绝杀", true),
                 desc: BuildDescription(
                     rangeLabelEn: "Close Range",
                     rangeLabelZh: "近距爆发",
-                    loreEn: "<i>Crowd the Guard.</i> You hit hardest once you step inside an enemy's reach, crowding their guard and driving your weapon into gaps with suffocating, bone-crushing violence.",
-                    loreZh: "<i>近身封喉。</i>欺身步入敌刃中门以内，以贴身挤压封死敌之招架空间。在毫厘咫尺间全力迸发破坏力，刃碎重铠、骨断筋折。",
+                    loreEn: Common.Text("DistanceDamage_AggressorsEdge.Lore", "You train to deliver a committed blow in the cramped space inside an opponent's guard."),
+                    loreZh: Common.Text("DistanceDamage_AggressorsEdge.Lore", "你磨炼在逼近敌人守势的狭窄空间内全力出手的技巧。", true),
                     effectEn: "When your weapon attack target is within 10 feet, that attack gains a +4 untyped damage bonus.",
                     effectZh: "当你的武器攻击目标在10英尺以内时，该次攻击获得+4无类型伤害加值。"),
                 distanceConditions: ConditionsBuilder.New()
@@ -48,30 +48,30 @@ namespace AttributeFeats.New_Feats
             CreateFeat(
                 internalName: "MarksmansFocus",
                 featureGuid: Guids.DistanceDamage.MarksmansFocus,
-                nameEn: "Horizon's Deadeye",
-                nameZh: "苍穹神击",
+                nameEn: Common.Text("DistanceDamage_MarksmansFocus.Name", "Horizon's Deadeye"),
+                nameZh: Common.Text("DistanceDamage_MarksmansFocus.Name", "苍穹神击", true),
                 desc: BuildDescription(
                     rangeLabelEn: "Long Range",
                     rangeLabelZh: "远距绝杀",
-                    loreEn: "<i>Draw of the Distant String.</i> Distance grants clarity. As space opens, you read wind, drop, and motion with supernatural calm, releasing your projectile on an arc that strikes with catastrophic kinetic force.",
-                    loreZh: "<i>长空夺魄。</i>旷阔的视野赐予神识绝对清明。风向、重力与敌踪位移尽在推演之中，箭离弦如流星贯日，在远距终端迸发致命贯穿力。",
-                    effectEn: "When your weapon attack target is 30 feet or farther away, that attack gains a +4 untyped damage bonus.",
-                    effectZh: "当你的武器攻击目标在30英尺或更远时，该次攻击获得+4无类型伤害加值。"),
+                    loreEn: Common.Text("DistanceDamage_MarksmansFocus.Lore", "Distance gives you room to read a target's line and settle the weapon before release."),
+                    loreZh: Common.Text("DistanceDamage_MarksmansFocus.Lore", "距离为你留出判断目标轨迹的余地，也让兵刃在出手前更加稳定。", true),
+                    effectEn: "When your weapon attack target is farther than 29 feet away, that attack gains a +4 untyped damage bonus.",
+                    effectZh: "当你的武器攻击目标超过29英尺时，该次攻击获得+4无类型伤害加值。"),
                 distanceConditions: ConditionsBuilder.New()
                     .DistanceToTarget(MarksmansFocusMinDistanceExclusive));
 
             CreateFeat(
                 internalName: "OptimalRange",
                 featureGuid: Guids.DistanceDamage.OptimalRange,
-                nameEn: "Harmonic Cleave",
-                nameZh: "流光截角",
+                nameEn: Common.Text("DistanceDamage_OptimalRange.Name", "Harmonic Cleave"),
+                nameZh: Common.Text("DistanceDamage_OptimalRange.Name", "流光截角", true),
                 desc: BuildDescription(
                     rangeLabelEn: "Mid Range",
                     rangeLabelZh: "中距定势",
-                    loreEn: "<i>The Golden Threshold.</i> Combat is measured in zones of maximum leverage. You instinctually maintain the ideal middle band of engagement, where the weapon's centrifugal acceleration and your balance reach their devastating apex.",
-                    loreZh: "<i>得机得势。</i>交锋胜负系于杠杆发力的最佳截角。在敌我相距的中距黄金带内，兵刃离心加速与身体重心的协调达到极点，挥砍轰杀如雷霆破空。",
-                    effectEn: "When your weapon attack target is between 15 and 25 feet away, that attack gains a +4 untyped damage bonus.",
-                    effectZh: "当你的武器攻击目标在15至25英尺之间时，该次攻击获得+4无类型伤害加值。"),
+                    loreEn: Common.Text("DistanceDamage_OptimalRange.Lore", "You study the middle ground of an engagement, where spacing lets a weapon do its best work."),
+                    loreZh: Common.Text("DistanceDamage_OptimalRange.Lore", "你研究交锋的中间距离，让恰当间隔帮助兵刃发挥所长。", true),
+                    effectEn: "When your weapon attack target is farther than 14 feet but no farther than 25 feet away, that attack gains a +4 untyped damage bonus.",
+                    effectZh: "当你的武器攻击目标超过14英尺且不超过25英尺时，该次攻击获得+4无类型伤害加值。"),
                 distanceConditions: ConditionsBuilder.New()
                     .DistanceToTarget(OptimalRangeMinDistanceExclusive)
                     .DistanceToTarget(OptimalRangeMaxDistance, negate: true));
@@ -85,7 +85,7 @@ namespace AttributeFeats.New_Feats
                     "DistanceDamage.Buff.Desc",
                     "Distance Damage is active, granting a +4 untyped bonus to damage for the current weapon attack.",
                     "距离伤害已激活，为当前武器攻击提供+4无类型伤害加值。"))
-                .SetIconIfPresent("DistanceDamageFlatBonusBuff")
+                .SetIconIfPresent("AggressorsEdge")
                 .SetStacking(StackingType.Replace)
                 .AddContextStatBonus(StatType.AdditionalDamage, SimpleValue(4), descriptor: Desc)
                 .Configure();
