@@ -27,11 +27,14 @@ namespace AttributeFeats.New_Feats
     {
         private static readonly ConditionalWeakTable<FeatureConfigurator, HashSet<string>> RankRegistrations = new();
 
-        private static readonly Dictionary<string, (string en, string zh)> LocalizedStrings = new();
+        private static readonly Dictionary<string, (string en, string zh, bool tag)> LocalizedStrings = new();
+
+        public static string Text(string key, string fallback, bool chinese = false)
+            => FeatTextCatalog.Get(key, fallback, chinese);
 
         public static LocalizedString L(string key, string enValue, string zhValue = null, bool tagEncyclopediaEntries = false)
         {
-            LocalizedStrings[key] = (enValue, zhValue);
+            LocalizedStrings[key] = (enValue, zhValue, tagEncyclopediaEntries);
             var isZh = LocalizationManager.CurrentLocale == Locale.zhCN;
             var text = (isZh && !string.IsNullOrEmpty(zhValue)) ? zhValue : enValue;
             return LocalizationTool.CreateString(key, text, tagEncyclopediaEntries);
@@ -50,7 +53,7 @@ namespace AttributeFeats.New_Feats
                 foreach (var entry in LocalizedStrings)
                 {
                     var text = (isZh && !string.IsNullOrEmpty(entry.Value.zh)) ? entry.Value.zh : entry.Value.en;
-                    pack.PutString(entry.Key, text);
+                    pack.PutString(entry.Key, entry.Value.tag ? EncyclopediaTool.TagEncyclopediaEntries(text) : text);
                 }
             }
             catch (System.Exception ex)

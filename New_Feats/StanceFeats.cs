@@ -38,17 +38,17 @@ namespace AttributeFeats.New_Feats
                     buffGuid: Guids.Stance.Buff.Str,
                     activatableGuid: Guids.Stance.Activatable.Str,
                     keyPrefix: "Stance_Str",
-                    displayNameEn: "Berserker's Overrun",
-                    displayNameZh: "破阵裂山势",
+                    displayNameEn: Common.Text("Stance_Str.Name", "Berserker's Overrun"),
+                    displayNameZh: Common.Text("Stance_Str.Name", "破阵裂山势", true),
                     description: BuildDescription(
                         "Strength",
                         "力量",
-                        "Gorum's Reckless Abandon.",
-                        "In the bloody ethos of the Iron God, armor is a craven distraction. Dropping all defense, you throw the entirety of your body weight and reckless fury into unstoppable, earth-cleaving assaults.",
-                        "狂神破阵。",
-                        "遵奉铁甲战神之霸道信条：守御乃战阵懦夫之伪饰。尽弃铠甲之护，将全副身量与嗜血狂意倾注于每一次挥击之上，每击皆带裂山荡寇之威。",
-                        "While active, adds your Strength modifier (untyped) to attack rolls and damage. You suffer a penalty equal to your Strength modifier to AC.",
-                        "激活时，将你的力量调整值（无类型加值）附加至攻击检定与伤害检定。你的防御等级（AC）承受等同于力量调整值的减值。"),
+                        Common.Text("Stance_Str.LoreTitle", "Gorum's Reckless Abandon."),
+                        Common.Text("Stance_Str.Lore", "You commit to the next blow with a battle zeal reminiscent of Gorum, leaving less attention for your guard."),
+                        Common.Text("Stance_Str.LoreTitle", "狂神破阵。", true),
+                        Common.Text("Stance_Str.Lore", "你以令人想起戈鲁姆的战意全力挥击，也因此分出更少心力守护自身。", true),
+                        "While active, adds your Strength modifier (minimum 0, untyped) to attack rolls and damage. You suffer a penalty equal to your Strength modifier (minimum 0) to AC.",
+                        "激活时，将你的力量调整值（最低0，无类型加值）附加至攻击检定与伤害检定。你的防御等级（AC）承受等同于力量调整值（最低0）的减值。"),
                     configureBuff: buff => buff
                         .AddContextStatBonus(StatType.AdditionalAttackBonus, Common.Rank(), descriptor: Desc)
                         .AddContextStatBonus(StatType.AdditionalDamage, Common.Rank(), descriptor: Desc)
@@ -60,17 +60,17 @@ namespace AttributeFeats.New_Feats
                     buffGuid: Guids.Stance.Buff.Dex,
                     activatableGuid: Guids.Stance.Activatable.Dex,
                     keyPrefix: "Stance_Dex",
-                    displayNameEn: "Willow in the Gale",
-                    displayNameZh: "惊鸿穿林势",
+                    displayNameEn: Common.Text("Stance_Dex.Name", "Willow in the Gale"),
+                    displayNameZh: Common.Text("Stance_Dex.Name", "惊鸿穿林势", true),
                     description: BuildDescription(
                         "Dexterity",
                         "敏捷",
-                        "Sinuous Evasion.",
-                        "Yielding like willow branches before an axe, you twist and skim through the air. Blades find only empty space, though prioritizing total avoidance leaves little momentum for counter-attacks.",
-                        "惊鸿避刃。",
-                        "如狂风过隙中的柔韧杨柳，身如惊鸿，穿花掠影。任凭敌刃狂澜倾泻，唯求不沾微尘，虽令反击招架暂失先手，却教强敌连连空挥。",
-                        "While active, adds your Dexterity modifier (untyped) to AC and Reflex saves. You suffer a penalty equal to your Dexterity modifier to attack rolls.",
-                        "激活时，将你的敏捷调整值（无类型加值）附加至防御等级（AC）与反射豁免。你的攻击检定承受等同于敏捷调整值的减值。"),
+                        Common.Text("Stance_Dex.LoreTitle", "Sinuous Evasion."),
+                        Common.Text("Stance_Dex.Lore", "Like a willow in a gale, you favor yielding movement over the force of a committed strike."),
+                        Common.Text("Stance_Dex.LoreTitle", "惊鸿避刃。", true),
+                        Common.Text("Stance_Dex.Lore", "你如狂风中的柳枝般顺势而动，将余力留给闪避而非重击。", true),
+                        "While active, adds your Dexterity modifier (minimum 0, untyped) to AC and Reflex saves. You suffer a penalty equal to your Dexterity modifier (minimum 0) to attack rolls.",
+                        "激活时，将你的敏捷调整值（最低0，无类型加值）附加至防御等级（AC）与反射豁免。你的攻击检定承受等同于敏捷调整值（最低0）的减值。"),
                     configureBuff: buff => buff
                         .AddContextStatBonus(StatType.AC, Common.Rank(), descriptor: Desc)
                         .AddContextStatBonus(StatType.SaveReflex, Common.Rank(), descriptor: Desc)
@@ -82,17 +82,17 @@ namespace AttributeFeats.New_Feats
                     buffGuid: Guids.Stance.Buff.Con,
                     activatableGuid: Guids.Stance.Activatable.Con,
                     keyPrefix: "Stance_Con",
-                    displayNameEn: "Mountain's Deep Roots",
-                    displayNameZh: "不动磐峰势",
+                    displayNameEn: Common.Text("Stance_Con.Name", "Mountain's Deep Roots"),
+                    displayNameZh: Common.Text("Stance_Con.Name", "不动磐峰势", true),
                     description: BuildDescription(
                         "Constitution",
                         "体质",
-                        "Anchor of the Earth.",
-                        "Planting your heels into subterranean stone and drawing deep grounding breaths, you turn your body into an immovable monolith of endurance, absorbing battering blows while sacrificing reach and tempo.",
-                        "磐岳归根。",
-                        "含胸拔背，气沉丹田，双足若古松生根深扎厚土。化作不动之肉身峰峦，源源吞纳重击摧折，固若金汤却不逞口舌攻伐。",
-                        "While active, you gain temporary hit points equal to your Constitution modifier. Your attack rolls and Attack of Opportunity count are reduced by your Constitution modifier.",
-                        "激活时，获得等同于体质调整值的临时生命值。你的攻击检定与借机攻击次数承受等同于体质调整值的减值。"),
+                        Common.Text("Stance_Con.LoreTitle", "Anchor of the Earth."),
+                        Common.Text("Stance_Con.Lore", "You settle into a mountain's patient stillness, gathering yourself at the cost of offensive tempo."),
+                        Common.Text("Stance_Con.LoreTitle", "磐岳归根。", true),
+                        Common.Text("Stance_Con.Lore", "你如山岳般沉稳地收束自身，并为此放慢进攻的节奏。", true),
+                        "On activation, gain temporary hit points equal to your Constitution modifier (minimum 0); this stance does not refresh them each round. Your attack rolls and Attack of Opportunity count are reduced by your Constitution modifier (minimum 0).",
+                        "启动时获得等同于体质调整值（最低0）的临时生命值；此姿态不会每轮刷新它们。你的攻击检定与借机攻击次数承受等同于体质调整值（最低0）的减值。"),
                     configureBuff: buff =>
                     {
                         return buff
@@ -107,17 +107,17 @@ namespace AttributeFeats.New_Feats
                     buffGuid: Guids.Stance.Buff.Int,
                     activatableGuid: Guids.Stance.Activatable.Int,
                     keyPrefix: "Stance_Int",
-                    displayNameEn: "Grandmaster's Gambit",
-                    displayNameZh: "弈者静待势",
+                    displayNameEn: Common.Text("Stance_Int.Name", "Grandmaster's Gambit"),
+                    displayNameZh: Common.Text("Stance_Int.Name", "弈者静待势", true),
                     description: BuildDescription(
                         "Intelligence",
                         "智力",
-                        "The Waiting Blade.",
-                        "Like a grandmaster studying a chessboard, you hold your weapon in poised repose, refusing to initiate until an enemy overextends into the exact trap you have orchestrated.",
-                        "弈者断局。",
-                        "若国手对弈，横剑藏锋而隐忍不发。任凭强敌喧嚣，唯俟其步伐失序、露出一瞬破绽，立时以寒光霆击断其胜局。",
-                        "While active, adds your Intelligence modifier (untyped) to attacks of opportunity and to your Attack of Opportunity count. You suffer a penalty equal to your Intelligence modifier to attack rolls that are not attacks of opportunity.",
-                        "激活时，将你的智力调整值（无类型加值）附加至借机攻击的攻击检定与借机攻击次数。非借机攻击的普通攻击检定承受等同于智力调整值的减值。"),
+                        Common.Text("Stance_Int.LoreTitle", "The Waiting Blade."),
+                        Common.Text("Stance_Int.Lore", "You study the openings left by passing foes, keeping a careful account of their movement."),
+                        Common.Text("Stance_Int.LoreTitle", "弈者断局。", true),
+                        Common.Text("Stance_Int.Lore", "你研读敌人移动时留下的空隙，审慎把握他们的行动轨迹。", true),
+                        "While active, attacks of opportunity and their count gain an untyped bonus equal to your Intelligence modifier, minimum 0. Other attack rolls gain an untyped bonus equal to the negative of your Intelligence modifier, minimum 0.",
+                        "激活时，借机攻击的攻击检定与次数获得等同于智力调整值（最低0）的无类型加值。其他攻击检定获得等同于智力调整值相反数（最低0）的无类型加值。"),
                     includeNegativeRank: true,
                     configureBuff: buff => buff
                         .AddAttackOfOpportunityAttackBonus(Common.Rank(), descriptor: Desc, notAttackOfOpportunity: false)
@@ -130,17 +130,17 @@ namespace AttributeFeats.New_Feats
                     buffGuid: Guids.Stance.Buff.Wis,
                     activatableGuid: Guids.Stance.Activatable.Wis,
                     keyPrefix: "Stance_Wis",
-                    displayNameEn: "Mirror of Still Waters",
-                    displayNameZh: "明镜止水势",
+                    displayNameEn: Common.Text("Stance_Wis.Name", "Mirror of Still Waters"),
+                    displayNameZh: Common.Text("Stance_Wis.Name", "明镜止水势", true),
                     description: BuildDescription(
                         "Wisdom",
                         "感知",
-                        "Void of the Ascetic.",
-                        "Retreating into a state of absolute spiritual equilibrium, the battlefield reflects upon your surface without creating a ripple. Defenses become impregnable, though violence holds no charm for you.",
-                        "澄澈自照。",
-                        "收敛神识入于虚空明镜之中。战尘喧扰皆过眼云烟，百邪莫侵、万法不破，于极致清宁间消弭兵戈戾气。",
-                        "While active, adds your Wisdom modifier (untyped) to AC and all saving throws. You suffer a penalty equal to your Wisdom modifier to attack rolls and damage.",
-                        "激活时，将你的感知调整值（无类型加值）附加至防御等级（AC）与所有豁免检定。你的攻击检定与伤害检定承受等同于感知调整值的减值。"),
+                        Common.Text("Stance_Wis.LoreTitle", "Void of the Ascetic."),
+                        Common.Text("Stance_Wis.Lore", "You quiet the impulse to strike, accepting a gentler attack in exchange for a steadier guard."),
+                        Common.Text("Stance_Wis.LoreTitle", "澄澈自照。", true),
+                        Common.Text("Stance_Wis.Lore", "你平息急于出手的冲动，以较轻的攻势换取更稳固的守势。", true),
+                        "While active, adds your Wisdom modifier (minimum 0, untyped) to AC and all saving throws. Attack rolls and damage take an equal penalty; this stance does not reduce initiative.",
+                        "激活时，将你的感知调整值（最低0，无类型加值）附加至防御等级（AC）与所有豁免检定。你的攻击检定与伤害检定承受等同于感知调整值（最低0）的减值；此姿态不降低先攻。"),
                     configureBuff: buff => buff
                         .AddContextStatBonus(StatType.AC, Common.Rank(), descriptor: Desc)
                         .AddContextStatBonus(StatType.SaveFortitude, Common.Rank(), descriptor: Desc)
@@ -155,26 +155,27 @@ namespace AttributeFeats.New_Feats
                     buffGuid: Guids.Stance.Buff.Cha,
                     activatableGuid: Guids.Stance.Activatable.Cha,
                     keyPrefix: "Stance_Cha",
-                    displayNameEn: "Vanguard's Banner",
-                    displayNameZh: "金戈铁旌势",
+                    displayNameEn: Common.Text("Stance_Cha.Name", "Vanguard's Banner"),
+                    displayNameZh: Common.Text("Stance_Cha.Name", "金戈铁旌势", true),
                     description: BuildDescription(
                         "Charisma",
                         "魅力",
-                        "Warlord's Rallying Banner.",
-                        "Exposing yourself fearlessly at the front of the battle line, your radiant presence and ringing war-cries banish dread from your companions' hearts, elevating their swords with the certainty of triumph.",
-                        "铁旌号令。",
-                        "挺身屹立于两军锋矢交错之处，铠光耀目，叱喝惊雷。舍身立威以定军心，令三十步内同袍热血沸腾，剑锋所指无坚不摧。",
-                        "While active, allies within 30 feet gain an untyped bonus to attack rolls equal to your Charisma modifier. You suffer a penalty equal to your Charisma modifier to AC.",
-                        "激活时，30尺内的所有盟友在攻击检定上获得等同于你的魅力调整值的无类型加值。你的防御等级（AC）承受等同于魅力调整值的减值。"),
+                        Common.Text("Stance_Cha.LoreTitle", "Warlord's Rallying Banner."),
+                        Common.Text("Stance_Cha.Lore", "You place your companions' courage before your own safety and become the standard they rally around."),
+                        Common.Text("Stance_Cha.LoreTitle", "铁旌号令。", true),
+                        Common.Text("Stance_Cha.Lore", "你将同伴的勇气置于自身安危之前，成为众人聚拢的旗帜。", true),
+                        "While active, other allies within 30 feet gain an untyped bonus to attack rolls equal to your Charisma modifier (minimum 0). You suffer a penalty equal to your Charisma modifier (minimum 0) to AC.",
+                        "激活时，30英尺内的其他盟友在攻击检定上获得等同于你的魅力调整值（最低0）的无类型加值。你的防御等级（AC）承受等同于魅力调整值（最低0）的减值。"),
                     configureBuff: buff =>
                     {
                         var allyBuff = BuffConfigurator.New("CommandingPresenceAllyBuff", Guids.Stance.AllyBuff.CommandingPresence)
-                            .SetDisplayName(Common.L("Stance_Cha.AllyBuff.Name", "Vanguard's Banner", "金戈铁旌势"))
+                            .SetDisplayName(Common.L("Stance_Cha.AllyBuff.Name", Common.Text("Stance_Cha.Name", "Vanguard's Banner"), Common.Text("Stance_Cha.Name", "金戈铁旌势", true)))
                             .SetDescription(Common.L(
                                 "Stance_Cha.AllyBuff.Desc",
-                                "<i>Stance · Charisma</i>\n<i>The Warlord's Standard.</i> Your ally fights under the inspiring canopy of your sovereign courage.\n\n<b>Effect:</b> Grants an untyped bonus to attack rolls equal to the user's Charisma modifier while within 30 feet.",
-                                "<i>姿态 · 魅力</i>\n<i>百战铁旌。</i>沐浴在战帅无畏勇烈之光辉下，盟军同仇敌忾。\n\n<b>效果：</b>在30尺内，攻击检定获得等同于专长持有者魅力调整值的无类型加值。",
-                                tagEncyclopediaEntries: true));
+                                "<i>Stance · Charisma</i>\n<i>The Warlord's Standard.</i> Your ally fights under the inspiring canopy of your sovereign courage.\n\n<b>Effect:</b> Grants an untyped bonus to attack rolls equal to the user's Charisma modifier (minimum 0) while within 30 feet.",
+                                "<i>姿态 · 魅力</i>\n<i>百战铁旌。</i>沐浴在战帅无畏勇烈之光辉下，盟军同仇敌忾。\n\n<b>效果：</b>在30英尺内，攻击检定获得等同于专长持有者魅力调整值（最低0）的无类型加值。",
+                                tagEncyclopediaEntries: true))
+                            .SetIconIfPresent("CommandingPresence");
                         AddRanks(allyBuff, StatType.Charisma, includeNegativeRank: false);
                         var configuredAllyBuff = allyBuff
                             .AddContextStatBonus(StatType.AdditionalAttackBonus, Common.Rank(), descriptor: Desc)
@@ -211,8 +212,8 @@ namespace AttributeFeats.New_Feats
             string effectEn,
             string effectZh)
         {
-            var en = $"<i>Stance · {attrEn}</i>\n<i>{loreTitleEn}</i> {loreBodyEn}\n\n<b>Effect:</b> {effectEn}\n\n<b>Activation:</b> Free action to toggle. Only one Stance feat may be active at a time.\n\n<b>Restrictions:</b> Mutually exclusive with other Stance feats.";
-            var zh = $"<i>姿态 · {attrZh}</i>\n<i>{loreTitleZh}</i> {loreBodyZh}\n\n<b>效果：</b>{effectZh}\n\n<b>启动：</b>切换姿态为自由动作。同一时间只能激活一种姿态专长。\n\n<b>限制：</b>与其他姿态专长互相排斥。";
+            var en = $"<i>Stance · {attrEn}</i>\n<i>{loreTitleEn}</i> {loreBodyEn}\n\n<b>Effect:</b> {effectEn}\n\n<b>Activation:</b> Free action to toggle. EnableMutex limits learning to one Stance feat. With EnableMutex disabled, multiple learned stances can be toggled on together; there is no separate activation mutex.\n\n<b>Restrictions:</b> When EnableMutex is enabled, mutually exclusive with other Stance feats.";
+            var zh = $"<i>姿态 · {attrZh}</i>\n<i>{loreTitleZh}</i> {loreBodyZh}\n\n<b>效果：</b>{effectZh}\n\n<b>启动：</b>切换姿态为自由动作。启用EnableMutex时只能学习一种姿态专长；关闭后可学习并同时激活多个姿态，没有单独的启动互斥。\n\n<b>限制：</b>启用EnableMutex时，与其他姿态专长互相排斥。";
             return (en, zh);
         }
 

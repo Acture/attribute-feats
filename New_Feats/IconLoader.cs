@@ -30,70 +30,97 @@ namespace AttributeFeats.New_Feats
 
         private static readonly Dictionary<string, string> NameAliases = new(StringComparer.OrdinalIgnoreCase)
         {
-            // Main Attribute Mastery
+            // Stable blueprint names map to the final feat artwork.
             { "ApexPredator", "TitansApotheosis" },
             { "EmbodiedGrace", "QuicksilverIncarnate" },
             { "LivingBulwark", "AdamantineVessel" },
             { "WellspringOfInsight", "OcularOfTheCosmos" },
             { "CrownOfWill", "SovereignOfWills" },
-
-            // Stances
+            { "CrushingForm", "TitansMomentum" },
+            { "DuelistsEye", "AldoriFinesse" },
+            { "IronStance", "StoutGrounding" },
+            { "TacticalStrike", "GeometersEdge" },
+            { "PredictiveCut", "KarmicInterception" },
+            { "TheatricalCombat", "SwashbucklersFlourish" },
+            { "InnerSentinel", "AsceticsWard" },
+            { "CalculatedGrip", "AnatomicalLeverage" },
+            { "UnyieldingWill", "MonarchsStature" },
+            { "BrutalDefender", "TitansFooting" },
+            { "LightfootDefense", "ZephyrsGrace" },
+            { "IronEndurance", "AdamantineMettle" },
+            { "TitansStance", "ColossusBastion" },
+            { "FlowingForm", "WindDancersShroud" },
+            { "IronBulwark", "InuredCarapace" },
+            { "CalculatedDefense", "AnalyticalAegis" },
+            { "StoicVigilance", "ThirdEyeVigil" },
+            { "IndomitablePresence", "MajestysReproach" },
+            { "CrushingGrip", "GripoftheBehemoth" },
+            { "DeftHand", "FulcrumoftheViper" },
+            { "UnyieldingHold", "DeepRootClinch" },
+            { "TacticalBind", "AnatomicalPivot" },
+            { "PredictiveLock", "CranesAnticipation" },
+            { "DomineeringThrow", "AudaciousOverthrow" },
+            { "PracticedHand", "GiantwrightsCraft" },
+            { "EffortlessSkill", "ThiefKingsPanache" },
+            { "TirelessPractice", "AsceticDiligence" },
+            { "PolymathsTouch", "EncyclopedicSynthesis" },
+            { "QuietMastery", "WanderersLucidity" },
+            { "InspiredVersatility", "SilverTonguedVirtuoso" },
+            { "SpellForgedWill", "MageHammerInscription" },
+            { "QuickcastReflex", "SomaticVelocity" },
+            { "SpellTemperedBody", "CrucibleoftheConduit" },
+            { "ScholarOfTheWeave", "ArchmagesCodex" },
+            { "OraclesIntuition", "GnosticChannel" },
+            { "SorcerousPresence", "SovereignDecrees" },
             { "BrutalStance", "BerserkersOverrun" },
             { "LiquidForm", "FlowingReed" },
             { "EndlessVigor", "TitansRespiration" },
             { "TacticalMind", "GrandmastersGambit" },
             { "CenteredMind", "MirrorOfStillWaters" },
             { "CommandingPresence", "VanguardsBanner" },
-
-            // Conditional
             { "EndlessResolve", "DefianceAtThePrecipice" },
-            { "FirstBlood", "AmbushOfTheViper" },
-            { "Vendetta", "OathOfRetribution" },
+            { "FirstBlood", "AmbushoftheViper" },
+            { "Vendetta", "OathofRetribution" },
             { "PatientHunter", "CranesSeverance" },
             { "BerserkersLastStand", "GorumsLastStand" },
             { "TacticalReading", "CadenceDecoded" },
-
-            // Weapon Insight
-            { "CrushingForm", "CrushingForce" },
-            { "DuelistsEye", "RestovElegance" },
-            { "IronStance", "StoutGrounding" },
-            { "TacticalStrike", "GeometersEdge" },
-            { "PredictiveCut", "KarmicInterception" },
-            { "TheatricalCombat", "SwashbucklersFlourish" },
-
-            // Extended Replacements
-            { "BrutalDefender", "ColossusDefiance" },
-            { "LightfootDefense", "ZephyrsGrace" },
-            { "IronEndurance", "AdamantineMettle" },
-
-            // Greater Summoning
+            { "MartialInsight", "WarHardenedReflexes" },
+            { "SkilledDefender", "ScholarsPositioning" },
+            { "MysticVitality", "LeyInfusedVitality" },
+            { "SoulBulwark", "DawnoftheSoul" },
+            { "SwordSaint", "BladeoftheSpellSaint" },
             { "BloodlineOfBeasts", "BehemothsHeritage" },
             { "QuickenedPact", "ZephyrsCovenant" },
             { "VitalPact", "TitansLifespring" },
-            { "TacticalBinding", "AegisOfTheSchema" },
+            { "TacticalBinding", "AegisoftheSchema" },
             { "InsightfulSummons", "EmpathicCommunion" },
-            { "MagneticCalling", "MonarchsMajesty" },
-
-            // Summoner Sacrifice
+            { "MagneticCalling", "DominatorsCalling" },
             { "BodyOfMyPact", "MartyrsTransference" },
             { "DoubledBond", "EldritchCrucible" },
-            { "EmpoweredSacrifice", "TributeOfIronDominion" },
-
-            // Reactive Armor
-            { "SpikedDefense", "BarbedCarapace" },
-            { "BulwarkOfSteel", "CitadelOfSteel" },
-
-            // Derived
-            { "MartialInsight", "WarHardenedReflexes" },
-            { "SkilledDefender", "ScholarlyBastion" },
-            { "MysticVitality", "FontOfAnima" },
-            { "SoulBulwark", "AuraOfTheOverlord" },
-            { "SwordSaint", "KensaisTrance" },
-
-            // Distance
+            { "EmpoweredSacrifice", "TributeofIronDominion" },
             { "AggressorsEdge", "PointBlankRuin" },
             { "MarksmansFocus", "HorizonsDeadeye" },
             { "OptimalRange", "HarmonicCleave" },
+            { "PureWarder", "AegisofthePureWarder" },
+            { "MasterCaller", "SovereignGatekeeper" },
+            { "SeersEdge", "EyeoftheChronomancer" },
+            { "HeartsTyrant", "SovereignoftheHeart" },
+            { "Spellforge", "PyreoftheArchitect" },
+            { "Veilweaver", "PhantasmagoriaMaestro" },
+            { "DeathSpeaker", "HarvesteroftheBoneyard" },
+            { "ShapeShifter", "SculptorofPrimeMatter" },
+            { "InnerFlame", "PyreofthePhoenix" },
+            { "FrozenHeart", "StillnessoftheGlacialVoid" },
+            { "StormChannel", "TempestDancer" },
+            { "EtchingMind", "VitriolicEquation" },
+            { "ResonantVoice", "HeraldoftheShatteredSky" },
+            { "EthericMind", "AxiomofUnseenForce" },
+            { "RadiantSoul", "FountainofSolarDawn" },
+            { "HollowHeart", "VigiloftheGloom" },
+            { "SubtleTyrant", "PuppeteeroftheMind" },
+            { "SpikedDefense", "BarbedCarapace" },
+            { "BulwarkOfSteel", "CitadelofSteel" },
+            { "PolearmMaster", "LongReachGambit" },
         };
 
         public static Sprite Get(string name)

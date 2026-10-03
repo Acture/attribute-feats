@@ -15,6 +15,7 @@
 		<RootNamespace>AttributeFeats</RootNamespace>
 		<LangVersion>latest</LangVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<DeployToGame Condition="'$(DeployToGame)'==''">true</DeployToGame>
 
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 
@@ -83,7 +84,9 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Update="Info.json" CopyToOutputDirectory="PreserveNewest" />
-	  <None Include="Icons\**\*.*" CopyToOutputDirectory="PreserveNewest" />
+	  <None Update="Icons\*.png" CopyToOutputDirectory="PreserveNewest" />
+	  <EmbeddedResource Include="Localization\FeatText.json" LogicalName="AttributeFeats.Localization.FeatText.json" />
+	  <Compile Remove="tests\**\*.cs" />
 	  <None Update="Properties\Settings.settings">
 	    <Generator>SettingsSingleFileGenerator</Generator>
 	    <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -104,7 +107,7 @@
 			<ToDelete Remove="@(Files)" />
 		</ItemGroup>
 
-		<Copy SourceFiles="@(Files)" DestinationFiles="@(Files->'$(WrathInstallDir)\Mods\$(AssemblyName)\%(RecursiveDir)%(Filename)%(Extension)')" />
+		<Copy SourceFiles="@(Files)" DestinationFiles="@(Files->'$(WrathInstallDir)\Mods\$(AssemblyName)\%(RecursiveDir)%(Filename)%(Extension)')" Condition="'$(DeployToGame)'=='true'" />
 		<Delete Files="@(ToDelete)" />
 		<ZipDirectory SourceDirectory="$(MSBuildProjectDirectory)\$(OutputPath)" DestinationFile="$(MSBuildProjectDirectory)\$(OutputPath)\..\$(AssemblyName)-$(Version).zip" Overwrite="true" />
 	</Target>

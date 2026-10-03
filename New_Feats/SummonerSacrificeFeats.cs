@@ -34,13 +34,13 @@ namespace AttributeFeats.New_Feats
                     featureGuid: Guids.SummonerSacrifice.Feature.BodyOfMyPact,
                     outerBuffGuid: Guids.SummonerSacrifice.OuterBuff.BodyOfMyPact,
                     innerBuffGuid: Guids.SummonerSacrifice.InnerBuff.BodyOfMyPact,
-                    nameEn: "Martyr's Transference",
-                    nameZh: "形神替生",
+                    nameEn: Common.Text("SummonerSacrifice_BodyOfMyPact.Name", "Martyr's Transference"),
+                    nameZh: Common.Text("SummonerSacrifice_BodyOfMyPact.Name", "形神替生", true),
                     desc: BuildDescription(
                         modeEn: "1:1 Trade",
                         modeZh: "等价献祭",
-                        loreEn: "<i>What you surrender, your servants inherit.</i> You willingly drain your own vital energies, intellect, and worldly presence across the conjuration circle, feeding raw spirit directly into your minions to elevate them to terrifying heights.",
-                        loreZh: "<i>舍己塑灵。</i>割裂自身气血、灵慧与威仪，尽数灌入通灵法阵。以施法者本命元神为薪柴，换取召来异界使者全方位的惊世蜕变。",
+                        loreEn: Common.Text("SummonerSacrifice_BodyOfMyPact.Lore", "You accept a body's burden so that the creatures bound to your call may stand stronger."),
+                        loreZh: Common.Text("SummonerSacrifice_BodyOfMyPact.Lore", "你甘愿让自身承受负担，使回应你召唤的生物更加强健。", true),
                         effectEn: "You take a -4 untyped penalty to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Your summoned creatures gain a +4 untyped bonus to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma.",
                         effectZh: "你的力量、敏捷、体质、智力、感知和魅力承受-4无类型减值。你召唤的生物的力量、敏捷、体质、智力、感知和魅力获得+4无类型加值。"),
                     selfBonuses: CreateUniformBonuses(-4),
@@ -50,13 +50,13 @@ namespace AttributeFeats.New_Feats
                     featureGuid: Guids.SummonerSacrifice.Feature.DoubledBond,
                     outerBuffGuid: Guids.SummonerSacrifice.OuterBuff.DoubledBond,
                     innerBuffGuid: Guids.SummonerSacrifice.InnerBuff.DoubledBond,
-                    nameEn: "Eldritch Crucible",
-                    nameZh: "双生法炼",
+                    nameEn: Common.Text("SummonerSacrifice_DoubledBond.Name", "Eldritch Crucible"),
+                    nameZh: Common.Text("SummonerSacrifice_DoubledBond.Name", "双生法炼", true),
                     desc: BuildDescription(
                         modeEn: "1:2 Amplification",
                         modeZh: "倍率谐振",
-                        loreEn: "<i>Asymmetrical Resonance.</i> Through arcane harmonic resonance, you stretch each spark of sacrificed essence across the summoning circle twofold. A minor toll upon your vessel unlocks disproportionate planar ascendancy.",
-                        loreZh: "<i>法脉谐振。</i>洞悉异界位面的回音法则，将献祭的精魄于通灵阵中激荡放大。微损施法本体，即可撬动受召军团成倍的位面威能。",
+                        loreEn: Common.Text("SummonerSacrifice_DoubledBond.Lore", "An exacting pact magnifies what you surrender, letting sacrifice feed a companion's strength."),
+                        loreZh: Common.Text("SummonerSacrifice_DoubledBond.Lore", "严密的契约放大你付出的代价，让牺牲转为伙伴的力量。", true),
                         effectEn: "You take a -2 untyped penalty to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Your summoned creatures gain a +4 untyped bonus to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma.",
                         effectZh: "你的力量、敏捷、体质、智力、感知和魅力承受-2无类型减值。你召唤的生物的力量、敏捷、体质、智力、感知和魅力获得+4无类型加值。"),
                     selfBonuses: CreateUniformBonuses(-2),
@@ -66,13 +66,13 @@ namespace AttributeFeats.New_Feats
                     featureGuid: Guids.SummonerSacrifice.Feature.EmpoweredSacrifice,
                     outerBuffGuid: Guids.SummonerSacrifice.OuterBuff.EmpoweredSacrifice,
                     innerBuffGuid: Guids.SummonerSacrifice.InnerBuff.EmpoweredSacrifice,
-                    nameEn: "Tribute of Iron Dominion",
-                    nameZh: "夺冕化蛮",
+                    nameEn: Common.Text("SummonerSacrifice_EmpoweredSacrifice.Name", "Tribute of Iron Dominion"),
+                    nameZh: Common.Text("SummonerSacrifice_EmpoweredSacrifice.Name", "夺冕化蛮", true),
                     desc: BuildDescription(
                         modeEn: "Focused Trade",
                         modeZh: "极意倾注",
-                        loreEn: "<i>Crown Surrendered to Claws.</i> You strip away the haughty grace of command, channeling raw monarchic authority into pure, brutal muscle. Your minions lose all subtlety, transfigured into hulking juggernauts of annihilation.",
-                        loreZh: "<i>折冠铸殛。</i>剥离统御者的从容仪度，将全部支配欲念熔铸为受召者撕碎万物的暴戾蛮力。麾下爪牙褪尽精巧，化作摧山撼岳的嗜血巨灵。",
+                        loreEn: Common.Text("SummonerSacrifice_EmpoweredSacrifice.Lore", "You yield some commanding presence to give a summoned body greater physical force."),
+                        loreZh: Common.Text("SummonerSacrifice_EmpoweredSacrifice.Lore", "你让渡部分统御的气势，为召来的躯体换取更强的筋骨之力。", true),
                         effectEn: "You take a -4 untyped penalty to Charisma. Your summoned creatures gain a +8 untyped bonus to Strength.",
                         effectZh: "你的魅力承受-4无类型减值。你召唤的生物获得+8无类型力量加值。"),
                     selfBonuses: new[] { new StatBonus(StatType.Charisma, -4) },
@@ -158,8 +158,8 @@ namespace AttributeFeats.New_Feats
             string effectEn,
             string effectZh)
         {
-            var en = $"<i>Summoner Sacrifice · {modeEn}</i>\n{loreEn}\n\n<b>Effect:</b> {effectEn}\n\n<b>Restrictions:</b> Mutually exclusive with other Summoner Sacrifice feats.";
-            var zh = $"<i>召唤献祭 · {modeZh}</i>\n{loreZh}\n\n<b>效果：</b>{effectZh}\n\n<b>限制：</b>与其他“召唤献祭”专长互斥。";
+            var en = $"<i>Summoner Sacrifice · {modeEn}</i>\n{loreEn}\n\n<b>Effect:</b> {effectEn}\n\n<b>Restrictions:</b> When EnableMutex is enabled, mutually exclusive with other Summoner Sacrifice feats.";
+            var zh = $"<i>召唤献祭 · {modeZh}</i>\n{loreZh}\n\n<b>效果：</b>{effectZh}\n\n<b>限制：</b>启用EnableMutex时，与其他“召唤献祭”专长互斥。";
             return (en, zh);
         }
 

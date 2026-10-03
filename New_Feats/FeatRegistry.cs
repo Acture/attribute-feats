@@ -26,7 +26,7 @@ namespace AttributeFeats.New_Feats
                 try { PolearmMasterFeats.ConfigureAll(); } catch (TypeLoadException) { Main.Log.Log("AttributeFeats: PolearmMasterFeats not yet present"); }
                 try { DistanceDamageFeats.ConfigureAll(); } catch (TypeLoadException) { Main.Log.Log("AttributeFeats: DistanceDamageFeats not yet present"); }
                 try { MutexPass.ApplyAll(); } catch (TypeLoadException) { Main.Log.Log("AttributeFeats: MutexPass not yet present"); }
-                Main.Log.Log("AttributeFeats 0.1.1 foundation: registry initialized (0.1.1 target roster: Main=6, Specialized=24, Stance=6, Conditional=6, Replacement=12, Summon=6, SummonerSacrifice=3, ReactiveArmor=2, Derived=6, SpellTag=17, PolearmMaster=1, DistanceDamage=3 = 92 total)");
+                Main.Log.Log("AttributeFeats 0.1.2: registry initialized (Main=6, Specialized=24, Stance=6, Conditional=6, Replacement=12, Summon=6, SummonerSacrifice=3, ReactiveArmor=2, Derived=6, SpellTag=17, PolearmMaster=1, DistanceDamage=3 = 92 total)");
             }
             catch (Exception e)
             {
