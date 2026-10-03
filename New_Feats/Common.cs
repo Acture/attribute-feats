@@ -6,12 +6,14 @@ using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
+using HarmonyLib;
 using Kingmaker.Localization;
+using Kingmaker.Localization.Shared;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
-using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.ActivatableAbilities;
+using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 
 namespace AttributeFeats.New_Feats
 {
@@ -26,11 +28,9 @@ namespace AttributeFeats.New_Feats
         private static readonly ConditionalWeakTable<FeatureConfigurator, HashSet<string>> RankRegistrations = new();
 
         private static readonly Dictionary<string, (string en, string zh)> LocalizedStrings = new();
-        private static bool LocaleHooked;
 
         public static LocalizedString L(string key, string enValue, string zhValue = null, bool tagEncyclopediaEntries = false)
         {
-            HookLocaleChangeOnce();
             LocalizedStrings[key] = (enValue, zhValue);
             var isZh = LocalizationManager.CurrentLocale == Locale.zhCN;
             var text = (isZh && !string.IsNullOrEmpty(zhValue)) ? zhValue : enValue;
@@ -39,19 +39,6 @@ namespace AttributeFeats.New_Feats
 
         public static LocalizedString L(string key, string value, bool tagEncyclopediaEntries)
             => L(key, value, null, tagEncyclopediaEntries);
-
-        private static void HookLocaleChangeOnce()
-        {
-            if (LocaleHooked) return;
-            LocaleHooked = true;
-            try
-            {
-                LocalizationManager.OnLocaleChanged += RefreshLocale;
-            }
-            catch
-            {
-            }
-        }
 
         public static void RefreshLocale()
         {
@@ -70,6 +57,16 @@ namespace AttributeFeats.New_Feats
             {
                 Main.Log?.Log("AttributeFeats: RefreshLocale error: " + ex);
             }
+        }
+
+        // OnLocaleChanged is a private method, not an event. BlueprintCore's own postfix there re-applies
+        // the creation-time (single-locale) text, so ours must run after it to restore the zhCN strings.
+        [HarmonyPatch(typeof(LocalizationManager), "OnLocaleChanged")]
+        private static class LocalizationManager_OnLocaleChanged_Patch
+        {
+            [HarmonyPriority(Priority.Last)]
+            [HarmonyPostfix]
+            private static void Postfix() => RefreshLocale();
         }
 
         public static ContextValue Rank(AbilityRankType type = AbilityRankType.Default)
