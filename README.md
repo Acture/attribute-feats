@@ -171,6 +171,128 @@ Distance-gated +4 weapon damage triggers; pick the band that fits your build.
 
 See [CHANGELOG.md](./CHANGELOG.md).
 
+## Internal design and research notes
+
+Design proposals, compatibility investigations and testing research live in the
+private [project notes](notes/attribute-feats/首页.md). The `notes/` Git submodule
+uses the existing [Acture/obsidian-vault](https://github.com/Acture/obsidian-vault)
+repository and its `project/attribute-feats` branch. Only edit `attribute-feats/`
+inside that repository. Public installation instructions and the changelog remain
+in this repository; building or using the mod does not require private notes access.
+
+The central vault's [project onboarding guide](https://github.com/Acture/obsidian-vault/blob/master/项目接入.md)
+owns the shared workflow and push checks. The commands below apply it to this
+project; they do not set up another synchronization system.
+
+### Clone and initialize
+
+For code only, use a normal clone:
+
+```powershell
+git clone https://github.com/Acture/attribute-feats.git
+```
+
+With authenticated access to the private notes repository:
+
+```powershell
+git clone --recurse-submodules https://github.com/Acture/attribute-feats.git
+cd attribute-feats
+```
+
+For an existing clone or a new worktree, initialize the version recorded by its
+current code commit:
+
+```powershell
+git submodule update --init --recursive -- notes
+git submodule status -- notes
+git -C notes rev-parse HEAD
+```
+
+The parent repository records an exact notes commit. Initialization normally
+leaves the submodule in detached HEAD; the `branch` entry in `.gitmodules` selects
+the remote update source, but does not automatically check out an editable branch.
+Use `git submodule update --init --recursive -- notes` after switching code
+versions to restore their recorded notes version, only when the notes worktree is clean.
+
+### Update and edit
+
+First inspect `git status` and `git -C notes status`. Preserve any uncommitted
+notes and unpublished commits before switching branches or updating the gitlink.
+Fetch and check that the current notes commit is already part of the published
+project branch:
+
+```powershell
+git -C notes fetch origin
+git -C notes log --oneline origin/project/attribute-feats..HEAD
+```
+
+If the last command lists commits, stop and reconcile that work before switching.
+For the first edit in a newly initialized clone, create the local tracking branch:
+
+```powershell
+git -C notes switch -c project/attribute-feats --track origin/project/attribute-feats
+```
+
+If that local branch already exists, use `git -C notes switch project/attribute-feats`
+instead. Then update without rewriting history:
+
+```powershell
+git -C notes merge --ff-only origin/project/attribute-feats
+git -C notes branch --show-current
+```
+
+Stop on divergence; do not force-push, discard local work, or merge the entire
+vault `master` into this project branch. Follow the central guide for bringing
+back changes made to this project's notes in the total vault.
+
+Install the central repository's mandatory push boundary check in each notes
+clone, and refresh it when the central checker changes. These PowerShell commands
+use UTF-8 for Python on Windows and load the installer from the trusted vault:
+
+```powershell
+$env:PYTHONUTF8 = "1"
+git -C notes fetch origin refs/heads/master:refs/remotes/origin/master
+git -C notes show origin/master:.github/scripts/install_push_hook.py | python -X utf8 -c "import sys; exec(sys.stdin.read())" --repo notes --source-ref origin/master
+```
+
+This requires Python 3.10+ and Git. Keep `PYTHONUTF8=1` in the Windows shell used
+for notes pushes. The installer preserves existing custom hooks and stops if they
+need reconciliation. Hooks are local to a clone, are not copied by Git, and must
+not be bypassed with `--no-verify`.
+
+Edit files under `notes/attribute-feats/`, then commit and push the notes first:
+
+```powershell
+git -C notes diff --stat
+git -C notes add -- attribute-feats/
+git -C notes commit -m "docs: update AttributeFeats design notes"
+git -C notes push origin project/attribute-feats
+```
+
+Only after that push succeeds, verify the published history and commit the parent
+pointer. Run each step only if the preceding command succeeds:
+
+```powershell
+git -C notes fetch origin
+git -C notes merge-base --is-ancestor HEAD origin/project/attribute-feats
+git diff --submodule=log -- notes
+git add -- notes
+git commit -m "docs: update project notes reference"
+git push
+```
+
+The ancestor check must exit with code 0. Keep unrelated staged work out of the
+pointer commit and use the code repository's normal review branch for delivery.
+The vault's existing project-to-master aggregation is separate from updating this
+repository's gitlink.
+
+To follow the latest published notes without editing, start with clean, fully
+published notes and run `git submodule update --remote --checkout -- notes`.
+Review and commit the resulting parent pointer using the same steps above.
+Avoid this command when reproducing a fixed code version; normal initialization
+uses the pinned commit instead. Any legacy `doc` branch remains until its content
+and history have been verified separately.
+
 ## Credits
 
 Thanks to @CasDragon for code snippets and ideas. AttributeFeats grew out of earlier Redditor class-feat experiments and was rebuilt for the 0.1.0 build-enabler release.

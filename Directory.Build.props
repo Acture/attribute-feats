@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <!-- Private notes and future code examples are not mod build inputs. -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(MSBuildThisFileDirectory)notes/**</DefaultItemExcludes>
+  </PropertyGroup>
+</Project>
