@@ -26,67 +26,97 @@ namespace AttributeFeats.New_Feats
                     featureGuid: Guids.Summon.Feature.BloodlineOfBeasts,
                     outerBuffGuid: Guids.Summon.OuterBuff.BloodlineOfBeasts,
                     innerBuffGuid: Guids.Summon.InnerBuff.BloodlineOfBeasts,
-                    flavorName: "Bloodline of Beasts",
-                    attributeName: "Strength",
+                    nameEn: Common.Text("Summon_BloodlineOfBeasts.Name", "Behemoth's Heritage"),
+                    nameZh: Common.Text("Summon_BloodlineOfBeasts.Name", "比蒙遗脉", true),
+                    desc: BuildDescription(
+                        "Strength",
+                        "力量",
+                        Common.Text("Summon_BloodlineOfBeasts.Lore", "You lend your summoned companions the forceful bearing that guides your own movements."),
+                        Common.Text("Summon_BloodlineOfBeasts.Lore", "你将支配自身行动的强劲力量借给召来的伙伴。", true),
+                        "Your summoned creatures gain an untyped bonus to Strength equal to your Strength modifier.",
+                        "你召唤的生物获得等同于你的力量调整值的无类型力量加值。"),
                     baseStat: StatType.Strength,
-                    buffedStats: new[] { StatType.Strength },
-                    loreText: "<i>Predatory Heritage.</i> The savage hunger in your blood answers every conjuration, urging your summoned creatures to meet the world fang-first.",
-                    effectText: "Your summoned creatures gain an untyped bonus to Strength equal to your Strength modifier."),
+                    buffedStats: new[] { StatType.Strength }),
                 CreateFeat(
                     internalName: "QuickenedPact",
                     featureGuid: Guids.Summon.Feature.QuickenedPact,
                     outerBuffGuid: Guids.Summon.OuterBuff.QuickenedPact,
                     innerBuffGuid: Guids.Summon.InnerBuff.QuickenedPact,
-                    flavorName: "Quickened Pact",
-                    attributeName: "Dexterity",
+                    nameEn: Common.Text("Summon_QuickenedPact.Name", "Zephyr's Covenant"),
+                    nameZh: Common.Text("Summon_QuickenedPact.Name", "风灵疾契", true),
+                    desc: BuildDescription(
+                        "Dexterity",
+                        "敏捷",
+                        Common.Text("Summon_QuickenedPact.Lore", "The rhythm of your agile steps becomes a pattern for the creatures answering your call."),
+                        Common.Text("Summon_QuickenedPact.Lore", "你灵巧步伐的节奏，成为回应召唤的生物可以追随的范式。", true),
+                        "Your summoned creatures gain untyped bonuses to Dexterity and Speed equal to your Dexterity modifier.",
+                        "你召唤的生物获得等同于你的敏捷调整值的无类型敏捷与移动速度加值。"),
                     baseStat: StatType.Dexterity,
-                    buffedStats: new[] { StatType.Dexterity, StatType.Speed },
-                    loreText: "<i>Swift Beyond Sight.</i> Your bargains favor motion without hesitation, so every creature you call arrives already poised to dart, weave, and pounce.",
-                    effectText: "Your summoned creatures gain untyped bonuses to Dexterity and Speed equal to your Dexterity modifier."),
+                    buffedStats: new[] { StatType.Dexterity, StatType.Speed }),
                 CreateFeat(
                     internalName: "VitalPact",
                     featureGuid: Guids.Summon.Feature.VitalPact,
                     outerBuffGuid: Guids.Summon.OuterBuff.VitalPact,
                     innerBuffGuid: Guids.Summon.InnerBuff.VitalPact,
-                    flavorName: "Vital Pact",
-                    attributeName: "Constitution",
+                    nameEn: Common.Text("Summon_VitalPact.Name", "Titan's Lifespring"),
+                    nameZh: Common.Text("Summon_VitalPact.Name", "巨怪生机", true),
+                    desc: BuildDescription(
+                        "Constitution",
+                        "体质",
+                        Common.Text("Summon_VitalPact.Lore", "You draw on your own hardiness when preparing a body for a summoned companion."),
+                        Common.Text("Summon_VitalPact.Lore", "为召来的伙伴塑成躯体时，你借鉴自身承受磨砺的耐力。", true),
+                        "Your summoned creatures gain an untyped bonus to Constitution equal to your Constitution modifier.",
+                        "你召唤的生物获得等同于你的体质调整值的无类型体质加值。"),
                     baseStat: StatType.Constitution,
-                    buffedStats: new[] { StatType.Constitution },
-                    loreText: "<i>Breath Shared.</i> You bind your summons with the same stubborn life that anchors you, lending them the endurance to remain standing through the worst of the fight.",
-                    effectText: "Your summoned creatures gain an untyped bonus to Constitution equal to your Constitution modifier."),
+                    buffedStats: new[] { StatType.Constitution }),
                 CreateFeat(
                     internalName: "TacticalBinding",
                     featureGuid: Guids.Summon.Feature.TacticalBinding,
                     outerBuffGuid: Guids.Summon.OuterBuff.TacticalBinding,
                     innerBuffGuid: Guids.Summon.InnerBuff.TacticalBinding,
-                    flavorName: "Tactical Binding",
-                    attributeName: "Intelligence",
+                    nameEn: Common.Text("Summon_TacticalBinding.Name", "Aegis of the Schema"),
+                    nameZh: Common.Text("Summon_TacticalBinding.Name", "天元魔阵", true),
+                    desc: BuildDescription(
+                        "Intelligence",
+                        "智力",
+                        Common.Text("Summon_TacticalBinding.Lore", "You plan a summoned creature's defenses as carefully as an architect plans a wall."),
+                        Common.Text("Summon_TacticalBinding.Lore", "你如建筑师设计城墙般，仔细安排召唤生物的防守。", true),
+                        "Your summoned creatures gain an untyped bonus to AC equal to your Intelligence modifier.",
+                        "你召唤的生物获得等同于你的智力调整值的无类型防御等级（AC）加值。"),
                     baseStat: StatType.Intelligence,
-                    buffedStats: new[] { StatType.AC },
-                    loreText: "<i>The Summoned Formation.</i> Careful diagrams and exact sigils turn every conjuration into a planned deployment, your creatures warded by the geometry of your will.",
-                    effectText: "Your summoned creatures gain an untyped bonus to AC equal to your Intelligence modifier."),
+                    buffedStats: new[] { StatType.AC }),
                 CreateFeat(
                     internalName: "InsightfulSummons",
                     featureGuid: Guids.Summon.Feature.InsightfulSummons,
                     outerBuffGuid: Guids.Summon.OuterBuff.InsightfulSummons,
                     innerBuffGuid: Guids.Summon.InnerBuff.InsightfulSummons,
-                    flavorName: "Insightful Summons",
-                    attributeName: "Wisdom",
+                    nameEn: Common.Text("Summon_InsightfulSummons.Name", "Empathic Communion"),
+                    nameZh: Common.Text("Summon_InsightfulSummons.Name", "神契灵犀", true),
+                    desc: BuildDescription(
+                        "Wisdom",
+                        "感知",
+                        Common.Text("Summon_InsightfulSummons.Lore", "Attentive guidance helps a summoned companion meet danger with steadier instincts."),
+                        Common.Text("Summon_InsightfulSummons.Lore", "专注的引导帮助召来的伙伴，以更稳固的本能迎接危险。", true),
+                        "Your summoned creatures gain untyped bonuses to Fortitude, Reflex, and Will saves equal to your Wisdom modifier.",
+                        "你召唤的生物获得等同于你的感知调整值的强韧、反射与意志豁免检定无类型加值。"),
                     baseStat: StatType.Wisdom,
-                    buffedStats: new[] { StatType.SaveFortitude, StatType.SaveReflex, StatType.SaveWill },
-                    loreText: "<i>Guided Instinct.</i> Your summons move beneath a quiet current of warning, sensing danger with the same intuition that keeps you centered amid chaos.",
-                    effectText: "Your summoned creatures gain untyped bonuses to Fortitude, Reflex, and Will saves equal to your Wisdom modifier."),
+                    buffedStats: new[] { StatType.SaveFortitude, StatType.SaveReflex, StatType.SaveWill }),
                 CreateFeat(
                     internalName: "MagneticCalling",
                     featureGuid: Guids.Summon.Feature.MagneticCalling,
                     outerBuffGuid: Guids.Summon.OuterBuff.MagneticCalling,
                     innerBuffGuid: Guids.Summon.InnerBuff.MagneticCalling,
-                    flavorName: "Magnetic Calling",
-                    attributeName: "Charisma",
+                    nameEn: Common.Text("Summon_MagneticCalling.Name", "Dominator's Calling"),
+                    nameZh: Common.Text("Summon_MagneticCalling.Name", "御统王令", true),
+                    desc: BuildDescription(
+                        "Charisma",
+                        "魅力",
+                        Common.Text("Summon_MagneticCalling.Lore", "Your confident command gives summoned companions a clear purpose when they enter the fray."),
+                        Common.Text("Summon_MagneticCalling.Lore", "自信的指挥让召来的伙伴在投入战斗时拥有明确目标。", true),
+                        "Your summoned creatures gain an untyped bonus to attack rolls equal to your Charisma modifier.",
+                        "你召唤的生物获得等同于你的魅力调整值的无类型攻击检定加值。"),
                     baseStat: StatType.Charisma,
-                    buffedStats: new[] { StatType.AdditionalAttackBonus },
-                    loreText: "<i>Irresistible Command.</i> The force of your presence does not end at the circle's edge; creatures you call lean into battle with the confidence of your own will.",
-                    effectText: "Your summoned creatures gain an untyped bonus to attack rolls equal to your Charisma modifier."),
+                    buffedStats: new[] { StatType.AdditionalAttackBonus }),
             };
 
             AddFamilyMutex(feats);
@@ -97,22 +127,23 @@ namespace AttributeFeats.New_Feats
             string featureGuid,
             string outerBuffGuid,
             string innerBuffGuid,
-            string flavorName,
-            string attributeName,
+            string nameEn,
+            string nameZh,
+            (string en, string zh) desc,
             StatType baseStat,
-            IReadOnlyList<StatType> buffedStats,
-            string loreText,
-            string effectText)
+            IReadOnlyList<StatType> buffedStats)
         {
-            var displayName = Common.L($"Summon_{internalName}.Name", flavorName);
+            var displayName = Common.L($"Summon_{internalName}.Name", nameEn, nameZh);
             var description = Common.L(
                 $"Summon_{internalName}.Desc",
-                BuildDescription(attributeName, loreText, effectText),
+                desc.en,
+                desc.zh,
                 tagEncyclopediaEntries: true);
 
             var innerBuff = BuffConfigurator.New($"{internalName}InnerBuff", innerBuffGuid)
                 .SetDisplayName(displayName)
-                .SetDescription(description);
+                .SetDescription(description)
+                .SetIconIfPresent(internalName);
             AddRank(innerBuff, baseStat);
             AddContextBonuses(innerBuff, buffedStats);
             var configuredInnerBuff = innerBuff.Configure();
@@ -120,12 +151,14 @@ namespace AttributeFeats.New_Feats
             var outerBuff = BuffConfigurator.New($"{internalName}OuterBuff", outerBuffGuid)
                 .SetDisplayName(displayName)
                 .SetDescription(description)
+                .SetIconIfPresent(internalName)
                 .AddOnSpawnBuff(buff: configuredInnerBuff, isInfinity: true)
                 .Configure();
 
             return FeatureConfigurator.New(internalName, featureGuid, FeatureGroup.Feat)
                 .SetDisplayName(displayName)
                 .SetDescription(description)
+                .SetIconIfPresent(internalName)
                 .AddFacts(new() { outerBuff })
                 .Configure();
         }
@@ -154,7 +187,17 @@ namespace AttributeFeats.New_Feats
             }
         }
 
-        private static string BuildDescription(string attributeName, string loreText, string effectText)
-            => $"<i>Greater Summoning · {attributeName}</i>\n{loreText}\n\n<b>Effect:</b> {effectText}\n\n<b>Restrictions:</b> Mutually exclusive with other Greater Summoning feats.";
+        private static (string en, string zh) BuildDescription(
+            string attrEn,
+            string attrZh,
+            string loreEn,
+            string loreZh,
+            string effectEn,
+            string effectZh)
+        {
+            var en = $"<i>Greater Summoning · {attrEn}</i>\n{loreEn}\n\n<b>Effect:</b> {effectEn} Attribute modifiers used for these bonuses and matching penalties have a minimum of 0.\n\n<b>Restrictions:</b> When EnableMutex is enabled, mutually exclusive with other Greater Summoning feats.";
+            var zh = $"<i>高等召唤 · {attrZh}</i>\n{loreZh}\n\n<b>效果：</b>{effectZh}这些加值及对应减值均以属性调整值最低0计算。\n\n<b>限制：</b>启用EnableMutex时，与其他“高等召唤”专长互斥。";
+            return (en, zh);
+        }
     }
 }

@@ -77,48 +77,60 @@ namespace AttributeFeats.New_Feats
                     DefenseStats,
                     Guids.Specialized.Defensive.Str,
                     "TitansStance",
-                    "Titan's Stance",
-                    "<i>Brutal Defense.</i> You stand against your enemies with the same overwhelming presence that crushes them — your sheer mass and strength making every blow against you feel like striking a mountain."),
+                    Common.Text("Defensive_Str.Name", "Colossus Bastion"),
+                    Common.Text("Defensive_Str.Name", "巨灵重障", true),
+                    Common.Text("Defensive_Str.Lore", "You brace like a fortress buttress, letting practiced strength support your whole defense."),
+                    Common.Text("Defensive_Str.Lore", "你如要塞的扶壁般支撑阵线，让娴熟的力量托住整个防御。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Defensive,
                     StatType.Dexterity,
                     DefenseStats,
                     Guids.Specialized.Defensive.Dex,
                     "FlowingForm",
-                    "Flowing Form",
-                    "<i>Untouchable Grace.</i> You slip away from danger before it manifests; the blade that should have struck you finds only the wind where you once stood."),
+                    Common.Text("Defensive_Dex.Name", "Wind-Dancer's Shroud"),
+                    Common.Text("Defensive_Dex.Name", "风舞虚影", true),
+                    Common.Text("Defensive_Dex.Lore", "You borrow the rhythm of a swaying reed, keeping your guard in motion rather than fixing it in place."),
+                    Common.Text("Defensive_Dex.Lore", "你借芦苇摇曳的韵律不断调整守势，不将防守锁在一处。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Defensive,
                     StatType.Constitution,
                     DefenseStats,
                     Guids.Specialized.Defensive.Con,
                     "IronBulwark",
-                    "Iron Bulwark",
-                    "<i>Unbreakable.</i> Your body resists what crushes others. Pain, poison, exhaustion — all wash over the fortress of your flesh and find no purchase."),
+                    Common.Text("Defensive_Con.Name", "Inured Carapace"),
+                    Common.Text("Defensive_Con.Name", "百炼金身", true),
+                    Common.Text("Defensive_Con.Lore", "Old scars remind you how to endure a blow and keep your composure under strain."),
+                    Common.Text("Defensive_Con.Lore", "旧伤教会你承受冲击，也教会你在压力下保持镇定。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Defensive,
                     StatType.Intelligence,
                     DefenseStats,
                     Guids.Specialized.Defensive.Int,
                     "CalculatedDefense",
-                    "Calculated Defense",
-                    "<i>The Analyst's Shield.</i> You read every attack as an equation — its angle, its tempo, its inevitable answer. Knowing the enemy is the first defense; knowing yourself is the last."),
+                    Common.Text("Defensive_Int.Name", "Analytical Aegis"),
+                    Common.Text("Defensive_Int.Name", "算律之盾", true),
+                    Common.Text("Defensive_Int.Lore", "You read the angle of an approaching strike and place your guard where it will matter."),
+                    Common.Text("Defensive_Int.Lore", "你读出来袭兵刃的角度，将防守放在真正需要的位置。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Defensive,
                     StatType.Wisdom,
                     DefenseStats,
                     Guids.Specialized.Defensive.Wis,
                     "StoicVigilance",
-                    "Stoic Vigilance",
-                    "<i>Aware of All Threats.</i> Long meditation has tied your reflexes to your awareness; danger you see is danger you have already begun to answer."),
+                    Common.Text("Defensive_Wis.Name", "Third Eye Vigil"),
+                    Common.Text("Defensive_Wis.Name", "天目清照", true),
+                    Common.Text("Defensive_Wis.Lore", "Patient attention catches small changes in a foe's bearing before they become a committed attack."),
+                    Common.Text("Defensive_Wis.Lore", "耐心的观察捕捉敌人姿态的细微变化，先于其决意出手作出准备。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Defensive,
                     StatType.Charisma,
                     DefenseStats,
                     Guids.Specialized.Defensive.Cha,
                     "IndomitablePresence",
-                    "Indomitable Presence",
-                    "<i>Force of Self.</i> Your conviction is a shield no weapon can pierce. Foes hesitate before striking you, finding their resolve unraveling in the face of your unshakable will."),
+                    Common.Text("Defensive_Cha.Name", "Majesty's Reproach"),
+                    Common.Text("Defensive_Cha.Name", "凛然天威", true),
+                    Common.Text("Defensive_Cha.Lore", "Your unyielding bearing turns defense into a contest of resolve as much as steel."),
+                    Common.Text("Defensive_Cha.Lore", "你的坚定威仪使防守既是兵刃的较量，也是意志的交锋。", true)),
             };
 
             var maneuver = new[]
@@ -129,48 +141,60 @@ namespace AttributeFeats.New_Feats
                     ManeuverStats,
                     Guids.Specialized.Maneuver.Str,
                     "CrushingGrip",
-                    "Crushing Grip",
-                    "<i>Overwhelming Leverage.</i> You seize control through raw might, turning every trip, shove, and grapple into an undeniable display of physical dominance."),
+                    Common.Text("Maneuver_Str.Name", "Grip of the Behemoth"),
+                    Common.Text("Maneuver_Str.Name", "比蒙扼击", true),
+                    Common.Text("Maneuver_Str.Lore", "You bring the weight of a great beast to every grip, push, and struggle for position."),
+                    Common.Text("Maneuver_Str.Lore", "你将巨兽般的力量投入每一次抓握、推挤与位置争夺。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Maneuver,
                     StatType.Dexterity,
                     ManeuverStats,
                     Guids.Specialized.Maneuver.Dex,
                     "DeftHand",
-                    "Deft Hand",
-                    "<i>Flicker Control.</i> Your hands find openings between heartbeats, letting balance, timing, and precision turn motion itself into leverage."),
+                    Common.Text("Maneuver_Dex.Name", "Fulcrum of the Viper"),
+                    Common.Text("Maneuver_Dex.Name", "灵蛇巧掣", true),
+                    Common.Text("Maneuver_Dex.Lore", "A small turn at the right pivot can redirect more force than a head-on struggle."),
+                    Common.Text("Maneuver_Dex.Lore", "在恰当支点的一次轻转，往往比迎面角力更能改变力量的方向。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Maneuver,
                     StatType.Constitution,
                     ManeuverStats,
                     Guids.Specialized.Maneuver.Con,
                     "UnyieldingHold",
-                    "Unyielding Hold",
-                    "<i>Relentless Pressure.</i> You do not need a perfect opening when you can simply outlast resistance, grinding your foe down until the hold is inevitable."),
+                    Common.Text("Maneuver_Con.Name", "Deep-Root Clinch"),
+                    Common.Text("Maneuver_Con.Name", "沉洋扼锁", true),
+                    Common.Text("Maneuver_Con.Lore", "Endurance lets you maintain a hold after the first contest of strength has passed."),
+                    Common.Text("Maneuver_Con.Lore", "耐力让你在最初的力量较量之后，仍能维持稳固的控制。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Maneuver,
                     StatType.Intelligence,
                     ManeuverStats,
                     Guids.Specialized.Maneuver.Int,
                     "TacticalBind",
-                    "Tactical Bind",
-                    "<i>Engineered Openings.</i> Every maneuver begins as a solved problem, its angles and counters already mapped before the first contact."),
+                    Common.Text("Maneuver_Int.Name", "Anatomical Pivot"),
+                    Common.Text("Maneuver_Int.Name", "机理断节", true),
+                    Common.Text("Maneuver_Int.Lore", "You study how joints move together and use that knowledge to guide a maneuver."),
+                    Common.Text("Maneuver_Int.Lore", "你研究关节如何协同活动，并以这份知识引导战技。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Maneuver,
                     StatType.Wisdom,
                     ManeuverStats,
                     Guids.Specialized.Maneuver.Wis,
                     "PredictiveLock",
-                    "Predictive Lock",
-                    "<i>Read the Motion.</i> By sensing intent before it becomes action, you catch the enemy where they are going rather than where they stand."),
+                    Common.Text("Maneuver_Wis.Name", "Crane's Anticipation"),
+                    Common.Text("Maneuver_Wis.Name", "玄鹤听劲", true),
+                    Common.Text("Maneuver_Wis.Lore", "You feel an opponent's balance through contact, answering their movement with your own."),
+                    Common.Text("Maneuver_Wis.Lore", "你从接触中感知对手的重心，以自己的动作回应其变化。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Maneuver,
                     StatType.Charisma,
                     ManeuverStats,
                     Guids.Specialized.Maneuver.Cha,
                     "DomineeringThrow",
-                    "Domineering Throw",
-                    "<i>Command of Space.</i> Your presence breaks an opponent's posture before your hands ever touch them, making every throw feel like a public humiliation."),
+                    Common.Text("Maneuver_Cha.Name", "Audacious Overthrow"),
+                    Common.Text("Maneuver_Cha.Name", "叱喝倾山", true),
+                    Common.Text("Maneuver_Cha.Lore", "An assertive step and a forceful challenge lend conviction to your attempt to unseat a foe."),
+                    Common.Text("Maneuver_Cha.Lore", "果断的步伐与强势的挑战，让你动摇敌人站位的行动更有决心。", true)),
             };
 
             var skilled = new[]
@@ -181,48 +205,60 @@ namespace AttributeFeats.New_Feats
                     SkillStats,
                     Guids.Specialized.Skilled.Str,
                     "PracticedHand",
-                    "Practiced Hand",
-                    "<i>Work Made Mastery.</i> Strength is not only for battle; steady labor, hard practice, and a powerful hand let you force technique into reliable habit."),
+                    Common.Text("Skilled_Str.Name", "Giantwright's Craft"),
+                    Common.Text("Skilled_Str.Name", "巨匠巧工", true),
+                    Common.Text("Skilled_Str.Lore", "Work that tires others teaches you the discipline of applying strength with care."),
+                    Common.Text("Skilled_Str.Lore", "让他人疲惫的劳作，教会你谨慎运用力量的技艺。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Skilled,
                     StatType.Dexterity,
                     SkillStats,
                     Guids.Specialized.Skilled.Dex,
                     "EffortlessSkill",
-                    "Effortless Skill",
-                    "<i>Natural Technique.</i> Precision turns repetition into instinct, until difficult tasks feel like simple extensions of a perfectly trained motion."),
+                    Common.Text("Skilled_Dex.Name", "Thief-King's Panache"),
+                    Common.Text("Skilled_Dex.Name", "妙手绝尘", true),
+                    Common.Text("Skilled_Dex.Lore", "Your hands learn each task as a rhythm, returning to its fine motions with a performer's ease."),
+                    Common.Text("Skilled_Dex.Lore", "你的双手将工作记作节奏，细小动作也能如表演般自然重现。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Skilled,
                     StatType.Constitution,
                     SkillStats,
                     Guids.Specialized.Skilled.Con,
                     "TirelessPractice",
-                    "Tireless Practice",
-                    "<i>Endurance Refined.</i> Where others tire, you continue. Skill grows through repetition, and no one can match the hours your body can endure."),
+                    Common.Text("Skilled_Con.Name", "Ascetic Diligence"),
+                    Common.Text("Skilled_Con.Name", "苦行研磨", true),
+                    Common.Text("Skilled_Con.Lore", "Where inspiration fades, patient repetition keeps your craft moving forward."),
+                    Common.Text("Skilled_Con.Lore", "灵感消退之处，耐心的反复练习仍推动你的技艺前行。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Skilled,
                     StatType.Intelligence,
                     SkillStats,
                     Guids.Specialized.Skilled.Int,
                     "PolymathsTouch",
-                    "Polymath's Touch",
-                    "<i>Breadth of Study.</i> No discipline stays isolated for long in your mind; knowledge spills from one field into every other until mastery multiplies itself."),
+                    Common.Text("Skilled_Int.Name", "Encyclopedic Synthesis"),
+                    Common.Text("Skilled_Int.Name", "格物万象", true),
+                    Common.Text("Skilled_Int.Lore", "You connect unfamiliar problems to knowledge already gathered, building bridges between disciplines."),
+                    Common.Text("Skilled_Int.Lore", "你将陌生问题与已有知识相连，在不同学问之间架起桥梁。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Skilled,
                     StatType.Wisdom,
                     SkillStats,
                     Guids.Specialized.Skilled.Wis,
                     "QuietMastery",
-                    "Quiet Mastery",
-                    "<i>Patient Perception.</i> You notice what others miss, and skill follows from truly seeing the world instead of stumbling through it."),
+                    Common.Text("Skilled_Wis.Name", "Wanderer's Lucidity"),
+                    Common.Text("Skilled_Wis.Name", "云水澄明", true),
+                    Common.Text("Skilled_Wis.Lore", "Travel and observation have taught you to hear what a task requires before reaching for a tool."),
+                    Common.Text("Skilled_Wis.Lore", "行旅与观察教会你先听懂事情的需要，再伸手取用工具。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Skilled,
                     StatType.Charisma,
                     SkillStats,
                     Guids.Specialized.Skilled.Cha,
                     "InspiredVersatility",
-                    "Inspired Versatility",
-                    "<i>Talent Made Manifest.</i> Confidence carries you through unfamiliar challenges, turning versatility into performance and performance into success."),
+                    Common.Text("Skilled_Cha.Name", "Silver-Tongued Virtuoso"),
+                    Common.Text("Skilled_Cha.Name", "锦绣天潢", true),
+                    Common.Text("Skilled_Cha.Lore", "Confidence carries your performance through unfamiliar work, inviting others to believe in your command."),
+                    Common.Text("Skilled_Cha.Lore", "自信让你在陌生事务中仍保持从容，也让旁人愿意相信你的掌握。", true)),
             };
 
             var arcane = new[]
@@ -233,48 +269,60 @@ namespace AttributeFeats.New_Feats
                     NoStats,
                     Guids.Specialized.Arcane.Str,
                     "SpellForgedWill",
-                    "Spell-Forged Will",
-                    "<i>Magic Under Pressure.</i> You force power through stubborn will and raw might, hammering spellcraft into shape like iron on an anvil."),
+                    Common.Text("Arcane_Str.Name", "Mage-Hammer Inscription"),
+                    Common.Text("Arcane_Str.Name", "铁骨铸咒", true),
+                    Common.Text("Arcane_Str.Lore", "You approach an incantation as a smith approaches iron, shaping it with disciplined exertion."),
+                    Common.Text("Arcane_Str.Lore", "你如铁匠对待生铁般对待咒语，以严整的发力塑成法术。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Arcane,
                     StatType.Dexterity,
                     NoStats,
                     Guids.Specialized.Arcane.Dex,
                     "QuickcastReflex",
-                    "Quickcast Reflex",
-                    "<i>Fingers Faster than Thought.</i> Swift gestures and flawless timing let your magic slip into the world before resistance can gather."),
+                    Common.Text("Arcane_Dex.Name", "Somatic Velocity"),
+                    Common.Text("Arcane_Dex.Name", "疾影手印", true),
+                    Common.Text("Arcane_Dex.Lore", "Exact, practiced gestures give your spellwork the cadence of a deft duelist."),
+                    Common.Text("Arcane_Dex.Lore", "精准而娴熟的手势，使你的施法带上灵巧剑客的节奏。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Arcane,
                     StatType.Constitution,
                     NoStats,
                     Guids.Specialized.Arcane.Con,
                     "SpellTemperedBody",
-                    "Spell-Tempered Body",
-                    "<i>The Body as Crucible.</i> Your flesh bears the strain of power without faltering, steadying spells that would fray lesser casters."),
+                    Common.Text("Arcane_Con.Name", "Crucible of the Conduit"),
+                    Common.Text("Arcane_Con.Name", "鼎炉承法", true),
+                    Common.Text("Arcane_Con.Lore", "You make bodily endurance part of your magical practice, learning to bear the effort of channeling power."),
+                    Common.Text("Arcane_Con.Lore", "你将身体的耐力纳入魔法修习，学会承受引导力量的消耗。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Arcane,
                     StatType.Intelligence,
                     NoStats,
                     Guids.Specialized.Arcane.Int,
                     "ScholarOfTheWeave",
-                    "Scholar of the Weave",
-                    "<i>Scholarship Made Spellcraft.</i> You read the weave like a manuscript, refining every incantation through analysis, structure, and exact recall."),
+                    Common.Text("Arcane_Int.Name", "Archmage's Codex"),
+                    Common.Text("Arcane_Int.Name", "万法源流", true),
+                    Common.Text("Arcane_Int.Lore", "Every spell becomes a proposition to study, refine, and set beside the work of earlier arcanists."),
+                    Common.Text("Arcane_Int.Lore", "每一道法术都是可研读与改进的命题，与前人的奥术成果相互印证。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Arcane,
                     StatType.Wisdom,
                     NoStats,
                     Guids.Specialized.Arcane.Wis,
                     "OraclesIntuition",
-                    "Oracle's Intuition",
-                    "<i>Hear the Hidden Current.</i> Intuition guides your casting along the unseen flow beneath reality, making each spell feel discovered rather than constructed."),
+                    Common.Text("Arcane_Wis.Name", "Gnostic Channel"),
+                    Common.Text("Arcane_Wis.Name", "玄鉴通幽", true),
+                    Common.Text("Arcane_Wis.Lore", "You listen for the cadence beneath an incantation and let attentive instinct guide its expression."),
+                    Common.Text("Arcane_Wis.Lore", "你聆听咒语深处的节律，以专注的直觉引导它的表达。", true)),
                 CreateSpecialized(
                     SpecializedFamily.Arcane,
                     StatType.Charisma,
                     NoStats,
                     Guids.Specialized.Arcane.Cha,
                     "SorcerousPresence",
-                    "Sorcerous Presence",
-                    "<i>Command the Weave.</i> Magic responds to certainty in your voice and presence, bending more readily when you cast as though the world already agrees."),
+                    Common.Text("Arcane_Cha.Name", "Sovereign Decrees"),
+                    Common.Text("Arcane_Cha.Name", "天宪法旨", true),
+                    Common.Text("Arcane_Cha.Lore", "You speak an incantation with the confidence of a decree, giving its form the weight of conviction."),
+                    Common.Text("Arcane_Cha.Lore", "你以宣告法旨般的自信吟诵咒语，让信念为法术的形式添上分量。", true)),
             };
 
             AddFamilyMutex(defensive);
@@ -289,26 +337,32 @@ namespace AttributeFeats.New_Feats
             IReadOnlyList<StatType> stats,
             string guid,
             string internalName,
-            string flavorName,
-            string loreText)
+            string flavorNameEn,
+            string flavorNameZh,
+            string loreTextEn,
+            string loreTextZh)
         {
             var settings = Main.Settings ?? new ModSettings();
             var attributeKey = GetAttributeKey(baseStat);
-            var attributeName = GetAttributeName(baseStat);
+            var attributeNameEn = GetAttributeName(baseStat);
+            var attributeNameZh = GetAttributeNameZh(baseStat);
             var familyKey = GetFamilyKey(family);
-            var familyName = GetFamilyDisplayName(family);
+
+            var desc = BuildDescription(
+                family,
+                attributeNameEn,
+                attributeNameZh,
+                loreTextEn,
+                loreTextZh);
 
             var cfg = FeatureConfigurator.New(internalName, guid, FeatureGroup.Feat)
-                .SetDisplayName(Common.L($"{familyKey}_{attributeKey}.Name", flavorName))
+                .SetDisplayName(Common.L($"{familyKey}_{attributeKey}.Name", flavorNameEn, flavorNameZh))
                 .SetDescription(Common.L(
                     $"{familyKey}_{attributeKey}.Desc",
-                    BuildDescription(
-                        familyName,
-                        attributeName,
-                        loreText,
-                        GetEffectText(family, attributeName),
-                        GetRestrictionText(family, attributeName)),
-                    tagEncyclopediaEntries: true));
+                    desc.en,
+                    desc.zh,
+                    tagEncyclopediaEntries: true))
+                .SetIconIfPresent(internalName);
 
             Common.AddRank(cfg, baseStat, AbilityRankType.Default, Common.ResolveProgression(settings.powerLevel, ScalingIntent.Full));
             if (family == SpecializedFamily.Arcane)
@@ -395,13 +449,24 @@ namespace AttributeFeats.New_Feats
             }
         }
 
-        private static string BuildDescription(
-            string familyName,
-            string attributeName,
-            string loreText,
-            string effectText,
-            string restrictionText)
-            => $"<i>{familyName} · {attributeName}</i>\n{loreText}\n\n<b>Effect:</b> {effectText}\n\n<b>Restrictions:</b> {restrictionText}";
+        private static (string en, string zh) BuildDescription(
+            SpecializedFamily family,
+            string attributeNameEn,
+            string attributeNameZh,
+            string loreTextEn,
+            string loreTextZh)
+        {
+            var familyNameEn = GetFamilyDisplayName(family);
+            var familyNameZh = GetFamilyDisplayNameZh(family);
+            var effectEn = GetEffectText(family, attributeNameEn) + " Attribute-based bonuses use a minimum modifier of 0 and apply only when their corresponding mod settings are enabled.";
+            var effectZh = GetEffectTextZh(family, attributeNameZh) + " 属性加值以调整值最低0计算，且仅在对应模组设置启用时生效。";
+            var restrictionEn = GetRestrictionText(family);
+            var restrictionZh = GetRestrictionTextZh(family);
+
+            var en = $"<i>{familyNameEn} · {attributeNameEn}</i>\n{loreTextEn}\n\n<b>Effect:</b> {effectEn}\n\n<b>Restrictions:</b> {restrictionEn}";
+            var zh = $"<i>{familyNameZh} · {attributeNameZh}</i>\n{loreTextZh}\n\n<b>效果：</b>{effectZh}\n\n<b>限制：</b>{restrictionZh}";
+            return (en, zh);
+        }
 
         private static string GetEffectText(SpecializedFamily family, string attributeName)
         {
@@ -414,24 +479,58 @@ namespace AttributeFeats.New_Feats
                 case SpecializedFamily.Skilled:
                     return $"Adds your {attributeName} modifier (untyped) to all skills, plus Bluff, Diplomacy, and Intimidate checks.";
                 case SpecializedFamily.Arcane:
-                    return $"Adds your {attributeName} modifier (untyped) to caster level and spell penetration checks, plus half your {attributeName} modifier to spell save DCs.";
+                    return $"Adds your {attributeName} modifier (untyped) to caster level and spell penetration checks, plus half your {attributeName} modifier (rounded down) to spell and ability save DCs in Balanced mode, or the full modifier in Legacy_AllFull mode.";
                 default:
                     return string.Empty;
             }
         }
 
-        private static string GetRestrictionText(SpecializedFamily family, string attributeName)
+        private static string GetEffectTextZh(SpecializedFamily family, string attributeZh)
         {
             switch (family)
             {
                 case SpecializedFamily.Defensive:
-                    return $"Mutually exclusive with other Defensive Adept feats and with the {attributeName} Main Attribute Mastery feat.";
+                    return $"将你的{attributeZh}调整值（无类型加值）附加至防御等级（AC）、战技防御（CMD）、先攻及所有豁免检定。";
                 case SpecializedFamily.Maneuver:
-                    return $"Mutually exclusive with other Maneuver Adept feats and with the {attributeName} Main Attribute Mastery feat.";
+                    return $"将你的{attributeZh}调整值（无类型加值）附加至战技加值（CMB）。";
                 case SpecializedFamily.Skilled:
-                    return $"Mutually exclusive with other Skilled feats and with the {attributeName} Main Attribute Mastery feat.";
+                    return $"将你的{attributeZh}调整值（无类型加值）附加至所有技能检定，以及欺诈、交涉、威吓检定。";
                 case SpecializedFamily.Arcane:
-                    return $"Mutually exclusive with other Arcane Insight feats and with the {attributeName} Main Attribute Mastery feat.";
+                    return $"将你的{attributeZh}调整值（无类型加值）附加至施法者等级与法术抗力穿透检定，在Balanced模式下将半数{attributeZh}调整值（向下取整）附加至法术及能力豁免DC，在Legacy_AllFull模式下使用完整调整值。";
+                default:
+                    return string.Empty;
+            }
+        }
+
+        private static string GetRestrictionText(SpecializedFamily family)
+        {
+            switch (family)
+            {
+                case SpecializedFamily.Defensive:
+                    return "When EnableMutex is enabled, mutually exclusive with other Defensive Adept feats.";
+                case SpecializedFamily.Maneuver:
+                    return "When EnableMutex is enabled, mutually exclusive with other Maneuver Adept feats.";
+                case SpecializedFamily.Skilled:
+                    return "When EnableMutex is enabled, mutually exclusive with other Skilled feats.";
+                case SpecializedFamily.Arcane:
+                    return "When EnableMutex is enabled, mutually exclusive with other Arcane Insight feats.";
+                default:
+                    return string.Empty;
+            }
+        }
+
+        private static string GetRestrictionTextZh(SpecializedFamily family)
+        {
+            switch (family)
+            {
+                case SpecializedFamily.Defensive:
+                    return "启用EnableMutex时，与其他防御行家专长互相排斥。";
+                case SpecializedFamily.Maneuver:
+                    return "启用EnableMutex时，与其他战技行家专长互相排斥。";
+                case SpecializedFamily.Skilled:
+                    return "启用EnableMutex时，与其他技能行家专长互相排斥。";
+                case SpecializedFamily.Arcane:
+                    return "启用EnableMutex时，与其他奥术洞察专长互相排斥。";
                 default:
                     return string.Empty;
             }
@@ -466,6 +565,23 @@ namespace AttributeFeats.New_Feats
                     return "Skilled";
                 case SpecializedFamily.Arcane:
                     return "Arcane Insight";
+                default:
+                    return family.ToString();
+            }
+        }
+
+        private static string GetFamilyDisplayNameZh(SpecializedFamily family)
+        {
+            switch (family)
+            {
+                case SpecializedFamily.Defensive:
+                    return "防御行家";
+                case SpecializedFamily.Maneuver:
+                    return "战技行家";
+                case SpecializedFamily.Skilled:
+                    return "技能行家";
+                case SpecializedFamily.Arcane:
+                    return "奥术洞察";
                 default:
                     return family.ToString();
             }
@@ -508,6 +624,27 @@ namespace AttributeFeats.New_Feats
                     return "Wisdom";
                 case StatType.Charisma:
                     return "Charisma";
+                default:
+                    return baseStat.ToString();
+            }
+        }
+
+        private static string GetAttributeNameZh(StatType baseStat)
+        {
+            switch (baseStat)
+            {
+                case StatType.Strength:
+                    return "力量";
+                case StatType.Dexterity:
+                    return "敏捷";
+                case StatType.Constitution:
+                    return "体质";
+                case StatType.Intelligence:
+                    return "智力";
+                case StatType.Wisdom:
+                    return "感知";
+                case StatType.Charisma:
+                    return "魅力";
                 default:
                     return baseStat.ToString();
             }

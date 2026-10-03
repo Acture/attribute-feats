@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.2 — Names, Lore and Icons (P-831 / OSS-77)
+
+- Refined all 92 feat names and shortened their English/Chinese lore, preserving blueprint names, GUIDs, prerequisites, component values and triggers.
+- Embedded 196 bilingual name/lore entries in `Localization/FeatText.json`, with English and compiled-text fallbacks. Kept rules separate from flavor text.
+- Corrected descriptions of Balanced/Legacy scaling, settings gates, minimum modifiers, temporary HP, attack consumption, distance thresholds, multi-tag penalties and unrestricted weapon reach to match source behavior.
+- Completed 92 distinct 128×128 feat icons and mapped associated buffs and stance toggles to their parent artwork. Added a contact sheet and per-image prompt/provenance manifest.
+- Preserved locale refresh and encyclopedia links. Added resource/fallback checks, blueprint/mechanism comparison, asset coverage and release ZIP validation.
+- Added a workspace-only packaging option: `-p:DeployToGame=false`.
+- Added the full before/after audit in `docs/P-831-review.md`. Combat effects and game locale/layout behavior still need real-game validation under OSS-59; settings/full rule-template localization remains in OSS-142.
+
 ## 0.1.1 — Mutex Relaxation + 17 New Feats
 
 ### Mutex Redesign

@@ -6,9 +6,14 @@ using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
+using HarmonyLib;
 using Kingmaker.Localization;
+using Kingmaker.Localization.Shared;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Components;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 
 namespace AttributeFeats.New_Feats
 {
@@ -22,8 +27,50 @@ namespace AttributeFeats.New_Feats
     {
         private static readonly ConditionalWeakTable<FeatureConfigurator, HashSet<string>> RankRegistrations = new();
 
-        public static LocalizedString L(string key, string value, bool tagEncyclopediaEntries = false)
-            => LocalizationTool.CreateString(key, value, tagEncyclopediaEntries);
+        private static readonly Dictionary<string, (string en, string zh, bool tag)> LocalizedStrings = new();
+
+        public static string Text(string key, string fallback, bool chinese = false)
+            => FeatTextCatalog.Get(key, fallback, chinese);
+
+        public static LocalizedString L(string key, string enValue, string zhValue = null, bool tagEncyclopediaEntries = false)
+        {
+            LocalizedStrings[key] = (enValue, zhValue, tagEncyclopediaEntries);
+            var isZh = LocalizationManager.CurrentLocale == Locale.zhCN;
+            var text = (isZh && !string.IsNullOrEmpty(zhValue)) ? zhValue : enValue;
+            return LocalizationTool.CreateString(key, text, tagEncyclopediaEntries);
+        }
+
+        public static LocalizedString L(string key, string value, bool tagEncyclopediaEntries)
+            => L(key, value, null, tagEncyclopediaEntries);
+
+        public static void RefreshLocale()
+        {
+            try
+            {
+                var pack = LocalizationManager.CurrentPack;
+                if (pack == null) return;
+                var isZh = LocalizationManager.CurrentLocale == Locale.zhCN;
+                foreach (var entry in LocalizedStrings)
+                {
+                    var text = (isZh && !string.IsNullOrEmpty(entry.Value.zh)) ? entry.Value.zh : entry.Value.en;
+                    pack.PutString(entry.Key, entry.Value.tag ? EncyclopediaTool.TagEncyclopediaEntries(text) : text);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Main.Log?.Log("AttributeFeats: RefreshLocale error: " + ex);
+            }
+        }
+
+        // OnLocaleChanged is a private method, not an event. BlueprintCore's own postfix there re-applies
+        // the creation-time (single-locale) text, so ours must run after it to restore the zhCN strings.
+        [HarmonyPatch(typeof(LocalizationManager), "OnLocaleChanged")]
+        private static class LocalizationManager_OnLocaleChanged_Patch
+        {
+            [HarmonyPriority(Priority.Last)]
+            [HarmonyPostfix]
+            private static void Postfix() => RefreshLocale();
+        }
 
         public static ContextValue Rank(AbilityRankType type = AbilityRankType.Default)
             => new()
@@ -90,6 +137,46 @@ namespace AttributeFeats.New_Feats
             FeatureConfigurator.For(b)
                 .AddPrerequisiteNoFeature(a)
                 .Configure();
+        }
+
+        public static FeatureConfigurator SetIconIfPresent(this FeatureConfigurator cfg, string internalName)
+        {
+            var icon = IconLoader.Get(internalName);
+            if (icon != null)
+            {
+                cfg.SetIcon(icon);
+            }
+            return cfg;
+        }
+
+        public static BuffConfigurator SetIconIfPresent(this BuffConfigurator cfg, string internalName)
+        {
+            var icon = IconLoader.Get(internalName);
+            if (icon != null)
+            {
+                cfg.SetIcon(icon);
+            }
+            return cfg;
+        }
+
+        public static ActivatableAbilityConfigurator SetIconIfPresent(this ActivatableAbilityConfigurator cfg, string internalName)
+        {
+            var icon = IconLoader.Get(internalName);
+            if (icon != null)
+            {
+                cfg.SetIcon(icon);
+            }
+            return cfg;
+        }
+
+        public static AbilityConfigurator SetIconIfPresent(this AbilityConfigurator cfg, string internalName)
+        {
+            var icon = IconLoader.Get(internalName);
+            if (icon != null)
+            {
+                cfg.SetIcon(icon);
+            }
+            return cfg;
         }
     }
 }

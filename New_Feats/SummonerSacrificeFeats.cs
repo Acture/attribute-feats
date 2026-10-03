@@ -34,11 +34,15 @@ namespace AttributeFeats.New_Feats
                     featureGuid: Guids.SummonerSacrifice.Feature.BodyOfMyPact,
                     outerBuffGuid: Guids.SummonerSacrifice.OuterBuff.BodyOfMyPact,
                     innerBuffGuid: Guids.SummonerSacrifice.InnerBuff.BodyOfMyPact,
-                    displayName: "Body of My Pact",
-                    description: BuildDescription(
-                        modeName: "1:1 Trade",
-                        loreText: "<i>What you yield, your servants inherit.</i> You divide your strength, wit, and presence across every calling so your summoned allies arrive bearing the full weight of your sacrificed essence.",
-                        effectText: "You take a -4 untyped penalty to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Your summoned creatures gain a +4 untyped bonus to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma."),
+                    nameEn: Common.Text("SummonerSacrifice_BodyOfMyPact.Name", "Martyr's Transference"),
+                    nameZh: Common.Text("SummonerSacrifice_BodyOfMyPact.Name", "形神替生", true),
+                    desc: BuildDescription(
+                        modeEn: "1:1 Trade",
+                        modeZh: "等价献祭",
+                        loreEn: Common.Text("SummonerSacrifice_BodyOfMyPact.Lore", "You accept a body's burden so that the creatures bound to your call may stand stronger."),
+                        loreZh: Common.Text("SummonerSacrifice_BodyOfMyPact.Lore", "你甘愿让自身承受负担，使回应你召唤的生物更加强健。", true),
+                        effectEn: "You take a -4 untyped penalty to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Your summoned creatures gain a +4 untyped bonus to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma.",
+                        effectZh: "你的力量、敏捷、体质、智力、感知和魅力承受-4无类型减值。你召唤的生物的力量、敏捷、体质、智力、感知和魅力获得+4无类型加值。"),
                     selfBonuses: CreateUniformBonuses(-4),
                     summonBonuses: CreateUniformBonuses(4)),
                 CreateFeat(
@@ -46,11 +50,15 @@ namespace AttributeFeats.New_Feats
                     featureGuid: Guids.SummonerSacrifice.Feature.DoubledBond,
                     outerBuffGuid: Guids.SummonerSacrifice.OuterBuff.DoubledBond,
                     innerBuffGuid: Guids.SummonerSacrifice.InnerBuff.DoubledBond,
-                    displayName: "Doubled Bond",
-                    description: BuildDescription(
-                        modeName: "1:2 Amplification",
-                        loreText: "<i>A lesser loss, a greater echo.</i> Your pact stretches each fragment of sacrificed essence across the circle twice over, letting your summons claim more power than you surrender.",
-                        effectText: "You take a -2 untyped penalty to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Your summoned creatures gain a +4 untyped bonus to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma."),
+                    nameEn: Common.Text("SummonerSacrifice_DoubledBond.Name", "Eldritch Crucible"),
+                    nameZh: Common.Text("SummonerSacrifice_DoubledBond.Name", "双生法炼", true),
+                    desc: BuildDescription(
+                        modeEn: "1:2 Amplification",
+                        modeZh: "倍率谐振",
+                        loreEn: Common.Text("SummonerSacrifice_DoubledBond.Lore", "An exacting pact magnifies what you surrender, letting sacrifice feed a companion's strength."),
+                        loreZh: Common.Text("SummonerSacrifice_DoubledBond.Lore", "严密的契约放大你付出的代价，让牺牲转为伙伴的力量。", true),
+                        effectEn: "You take a -2 untyped penalty to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Your summoned creatures gain a +4 untyped bonus to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma.",
+                        effectZh: "你的力量、敏捷、体质、智力、感知和魅力承受-2无类型减值。你召唤的生物的力量、敏捷、体质、智力、感知和魅力获得+4无类型加值。"),
                     selfBonuses: CreateUniformBonuses(-2),
                     summonBonuses: CreateUniformBonuses(4)),
                 CreateFeat(
@@ -58,11 +66,15 @@ namespace AttributeFeats.New_Feats
                     featureGuid: Guids.SummonerSacrifice.Feature.EmpoweredSacrifice,
                     outerBuffGuid: Guids.SummonerSacrifice.OuterBuff.EmpoweredSacrifice,
                     innerBuffGuid: Guids.SummonerSacrifice.InnerBuff.EmpoweredSacrifice,
-                    displayName: "Empowered Sacrifice",
-                    description: BuildDescription(
-                        modeName: "Focused Trade",
-                        loreText: "<i>Command traded for force.</i> You surrender a portion of your personal presence to drive raw physical might into the creatures that answer your call.",
-                        effectText: "You take a -4 untyped penalty to Charisma. Your summoned creatures gain a +8 untyped bonus to Strength."),
+                    nameEn: Common.Text("SummonerSacrifice_EmpoweredSacrifice.Name", "Tribute of Iron Dominion"),
+                    nameZh: Common.Text("SummonerSacrifice_EmpoweredSacrifice.Name", "夺冕化蛮", true),
+                    desc: BuildDescription(
+                        modeEn: "Focused Trade",
+                        modeZh: "极意倾注",
+                        loreEn: Common.Text("SummonerSacrifice_EmpoweredSacrifice.Lore", "You yield some commanding presence to give a summoned body greater physical force."),
+                        loreZh: Common.Text("SummonerSacrifice_EmpoweredSacrifice.Lore", "你让渡部分统御的气势，为召来的躯体换取更强的筋骨之力。", true),
+                        effectEn: "You take a -4 untyped penalty to Charisma. Your summoned creatures gain a +8 untyped bonus to Strength.",
+                        effectZh: "你的魅力承受-4无类型减值。你召唤的生物获得+8无类型力量加值。"),
                     selfBonuses: new[] { new StatBonus(StatType.Charisma, -4) },
                     summonBonuses: new[] { new StatBonus(StatType.Strength, 8) }),
             };
@@ -75,17 +87,19 @@ namespace AttributeFeats.New_Feats
             string featureGuid,
             string outerBuffGuid,
             string innerBuffGuid,
-            string displayName,
-            string description,
+            string nameEn,
+            string nameZh,
+            (string en, string zh) desc,
             IReadOnlyList<StatBonus> selfBonuses,
             IReadOnlyList<StatBonus> summonBonuses)
         {
-            var localizedName = Common.L($"SummonerSacrifice_{internalName}.Name", displayName);
-            var localizedDescription = Common.L($"SummonerSacrifice_{internalName}.Desc", description, tagEncyclopediaEntries: true);
+            var localizedName = Common.L($"SummonerSacrifice_{internalName}.Name", nameEn, nameZh);
+            var localizedDescription = Common.L($"SummonerSacrifice_{internalName}.Desc", desc.en, desc.zh, tagEncyclopediaEntries: true);
 
             var innerBuff = BuffConfigurator.New($"{internalName}InnerBuff", innerBuffGuid)
                 .SetDisplayName(localizedName)
                 .SetDescription(localizedDescription)
+                .SetIconIfPresent(internalName)
                 .AddSummonedUnitBuff();
             AddStatBonuses(innerBuff, summonBonuses);
             var configuredInnerBuff = innerBuff.Configure();
@@ -93,6 +107,7 @@ namespace AttributeFeats.New_Feats
             var outerBuff = BuffConfigurator.New($"{internalName}OuterBuff", outerBuffGuid)
                 .SetDisplayName(localizedName)
                 .SetDescription(localizedDescription)
+                .SetIconIfPresent(internalName)
                 .AddOnSpawnBuff(buff: configuredInnerBuff, isInfinity: true);
             AddStatBonuses(outerBuff, selfBonuses);
             var configuredOuterBuff = outerBuff.Configure();
@@ -100,6 +115,7 @@ namespace AttributeFeats.New_Feats
             return FeatureConfigurator.New(internalName, featureGuid, FeatureGroup.Feat)
                 .SetDisplayName(localizedName)
                 .SetDescription(localizedDescription)
+                .SetIconIfPresent(internalName)
                 .AddFacts(new() { configuredOuterBuff })
                 .Configure();
         }
@@ -134,8 +150,18 @@ namespace AttributeFeats.New_Feats
             }
         }
 
-        private static string BuildDescription(string modeName, string loreText, string effectText)
-            => $"<i>Summoner Sacrifice · {modeName}</i>\n{loreText}\n\n<b>Effect:</b> {effectText}\n\n<b>Restrictions:</b> Mutually exclusive with other Summoner Sacrifice feats.";
+        private static (string en, string zh) BuildDescription(
+            string modeEn,
+            string modeZh,
+            string loreEn,
+            string loreZh,
+            string effectEn,
+            string effectZh)
+        {
+            var en = $"<i>Summoner Sacrifice · {modeEn}</i>\n{loreEn}\n\n<b>Effect:</b> {effectEn}\n\n<b>Restrictions:</b> When EnableMutex is enabled, mutually exclusive with other Summoner Sacrifice feats.";
+            var zh = $"<i>召唤献祭 · {modeZh}</i>\n{loreZh}\n\n<b>效果：</b>{effectZh}\n\n<b>限制：</b>启用EnableMutex时，与其他“召唤献祭”专长互斥。";
+            return (en, zh);
+        }
 
         private readonly struct StatBonus
         {
