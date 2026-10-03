@@ -9,7 +9,10 @@
 
 ### Full Bilingual Localization (EN / ZH)
 - **Native Dual-Language Support**: Added comprehensive Chinese (`zhCN`) localization across all 92 feats, stances, temporary buffs, trigger auras, and parameter descriptors.
-- **Dynamic Runtime Locale Switching**: Wired `Common.L` and `Common.RefreshLocale()` to `LocalizationManager.OnLocaleChanged`, allowing seamless in-game language switching without needing to restart the game.
+- **Dynamic Runtime Locale Switching**: `Common.L` records EN/ZH text per key; a Harmony postfix on `LocalizationManager.OnLocaleChanged` (ordered after BlueprintCore's own postfix) re-applies the matching strings via `Common.RefreshLocale()`, so switching language in-game updates the mod without a restart.
+
+### Custom Icons
+- Added an `IconLoader` pipeline that loads PNGs from the mod's `Icons/` folder by feat internal name, with 13 bespoke icons for headline feats; feats without a matching file keep their vanilla icon.
 
 ### Bug Fixes & Clarifications
 - **Cleaned Obsolete Restriction Text**: Removed lingering 0.1.0 description text in Specialized feats that erroneously claimed mutual exclusivity with Main Attribute Mastery feats (cross-family mutex was removed in 0.1.1).

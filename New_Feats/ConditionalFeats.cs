@@ -61,22 +61,6 @@ namespace AttributeFeats.New_Feats
         private static ActionsBuilder RemoveSelfBuff(string buffGuid)
             => ActionsBuilder.New().RemoveBuff(BlueprintTool.GetRef<BlueprintBuffReference>(buffGuid), toCaster: true);
 
-        private static BuffConfigurator NewBuff(
-            string internalName,
-            string guid,
-            string nameKey,
-            string nameValue,
-            string descKey,
-            string descValue,
-            StatType baseStat)
-        {
-            return BuffConfigurator.New(internalName, guid)
-                .SetDisplayName(Common.L(nameKey, nameValue))
-                .SetDescription(Common.L(descKey, descValue))
-                .SetStacking(StackingType.Replace)
-                .AddContextRankConfig(ContextRankConfigs.StatBonus(baseStat, ModifierDescriptor.None, AbilityRankType.Default, min: 0))
-                .AddRecalculateOnStatChange(stat: baseStat);
-        }
 
         private static BuffConfigurator NewBuff(
             string internalName,
