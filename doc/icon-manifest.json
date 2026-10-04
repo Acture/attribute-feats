@@ -1,0 +1,738 @@
+[
+  {
+    "internal": "ApexPredator",
+    "family": "Main",
+    "filename": "TitansApotheosis.png",
+    "nameEn": "Titan's Apotheosis",
+    "nameZh": "泰坦登阶",
+    "sha256": "c0a68ed07a2a504cdc6af38eac608811bc6c5a07bdb4f5de26d976c230d98633"
+  },
+  {
+    "internal": "EmbodiedGrace",
+    "family": "Main",
+    "filename": "QuicksilverIncarnate.png",
+    "nameEn": "Quicksilver Incarnate",
+    "nameZh": "水银具现",
+    "sha256": "a32a1d09deb495cef781a062a6deb00e645f148b8d783ff8a47fa80a64176988"
+  },
+  {
+    "internal": "LivingBulwark",
+    "family": "Main",
+    "filename": "AdamantineVessel.png",
+    "nameEn": "Adamantine Vessel",
+    "nameZh": "万劫金身",
+    "sha256": "7c58f5357ec35552d03fed29fe7695a693d0ab486f33310b7b4f80d2b255b9c7"
+  },
+  {
+    "internal": "ArchitectOfSelf",
+    "family": "Main",
+    "filename": "ArchitectOfSelf.png",
+    "nameEn": "Architect of Self",
+    "nameZh": "灵枢架构师",
+    "sha256": "6d4cf05e17c704f5124c0399c60e696a8d5919228085d51e3ef13d05198a2874"
+  },
+  {
+    "internal": "WellspringOfInsight",
+    "family": "Main",
+    "filename": "OcularOfTheCosmos.png",
+    "nameEn": "Ocular of the Cosmos",
+    "nameZh": "寰宇天心",
+    "sha256": "1c664eb46120e51782a4434f05a2cf442d120ff4f05dfaa4349f94ea39eb535a"
+  },
+  {
+    "internal": "CrownOfWill",
+    "family": "Main",
+    "filename": "SovereignOfWills.png",
+    "nameEn": "Sovereign of Wills",
+    "nameZh": "至高皇威",
+    "sha256": "53f374dce2c58c25caca0e85c5f4834925860bcb3e039a3d9e2a733f4a08bcb3"
+  },
+  {
+    "internal": "CrushingForm",
+    "family": "Weapon Insight",
+    "filename": "TitansMomentum.png",
+    "nameEn": "Titan's Momentum",
+    "nameZh": "巨灵摧破",
+    "sha256": "533b13889eb2500943281642ce8370d1edce90112f76fbd6341dec3a3d890e84"
+  },
+  {
+    "internal": "DuelistsEye",
+    "family": "Weapon Insight",
+    "filename": "AldoriFinesse.png",
+    "nameEn": "Aldori Finesse",
+    "nameZh": "阿尔多里绝诣",
+    "sha256": "95e03873b3839799abae7bc02ed7ca39b1503a2e6aae0c7ff1603d4758d4ba66"
+  },
+  {
+    "internal": "IronStance",
+    "family": "Weapon Insight",
+    "filename": "StoutGrounding.png",
+    "nameEn": "Stout Grounding",
+    "nameZh": "磐固千钧",
+    "sha256": "2aecc1d7af6bfec4b18851d94765f27aff9874d8370d213224b74c2c7dedea33"
+  },
+  {
+    "internal": "TacticalStrike",
+    "family": "Weapon Insight",
+    "filename": "GeometersEdge.png",
+    "nameEn": "Geometer's Edge",
+    "nameZh": "规矩之锋",
+    "sha256": "b29ed349fc9a45d62f75af1e9174bd259dc0df8afda44ac3afee7ff658faa387"
+  },
+  {
+    "internal": "PredictiveCut",
+    "family": "Weapon Insight",
+    "filename": "KarmicInterception.png",
+    "nameEn": "Karmic Interception",
+    "nameZh": "因果断隙",
+    "sha256": "3a02246d7d1e71e9c7814625874dbf53a0a93e3261547f1097e9cbfe15c9eaab"
+  },
+  {
+    "internal": "TheatricalCombat",
+    "family": "Weapon Insight",
+    "filename": "SwashbucklersFlourish.png",
+    "nameEn": "Swashbuckler's Flourish",
+    "nameZh": "游侠华彩",
+    "sha256": "0eec42f2dfd3d4e749a1f4bea1124f070e2391612214d8ba02fdf1f84bda20a3"
+  },
+  {
+    "internal": "InnerSentinel",
+    "family": "Extended",
+    "filename": "AsceticsWard.png",
+    "nameEn": "Ascetic's Ward",
+    "nameZh": "云水自真",
+    "sha256": "17e380fe745d3ee2edb7f8b18eb141a8ff39619407388d9070545d07689df972"
+  },
+  {
+    "internal": "CalculatedGrip",
+    "family": "Extended",
+    "filename": "AnatomicalLeverage.png",
+    "nameEn": "Anatomical Leverage",
+    "nameZh": "筋络推演",
+    "sha256": "b83797d83a815a598de07a305f865ba9bde0737f3bb33e0d593915ca1310c9e4"
+  },
+  {
+    "internal": "UnyieldingWill",
+    "family": "Extended",
+    "filename": "MonarchsStature.png",
+    "nameEn": "Monarch's Stature",
+    "nameZh": "帝胄岳立",
+    "sha256": "1ccf69e6646b611fc89a2ab4e8fc44dfc793127ba6aae8dd5e85c2a98dce014b"
+  },
+  {
+    "internal": "BrutalDefender",
+    "family": "Extended",
+    "filename": "TitansFooting.png",
+    "nameEn": "Titan's Footing",
+    "nameZh": "巨灵固步",
+    "sha256": "edbe18b9d7161169fb2b8d04cd3bf9a9dbbf18fdadd798290929affa1dc138eb"
+  },
+  {
+    "internal": "LightfootDefense",
+    "family": "Extended",
+    "filename": "ZephyrsGrace.png",
+    "nameEn": "Zephyr's Grace",
+    "nameZh": "穿风灵步",
+    "sha256": "9fd3951b854a183749e2dc2a7ef4c84b0d7b7165476a19492f8081ee374631e6"
+  },
+  {
+    "internal": "IronEndurance",
+    "family": "Extended",
+    "filename": "AdamantineMettle.png",
+    "nameEn": "Adamantine Mettle",
+    "nameZh": "生机洪炉",
+    "sha256": "36cc470ffe97c0171c1aa391157dcb581aa6f5017f59fc87ab550cfab46ea3c9"
+  },
+  {
+    "internal": "TitansStance",
+    "family": "Defensive",
+    "filename": "ColossusBastion.png",
+    "nameEn": "Colossus Bastion",
+    "nameZh": "巨灵重障",
+    "sha256": "49b568a4a73ee13c0f4c4c716d217fff682c8813009b5a129f87efa6e608ccd7"
+  },
+  {
+    "internal": "FlowingForm",
+    "family": "Defensive",
+    "filename": "WindDancersShroud.png",
+    "nameEn": "Wind-Dancer's Shroud",
+    "nameZh": "风舞虚影",
+    "sha256": "af746b7abeaec0b6943d1cade5c049f9f80860fd7b8e59ba5364998fd7565b7e"
+  },
+  {
+    "internal": "IronBulwark",
+    "family": "Defensive",
+    "filename": "InuredCarapace.png",
+    "nameEn": "Inured Carapace",
+    "nameZh": "百炼金身",
+    "sha256": "8e9ea14716fb9a674ca62080b262285225a5a64e653eda8a05693e88adf13dc0"
+  },
+  {
+    "internal": "CalculatedDefense",
+    "family": "Defensive",
+    "filename": "AnalyticalAegis.png",
+    "nameEn": "Analytical Aegis",
+    "nameZh": "算律之盾",
+    "sha256": "f90466c6a2153b0daa740dd7de8aa430b4949b1120059b94c040cbf2a5ea7bf9"
+  },
+  {
+    "internal": "StoicVigilance",
+    "family": "Defensive",
+    "filename": "ThirdEyeVigil.png",
+    "nameEn": "Third Eye Vigil",
+    "nameZh": "天目清照",
+    "sha256": "5c5753a09338443a773f00406106653de8e5417e1f617ac25d89fc52a41a193b"
+  },
+  {
+    "internal": "IndomitablePresence",
+    "family": "Defensive",
+    "filename": "MajestysReproach.png",
+    "nameEn": "Majesty's Reproach",
+    "nameZh": "凛然天威",
+    "sha256": "b8a44a4bc232bc9e0fcb71722ffbccca1ee3640904f37262cc23fe75d265f271"
+  },
+  {
+    "internal": "CrushingGrip",
+    "family": "Maneuver",
+    "filename": "GripoftheBehemoth.png",
+    "nameEn": "Grip of the Behemoth",
+    "nameZh": "比蒙扼击",
+    "sha256": "1d7d9d046161fe028ccb41bde1d84e5e63e758f140629bb0cc8f62bf4944f9eb"
+  },
+  {
+    "internal": "DeftHand",
+    "family": "Maneuver",
+    "filename": "FulcrumoftheViper.png",
+    "nameEn": "Fulcrum of the Viper",
+    "nameZh": "灵蛇巧掣",
+    "sha256": "3102957fc33fd5284d8e133fd8f7f8edfc2b4c3e35670d20b5e4f78d05a7d970"
+  },
+  {
+    "internal": "UnyieldingHold",
+    "family": "Maneuver",
+    "filename": "DeepRootClinch.png",
+    "nameEn": "Deep-Root Clinch",
+    "nameZh": "沉洋扼锁",
+    "sha256": "dbf24cbd44140306b8933f9a17eb06424f0c5404a58f5723715a145ae7e6dd47"
+  },
+  {
+    "internal": "TacticalBind",
+    "family": "Maneuver",
+    "filename": "AnatomicalPivot.png",
+    "nameEn": "Anatomical Pivot",
+    "nameZh": "机理断节",
+    "sha256": "07d9e8a0c9d7d3a6519a2a8f1c4191bb0c250edf92a78b42d8a11c87aac887ce"
+  },
+  {
+    "internal": "PredictiveLock",
+    "family": "Maneuver",
+    "filename": "CranesAnticipation.png",
+    "nameEn": "Crane's Anticipation",
+    "nameZh": "玄鹤听劲",
+    "sha256": "5741d9fd8d102aa32490709651bf282e979f0be7afaa648811d7437cc6af245e"
+  },
+  {
+    "internal": "DomineeringThrow",
+    "family": "Maneuver",
+    "filename": "AudaciousOverthrow.png",
+    "nameEn": "Audacious Overthrow",
+    "nameZh": "叱喝倾山",
+    "sha256": "8c95999c2a3322286d7954b1f1a58cf8bc09077deb0458e35fccaf57b83fe044"
+  },
+  {
+    "internal": "PracticedHand",
+    "family": "Skilled",
+    "filename": "GiantwrightsCraft.png",
+    "nameEn": "Giantwright's Craft",
+    "nameZh": "巨匠巧工",
+    "sha256": "64d9a69f3e93abd9ec5e170c4538e130e5802ce0bfabeaf619df6f615301624c"
+  },
+  {
+    "internal": "EffortlessSkill",
+    "family": "Skilled",
+    "filename": "ThiefKingsPanache.png",
+    "nameEn": "Thief-King's Panache",
+    "nameZh": "妙手绝尘",
+    "sha256": "62d8c71120ba64888679912d19a0fdaef059f9ec2a90b36a12c01f01d82e295f"
+  },
+  {
+    "internal": "TirelessPractice",
+    "family": "Skilled",
+    "filename": "AsceticDiligence.png",
+    "nameEn": "Ascetic Diligence",
+    "nameZh": "苦行研磨",
+    "sha256": "c65f2e7139bd7f3f965fb14fe1fe4ea39bd7931b4b7ad9436803dae52dbf1e63"
+  },
+  {
+    "internal": "PolymathsTouch",
+    "family": "Skilled",
+    "filename": "EncyclopedicSynthesis.png",
+    "nameEn": "Encyclopedic Synthesis",
+    "nameZh": "格物万象",
+    "sha256": "0b829407121375af3a3849d2b05dc08445e6a28ff22cc2bf86a1d9379a223c96"
+  },
+  {
+    "internal": "QuietMastery",
+    "family": "Skilled",
+    "filename": "WanderersLucidity.png",
+    "nameEn": "Wanderer's Lucidity",
+    "nameZh": "云水澄明",
+    "sha256": "5265b7c22258f0a5bf7cd1988757e05969d8357a63d9b6538f119371fbf86c00"
+  },
+  {
+    "internal": "InspiredVersatility",
+    "family": "Skilled",
+    "filename": "SilverTonguedVirtuoso.png",
+    "nameEn": "Silver-Tongued Virtuoso",
+    "nameZh": "锦绣天潢",
+    "sha256": "3b9dbc12499b6bb2afcd8c068b2fe1c094ad098bea3992e478d587d60b2c553f"
+  },
+  {
+    "internal": "SpellForgedWill",
+    "family": "Arcane",
+    "filename": "MageHammerInscription.png",
+    "nameEn": "Mage-Hammer Inscription",
+    "nameZh": "铁骨铸咒",
+    "sha256": "d4ae4f75f883e60d9c2820c6f3bb21e7cafee3b64e3579035901855554140f80"
+  },
+  {
+    "internal": "QuickcastReflex",
+    "family": "Arcane",
+    "filename": "SomaticVelocity.png",
+    "nameEn": "Somatic Velocity",
+    "nameZh": "疾影手印",
+    "sha256": "8b72e715aac1d4b9e9c419f1ed9aaa43dee2a3f4caa1384acbfe79667cc37157"
+  },
+  {
+    "internal": "SpellTemperedBody",
+    "family": "Arcane",
+    "filename": "CrucibleoftheConduit.png",
+    "nameEn": "Crucible of the Conduit",
+    "nameZh": "鼎炉承法",
+    "sha256": "60ada4edefaeb8176aff197db8f01b224677ec798cd2d7b56dfeb97804868a8f"
+  },
+  {
+    "internal": "ScholarOfTheWeave",
+    "family": "Arcane",
+    "filename": "ArchmagesCodex.png",
+    "nameEn": "Archmage's Codex",
+    "nameZh": "万法源流",
+    "sha256": "63c3ed689ef3e4459c1d30a1af6ba6aa287f1e6df1e0d6dc5895733f7fef928f"
+  },
+  {
+    "internal": "OraclesIntuition",
+    "family": "Arcane",
+    "filename": "GnosticChannel.png",
+    "nameEn": "Gnostic Channel",
+    "nameZh": "玄鉴通幽",
+    "sha256": "83e3b366b7e232bb25b34a6c7ba082bbd0181453236a5dbd7542e3d3c826cfac"
+  },
+  {
+    "internal": "SorcerousPresence",
+    "family": "Arcane",
+    "filename": "SovereignDecrees.png",
+    "nameEn": "Sovereign Decrees",
+    "nameZh": "天宪法旨",
+    "sha256": "019dcfd6e27e2bdbc696454a1bdcbabde4f10bf179d9f7f231915e8d892fd66e"
+  },
+  {
+    "internal": "BrutalStance",
+    "family": "Stance",
+    "filename": "BerserkersOverrun.png",
+    "nameEn": "Berserker's Overrun",
+    "nameZh": "破阵裂山势",
+    "sha256": "c970fcf0c3e6d015bb5279a002a4778da0bdfdfe757b5f110434d9378c533991"
+  },
+  {
+    "internal": "LiquidForm",
+    "family": "Stance",
+    "filename": "FlowingReed.png",
+    "nameEn": "Willow in the Gale",
+    "nameZh": "惊鸿穿林势",
+    "sha256": "e6207c18a20697b2b20fdbbd981d10c78dfcbe2f25760d7d77cb947862a740e5"
+  },
+  {
+    "internal": "EndlessVigor",
+    "family": "Stance",
+    "filename": "TitansRespiration.png",
+    "nameEn": "Mountain's Deep Roots",
+    "nameZh": "不动磐峰势",
+    "sha256": "4dd80d6a4400e8c1091a3ccc14535123463a6c8e65b0fe4170ae0ddd7a94db5b"
+  },
+  {
+    "internal": "TacticalMind",
+    "family": "Stance",
+    "filename": "GrandmastersGambit.png",
+    "nameEn": "Grandmaster's Gambit",
+    "nameZh": "弈者静待势",
+    "sha256": "6a5e99ad2e618c8c604e1483f36191399a4b1442c7bb2b212691a77aa73e1eb0"
+  },
+  {
+    "internal": "CenteredMind",
+    "family": "Stance",
+    "filename": "MirrorOfStillWaters.png",
+    "nameEn": "Mirror of Still Waters",
+    "nameZh": "明镜止水势",
+    "sha256": "a1054a073b9808f46de9d3951d179a20016a9e1d7f919ee49f052b298a6b3a15"
+  },
+  {
+    "internal": "CommandingPresence",
+    "family": "Stance",
+    "filename": "VanguardsBanner.png",
+    "nameEn": "Vanguard's Banner",
+    "nameZh": "金戈铁旌势",
+    "sha256": "034eaec2880c9686ac11e40955e2c3101944725fd31f11dfa38e408a7e821b73"
+  },
+  {
+    "internal": "EndlessResolve",
+    "family": "Conditional",
+    "filename": "DefianceAtThePrecipice.png",
+    "nameEn": "Defiance at the Precipice",
+    "nameZh": "绝境砥柱",
+    "sha256": "c0975c96305ab87ed0e6ed13b2b62b06f956a0280b4ff1e69ab266349ed8ee74"
+  },
+  {
+    "internal": "FirstBlood",
+    "family": "Conditional",
+    "filename": "AmbushoftheViper.png",
+    "nameEn": "Ambush of the Viper",
+    "nameZh": "封喉首刃",
+    "sha256": "f253929df91a364c6770999c0dddd6c4e0d26bcbf57f67ed422db8cf3423f5f5"
+  },
+  {
+    "internal": "Vendetta",
+    "family": "Conditional",
+    "filename": "OathofRetribution.png",
+    "nameEn": "Oath of Retribution",
+    "nameZh": "复仇血誓",
+    "sha256": "ea834b7a8fc8810b3f371ba59c13a86aa98f063b1065292234d0def8a9e8c3ed"
+  },
+  {
+    "internal": "PatientHunter",
+    "family": "Conditional",
+    "filename": "CranesSeverance.png",
+    "nameEn": "Crane's Severance",
+    "nameZh": "蓄势孤峰",
+    "sha256": "d0abba5f6e7a6daa52ba0b359453fd22d6befc282336daf3274a8e7afd524acd"
+  },
+  {
+    "internal": "BerserkersLastStand",
+    "family": "Conditional",
+    "filename": "GorumsLastStand.png",
+    "nameEn": "Gorum's Last Stand",
+    "nameZh": "狂神绝唱",
+    "sha256": "1b9f287daf5aff1109784895e48e9e63bf877ac362fa5495d4671a91e59f9688"
+  },
+  {
+    "internal": "TacticalReading",
+    "family": "Conditional",
+    "filename": "CadenceDecoded.png",
+    "nameEn": "Cadence Decoded",
+    "nameZh": "阅破机宜",
+    "sha256": "9fd9318bc36eba3c6c099b14fb3af862ae25b3ae0b2dd1f75b296d4ee3c495fc"
+  },
+  {
+    "internal": "ArcaneAegis",
+    "family": "Derived",
+    "filename": "ArcaneAegis.png",
+    "nameEn": "Arcane Aegis",
+    "nameZh": "魔能天衣",
+    "sha256": "188794a6403ed6915043bbb12c9fd903712408e66c77a1de48404bc21ea12fa9"
+  },
+  {
+    "internal": "MartialInsight",
+    "family": "Derived",
+    "filename": "WarHardenedReflexes.png",
+    "nameEn": "War-Hardened Reflexes",
+    "nameZh": "百战身魄",
+    "sha256": "be3782e55c1e2b32193be5267cbc43a0fbc8b0cef6a5904d750e5e9684b706d6"
+  },
+  {
+    "internal": "SkilledDefender",
+    "family": "Derived",
+    "filename": "ScholarsPositioning.png",
+    "nameEn": "Scholar's Positioning",
+    "nameZh": "通识御敌",
+    "sha256": "b93da308f8e9b397f55c35eb867020dfd601b6423917619d12f9cd726dab9870"
+  },
+  {
+    "internal": "MysticVitality",
+    "family": "Derived",
+    "filename": "LeyInfusedVitality.png",
+    "nameEn": "Ley-Infused Vitality",
+    "nameZh": "灵脉淬体",
+    "sha256": "6feea6fb60554a12ab3208026b991cc19005a3eb5e467e57d82a9487d070d67a"
+  },
+  {
+    "internal": "SoulBulwark",
+    "family": "Derived",
+    "filename": "DawnoftheSoul.png",
+    "nameEn": "Dawn of the Soul",
+    "nameZh": "法相初明",
+    "sha256": "0b1f57e42b8163746617c9caa9cce58e64ae3a7787bdff20504bfca7847a117e"
+  },
+  {
+    "internal": "SwordSaint",
+    "family": "Derived",
+    "filename": "BladeoftheSpellSaint.png",
+    "nameEn": "Blade of the Spell-Saint",
+    "nameZh": "剑圣咒痕",
+    "sha256": "5149ce9b97f7224026750bfaf20ec9d13475c049c8e39a924adfacd6ca74479d"
+  },
+  {
+    "internal": "BloodlineOfBeasts",
+    "family": "Summon",
+    "filename": "BehemothsHeritage.png",
+    "nameEn": "Behemoth's Heritage",
+    "nameZh": "比蒙遗脉",
+    "sha256": "f57524fa7a0ec3ceb8f4655d3d3d5e8a792fddc61d1c7036ed7161297afe0fe0"
+  },
+  {
+    "internal": "QuickenedPact",
+    "family": "Summon",
+    "filename": "ZephyrsCovenant.png",
+    "nameEn": "Zephyr's Covenant",
+    "nameZh": "风灵疾契",
+    "sha256": "6c64adbcec6dfa3880624520604431b90df1f58b1893bc2e72b3dcfa3dd74efa"
+  },
+  {
+    "internal": "VitalPact",
+    "family": "Summon",
+    "filename": "TitansLifespring.png",
+    "nameEn": "Titan's Lifespring",
+    "nameZh": "巨怪生机",
+    "sha256": "25fbe87dc6c4a29f54a618c834eef37997a678a4f474fdb6f867fa605db181b3"
+  },
+  {
+    "internal": "TacticalBinding",
+    "family": "Summon",
+    "filename": "AegisoftheSchema.png",
+    "nameEn": "Aegis of the Schema",
+    "nameZh": "天元魔阵",
+    "sha256": "d6c2c6155e680cb6d8227a5bc67cef503e01e7cac1682cd746fcf00e7fd08973"
+  },
+  {
+    "internal": "InsightfulSummons",
+    "family": "Summon",
+    "filename": "EmpathicCommunion.png",
+    "nameEn": "Empathic Communion",
+    "nameZh": "神契灵犀",
+    "sha256": "25f0b56a92aee4048b0f6c1f5b9075df15a98f9dc0083eb54f73617374e6cd29"
+  },
+  {
+    "internal": "MagneticCalling",
+    "family": "Summon",
+    "filename": "DominatorsCalling.png",
+    "nameEn": "Dominator's Calling",
+    "nameZh": "御统王令",
+    "sha256": "4aa3b1177ba21c90e0172da4e147f3d64e4010464e40a1f4d3397428af4ee64b"
+  },
+  {
+    "internal": "BodyOfMyPact",
+    "family": "Sacrifice",
+    "filename": "MartyrsTransference.png",
+    "nameEn": "Martyr's Transference",
+    "nameZh": "形神替生",
+    "sha256": "f29ef91e9a768c9f0ff1035b0c4db230d2edb049c259fae739c3460ffd1f85af"
+  },
+  {
+    "internal": "DoubledBond",
+    "family": "Sacrifice",
+    "filename": "EldritchCrucible.png",
+    "nameEn": "Eldritch Crucible",
+    "nameZh": "双生法炼",
+    "sha256": "90d821719f17871ef44b20458b917e9d26b46a9170b5fee364dd34d1692c3d49"
+  },
+  {
+    "internal": "EmpoweredSacrifice",
+    "family": "Sacrifice",
+    "filename": "TributeofIronDominion.png",
+    "nameEn": "Tribute of Iron Dominion",
+    "nameZh": "夺冕化蛮",
+    "sha256": "47bd24e58501c98385d5ce20ffd8fd8db03bdbe681c3cd9674bfcc291573f3f0"
+  },
+  {
+    "internal": "AggressorsEdge",
+    "family": "Distance",
+    "filename": "PointBlankRuin.png",
+    "nameEn": "Point-Blank Ruin",
+    "nameZh": "咫尺绝杀",
+    "sha256": "7b913d1c418b0917dbf9441eb7da6849ec17365da7a00bf148a6d4516382795d"
+  },
+  {
+    "internal": "MarksmansFocus",
+    "family": "Distance",
+    "filename": "HorizonsDeadeye.png",
+    "nameEn": "Horizon's Deadeye",
+    "nameZh": "苍穹神击",
+    "sha256": "455a141eca349d690f422d7dfa4c4ed8fe43c9be7d94d43caf4d77046250a985"
+  },
+  {
+    "internal": "OptimalRange",
+    "family": "Distance",
+    "filename": "HarmonicCleave.png",
+    "nameEn": "Harmonic Cleave",
+    "nameZh": "流光截角",
+    "sha256": "05cd7c58007b332744c5218ca1c2a011d27a80f8f126e50cd6be8863b718d77a"
+  },
+  {
+    "internal": "PureWarder",
+    "family": "School",
+    "filename": "AegisofthePureWarder.png",
+    "nameEn": "Aegis of the Pure Warder",
+    "nameZh": "绝界镇魔使",
+    "sha256": "c04b2701289449354a85b16ce2f9eb84801ec39df59e6364ed5442977236b19f"
+  },
+  {
+    "internal": "MasterCaller",
+    "family": "School",
+    "filename": "SovereignGatekeeper.png",
+    "nameEn": "Sovereign Gatekeeper",
+    "nameZh": "统界辟门者",
+    "sha256": "59b728d15668ae184a57e0baccbc11536ea4cc24b7997216d572ab019b807db2"
+  },
+  {
+    "internal": "SeersEdge",
+    "family": "School",
+    "filename": "EyeoftheChronomancer.png",
+    "nameEn": "Eye of the Chronomancer",
+    "nameZh": "溯时先知",
+    "sha256": "895619da3f6b6e99bccdcb3eb5ed7e99e4880b9bc67d70bddfd541086aa23fba"
+  },
+  {
+    "internal": "HeartsTyrant",
+    "family": "School",
+    "filename": "SovereignoftheHeart.png",
+    "nameEn": "Sovereign of the Heart",
+    "nameZh": "倾心国主",
+    "sha256": "77bdcd0b713cb53cd131b33417ba274a2bedfde13bc2667b24981b556fdc9b94"
+  },
+  {
+    "internal": "Spellforge",
+    "family": "School",
+    "filename": "PyreoftheArchitect.png",
+    "nameEn": "Pyre of the Architect",
+    "nameZh": "灾变筑城师",
+    "sha256": "b91ae5693d4725d7341eed463bb2a846251d0097750390ee8b19281b32b7b01b"
+  },
+  {
+    "internal": "Veilweaver",
+    "family": "School",
+    "filename": "PhantasmagoriaMaestro.png",
+    "nameEn": "Phantasmagoria Maestro",
+    "nameZh": "织影幻圣",
+    "sha256": "b1d89ee62bb58241ac679383a237770ac677fa024ee15ebe7b7f50b5d012fca3"
+  },
+  {
+    "internal": "DeathSpeaker",
+    "family": "School",
+    "filename": "HarvesteroftheBoneyard.png",
+    "nameEn": "Harvester of the Boneyard",
+    "nameZh": "冥河渡魂人",
+    "sha256": "b05261052c6e824dc9674d2089e84b99958009e5508192ef7566abe79fadbd06"
+  },
+  {
+    "internal": "ShapeShifter",
+    "family": "School",
+    "filename": "SculptorofPrimeMatter.png",
+    "nameEn": "Sculptor of Prime Matter",
+    "nameZh": "塑质造化使",
+    "sha256": "9cf524b5a356a213b6c162473bab8a163e6cf9bccf9164210d0c571863ed9a79"
+  },
+  {
+    "internal": "InnerFlame",
+    "family": "Descriptor",
+    "filename": "PyreofthePhoenix.png",
+    "nameEn": "Pyre of the Phoenix",
+    "nameZh": "炽皇凤涅",
+    "sha256": "c32d5dce284d7ae9ff63c41ac3ff693e8ce712ec2288670fc989408a3ca63380"
+  },
+  {
+    "internal": "FrozenHeart",
+    "family": "Descriptor",
+    "filename": "StillnessoftheGlacialVoid.png",
+    "nameEn": "Stillness of the Glacial Void",
+    "nameZh": "极渊玄冰",
+    "sha256": "8e504b9b6603e8ba4e969d426d322d88e4c386f7732f26f326e7c02dcc3cd5e6"
+  },
+  {
+    "internal": "StormChannel",
+    "family": "Descriptor",
+    "filename": "TempestDancer.png",
+    "nameEn": "Tempest-Dancer",
+    "nameZh": "御雷疾影",
+    "sha256": "5c58d00764d4ef1d531a383e04e4c9cbd2e26b1f7ff53ad863f939217ef4a77e"
+  },
+  {
+    "internal": "EtchingMind",
+    "family": "Descriptor",
+    "filename": "VitriolicEquation.png",
+    "nameEn": "Vitriolic Equation",
+    "nameZh": "腐解算律",
+    "sha256": "a0cafc97d0a832e2734ce81e5a7848a58c6e33ffda02fd26c20fada2761b2807"
+  },
+  {
+    "internal": "ResonantVoice",
+    "family": "Descriptor",
+    "filename": "HeraldoftheShatteredSky.png",
+    "nameEn": "Herald of the Shattered Sky",
+    "nameZh": "破霄神音",
+    "sha256": "d5152cbba82db6e78efa92f3e728e08951ab684441fcdb445e541cfa113e8dc5"
+  },
+  {
+    "internal": "EthericMind",
+    "family": "Descriptor",
+    "filename": "AxiomofUnseenForce.png",
+    "nameEn": "Axiom of Unseen Force",
+    "nameZh": "虚空定则",
+    "sha256": "886587d1298689fc164838204ae721afbbfba40d3092ccfac405f7ea0d713780"
+  },
+  {
+    "internal": "RadiantSoul",
+    "family": "Descriptor",
+    "filename": "FountainofSolarDawn.png",
+    "nameEn": "Fountain of Solar Dawn",
+    "nameZh": "金阳圣晖",
+    "sha256": "75fbd10159f00301f135c93489f633c79de9f337e3b5c903ce5e1bd89a98ec47"
+  },
+  {
+    "internal": "HollowHeart",
+    "family": "Descriptor",
+    "filename": "VigiloftheGloom.png",
+    "nameEn": "Vigil of the Gloom",
+    "nameZh": "死寂枯荣",
+    "sha256": "38d680687bccee44ea16899918821914e5cca2d3701424c4545833c766a5751d"
+  },
+  {
+    "internal": "SubtleTyrant",
+    "family": "Descriptor",
+    "filename": "PuppeteeroftheMind.png",
+    "nameEn": "Puppeteer of the Mind",
+    "nameZh": "惑魂主宰",
+    "sha256": "9cbd9e6410c14841a19ee752b5270680bf7aa1c4ebd236e487cc4db10986f01f"
+  },
+  {
+    "internal": "SpikedDefense",
+    "family": "Reactive Armor",
+    "filename": "BarbedCarapace.png",
+    "nameEn": "Barbed Carapace",
+    "nameZh": "逆鳞铁刺",
+    "sha256": "f961daa2e61de8dd5a682c9223e610126d6601b6f23ccc61db2a0bc3084c3550"
+  },
+  {
+    "internal": "BulwarkOfSteel",
+    "family": "Reactive Armor",
+    "filename": "CitadelofSteel.png",
+    "nameEn": "Citadel of Steel",
+    "nameZh": "铸铁城阙",
+    "sha256": "efdc178e0b910ac3ecfbf2b121e156075331df8e56a0f42f4d9966a7611007a3"
+  },
+  {
+    "internal": "PolearmMaster",
+    "family": "Reach",
+    "filename": "LongReachGambit.png",
+    "nameEn": "Long-Reach Gambit",
+    "nameZh": "长锋险势",
+    "sha256": "deb72d58290d8ab6faa6c0a96b7275813058355e76312a669e3500fabd56efe1"
+  }
+]

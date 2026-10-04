@@ -31,6 +31,10 @@ jobs:
         run: dotnet run --project tests/WeaponDamage.Tests --configuration Release
       - name: Check feat registration and menus
         run: dotnet run --project tests/Initialization.Tests --configuration Release
+      - name: Check localization registration, refresh and fallbacks
+        run: dotnet run --project tests/FeatText --configuration Release
+      - name: Check bilingual catalog and icon assets
+        run: python scripts/validate_assets.py
       - name: Upload contract report
         if: always()
         uses: actions/upload-artifact@v7

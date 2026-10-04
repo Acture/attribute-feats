@@ -16,14 +16,18 @@ namespace AttributeFeats.New_Feats
             Initialized = true;
 
             FeatSelection.Root.NewFeat("PolearmMaster", Guids.PolearmMaster.Feature.PolearmMaster)
-                .SetDisplayName(Common.L("PolearmMaster.Name", "Polearm Master"))
-                .SetDescription(Common.L("PolearmMaster.Desc", BuildDescription(), tagEncyclopediaEntries: true))
+                .SetDisplayName(Common.L("PolearmMaster.Name", Common.Text("PolearmMaster.Name", "Long-Reach Gambit"), Common.Text("PolearmMaster.Name", "长锋险势", true)))
+                .SetDescription(Common.L("PolearmMaster.Desc", BuildDescriptionEn(), BuildDescriptionZh(), tagEncyclopediaEntries: true))
+                .SetIconIfPresent("PolearmMaster")
                 .AddReachMultiplicator(Desc, multiplicator: 2)
                 .AddStatBonus(descriptor: Desc, stat: StatType.AdditionalDamage, value: -4)
                 .Configure();
         }
 
-        private static string BuildDescription()
-            => "<i>Polearm Master · Reach Tradeoff</i>\n<i>Length Over Weight.</i> You sacrifice striking force to command more space with the weapon's full extension.\n\n<b>Effect:</b> Doubles your reach. You take a -4 untyped penalty to weapon damage.\n\n<b>Restrictions:</b> Polearm Master is a single feat with no intra-family variants.";
+        private static string BuildDescriptionEn()
+            => "<i>Polearm Master · Reach Tradeoff</i>\n" + Common.Text("PolearmMaster.Lore", "You commit to a wider arc of engagement, accepting a less forceful blow as the price of distance.") + "\n\n<b>Effect:</b> Doubles your reach. You take a -4 untyped penalty to weapon damage.\n\n<b>Restrictions:</b> Works with any weapon category; no polearm requirement is implemented. This is an independent feat.";
+
+        private static string BuildDescriptionZh()
+            => "<i>武器特化 · 触及专精</i>\n" + Common.Text("PolearmMaster.Lore", "你将战线推向更宽的弧面，并接受出手力道减弱作为距离的代价。", true) + "\n\n<b>效果：</b>使你的触及范围翻倍。你的武器伤害检定承受-4无类型减值。\n\n<b>限制：</b>适用于所有武器类别；实现没有长柄武器限制。此专长独立生效。";
     }
 }

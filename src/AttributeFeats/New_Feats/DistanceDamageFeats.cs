@@ -33,36 +33,45 @@ namespace AttributeFeats.New_Feats
             CreateFeat(
                 internalName: "AggressorsEdge",
                 featureGuid: Guids.DistanceDamage.AggressorsEdge,
-                displayName: "Aggressor's Edge",
-                description: BuildDescription(
-                    rangeLabel: "Close Range",
-                    loreTitle: "Crowd the Guard.",
-                    loreBody: "You hit hardest once you step inside hesitation and force the fight into immediate reach.",
-                    effectText: "When your weapon attack target is within 10 feet, that attack gains a +4 untyped damage bonus."),
+                nameEn: Common.Text("DistanceDamage_AggressorsEdge.Name", "Point-Blank Ruin"),
+                nameZh: Common.Text("DistanceDamage_AggressorsEdge.Name", "咫尺绝杀", true),
+                desc: BuildDescription(
+                    rangeLabelEn: "Close Range",
+                    rangeLabelZh: "近距爆发",
+                    loreEn: Common.Text("DistanceDamage_AggressorsEdge.Lore", "You train to deliver a committed blow in the cramped space inside an opponent's guard."),
+                    loreZh: Common.Text("DistanceDamage_AggressorsEdge.Lore", "你磨炼在逼近敌人守势的狭窄空间内全力出手的技巧。", true),
+                    effectEn: "When your weapon attack target is within 10 feet, that attack gains a +4 untyped damage bonus.",
+                    effectZh: "当你的武器攻击目标在10英尺以内时，该次攻击获得+4无类型伤害加值。"),
                 distanceConditions: ConditionsBuilder.New()
                     .DistanceToTarget(AggressorsEdgeMaxDistance, negate: true));
 
             CreateFeat(
                 internalName: "MarksmansFocus",
                 featureGuid: Guids.DistanceDamage.MarksmansFocus,
-                displayName: "Marksman's Focus",
-                description: BuildDescription(
-                    rangeLabel: "Long Range",
-                    loreTitle: "Set the Line.",
-                    loreBody: "You settle into the shot as the space opens, turning measured distance into cleaner impact.",
-                    effectText: "When your weapon attack target is 30 feet or farther away, that attack gains a +4 untyped damage bonus."),
+                nameEn: Common.Text("DistanceDamage_MarksmansFocus.Name", "Horizon's Deadeye"),
+                nameZh: Common.Text("DistanceDamage_MarksmansFocus.Name", "苍穹神击", true),
+                desc: BuildDescription(
+                    rangeLabelEn: "Long Range",
+                    rangeLabelZh: "远距绝杀",
+                    loreEn: Common.Text("DistanceDamage_MarksmansFocus.Lore", "Distance gives you room to read a target's line and settle the weapon before release."),
+                    loreZh: Common.Text("DistanceDamage_MarksmansFocus.Lore", "距离为你留出判断目标轨迹的余地，也让兵刃在出手前更加稳定。", true),
+                    effectEn: "When your weapon attack target is farther than 29 feet away, that attack gains a +4 untyped damage bonus.",
+                    effectZh: "当你的武器攻击目标超过29英尺时，该次攻击获得+4无类型伤害加值。"),
                 distanceConditions: ConditionsBuilder.New()
                     .DistanceToTarget(MarksmansFocusMinDistanceExclusive));
 
             CreateFeat(
                 internalName: "OptimalRange",
                 featureGuid: Guids.DistanceDamage.OptimalRange,
-                displayName: "Optimal Range",
-                description: BuildDescription(
-                    rangeLabel: "Mid Range",
-                    loreTitle: "Right Where It Matters.",
-                    loreBody: "You know the band of distance where timing, angle, and pressure align into the cleanest hit.",
-                    effectText: "When your weapon attack target is between 15 and 25 feet away, that attack gains a +4 untyped damage bonus."),
+                nameEn: Common.Text("DistanceDamage_OptimalRange.Name", "Harmonic Cleave"),
+                nameZh: Common.Text("DistanceDamage_OptimalRange.Name", "流光截角", true),
+                desc: BuildDescription(
+                    rangeLabelEn: "Mid Range",
+                    rangeLabelZh: "中距定势",
+                    loreEn: Common.Text("DistanceDamage_OptimalRange.Lore", "You study the middle ground of an engagement, where spacing lets a weapon do its best work."),
+                    loreZh: Common.Text("DistanceDamage_OptimalRange.Lore", "你研究交锋的中间距离，让恰当间隔帮助兵刃发挥所长。", true),
+                    effectEn: "When your weapon attack target is farther than 14 feet but no farther than 25 feet away, that attack gains a +4 untyped damage bonus.",
+                    effectZh: "当你的武器攻击目标超过14英尺且不超过25英尺时，该次攻击获得+4无类型伤害加值。"),
                 distanceConditions: ConditionsBuilder.New()
                     .DistanceToTarget(OptimalRangeMinDistanceExclusive)
                     .DistanceToTarget(OptimalRangeMaxDistance, negate: true));
@@ -71,8 +80,12 @@ namespace AttributeFeats.New_Feats
         private static void ConfigureDamageBuff()
         {
             BuffConfigurator.New("DistanceDamageFlatBonusBuff", Guids.DistanceDamage.Buff.FlatBonus)
-                .SetDisplayName(Common.L("DistanceDamage.Buff.Name", "Distance Damage"))
-                .SetDescription(Common.L("DistanceDamage.Buff.Desc", "Distance Damage is active, granting a +4 untyped bonus to damage for the current weapon attack."))
+                .SetDisplayName(Common.L("DistanceDamage.Buff.Name", "Distance Damage", "距离伤害"))
+                .SetDescription(Common.L(
+                    "DistanceDamage.Buff.Desc",
+                    "Distance Damage is active, granting a +4 untyped bonus to damage for the current weapon attack.",
+                    "距离伤害已激活，为当前武器攻击提供+4无类型伤害加值。"))
+                .SetIconIfPresent("AggressorsEdge")
                 .SetStacking(StackingType.Replace)
                 .AddContextStatBonus(StatType.AdditionalDamage, SimpleValue(4), descriptor: Desc)
                 .Configure();
@@ -81,8 +94,9 @@ namespace AttributeFeats.New_Feats
         private static BlueprintFeature CreateFeat(
             string internalName,
             string featureGuid,
-            string displayName,
-            string description,
+            string nameEn,
+            string nameZh,
+            (string en, string zh) desc,
             ConditionsBuilder distanceConditions)
         {
             var applyBuff = ActionsBuilder.New()
@@ -94,8 +108,9 @@ namespace AttributeFeats.New_Feats
                     ifFalse: ActionsBuilder.New().Build());
 
             return FeatSelection.DistanceDamage.NewFeat(internalName, featureGuid)
-                .SetDisplayName(Common.L($"DistanceDamage_{internalName}.Name", displayName))
-                .SetDescription(Common.L($"DistanceDamage_{internalName}.Desc", description, tagEncyclopediaEntries: true))
+                .SetDisplayName(Common.L($"DistanceDamage_{internalName}.Name", nameEn, nameZh))
+                .SetDescription(Common.L($"DistanceDamage_{internalName}.Desc", desc.en, desc.zh, tagEncyclopediaEntries: true))
+                .SetIconIfPresent(internalName)
                 .AddInitiatorAttackWithWeaponTrigger(action: applyBuff, triggerBeforeAttack: true)
                 .AddInitiatorAttackWithWeaponTrigger(
                     action: ActionsBuilder.New().RemoveBuff(Guids.DistanceDamage.Buff.FlatBonus, toCaster: false),
@@ -106,7 +121,17 @@ namespace AttributeFeats.New_Feats
         private static ContextValue SimpleValue(int value)
             => new() { ValueType = ContextValueType.Simple, Value = value };
 
-        private static string BuildDescription(string rangeLabel, string loreTitle, string loreBody, string effectText)
-            => $"<i>Distance Damage · {rangeLabel}</i>\n<i>{loreTitle}</i> {loreBody}\n\n<b>Effect:</b> {effectText}\n\n<b>Restrictions:</b> Distance Damage feats are independent and do not apply any intra-family mutex.";
+        private static (string en, string zh) BuildDescription(
+            string rangeLabelEn,
+            string rangeLabelZh,
+            string loreEn,
+            string loreZh,
+            string effectEn,
+            string effectZh)
+        {
+            var en = $"<i>Distance Damage · {rangeLabelEn}</i>\n{loreEn}\n\n<b>Effect:</b> {effectEn}\n\n<b>Restrictions:</b> Distance Damage feats are independent and do not apply any intra-family mutex.";
+            var zh = $"<i>距离特化 · {rangeLabelZh}</i>\n{loreZh}\n\n<b>效果：</b>{effectZh}\n\n<b>限制：</b>距离伤害专长各自独立生效，无同类互斥限制。";
+            return (en, zh);
+        }
     }
 }

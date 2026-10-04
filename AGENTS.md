@@ -13,6 +13,9 @@
 - Build for verification with `dotnet build AttributeFeats.slnx -p:DeployMod=false`
   to avoid copying files into the installed game. Repository contracts run with
   `pwsh -NoProfile -File scripts/Test-RepositoryContracts.ps1`.
+- Build a release ZIP without deploying via `dotnet build AttributeFeats.slnx
+  -c Release -p:DeployToGame=false`. Follow [doc/validation.md](doc/validation.md)
+  for calculation, initialization, localization, asset and package checks.
 
 ## Documentation
 

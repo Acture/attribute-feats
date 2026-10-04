@@ -11,6 +11,9 @@ versioned with the mod's code and is available without access to internal notes.
 - [Installation](../README.md#installation-unity-mod-manager)
 - [Save compatibility](../README.md#save-compatibility)
 - [Building from source](../README.md#building-from-source)
+- [Validation commands and limits](validation.md)
+- [English/Chinese feat catalog](feat-catalog.md)
+- [Icon contact sheet](feat-icons.png)
 - [Changelog](../CHANGELOG.md)
 
 These links retain the existing public guides as the source of truth. Add longer

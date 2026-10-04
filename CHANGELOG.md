@@ -1,18 +1,23 @@
 # Changelog
 
-## Unreleased
+## 0.1.2 — 2026-10-05
 
 ### Added
-- Six standalone Weapon Damage feats: select an attribute and a proficient weapon category, without taking a Main feat or enabling Power Mode.
-- Weapon Damage Mode setting: **Replace** (default) uses the chosen attribute when better, preserving native weapon damage multipliers; **Add** grants the positive chosen modifier once in addition to normal damage. Applies only to weapons already using an attribute for damage. Switching modes applies on the next damage calculation, including already learned feats, without restarting or respeccing.
-- Weapon Damage family menu, with repeat selection for different weapon categories and the existing optional intra-family mutex. The roster now has 98 feats across 17 family menus, plus Polearm Master directly in the root.
+- Six standalone Weapon Damage feats for Strength, Dexterity, Constitution, Intelligence, Wisdom and Charisma. Choose a proficient weapon category, with no Main feat or Power Mode requirement.
+- Live Weapon Damage setting: Replace uses the chosen attribute when it improves damage and preserves native damage multipliers; Add grants the positive modifier once. Weapons must already use an attribute for damage. Repeat selections can cover different weapon categories.
+- English and Simplified Chinese names and descriptions for all 18 selection menus and the six new Weapon Damage feats.
+- 92 individual icons for the existing feats, with matching buff and stance artwork.
 
 ### Changed
-- Organized the existing feats as **Attribute Feats → family → individual feat**, with 16 family menus containing 2–9 choices each. Polearm Master sits directly inside Attribute Feats.
-- Each family menu allows one feat per choice and remains available for later eligible choices. Existing feat GUIDs, effects, prerequisites, and mutual-exclusion rules are unchanged.
+- Grouped 98 feats under Attribute Feats, with 17 family menus and Long-Reach Gambit directly in the root. Each choice grants one feat; menus can be revisited subject to normal prerequisites and optional family mutex.
+- Refined the original 92 English/Chinese feat names and lore. Clarified scaling, settings gates, minimum modifiers, trigger timing, distance thresholds and spell-tag penalties in their descriptions.
+- Preserved published blueprint IDs, existing mechanics and saved settings. Embedded 244 bilingual text entries with English and compiled-text fallbacks; language changes refresh registered strings.
+- Moved the project to `src/AttributeFeats`, public documentation to `doc`, and private notes to an optional `notes` submodule. Outputs are under ignored `artifacts`.
+- Added `-p:DeployToGame=false` for release packaging without copying files into the game.
 
 ### Fixed
-- A failed feat-family registration or family-menu configuration no longer skips unrelated families or the root-menu publication attempt. Menu entries from a failed registration batch are discarded so partially configured feats are not offered. Logs identify the failed step and distinguish partial initialization from success. Partial registrations are not replayed, avoiding duplicate blueprints.
+- A failed feat registration or menu no longer prevents unrelated families or the root menu from being configured. Partial failed batches are not offered or replayed.
+- Added Windows/Linux checks for identifiers, metadata, damage calculations, initialization, localization and packaged assets. Actual combat effects and in-game UI still require game validation.
 
 ## 0.1.1 — Mutex Relaxation + 17 New Feats
 

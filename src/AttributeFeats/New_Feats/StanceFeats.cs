@@ -38,12 +38,17 @@ namespace AttributeFeats.New_Feats
                     buffGuid: Guids.Stance.Buff.Str,
                     activatableGuid: Guids.Stance.Activatable.Str,
                     keyPrefix: "Stance_Str",
-                    displayName: "Brutal Stance",
+                    displayNameEn: Common.Text("Stance_Str.Name", "Berserker's Overrun"),
+                    displayNameZh: Common.Text("Stance_Str.Name", "破阵裂山势", true),
                     description: BuildDescription(
                         "Strength",
-                        "Unleashed.",
-                        "You drop all guard and channel raw might into every swing, turning physical dominance into a brutal commitment that leaves no strength for defense.",
-                        "While active, adds your Strength modifier (untyped) to attack rolls and damage. You suffer a penalty equal to your Strength modifier to AC."),
+                        "力量",
+                        Common.Text("Stance_Str.LoreTitle", "Gorum's Reckless Abandon."),
+                        Common.Text("Stance_Str.Lore", "You commit to the next blow with a battle zeal reminiscent of Gorum, leaving less attention for your guard."),
+                        Common.Text("Stance_Str.LoreTitle", "狂神破阵。", true),
+                        Common.Text("Stance_Str.Lore", "你以令人想起戈鲁姆的战意全力挥击，也因此分出更少心力守护自身。", true),
+                        "While active, adds your Strength modifier (minimum 0, untyped) to attack rolls and damage. You suffer a penalty equal to your Strength modifier (minimum 0) to AC.",
+                        "激活时，将你的力量调整值（最低0，无类型加值）附加至攻击检定与伤害检定。你的防御等级（AC）承受等同于力量调整值（最低0）的减值。"),
                     configureBuff: buff => buff
                         .AddContextStatBonus(StatType.AdditionalAttackBonus, Common.Rank(), descriptor: Desc)
                         .AddContextStatBonus(StatType.AdditionalDamage, Common.Rank(), descriptor: Desc)
@@ -55,12 +60,17 @@ namespace AttributeFeats.New_Feats
                     buffGuid: Guids.Stance.Buff.Dex,
                     activatableGuid: Guids.Stance.Activatable.Dex,
                     keyPrefix: "Stance_Dex",
-                    displayName: "Liquid Form",
+                    displayNameEn: Common.Text("Stance_Dex.Name", "Willow in the Gale"),
+                    displayNameZh: Common.Text("Stance_Dex.Name", "惊鸿穿林势", true),
                     description: BuildDescription(
                         "Dexterity",
-                        "Flow Without Friction.",
-                        "Grace and fluidity carry you through the fight, every motion precise enough to slip between blows before danger ever fully arrives.",
-                        "While active, adds your Dexterity modifier (untyped) to AC and Reflex saves. You suffer a penalty equal to your Dexterity modifier to attack rolls."),
+                        "敏捷",
+                        Common.Text("Stance_Dex.LoreTitle", "Sinuous Evasion."),
+                        Common.Text("Stance_Dex.Lore", "Like a willow in a gale, you favor yielding movement over the force of a committed strike."),
+                        Common.Text("Stance_Dex.LoreTitle", "惊鸿避刃。", true),
+                        Common.Text("Stance_Dex.Lore", "你如狂风中的柳枝般顺势而动，将余力留给闪避而非重击。", true),
+                        "While active, adds your Dexterity modifier (minimum 0, untyped) to AC and Reflex saves. You suffer a penalty equal to your Dexterity modifier (minimum 0) to attack rolls.",
+                        "激活时，将你的敏捷调整值（最低0，无类型加值）附加至防御等级（AC）与反射豁免。你的攻击检定承受等同于敏捷调整值（最低0）的减值。"),
                     configureBuff: buff => buff
                         .AddContextStatBonus(StatType.AC, Common.Rank(), descriptor: Desc)
                         .AddContextStatBonus(StatType.SaveReflex, Common.Rank(), descriptor: Desc)
@@ -72,15 +82,19 @@ namespace AttributeFeats.New_Feats
                     buffGuid: Guids.Stance.Buff.Con,
                     activatableGuid: Guids.Stance.Activatable.Con,
                     keyPrefix: "Stance_Con",
-                    displayName: "Endless Vigor",
+                    displayNameEn: Common.Text("Stance_Con.Name", "Mountain's Deep Roots"),
+                    displayNameZh: Common.Text("Stance_Con.Name", "不动磐峰势", true),
                     description: BuildDescription(
                         "Constitution",
-                        "Breath Without End.",
-                        "Endurance and resilience steady every motion, letting vitality carry you past the point where others tire and falter.",
-                        "While active, you gain temporary hit points equal to your Constitution modifier. Your attack rolls and Attack of Opportunity count are reduced by your Constitution modifier."),
+                        "体质",
+                        Common.Text("Stance_Con.LoreTitle", "Anchor of the Earth."),
+                        Common.Text("Stance_Con.Lore", "You settle into a mountain's patient stillness, gathering yourself at the cost of offensive tempo."),
+                        Common.Text("Stance_Con.LoreTitle", "磐岳归根。", true),
+                        Common.Text("Stance_Con.Lore", "你如山岳般沉稳地收束自身，并为此放慢进攻的节奏。", true),
+                        "On activation, gain temporary hit points equal to your Constitution modifier (minimum 0); this stance does not refresh them each round. Your attack rolls and Attack of Opportunity count are reduced by your Constitution modifier (minimum 0).",
+                        "启动时获得等同于体质调整值（最低0）的临时生命值；此姿态不会每轮刷新它们。你的攻击检定与借机攻击次数承受等同于体质调整值（最低0）的减值。"),
                     configureBuff: buff =>
                     {
-                        // A clean single-attack-only lockout is not exposed here, so this uses the plan's approved attack/AoO penalty fallback.
                         return buff
                             .AddTemporaryHitPointsFromAbilityValue(descriptor: Desc, removeWhenHitPointsEnd: false, value: Common.Rank())
                             .AddContextStatBonus(StatType.AdditionalAttackBonus, Common.Rank(), descriptor: Desc, multiplier: -1)
@@ -93,12 +107,17 @@ namespace AttributeFeats.New_Feats
                     buffGuid: Guids.Stance.Buff.Int,
                     activatableGuid: Guids.Stance.Activatable.Int,
                     keyPrefix: "Stance_Int",
-                    displayName: "Tactical Mind",
+                    displayNameEn: Common.Text("Stance_Int.Name", "Grandmaster's Gambit"),
+                    displayNameZh: Common.Text("Stance_Int.Name", "弈者静待势", true),
                     description: BuildDescription(
                         "Intelligence",
-                        "Calculated Openings.",
-                        "Analysis and calculation leave nothing unmeasured; you hold your blade until the enemy presents the exact mistake you predicted.",
-                        "While active, adds your Intelligence modifier (untyped) to attacks of opportunity and to your Attack of Opportunity count. You suffer a penalty equal to your Intelligence modifier to attack rolls that are not attacks of opportunity."),
+                        "智力",
+                        Common.Text("Stance_Int.LoreTitle", "The Waiting Blade."),
+                        Common.Text("Stance_Int.Lore", "You study the openings left by passing foes, keeping a careful account of their movement."),
+                        Common.Text("Stance_Int.LoreTitle", "弈者断局。", true),
+                        Common.Text("Stance_Int.Lore", "你研读敌人移动时留下的空隙，审慎把握他们的行动轨迹。", true),
+                        "While active, attacks of opportunity and their count gain an untyped bonus equal to your Intelligence modifier, minimum 0. Other attack rolls gain an untyped bonus equal to the negative of your Intelligence modifier, minimum 0.",
+                        "激活时，借机攻击的攻击检定与次数获得等同于智力调整值（最低0）的无类型加值。其他攻击检定获得等同于智力调整值相反数（最低0）的无类型加值。"),
                     includeNegativeRank: true,
                     configureBuff: buff => buff
                         .AddAttackOfOpportunityAttackBonus(Common.Rank(), descriptor: Desc, notAttackOfOpportunity: false)
@@ -111,12 +130,17 @@ namespace AttributeFeats.New_Feats
                     buffGuid: Guids.Stance.Buff.Wis,
                     activatableGuid: Guids.Stance.Activatable.Wis,
                     keyPrefix: "Stance_Wis",
-                    displayName: "Centered Mind",
+                    displayNameEn: Common.Text("Stance_Wis.Name", "Mirror of Still Waters"),
+                    displayNameZh: Common.Text("Stance_Wis.Name", "明镜止水势", true),
                     description: BuildDescription(
                         "Wisdom",
-                        "Still Awareness.",
-                        "Insight and awareness turn the battlefield quiet in your thoughts, every threat already understood before it can fully form.",
-                        "While active, adds your Wisdom modifier (untyped) to AC and all saving throws. You suffer a penalty equal to your Wisdom modifier to attack rolls and damage."),
+                        "感知",
+                        Common.Text("Stance_Wis.LoreTitle", "Void of the Ascetic."),
+                        Common.Text("Stance_Wis.Lore", "You quiet the impulse to strike, accepting a gentler attack in exchange for a steadier guard."),
+                        Common.Text("Stance_Wis.LoreTitle", "澄澈自照。", true),
+                        Common.Text("Stance_Wis.Lore", "你平息急于出手的冲动，以较轻的攻势换取更稳固的守势。", true),
+                        "While active, adds your Wisdom modifier (minimum 0, untyped) to AC and all saving throws. Attack rolls and damage take an equal penalty; this stance does not reduce initiative.",
+                        "激活时，将你的感知调整值（最低0，无类型加值）附加至防御等级（AC）与所有豁免检定。你的攻击检定与伤害检定承受等同于感知调整值（最低0）的减值；此姿态不降低先攻。"),
                     configureBuff: buff => buff
                         .AddContextStatBonus(StatType.AC, Common.Rank(), descriptor: Desc)
                         .AddContextStatBonus(StatType.SaveFortitude, Common.Rank(), descriptor: Desc)
@@ -131,20 +155,27 @@ namespace AttributeFeats.New_Feats
                     buffGuid: Guids.Stance.Buff.Cha,
                     activatableGuid: Guids.Stance.Activatable.Cha,
                     keyPrefix: "Stance_Cha",
-                    displayName: "Commanding Presence",
+                    displayNameEn: Common.Text("Stance_Cha.Name", "Vanguard's Banner"),
+                    displayNameZh: Common.Text("Stance_Cha.Name", "金戈铁旌势", true),
                     description: BuildDescription(
                         "Charisma",
-                        "The Battle Hears You.",
-                        "Force of personality bends the rhythm of the fight around you, every command landing with the certainty of a will that expects obedience.",
-                        "While active, allies within 30 feet gain an untyped bonus to attack rolls equal to your Charisma modifier. You suffer a penalty equal to your Charisma modifier to AC."),
+                        "魅力",
+                        Common.Text("Stance_Cha.LoreTitle", "Warlord's Rallying Banner."),
+                        Common.Text("Stance_Cha.Lore", "You place your companions' courage before your own safety and become the standard they rally around."),
+                        Common.Text("Stance_Cha.LoreTitle", "铁旌号令。", true),
+                        Common.Text("Stance_Cha.Lore", "你将同伴的勇气置于自身安危之前，成为众人聚拢的旗帜。", true),
+                        "While active, other allies within 30 feet gain an untyped bonus to attack rolls equal to your Charisma modifier (minimum 0). You suffer a penalty equal to your Charisma modifier (minimum 0) to AC.",
+                        "激活时，30英尺内的其他盟友在攻击检定上获得等同于你的魅力调整值（最低0）的无类型加值。你的防御等级（AC）承受等同于魅力调整值（最低0）的减值。"),
                     configureBuff: buff =>
                     {
                         var allyBuff = BuffConfigurator.New("CommandingPresenceAllyBuff", Guids.Stance.AllyBuff.CommandingPresence)
-                            .SetDisplayName(Common.L("Stance_Cha.AllyBuff.Name", "Commanding Presence"))
+                            .SetDisplayName(Common.L("Stance_Cha.AllyBuff.Name", Common.Text("Stance_Cha.Name", "Vanguard's Banner"), Common.Text("Stance_Cha.Name", "金戈铁旌势", true)))
                             .SetDescription(Common.L(
                                 "Stance_Cha.AllyBuff.Desc",
-                                "<i>Stance · Charisma</i>\n<i>The Battle Hears You.</i> Your ally fights under the shelter of your certainty.\n\n<b>Effect:</b> Grants an untyped bonus to attack rolls equal to the Commanding Presence user's Charisma modifier while within 30 feet.",
-                                tagEncyclopediaEntries: true));
+                                "<i>Stance · Charisma</i>\n<i>The Warlord's Standard.</i> Your ally fights under the inspiring canopy of your sovereign courage.\n\n<b>Effect:</b> Grants an untyped bonus to attack rolls equal to the user's Charisma modifier (minimum 0) while within 30 feet.",
+                                "<i>姿态 · 魅力</i>\n<i>百战铁旌。</i>沐浴在战帅无畏勇烈之光辉下，盟军同仇敌忾。\n\n<b>效果：</b>在30英尺内，攻击检定获得等同于专长持有者魅力调整值（最低0）的无类型加值。",
+                                tagEncyclopediaEntries: true))
+                            .SetIconIfPresent("CommandingPresence");
                         AddRanks(allyBuff, StatType.Charisma, includeNegativeRank: false);
                         var configuredAllyBuff = allyBuff
                             .AddContextStatBonus(StatType.AdditionalAttackBonus, Common.Rank(), descriptor: Desc)
@@ -171,8 +202,20 @@ namespace AttributeFeats.New_Feats
             ApplyIntraFamilyMutex(feats);
         }
 
-        private static string BuildDescription(string attributeName, string loreTitle, string loreBody, string effectText)
-            => $"<i>Stance · {attributeName}</i>\n<i>{loreTitle}</i> {loreBody}\n\n<b>Effect:</b> {effectText}\n\n<b>Activation:</b> Free action to toggle. Only one Stance feat may be active at a time.\n\n<b>Restrictions:</b> Mutually exclusive with other Stance feats.";
+        private static (string en, string zh) BuildDescription(
+            string attrEn,
+            string attrZh,
+            string loreTitleEn,
+            string loreBodyEn,
+            string loreTitleZh,
+            string loreBodyZh,
+            string effectEn,
+            string effectZh)
+        {
+            var en = $"<i>Stance · {attrEn}</i>\n<i>{loreTitleEn}</i> {loreBodyEn}\n\n<b>Effect:</b> {effectEn}\n\n<b>Activation:</b> Free action to toggle. EnableMutex limits learning to one Stance feat. With EnableMutex disabled, multiple learned stances can be toggled on together; there is no separate activation mutex.\n\n<b>Restrictions:</b> When EnableMutex is enabled, mutually exclusive with other Stance feats.";
+            var zh = $"<i>姿态 · {attrZh}</i>\n<i>{loreTitleZh}</i> {loreBodyZh}\n\n<b>效果：</b>{effectZh}\n\n<b>启动：</b>切换姿态为自由动作。启用EnableMutex时只能学习一种姿态专长；关闭后可学习并同时激活多个姿态，没有单独的启动互斥。\n\n<b>限制：</b>启用EnableMutex时，与其他姿态专长互相排斥。";
+            return (en, zh);
+        }
 
         private static void AddRanks(BuffConfigurator cfg, StatType baseStat, bool includeNegativeRank)
         {
@@ -203,22 +246,25 @@ namespace AttributeFeats.New_Feats
             string buffGuid,
             string activatableGuid,
             string keyPrefix,
-            string displayName,
-            string description,
+            string displayNameEn,
+            string displayNameZh,
+            (string en, string zh) description,
             Func<BuffConfigurator, BuffConfigurator> configureBuff,
             bool includeNegativeRank = false)
         {
             var buff = BuffConfigurator.New($"{internalName}Buff", buffGuid)
-                .SetDisplayName(Common.L($"{keyPrefix}.Buff.Name", displayName))
-                .SetDescription(Common.L($"{keyPrefix}.Buff.Desc", description, tagEncyclopediaEntries: true));
+                .SetDisplayName(Common.L($"{keyPrefix}.Buff.Name", displayNameEn, displayNameZh))
+                .SetDescription(Common.L($"{keyPrefix}.Buff.Desc", description.en, description.zh, tagEncyclopediaEntries: true))
+                .SetIconIfPresent(internalName);
             AddRanks(buff, baseStat, includeNegativeRank);
             var configuredBuff = configureBuff(buff)
                 .AddRecalculateOnStatChange(stat: baseStat)
                 .Configure();
 
             var activatable = ActivatableAbilityConfigurator.New($"{internalName}Activatable", activatableGuid)
-                .SetDisplayName(Common.L($"{keyPrefix}.Activatable.Name", displayName))
-                .SetDescription(Common.L($"{keyPrefix}.Activatable.Desc", description, tagEncyclopediaEntries: true))
+                .SetDisplayName(Common.L($"{keyPrefix}.Activatable.Name", displayNameEn, displayNameZh))
+                .SetDescription(Common.L($"{keyPrefix}.Activatable.Desc", description.en, description.zh, tagEncyclopediaEntries: true))
+                .SetIconIfPresent(internalName)
                 .SetBuff(configuredBuff)
                 .SetActivationType(AbilityActivationType.Immediately)
                 .SetDeactivateIfCombatEnded(false)
@@ -227,8 +273,9 @@ namespace AttributeFeats.New_Feats
                 .Configure();
 
             return FeatSelection.Stance.NewFeat(internalName, featureGuid)
-                .SetDisplayName(Common.L($"{keyPrefix}.Feature.Name", displayName))
-                .SetDescription(Common.L($"{keyPrefix}.Feature.Desc", description, tagEncyclopediaEntries: true))
+                .SetDisplayName(Common.L($"{keyPrefix}.Feature.Name", displayNameEn, displayNameZh))
+                .SetDescription(Common.L($"{keyPrefix}.Feature.Desc", description.en, description.zh, tagEncyclopediaEntries: true))
+                .SetIconIfPresent(internalName)
                 .AddFacts(new List<Blueprint<BlueprintUnitFactReference>> { activatable })
                 .Configure();
         }
