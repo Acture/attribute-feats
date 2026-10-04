@@ -163,9 +163,26 @@ Distance-gated +4 weapon damage triggers; pick the band that fits your build.
 
 ## Building from Source
 
-- Set `WrathInstallDir`, `WrathPath`, or `WRATH_PATH`, or let the project generate `GamePath.props` from `Player.log`.
-- Run `dotnet build "attribute feats.csproj"`.
-- The Deploy target copies files into the local UMM mod folder and creates a release zip in `bin\`.
+- Set `WrathInstallDir`, `WrathPath`, or `WRATH_PATH`, or let the project generate the ignored, repository-root `GamePath.props` from `Player.log`.
+- From the repository root, run `dotnet build AttributeFeats.slnx -p:DeployMod=false` to compile without deploying to the game.
+- Build output is in `artifacts/bin/AttributeFeats/<Configuration>/`; intermediate files are in `artifacts/obj/`.
+- To deploy, run `dotnet build AttributeFeats.slnx`. The Deploy target copies files into the local UMM mod folder and creates `artifacts/packages/AttributeFeats-<Version>.zip`.
+- Run the game-independent repository checks with `pwsh -NoProfile -File scripts/Test-RepositoryContracts.ps1`. These check blueprint IDs and loader metadata; they do not test combat effects.
+
+### Repository layout
+
+| Path | Contents |
+|---|---|
+| `src/AttributeFeats/` | Mod project, C# sources, resources, `App.config` and loader `Info.json` |
+| `tests/` | Test projects and compatibility baselines |
+| `scripts/`, `.github/` | Local commands and CI workflows |
+| [doc/](doc/README.md) | Public documentation |
+| `notes/` | Optional private notes submodule |
+| `artifacts/` | Ignored build outputs, intermediate files, packages and test reports |
+
+The root keeps `AttributeFeats.slnx`, shared build configuration, repository
+configuration, README, CHANGELOG and `Repository.json`. The local `GamePath.props`
+is shared by the Mod and test projects and must not be committed.
 
 ## Changelog
 

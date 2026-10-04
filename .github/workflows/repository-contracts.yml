@@ -1,0 +1,34 @@
+name: Repository contracts
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contracts:
+    name: Save compatibility and metadata (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Check production identifiers and loader metadata
+        shell: pwsh
+        run: ./scripts/Test-RepositoryContracts.ps1
+      - name: Upload contract report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: repository-contracts-${{ matrix.os }}
+          path: artifacts/repository-contracts.json
+          if-no-files-found: error
+          retention-days: 14

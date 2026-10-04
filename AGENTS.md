@@ -1,5 +1,19 @@
 # AttributeFeats development
 
+## Repository layout
+
+- Keep the Mod project, source, resources and loader `Info.json` together in
+  `src/AttributeFeats/`. Open `AttributeFeats.slnx` from the repository root.
+- Keep tests in `tests/`, CLI tools in `scripts/`, and workflows in `.github/`.
+- Use `doc/` as the sole public documentation directory and `notes/` for the
+  private submodule. Do not recreate a parallel `docs/` directory.
+- Build outputs, intermediate files, packages and test reports go in ignored
+  `artifacts/`. Keep the shared local `GamePath.props` at the root and untracked.
+- Keep `Repository.json` at the root for existing release metadata consumers.
+- Build for verification with `dotnet build AttributeFeats.slnx -p:DeployMod=false`
+  to avoid copying files into the installed game. Repository contracts run with
+  `pwsh -NoProfile -File scripts/Test-RepositoryContracts.ps1`.
+
 ## Documentation
 
 - Read [README.md](README.md) for the project and the complete notes workflow.
