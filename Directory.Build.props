@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup>
+    <AttributeFeatsRepositoryRoot>$(MSBuildThisFileDirectory)</AttributeFeatsRepositoryRoot>
+    <BaseOutputPath>$(AttributeFeatsRepositoryRoot)artifacts/bin/$(MSBuildProjectName)/</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(AttributeFeatsRepositoryRoot)artifacts/obj/$(MSBuildProjectName)/</BaseIntermediateOutputPath>
+    <!-- Private notes and future code examples are not mod build inputs. -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(AttributeFeatsRepositoryRoot)notes/**;$(AttributeFeatsRepositoryRoot)artifacts/**</DefaultItemExcludes>
+  </PropertyGroup>
+</Project>

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" InitialTargets="GenerateCustomPropsFile">
 
 	<!-- If GamePath.props exists, import it (generated or user-provided) -->
-	<Import Project="$(MSBuildProjectDirectory)\GamePath.props" Condition="Exists('$(MSBuildProjectDirectory)\GamePath.props')" />
+	<Import Project="$(AttributeFeatsRepositoryRoot)GamePath.props" Condition="Exists('$(AttributeFeatsRepositoryRoot)GamePath.props')" />
 
 	<PropertyGroup>
 		<TargetFramework>net48</TargetFramework>
@@ -28,8 +28,7 @@
 		<WrathInstallDir Condition="'$(WrathInstallDir)'==''">$([System.Environment]::GetEnvironmentVariable('WrathPath'))</WrathInstallDir>
 		<WrathInstallDir Condition="'$(WrathInstallDir)'==''">$([System.Environment]::GetEnvironmentVariable('WRATH_PATH'))</WrathInstallDir>
 
-		<!-- Output -->
-		<OutputPath>bin\$(Configuration)\</OutputPath>
+		<!-- Output paths are shared in the repository's Directory.Build.props. -->
 	</PropertyGroup>
 
 	<!-- Fail fast if still not resolved (after GenerateCustomPropsFile has run) -->
@@ -64,6 +63,11 @@
 	</ItemGroup>
 
 	<!-- Content -->
+	<ItemGroup>
+		<Compile Remove="tests\**\*.cs" />
+		<EmbeddedResource Remove="tests\**\*" />
+		<None Remove="tests\**\*" />
+	</ItemGroup>
 
 	<!-- NuGet (optional but useful) -->
 	<ItemGroup>
@@ -90,7 +94,7 @@
 	</ItemGroup>
 
 	<!-- Deploy to Mods folder + zip -->
-	<Target Name="Deploy" AfterTargets="Build">
+	<Target Name="Deploy" AfterTargets="Build" Condition="'$(DeployMod)' != 'false'">
 		<ItemGroup>
 			<Files Include="$(TargetDir)\**\*.*" />
 			<Files Remove="$(TargetDir)\**\*.dll" />
@@ -105,7 +109,8 @@
 
 		<Copy SourceFiles="@(Files)" DestinationFiles="@(Files->'$(WrathInstallDir)\Mods\$(AssemblyName)\%(RecursiveDir)%(Filename)%(Extension)')" />
 		<Delete Files="@(ToDelete)" />
-		<ZipDirectory SourceDirectory="$(MSBuildProjectDirectory)\$(OutputPath)" DestinationFile="$(MSBuildProjectDirectory)\$(OutputPath)\..\$(AssemblyName)-$(Version).zip" Overwrite="true" />
+		<MakeDir Directories="$(AttributeFeatsRepositoryRoot)artifacts/packages" />
+		<ZipDirectory SourceDirectory="$(TargetDir)" DestinationFile="$(AttributeFeatsRepositoryRoot)artifacts/packages/$(AssemblyName)-$(Version).zip" Overwrite="true" />
 	</Target>
 
 	<!-- Auto-generate GamePath.props by parsing Player.log when WrathInstallDir is still empty -->
@@ -128,14 +133,14 @@
 
 		<Error Text="Failed to parse WrathInstallDir from Player.log. Set /p:WrathInstallDir=... or env WrathPath/WRATH_PATH." Condition="'$(WrathInstallDir)'==''" />
 
-		<WriteLinesToFile File="$(MSBuildProjectDirectory)\GamePath.props" Lines="&lt;Project xmlns='http://schemas.microsoft.com/developer/msbuild/2003'&gt;&#xD;&#xA;  &lt;PropertyGroup&gt;&#xD;&#xA;    &lt;WrathInstallDir&gt;$(WrathInstallDir)&lt;/WrathInstallDir&gt;&#xD;&#xA;  &lt;/PropertyGroup&gt;&#xD;&#xA;&lt;/Project&gt;" Overwrite="true" Encoding="utf-8" />
+		<WriteLinesToFile File="$(AttributeFeatsRepositoryRoot)GamePath.props" Lines="&lt;Project xmlns='http://schemas.microsoft.com/developer/msbuild/2003'&gt;&#xD;&#xA;  &lt;PropertyGroup&gt;&#xD;&#xA;    &lt;WrathInstallDir&gt;$(WrathInstallDir)&lt;/WrathInstallDir&gt;&#xD;&#xA;  &lt;/PropertyGroup&gt;&#xD;&#xA;&lt;/Project&gt;" Overwrite="true" Encoding="utf-8" />
 
 		<Message Text="Generated GamePath.props with WrathInstallDir=$(WrathInstallDir)" Importance="High" />
 	</Target>
 
 	<!-- Optional: delete generated props on clean -->
 	<Target Name="DeleteCustomPropsFile" BeforeTargets="Clean">
-		<Delete Files="$(MSBuildProjectDirectory)\GamePath.props" Condition="Exists('$(MSBuildProjectDirectory)\GamePath.props')" />
+		<Delete Files="$(AttributeFeatsRepositoryRoot)GamePath.props" Condition="Exists('$(AttributeFeatsRepositoryRoot)GamePath.props')" />
 	</Target>
 
 </Project>
