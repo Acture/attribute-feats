@@ -1,14 +1,23 @@
 # Changelog
 
-## 0.1.2 — Names, Lore and Icons (P-831 / OSS-77)
+## 0.1.2 — 2026-10-05
 
-- Refined all 92 feat names and shortened their English/Chinese lore, preserving blueprint names, GUIDs, prerequisites, component values and triggers.
-- Embedded 196 bilingual name/lore entries in `Localization/FeatText.json`, with English and compiled-text fallbacks. Kept rules separate from flavor text.
-- Corrected descriptions of Balanced/Legacy scaling, settings gates, minimum modifiers, temporary HP, attack consumption, distance thresholds, multi-tag penalties and unrestricted weapon reach to match source behavior.
-- Completed 92 distinct 128×128 feat icons and mapped associated buffs and stance toggles to their parent artwork. Added a contact sheet and per-image prompt/provenance manifest.
-- Preserved locale refresh and encyclopedia links. Added resource/fallback checks, blueprint/mechanism comparison, asset coverage and release ZIP validation.
-- Added a workspace-only packaging option: `-p:DeployToGame=false`.
-- Added the full before/after audit in `docs/P-831-review.md`. Combat effects and game locale/layout behavior still need real-game validation under OSS-59; settings/full rule-template localization remains in OSS-142.
+### Added
+- Six standalone Weapon Damage feats for Strength, Dexterity, Constitution, Intelligence, Wisdom and Charisma. Choose a proficient weapon category, with no Main feat or Power Mode requirement.
+- Live Weapon Damage setting: Replace uses the chosen attribute when it improves damage and preserves native damage multipliers; Add grants the positive modifier once. Weapons must already use an attribute for damage. Repeat selections can cover different weapon categories.
+- English and Simplified Chinese names and descriptions for all 18 selection menus and the six new Weapon Damage feats.
+- 92 individual icons for the existing feats, with matching buff and stance artwork.
+
+### Changed
+- Grouped 98 feats under Attribute Feats, with 17 family menus and Long-Reach Gambit directly in the root. Each choice grants one feat; menus can be revisited subject to normal prerequisites and optional family mutex.
+- Refined the original 92 English/Chinese feat names and lore. Clarified scaling, settings gates, minimum modifiers, trigger timing, distance thresholds and spell-tag penalties in their descriptions.
+- Preserved published blueprint IDs, existing mechanics and saved settings. Embedded 244 bilingual text entries with English and compiled-text fallbacks; language changes refresh registered strings.
+- Moved the project to `src/AttributeFeats`, public documentation to `doc`, and private notes to an optional `notes` submodule. Outputs are under ignored `artifacts`.
+- Added `-p:DeployToGame=false` for release packaging without copying files into the game.
+
+### Fixed
+- A failed feat registration or menu no longer prevents unrelated families or the root menu from being configured. Partial failed batches are not offered or replayed.
+- Added Windows/Linux checks for identifiers, metadata, damage calculations, initialization, localization and packaged assets. Actual combat effects and in-game UI still require game validation.
 
 ## 0.1.1 — Mutex Relaxation + 17 New Feats
 

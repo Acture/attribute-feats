@@ -1,0 +1,45 @@
+name: Repository contracts
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contracts:
+    name: Save compatibility and metadata (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Check production identifiers and loader metadata
+        shell: pwsh
+        run: ./scripts/Test-RepositoryContracts.ps1
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+      - name: Check weapon damage calculations
+        run: dotnet run --project tests/WeaponDamage.Tests --configuration Release
+      - name: Check feat registration and menus
+        run: dotnet run --project tests/Initialization.Tests --configuration Release
+      - name: Check localization registration, refresh and fallbacks
+        run: dotnet run --project tests/FeatText --configuration Release
+      - name: Check bilingual catalog and icon assets
+        run: python scripts/validate_assets.py
+      - name: Upload contract report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: repository-contracts-${{ matrix.os }}
+          path: artifacts/repository-contracts.json
+          if-no-files-found: error
+          retention-days: 14

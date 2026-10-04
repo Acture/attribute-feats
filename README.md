@@ -2,11 +2,15 @@
 
 A Pathfinder: Wrath of the Righteous mod that adds **build-enabling** feats based on character attributes. Choose a Main Attribute feat for broad cross-stat support, or mix focused families to build unconventional defenders, duelists, casters, and summoners.
 
-> **Design philosophy:** AttributeFeats is a *build enabler*, not a power booster. Default 0.1.0 settings open new archetypes without inflating raw damage or attack counts. Extra power is opt-in through `Power Level` and `EnablePowerMode`.
+> **Design philosophy:** AttributeFeats is a *build enabler*, not a power booster. Main feat defaults focus on build-enabling stats. Standalone Weapon Damage feats let you choose attribute-based damage without taking a Main feat; their default Replace mode avoids adding a second attribute bonus.
 
 ## Feat Families
 
-**0.1.2 total:** Main (6) + Specialized (24) + Stance (6) + Conditional (6) + Replacement (12) + Summon (6) + SummonerSacrifice (3) + ReactiveArmor (2) + Derived (6) + SpellTag (17) + PolearmMaster (1) + DistanceDamage (3) = **92 feats**.
+During character creation and level-up, expand **Attribute Feats**, then a **feat family**, then choose the **individual feat**. Each family has 2–9 choices; Long-Reach Gambit (formerly Polearm Master) sits directly inside Attribute Feats because it has no variants. Each choice grants one feat, with no extra feat cost for either menu level. You can return to the same family at later feat choices, subject to the selected feat's usual prerequisites and mutual-exclusion rules. Existing characters keep their learned feats and effects.
+
+The 17 menus are Main Attribute Mastery, Defensive Adept, Maneuver Adept, Skilled Adept, Arcane Adept, Stance, Conditional Trigger, Weapon Insight, Extended Replacement, Greater Summoning, Summoner Sacrifice, Reactive Armor, Derived Stat Conversion, Spell School Specialist, Spell Descriptor Specialist, Distance Damage, and Weapon Damage.
+
+**0.1.2 total:** Main (6) + Specialized (24) + Stance (6) + Conditional (6) + Replacement (12) + Summon (6) + SummonerSacrifice (3) + ReactiveArmor (2) + Derived (6) + SpellTag (17) + PolearmMaster (1) + DistanceDamage (3) + WeaponDamage (6) = **98 feats** (92 existing feats and 6 new Weapon Damage feats).
 
 ### Main Attribute Mastery (6 feats, mutually exclusive)
 
@@ -134,12 +138,26 @@ Trade your own ability scores for amplified buffs to your summoned creatures.
 - **Horizon's Deadeye (苍穹神击)** — +4 damage at > 29 ft.
 - **Harmonic Cleave (流光截角)** — +4 damage at > 14 ft. and ≤ 25 ft.
 
+### Weapon Damage (6 feats)
+
+Choose **Attribute Feats → Weapon Damage → an attribute → a proficient weapon category**. The six attributes are Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Each choice costs one feat and changes only weapon damage for that category. You can choose the same attribute again for another category, but cannot take the exact same attribute/category twice.
+
+The **Weapon Damage Mode** setting offers two behaviors. Switching takes effect on the next damage calculation, including already learned feats; no restart or respec is needed:
+
+| Mode | Effect | Example: Str 12 (+1), Int 20 (+5), one-handed longsword |
+|---|---|---|
+| Replace (default) | Use the chosen modifier if it improves the existing attribute damage; retain the weapon's normal two-handed/off-hand multiplier. Existing Dexterity-to-damage is considered. | `1d8 + 5` |
+| Add | Keep normal damage and add the chosen positive modifier once, without two-handed/off-hand scaling of the extra bonus. | `1d8 + 1 + 5` |
+
+Both modes require an attack that already applies an attribute modifier to weapon damage. Ordinary crossbows and other attacks without a damage attribute receive no benefit. Neither mode changes attack rolls, spells, or other stats, and neither requires Power Mode. With `EnableMutex` on, this family allows one attribute; with it off, replacement uses the best applicable attribute while addition stacks the selected bonuses.
+
 ## Settings
 
-> Settings should be treated as restart-required after changes.
+> Weapon Damage Mode applies on the next damage calculation. Other settings require restarting.
 
 | Setting | Default | Effect |
 |---|---|---|
+| Weapon Damage Mode (`WeaponDamage`) | `Replace` | Standalone Weapon Damage feats use a better chosen attribute instead of the existing damage attribute. `Add` adds the positive chosen modifier once. Independent of Main feat settings and Power Mode. |
 | Power Level | `Balanced` | `Balanced`: full scaling for attributes, defenses, maneuvers, skills, caster level, and spell penetration; reduced scaling for spell DC, BAB, and Power Mode bonuses. `Legacy_AllFull`: all rank-based Main feat bonuses use full modifier scaling. |
 | Include Self in Attribute Stack | OFF | A Main feat may add its chosen attribute to itself. |
 | **Enable Mutex** | **ON** | When ON, each family enforces its intra-family mutex. When OFF, every mutex prerequisite is skipped — you may take every feat at once. Cross-family same-attribute mutex was removed in 0.1.1 regardless of this toggle. |
@@ -156,7 +174,7 @@ Trade your own ability scores for amplified buffs to your summoned creatures.
 
 ## Stacking Rules
 
-- Each family enforces its own intra-family mutex (controlled by `EnableMutex`): Main 6-way, each Specialized subfamily 6-way, Stance 6-way, Weapon Insight 6-way, Greater Summoning 6-way, Summoner Sacrifice 3-way, Spell Tag School 8-way, Spell Tag Descriptor 9-way.
+- Each family enforces its own intra-family mutex (controlled by `EnableMutex`): Main 6-way, each Specialized subfamily 6-way, Stance 6-way, Weapon Insight 6-way, Weapon Damage 6-way, Greater Summoning 6-way, Summoner Sacrifice 3-way, Spell Tag School 8-way, Spell Tag Descriptor 9-way.
 - **Cross-family same-attribute mutex was removed in 0.1.1.** Combinations like `Titan's Apotheosis` (Str Main) + `Colossus Bastion` (Str Defensive) + `Berserker's Overrun` (Str Stance) are now allowed — same-attribute stacking is a deliberate build option, not a bug.
 - Set `EnableMutex = OFF` in mod settings to disable every mutex prerequisite (including intra-family). You can then take any combination of feats; gather every Specialized stat-bonus for a single attribute, or every Stance, etc. Use at your own risk — this is a power option, not the intended baseline.
 - Main feats use **Inherent** bonuses; most non-Main bonuses are **Untyped** or use stat replacement, so cross-attribute combinations remain the intended way to build.
@@ -171,26 +189,196 @@ Trade your own ability scores for amplified buffs to your summoned creatures.
 
 ## Save Compatibility
 
+- Existing feat GUIDs are unchanged. Settings files without `WeaponDamage` default to `Replace`; both damage modes use the same new feat GUIDs, so switching modes requires no respec.
 - **0.1.1 → 0.1.x is non-breaking.** Settings carry over; XML serialization adds the new `EnableMutex` field as `true` by default.
 - **0.1.0 → 0.1.1 upgrades** keep all existing feats (GUIDs unchanged). New feats appear in the level-up feat list and Commanding Presence Stance now has its 30-ft ally aura wired; its Charisma scaling source still requires in-game verification.
 - 0.0.x → 0.1.x is a redesign; back up saves first.
 
 ## Building from Source
 
-- Set `WrathInstallDir`, `WrathPath`, or `WRATH_PATH`, or let the project generate `GamePath.props` from `Player.log`.
-- Run `dotnet build "attribute feats.csproj"`.
-- To build and package only in this worktree, run `dotnet build "attribute feats.csproj" -c Release -p:DeployToGame=false`.
-- The Deploy target copies files into the local UMM mod folder and creates a release zip in `bin\`.
+- Set `WrathInstallDir`, `WrathPath`, or `WRATH_PATH`, or let the project generate the ignored, repository-root `GamePath.props` from `Player.log`.
+- From the repository root, run `dotnet build AttributeFeats.slnx -p:DeployMod=false` to compile without deploying to the game.
+- To build the release ZIP without deploying to the game, run `dotnet build AttributeFeats.slnx -c Release -p:DeployToGame=false`.
+- Build output is in `artifacts/bin/AttributeFeats/<Configuration>/`; intermediate files are in `artifacts/obj/`.
+- To deploy, run `dotnet build AttributeFeats.slnx`. The Deploy target copies files into the local UMM mod folder and creates `artifacts/packages/AttributeFeats-<Version>.zip`.
+- Run the game-independent repository checks with `pwsh -NoProfile -File scripts/Test-RepositoryContracts.ps1`. These check blueprint IDs and loader metadata; they do not test combat effects.
 
-## Text and Icon Audit
+- Run the standalone damage calculation checks with the .NET 10 SDK: `dotnet run --project tests/WeaponDamage.Tests`.
+- Run initialization failure checks with `dotnet run --project tests/Initialization.Tests`. These exercise the real registry and menu orchestration with stand-ins for game/BlueprintCore APIs and family creation; they do not start Unity or verify in-game UI behavior.
+- With Windows PowerShell 5.1, check settings compatibility using `powershell.exe -NoProfile -ExecutionPolicy Bypass -File tests/VerifySettings.ps1 -WrathInstallDir "<game directory>"`.
+- After compiling, verify live mode switching on an existing component with `powershell.exe -NoProfile -ExecutionPolicy Bypass -File tests/VerifyLiveWeaponDamageMode.ps1 -WrathInstallDir "<game directory>"`. This loads the compiled mod and game types without starting Unity.
 
-All 92 feats have separate 128×128 PNG icons. Final names and short lore live in the embedded [FeatText.json](Localization/FeatText.json); rule templates remain with their implementations. See the [complete before/after catalog and validation limits](docs/P-831-review.md), [individual image prompts](docs/icon-manifest.json), and [icon contact sheet](docs/feat-icons.png).
+GitHub Actions runs the repository checks on Windows and Linux. GitHub-managed
+CodeQL default setup scans C# and Actions for security issues; review its results
+on the latest pull-request commit before merging. These static checks do not
+replace in-game behavior tests.
 
-The settings UI and full rule-template resource migration remain in OSS-142 (formerly P-832). Real-game mechanism verification remains in OSS-59 (formerly P-812); source inspection and successful builds do not establish in-game effects.
+### Repository layout
+
+| Path | Contents |
+|---|---|
+| `src/AttributeFeats/` | Mod project, C# sources, resources, `App.config` and loader `Info.json` |
+| `tests/` | Test projects and compatibility baselines |
+| `scripts/`, `.github/` | Local commands and CI workflows |
+| [doc/](doc/README.md) | Public documentation |
+| `notes/` | Optional private notes submodule |
+| `artifacts/` | Ignored build outputs, intermediate files, packages and test reports |
+
+The root keeps `AttributeFeats.slnx`, shared build configuration, repository
+configuration, README, CHANGELOG and `Repository.json`. The local `GamePath.props`
+is shared by the Mod and test projects and must not be committed.
+
+## Text and Icons
+
+All 98 feats and the 18 selection menus have English and Simplified Chinese names and descriptions. The original 92 feats have individual 128×128 PNG icons; the six new Weapon Damage feats do not yet have bespoke artwork. Names and lore, along with the new menu and Weapon Damage descriptions, live in the embedded [FeatText.json](src/AttributeFeats/Localization/FeatText.json). Other rule templates remain with their implementations.
+
+See the [icon contact sheet](doc/feat-icons.png), [asset manifest](doc/icon-manifest.json), and [validation commands and limits](doc/validation.md). The settings UI remains in English. Source checks and builds do not establish actual combat effects or in-game text layout.
 
 ## Changelog
 
 See [CHANGELOG.md](./CHANGELOG.md).
+
+## Documentation
+
+| Location | Audience and content | Access |
+|---|---|---|
+| [doc/](doc/README.md), README and CHANGELOG | Public usage, setup, supported behavior and contributor documentation | Included in the public code repository |
+| `notes/` | Internal design drafts, investigations, experiment records and local mod inventories | Optional submodule; separate private-repository permission required |
+
+Publish reviewed, user-facing documentation in `doc/` with the code. Keep internal
+working records in `notes/`; public documentation and builds must remain usable
+without it.
+
+## Internal design and research notes
+
+Design proposals, compatibility investigations and testing research live in the
+private [project notes](notes/首页.md). The `notes/` Git submodule
+uses the existing [Acture/obsidian-vault](https://github.com/Acture/obsidian-vault)
+repository and its `project/attribute-feats` branch. Only edit this project's notes
+at that checkout's root. Public installation instructions and the changelog remain
+in this repository; building or using the mod does not require private notes access.
+
+Cloning or forking this public repository does not grant access to the private
+vault. The public `.gitmodules` file and gitlink expose its repository URL,
+configured branch and pinned commit ID, but do not contain the notes or their Git
+history. GitHub still requires separate authorization to fetch those contents.
+Without it, recursive cloning or initializing `notes/` will fail at that step;
+use the public clone command below instead.
+
+The central vault's [project onboarding guide](https://github.com/Acture/obsidian-vault/blob/master/项目接入.md)
+owns the shared workflow and push checks. The commands below apply it to this
+project; they do not set up another synchronization system.
+
+### Clone and initialize
+
+For public code and documentation, skip the optional private submodule:
+
+```powershell
+git clone --no-recurse-submodules https://github.com/Acture/attribute-feats.git
+```
+
+With authenticated access to the private notes repository:
+
+```powershell
+git clone --recurse-submodules https://github.com/Acture/attribute-feats.git
+cd attribute-feats
+```
+
+For an existing clone or a new worktree, initialize the version recorded by its
+current code commit:
+
+```powershell
+git submodule update --init --recursive -- notes
+git submodule status -- notes
+git -C notes rev-parse HEAD
+```
+
+The parent repository records an exact notes commit. Initialization normally
+leaves the submodule in detached HEAD; the `branch` entry in `.gitmodules` selects
+the remote update source, but does not automatically check out an editable branch.
+Use `git submodule update --init --recursive -- notes` after switching code
+versions to restore their recorded notes version, only when the notes worktree is clean.
+
+### Update and edit
+
+First inspect `git status` and `git -C notes status`. Preserve any uncommitted
+notes and unpublished commits before switching branches or updating the gitlink.
+Fetch and check that the current notes commit is already part of the published
+project branch:
+
+```powershell
+git -C notes fetch origin
+git -C notes log --oneline origin/project/attribute-feats..HEAD
+```
+
+If the last command lists commits, stop and reconcile that work before switching.
+For the first edit in a newly initialized clone, create the local tracking branch:
+
+```powershell
+git -C notes switch -c project/attribute-feats --track origin/project/attribute-feats
+```
+
+If that local branch already exists, use `git -C notes switch project/attribute-feats`
+instead. Then update without rewriting history:
+
+```powershell
+git -C notes merge --ff-only origin/project/attribute-feats
+git -C notes branch --show-current
+```
+
+Stop on divergence; do not force-push, discard local work, or merge the entire
+vault `master` into this project branch. Follow the central guide for bringing
+back changes made to this project's notes in the total vault.
+
+Install the central repository's mandatory push boundary check in each notes
+clone, and refresh it when the central checker changes. These PowerShell commands
+use UTF-8 for Python on Windows and load the installer from the trusted vault:
+
+```powershell
+$env:PYTHONUTF8 = "1"
+git -C notes fetch origin refs/heads/master:refs/remotes/origin/master
+git -C notes show origin/master:.github/scripts/install_push_hook.py | python -X utf8 -c "import sys; exec(sys.stdin.read())" --repo notes --source-ref origin/master
+```
+
+This requires Python 3.10+, Git and authenticated `gh`. Keep `PYTHONUTF8=1` in the Windows shell used
+for notes pushes. The installer preserves existing custom hooks and stops if they
+need reconciliation. Hooks are local to a clone, are not copied by Git, and must
+not be bypassed with `--no-verify`.
+
+Edit files under `notes/`, then commit and submit the notes first. Stage only the
+specific files you edited; this example stages the project homepage:
+
+```powershell
+git -C notes diff --stat
+git -C notes add 首页.md
+git -C notes commit -m "docs: update AttributeFeats design notes"
+$notesCommonGitDir = git -C notes rev-parse --path-format=absolute --git-common-dir
+python -X utf8 "$notesCommonGitDir/hooks/notes-boundary/submit_project.py" --repo notes
+```
+
+Only after that push succeeds, verify the published history and commit the parent
+pointer. Run each step only if the preceding command succeeds:
+
+```powershell
+git -C notes fetch origin
+git -C notes merge-base --is-ancestor HEAD origin/project/attribute-feats
+git diff --submodule=log -- notes
+git add -- notes
+git commit -m "docs: update project notes reference"
+git push
+```
+
+The ancestor check must exit with code 0. Keep unrelated staged work out of the
+pointer commit and use the code repository's normal review branch for delivery.
+The vault's existing project-to-master aggregation is separate from updating this
+repository's gitlink.
+
+To follow the latest published notes without editing, start with clean, fully
+published notes and run `git submodule update --remote --checkout -- notes`.
+Review and commit the resulting parent pointer using the same steps above.
+Avoid this command when reproducing a fixed code version; normal initialization
+uses the pinned commit instead. Any legacy `doc` branch remains until its content
+and history have been verified separately.
 
 ## Credits
 

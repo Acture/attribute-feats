@@ -1,16 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="../../GamePath.props" Condition="Exists('../../GamePath.props')" />
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>$(WrathInstallDir)/Wrath_Data/Managed/Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
-    <Compile Include="../../New_Feats/FeatTextCatalog.cs" Link="FeatTextCatalog.cs" />
-    <EmbeddedResource Include="../../Localization/FeatText.json" LogicalName="AttributeFeats.Localization.FeatText.json" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <Compile Include="../../src/AttributeFeats/New_Feats/FeatTextCatalog.cs" Link="FeatTextCatalog.cs" />
+    <Compile Include="../../src/AttributeFeats/New_Feats/Common.Localization.cs" Link="Common.Localization.cs" />
+    <EmbeddedResource Include="../../src/AttributeFeats/Localization/FeatText.json" LogicalName="AttributeFeats.Localization.FeatText.json" />
   </ItemGroup>
 </Project>
