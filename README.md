@@ -169,6 +169,11 @@ Distance-gated +4 weapon damage triggers; pick the band that fits your build.
 - To deploy, run `dotnet build AttributeFeats.slnx`. The Deploy target copies files into the local UMM mod folder and creates `artifacts/packages/AttributeFeats-<Version>.zip`.
 - Run the game-independent repository checks with `pwsh -NoProfile -File scripts/Test-RepositoryContracts.ps1`. These check blueprint IDs and loader metadata; they do not test combat effects.
 
+GitHub Actions runs the repository checks on Windows and Linux. GitHub-managed
+CodeQL default setup scans C# and Actions for security issues; review its results
+on the latest pull-request commit before merging. These static checks do not
+replace in-game behavior tests.
+
 ### Repository layout
 
 | Path | Contents |

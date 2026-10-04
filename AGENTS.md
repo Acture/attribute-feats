@@ -50,6 +50,8 @@
 
 ## Validation
 
+- Confirm repository checks and GitHub-managed CodeQL results on the latest PR
+  commit before merging. Keep the CodeQL rule on the default branch enabled.
 - Keep historical research observations distinct from current implementation and
   test evidence. Static repository checks do not prove feats work in the game.
 - Use CLI and code-based checks; do not use computer use or launch a game as part
