@@ -193,7 +193,7 @@ See [CHANGELOG.md](./CHANGELOG.md).
 | Location | Audience and content | Access |
 |---|---|---|
 | [doc/](doc/README.md), README and CHANGELOG | Public usage, setup, supported behavior and contributor documentation | Included in the public code repository |
-| `notes/attribute-feats/` | Internal design drafts, investigations, experiment records and local mod inventories | Optional submodule; separate private-repository permission required |
+| `notes/` | Internal design drafts, investigations, experiment records and local mod inventories | Optional submodule; separate private-repository permission required |
 
 Publish reviewed, user-facing documentation in `doc/` with the code. Keep internal
 working records in `notes/`; public documentation and builds must remain usable
@@ -202,10 +202,10 @@ without it.
 ## Internal design and research notes
 
 Design proposals, compatibility investigations and testing research live in the
-private [project notes](notes/attribute-feats/首页.md). The `notes/` Git submodule
+private [project notes](notes/首页.md). The `notes/` Git submodule
 uses the existing [Acture/obsidian-vault](https://github.com/Acture/obsidian-vault)
-repository and its `project/attribute-feats` branch. Only edit `attribute-feats/`
-inside that repository. Public installation instructions and the changelog remain
+repository and its `project/attribute-feats` branch. Only edit this project's notes
+at that checkout's root. Public installation instructions and the changelog remain
 in this repository; building or using the mod does not require private notes access.
 
 Cloning or forking this public repository does not grant access to the private
@@ -290,18 +290,20 @@ git -C notes fetch origin refs/heads/master:refs/remotes/origin/master
 git -C notes show origin/master:.github/scripts/install_push_hook.py | python -X utf8 -c "import sys; exec(sys.stdin.read())" --repo notes --source-ref origin/master
 ```
 
-This requires Python 3.10+ and Git. Keep `PYTHONUTF8=1` in the Windows shell used
+This requires Python 3.10+, Git and authenticated `gh`. Keep `PYTHONUTF8=1` in the Windows shell used
 for notes pushes. The installer preserves existing custom hooks and stops if they
 need reconciliation. Hooks are local to a clone, are not copied by Git, and must
 not be bypassed with `--no-verify`.
 
-Edit files under `notes/attribute-feats/`, then commit and push the notes first:
+Edit files under `notes/`, then commit and submit the notes first. Stage only the
+specific files you edited; this example stages the project homepage:
 
 ```powershell
 git -C notes diff --stat
-git -C notes add -- attribute-feats/
+git -C notes add 首页.md
 git -C notes commit -m "docs: update AttributeFeats design notes"
-git -C notes push origin project/attribute-feats
+$notesCommonGitDir = git -C notes rev-parse --path-format=absolute --git-common-dir
+python -X utf8 "$notesCommonGitDir/hooks/notes-boundary/submit_project.py" --repo notes
 ```
 
 Only after that push succeeds, verify the published history and commit the parent

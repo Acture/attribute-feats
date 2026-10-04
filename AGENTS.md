@@ -21,12 +21,13 @@
   repository. Put reviewed usage, configuration, integration and contributor
   documentation there; keep the README as the entry point and CHANGELOG for releases.
 - Internal design, balance proposals, mod comparisons and testing research belong
-  in [notes/attribute-feats/首页.md](notes/attribute-feats/首页.md) and its linked
+  in [notes/首页.md](notes/首页.md) and its linked
   documents. This is a private submodule, not a directory of files to commit in
   the public code repository. Linear remains the source for tasks and status.
 - The submodule path is `notes`, its remote is
   `https://github.com/Acture/obsidian-vault.git`, and the editable project branch is
-  `project/attribute-feats`. Only change `attribute-feats/` in that repository.
+  `project/attribute-feats`. Only edit this project's notes at that checkout's root.
+  The central vault's master aggregates them under `attribute-feats/`.
 - Initialize the pinned version with `git submodule update --init --recursive -- notes`.
   Inspect the actual commit, branch and worktree before editing; initialization
   may leave detached HEAD. Preserve unpublished commits and uncommitted changes.
@@ -53,3 +54,19 @@
   test evidence. Static repository checks do not prove feats work in the game.
 - Use CLI and code-based checks; do not use computer use or launch a game as part
   of a documentation-only change.
+
+
+## Project notes submission
+
+`doc/` is reserved for public documentation. Private research notes live in `notes/`, which tracks `project/attribute-feats` in `Acture/obsidian-vault`; start at `notes/首页.md`. This checkout's root contains only this project's notes. Master places these notes under `attribute-feats/`. Keep automation and vault configuration on master. Preserve existing local edits when updating a checkout.
+
+Install or refresh the trusted submission tools in Git metadata, including in new clones:
+
+```powershell
+$env:PYTHONUTF8 = "1"
+git -C notes fetch origin refs/heads/master:refs/remotes/origin/master
+git -C notes show origin/master:.github/scripts/install_push_hook.py | python -X utf8 -c "import sys; exec(sys.stdin.read())" --repo notes --source-ref origin/master
+$notesCommonGitDir = git -C notes rev-parse --path-format=absolute --git-common-dir
+```
+
+After committing specific note files, submit through `python -X utf8 "$notesCommonGitDir/hooks/notes-boundary/submit_project.py" --repo notes` with authenticated `gh`. The remote requires `notes-boundary/root/attribute-feats` from GitHub Actions. Only after successful submission should this repository commit and push the `notes` gitlink. See the central repository's `项目接入.md` for initialization, updates and conflict handling.
