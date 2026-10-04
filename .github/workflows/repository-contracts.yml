@@ -24,6 +24,13 @@ jobs:
       - name: Check production identifiers and loader metadata
         shell: pwsh
         run: ./scripts/Test-RepositoryContracts.ps1
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+      - name: Check weapon damage calculations
+        run: dotnet run --project tests/WeaponDamage.Tests --configuration Release
+      - name: Check feat registration and menus
+        run: dotnet run --project tests/Initialization.Tests --configuration Release
       - name: Upload contract report
         if: always()
         uses: actions/upload-artifact@v7

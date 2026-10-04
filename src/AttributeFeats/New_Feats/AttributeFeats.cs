@@ -183,7 +183,7 @@ namespace AttributeFeats.New_Feats
             string descKey,
             string descValue)
         {
-            var cfg = FeatureConfigurator.New(internalName, guid, FeatureGroup.Feat)
+            var cfg = FeatSelection.MainAttribute.NewFeat(internalName, guid)
                 .SetDisplayName(Common.L(nameKey, nameValue))
                 .SetDescription(Common.L(descKey, descValue, tagEncyclopediaEntries: true));
 

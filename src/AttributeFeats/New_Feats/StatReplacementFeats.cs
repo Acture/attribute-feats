@@ -212,7 +212,7 @@ namespace AttributeFeats.New_Feats
             string descKey,
             string descValue)
         {
-            var cfg = FeatureConfigurator.New(internalName, guid, FeatureGroup.Feat)
+            var cfg = FeatSelection.WeaponInsight.NewFeat(internalName, guid)
                 .SetDisplayName(Common.L(nameKey, nameValue))
                 .SetDescription(Common.L(descKey, descValue, tagEncyclopediaEntries: true));
 
@@ -231,7 +231,7 @@ namespace AttributeFeats.New_Feats
             string descValue,
             RestrictionCalculator restriction = null)
         {
-            var cfg = FeatureConfigurator.New(internalName, guid, FeatureGroup.Feat)
+            var cfg = FeatSelection.ExtendedReplacement.NewFeat(internalName, guid)
                 .SetDisplayName(Common.L(nameKey, nameValue))
                 .SetDescription(Common.L(descKey, descValue, tagEncyclopediaEntries: true));
 

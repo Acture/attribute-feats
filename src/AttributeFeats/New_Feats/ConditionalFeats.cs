@@ -86,7 +86,7 @@ namespace AttributeFeats.New_Feats
             string descKey,
             string descValue)
         {
-            return FeatureConfigurator.New(internalName, guid, FeatureGroup.Feat)
+            return FeatSelection.Conditional.NewFeat(internalName, guid)
                 .SetDisplayName(Common.L(nameKey, nameValue))
                 .SetDescription(Common.L(descKey, descValue, tagEncyclopediaEntries: true));
         }

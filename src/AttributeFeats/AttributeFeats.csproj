@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" InitialTargets="GenerateCustomPropsFile">
+<Project Sdk="Microsoft.NET.Sdk" InitialTargets="GenerateCustomPropsFile">
 
 	<!-- If GamePath.props exists, import it (generated or user-provided) -->
 	<Import Project="$(AttributeFeatsRepositoryRoot)GamePath.props" Condition="Exists('$(AttributeFeatsRepositoryRoot)GamePath.props')" />

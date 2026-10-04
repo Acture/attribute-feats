@@ -93,7 +93,7 @@ namespace AttributeFeats.New_Feats
                         .Build(),
                     ifFalse: ActionsBuilder.New().Build());
 
-            return FeatureConfigurator.New(internalName, featureGuid, FeatureGroup.Feat)
+            return FeatSelection.DistanceDamage.NewFeat(internalName, featureGuid)
                 .SetDisplayName(Common.L($"DistanceDamage_{internalName}.Name", displayName))
                 .SetDescription(Common.L($"DistanceDamage_{internalName}.Desc", description, tagEncyclopediaEntries: true))
                 .AddInitiatorAttackWithWeaponTrigger(action: applyBuff, triggerBeforeAttack: true)
