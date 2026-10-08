@@ -173,6 +173,11 @@ namespace AttributeFeats.New_Feats
         {
             public const string CorrosiveFinish = "a703f9e3-f64e-4730-92cb-d3ccb7cb1cba";
             public const string PhoenixFury = "753714da-ac49-4947-94f6-9002775add3b";
+            public const string FeastSpell = "079b0b01-4ebf-4949-b2d1-f8537bd936ac";
+            public const string FeastNatural = "d3521f81-b654-4071-933f-4dcb31af5819";
+            public const string FeastCurrent = "b7537968-94c3-4eca-b601-1263a7ff2056";
+            public const string Lifesteal = "288d0ff8-3ff5-4b15-8d32-0c021cbf6b5c";
+            public const string ManaBreakSpell = "ed7faa60-1346-4166-8fe4-f4949e2d4e99";
             public const string Feast = "700a33eb-883f-47af-a329-8606fcfb30b4";
             public const string SlotHarvest = "a4137eb7-3191-4f1a-91e4-1f15c52b75ba";
             public const string ArcaneOrb = "2be18508-1085-4452-bf28-596f907a1db2";

@@ -58,24 +58,59 @@ namespace AttributeFeats.New_Feats
         {
             Feat(FeatSelection.Execution, "CorrosiveFinish", Guids.Dota.CorrosiveFinish, "Corrosive Finish", "腐蚀处决",
                     Desc("Execution", "处决",
-                        "Your weapon attacks deal +1 damage for every 10% of hit points the target is missing (up to +9).",
-                        "目标每损失10%生命值，你的武器攻击对其伤害+1（最多+9）。"))
+                        "For every 10% of hit points the target is missing (up to 90%), your weapon attacks deal +1 damage plus 1 per 10 character levels.",
+                        "目标每损失10%生命值（最多计90%），你的武器攻击对其伤害+1，每10角色等级再+1。"))
                 .AddComponent<MissingHealthDamage>(c => c.UseTarget = true)
                 .Configure();
 
             Feat(FeatSelection.Execution, "PhoenixFury", Guids.Dota.PhoenixFury, "Burning Desperation", "涅槃之怒",
                     Desc("Execution", "处决",
-                        "Your weapon attacks deal +1 damage for every 10% of your own hit points you are missing (up to +9).",
-                        "你每损失10%生命值，你的武器攻击伤害+1（最多+9）。"))
-                .AddComponent<MissingHealthDamage>(c => c.UseTarget = false)
+                        "At the start of each round in combat, enemies within 15 feet take fire damage equal to half your character level (minimum 1), " +
+                        "increased by the percentage of hit points you are missing (for example, +50% when you are at half health).",
+                        "战斗中每轮开始时，15尺内的敌人受到等于你角色等级一半（最低1）的火焰伤害，并按你已损失生命值的百分比提高（例如半血时+50%）。"))
+                .AddComponent<BurningAura>()
                 .Configure();
 
             Feat(FeatSelection.Execution, "Feast", Guids.Dota.Feast, "Feast", "盛宴",
                     Desc("Execution", "处决",
-                        "Your weapon hits deal extra damage equal to 2% of the target's maximum hit points (minimum 1, at most twice your character level), " +
-                        "and you heal the same amount.",
-                        "你的武器命中额外造成目标最大生命值2%的伤害（最低1，最多为角色等级的2倍），并回复等量生命。"))
-                .AddComponent<FeastDamage>()
+                        "Your weapon hits deal extra damage equal to 2% of the target's maximum hit points (minimum 1, at most three times your character level).",
+                        "你的武器命中额外造成目标最大生命值2%的伤害（最低1，最多为角色等级的3倍）。"))
+                .AddComponent<PercentHealthDamage>(c => c.FromCurrent = false)
+                .Configure();
+
+            Feat(FeatSelection.Execution, "FeastCurrent", Guids.Dota.FeastCurrent, "Opening Bite", "先手撕咬",
+                    Desc("Execution", "处决",
+                        "Your weapon hits deal extra damage equal to 3% of the target's current hit points (minimum 1, at most three times your character level).",
+                        "你的武器命中额外造成目标当前生命值3%的伤害（最低1，最多为角色等级的3倍）。"))
+                .AddComponent<PercentHealthDamage>(c => c.FromCurrent = true)
+                .Configure();
+
+            Feat(FeatSelection.Execution, "FeastSpell", Guids.Dota.FeastSpell, "Arcane Feast", "法术盛宴",
+                    Desc("Execution", "处决",
+                        "When your spell damages an enemy, it takes extra damage equal to 2% of its maximum hit points " +
+                        "(minimum 1, at most three times your character level). Once per target for each spell you cast.",
+                        "你的法术伤害敌人时，其额外受到最大生命值2%的伤害（最低1，最多为角色等级的3倍）。你每施放一次法术，每个目标只触发一次。"))
+                .AddComponent<SpellFeastDamage>()
+                .Configure();
+
+            Feat(FeatSelection.Execution, "FeastNatural", Guids.Dota.FeastNatural, "Savage Feast", "天武盛宴",
+                    Desc("Execution", "处决",
+                        "Your natural attacks deal extra damage equal to 2% of the target's maximum hit points " +
+                        "(minimum 1, at most three times your character level), and you heal the same amount.",
+                        "你的天生武器攻击额外造成目标最大生命值2%的伤害（最低1，最多为角色等级的3倍），并回复等量生命。"))
+                .AddComponent<PercentHealthDamage>(c =>
+                {
+                    c.FromCurrent = false;
+                    c.NaturalOnly = true;
+                    c.HealSelf = true;
+                })
+                .Configure();
+
+            Feat(FeatSelection.Execution, "Lifesteal", Guids.Dota.Lifesteal, "Lifesteal", "吸血",
+                    Desc("Execution", "处决",
+                        "You heal 15% of the damage your weapon attacks deal.",
+                        "你回复武器攻击所造成伤害的15%。"))
+                .AddComponent<WeaponLifesteal>()
                 .Configure();
         }
 
@@ -104,9 +139,18 @@ namespace AttributeFeats.New_Feats
 
             Feat(FeatSelection.Arcana, "ManaBreak", Guids.Dota.ManaBreak, "Mana Break", "法力损毁",
                     Desc("Arcana", "法力",
-                        "Once per round, when your weapon hits a spellcaster, it loses its highest unspent spell slot and takes extra damage equal to twice that slot's level.",
-                        "每轮一次，你的武器命中施法者时，使其失去最高环的一个未消耗法术位，并额外受到等于该环级两倍的伤害。"))
+                        "When your weapon hits a spellcaster, it loses its highest unspent spell slot and takes extra damage equal to twice that slot's level. " +
+                        "Once per round.",
+                        "你的武器命中施法者时，使其失去最高环的一个未消耗法术位，并额外受到等于该环级两倍的伤害。每轮一次。"))
                 .AddComponent<ManaBreakOnHit>()
+                .Configure();
+
+            Feat(FeatSelection.Arcana, "ManaBreakSpell", Guids.Dota.ManaBreakSpell, "Mana Void", "法力虚空",
+                    Desc("Arcana", "法力",
+                        "When your spell damages a spellcaster, it loses its highest unspent spell slot and takes extra damage equal to twice that slot's level. " +
+                        "Once per round.",
+                        "你的法术伤害施法者时，使其失去最高环的一个未消耗法术位，并额外受到等于该环级两倍的伤害。每轮一次。"))
+                .AddComponent<ManaBreakOnSpell>()
                 .Configure();
         }
 
@@ -128,9 +172,9 @@ namespace AttributeFeats.New_Feats
                 .Configure();
             Feat(FeatSelection.Momentum, "Fervor", Guids.Dota.Fervor, "Fervor", "狂热",
                     Desc("Momentum", "动能",
-                        "Each consecutive weapon hit on the same target adds a Fervor stack (up to 3): +1 dodge AC per stack, and at 3 stacks you make one extra attack in a full attack. " +
-                        "Hitting a different target resets the stacks.",
-                        "连续命中同一目标时每次获得一层狂热（最多3层）：每层闪避AC+1，3层时全回合攻击额外攻击一次。命中其他目标时层数重置。"))
+                        "Each consecutive weapon attack against the same target, hit or miss, adds a Fervor stack (up to 3): +1 dodge AC per stack, " +
+                        "and at 3 stacks you make one extra attack in a full attack. Attacking a different target resets the stacks.",
+                        "连续攻击同一目标时（无论是否命中）每次获得一层狂热（最多3层）：每层闪避AC+1，3层时全回合攻击额外攻击一次。攻击其他目标时层数重置。"))
                 .AddComponent<FervorTracker>(c =>
                 {
                     c.Buff = fervor.ToReference<BlueprintBuffReference>();
@@ -140,8 +184,8 @@ namespace AttributeFeats.New_Feats
 
             Feat(FeatSelection.Momentum, "CrushingRhythm", Guids.Dota.CrushingRhythm, "Crushing Rhythm", "重击节律",
                     Desc("Momentum", "动能",
-                        "Every fourth weapon hit you land is an automatically confirmed critical hit.",
-                        "你每第4次武器命中自动成为确认的重击。"))
+                        "Every fourth weapon attack you make, hit or miss, is an automatic critical threat that is automatically confirmed if it hits.",
+                        "你每第4次武器攻击（无论前几次是否命中）自动成为重击威胁，命中时自动确认为重击。"))
                 .AddComponent<EveryNthHitCritical>(c => c.Every = 4)
                 .Configure();
         }
@@ -150,16 +194,16 @@ namespace AttributeFeats.New_Feats
         {
             Feat(FeatSelection.Retaliation, "ReturnBlow", Guids.Dota.ReturnBlow, "Return Blow", "反伤",
                     Desc("Retaliation", "反击",
-                        "When a melee attack hits you, the attacker takes damage equal to half your character level plus your Strength modifier (minimum 1).",
-                        "近战攻击命中你时，攻击者受到等于你角色等级一半加力量调整值的伤害（最低1）。"))
+                        "Whenever an enemy damages you with a melee or ranged attack or a spell, it takes damage equal to half your character level plus your Strength modifier (minimum 1).",
+                        "敌人以近战、远程攻击或法术对你造成伤害时，受到等于你角色等级一半加力量调整值的伤害（最低1）。"))
                 .AddComponent<ReturnBlowDamage>()
                 .Configure();
 
             Feat(FeatSelection.Retaliation, "KrakenShell", Guids.Dota.KrakenShell, "Kraken Shell", "海妖外壳",
                     Desc("Retaliation", "反击",
-                        "You gain DR 1/— plus 1 per 4 character levels. After you take damage totalling a quarter of your maximum hit points, " +
+                        "You gain DR 1/— plus 1 per 4 character levels. After you take damage totalling a tenth of your maximum hit points, " +
                         "all harmful effects on you are removed and the count resets.",
-                        "你获得1/—的伤害减免，每4角色等级再+1。累计受到相当于最大生命值四分之一的伤害后，移除你身上所有有害效果，并重新计数。"))
+                        "你获得1/—的伤害减免，每4角色等级再+1。累计受到相当于最大生命值十分之一的伤害后，移除你身上所有有害效果，并重新计数。"))
                 .AddContextRankConfig(ContextRankConfigs.CharacterLevel().WithStartPlusDivStepProgression(4, 0))
                 .AddDamageResistancePhysical(isStackable: true, value: Common.Rank())
                 .AddComponent<KrakenShellPurge>()
@@ -188,8 +232,9 @@ namespace AttributeFeats.New_Feats
         {
             Feat(FeatSelection.Summoner, "SpiritLink", Guids.Dota.SpiritLink, "Spirit Link", "灵魂链接",
                     Desc("Summoner", "召唤师",
-                        "Whenever you are healed, your summoned creatures within 30 feet heal the same amount. Whenever one of your summoned creatures is healed, you heal half that amount.",
-                        "你受到治疗时，你30尺内的召唤物回复等量生命；你的召唤物受到治疗时，你回复其一半的生命。"))
+                        "Whenever you are healed, your summoned creatures within 30 feet heal the same amount. Whenever one of your summoned creatures is healed, you heal half that amount. " +
+                        "Healing shared by this link is never shared again, so it does not bounce back and forth.",
+                        "你受到治疗时，你30尺内的召唤物回复等量生命；你的召唤物受到治疗时，你回复其一半的生命。经由本链接传递的治疗不会再次传递，不会来回反弹。"))
                 .AddComponent<SpiritLinkHealing>()
                 .Configure();
         }
@@ -284,8 +329,8 @@ namespace AttributeFeats.New_Feats
         {
             var unit = UseTarget ? evt.AttackWithWeapon?.Target : Owner;
             if (unit == null || unit.MaxHP <= 0) return;
-            var missingTenths = (int)(10 * (1 - (float)Math.Max(0, unit.HPLeft) / unit.MaxHP));
-            var bonus = Math.Min(9, missingTenths);
+            var missingTenths = Math.Min(9, (int)(10 * (1 - (float)Math.Max(0, unit.HPLeft) / unit.MaxHP)));
+            var bonus = missingTenths * (1 + Owner.Descriptor.Progression.CharacterLevel / 10);
             if (bonus > 0) evt.AddDamageModifier(bonus, Fact);
         }
 
@@ -293,16 +338,83 @@ namespace AttributeFeats.New_Feats
     }
 
     [TypeId("b2c3d4e5f60718293a4b5c6d7e8f90a1")]
-    public class FeastDamage : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleAttackWithWeapon>, IInitiatorRulebookSubscriber
+    public class PercentHealthDamage : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleAttackWithWeapon>, IInitiatorRulebookSubscriber
     {
+        public bool FromCurrent;
+        public bool NaturalOnly;
+        public bool HealSelf;
+
         public void OnEventAboutToTrigger(RuleAttackWithWeapon evt) { }
 
         public void OnEventDidTrigger(RuleAttackWithWeapon evt)
         {
             if (!evt.AttackRoll.IsHit || evt.Target == null) return;
-            var amount = Math.Max(1, Math.Min(evt.Target.MaxHP / 50, 2 * Owner.Descriptor.Progression.CharacterLevel));
+            if (NaturalOnly && evt.Weapon?.Blueprint.IsNatural != true) return;
+            var amount = Amount(Owner, evt.Target, FromCurrent);
             SpellSlots.DealDirectDamage(Owner, evt.Target, amount);
-            SpellSlots.Heal(Owner, Owner, amount);
+            if (HealSelf) SpellSlots.Heal(Owner, Owner, amount);
+        }
+
+        internal static int Amount(UnitEntityData source, UnitEntityData target, bool fromCurrent)
+        {
+            var basis = fromCurrent ? Math.Max(0, target.HPLeft) * 3 / 100 : target.MaxHP * 2 / 100;
+            return Math.Max(1, Math.Min(basis, 3 * source.Descriptor.Progression.CharacterLevel));
+        }
+    }
+
+    [TypeId("2b7200e358a04b10833f725c9f490c39")]
+    public class SpellFeastDamage : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleDealDamage>, IInitiatorRulebookSubscriber
+    {
+        [ThreadStatic] private static bool Feasting;
+        private readonly HashSet<(object cast, UnitEntityData target)> Fed = new();
+
+        public void OnEventAboutToTrigger(RuleDealDamage evt) { }
+
+        public void OnEventDidTrigger(RuleDealDamage evt)
+        {
+            var context = evt.Reason?.Context;
+            if (Feasting || evt.Result <= 0 || evt.Target == null || evt.Reason?.Ability?.Spellbook == null || context == null) return;
+            if (Fed.Count > 256) Fed.Clear();
+            if (!Fed.Add((context, evt.Target))) return;
+            Feasting = true;
+            try
+            {
+                SpellSlots.DealDirectDamage(Owner, evt.Target, PercentHealthDamage.Amount(Owner, evt.Target, fromCurrent: false));
+            }
+            finally
+            {
+                Feasting = false;
+            }
+        }
+    }
+
+    [TypeId("ae9f467f31b949eab006ea1c3deea277")]
+    public class WeaponLifesteal : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleDealDamage>, IInitiatorRulebookSubscriber
+    {
+        public void OnEventAboutToTrigger(RuleDealDamage evt) { }
+
+        public void OnEventDidTrigger(RuleDealDamage evt)
+        {
+            if (evt.Result <= 0 || evt.DamageBundle.Weapon == null) return;
+            SpellSlots.Heal(Owner, Owner, evt.Result * 15 / 100);
+        }
+    }
+
+    [TypeId("a9344ef73caf4372aaf027e4644d0ce1")]
+    public class BurningAura : UnitFactComponentDelegate, Kingmaker.Controllers.Units.ITickEachRound
+    {
+        public void OnNewRound()
+        {
+            if (!Owner.IsInCombat || Owner.State.IsDead || Owner.MaxHP <= 0) return;
+            var level = Owner.Descriptor.Progression.CharacterLevel;
+            var missing = 1 - (float)Math.Max(0, Owner.HPLeft) / Owner.MaxHP;
+            var damage = (int)(Math.Max(1, level / 2) * (1 + missing));
+            foreach (var enemy in GameHelper.GetTargetsAround(Owner.Position, 15.Feet(), checkLOS: false)
+                .Where(unit => unit.IsEnemy(Owner) && !unit.State.IsDead).ToList())
+            {
+                Rulebook.Trigger(new RuleDealDamage(Owner, enemy,
+                    new EnergyDamage(new DiceFormula(0, DiceType.Zero), damage, Kingmaker.Enums.Damage.DamageEnergyType.Fire)));
+            }
         }
     }
 
@@ -355,22 +467,46 @@ namespace AttributeFeats.New_Feats
         }
     }
 
+    /// <summary>Burns one spell slot once per round and deals twice its level as damage.</summary>
+    internal sealed class ManaBurner
+    {
+        private int LastRound = -1;
+
+        public void TryBurn(UnitEntityData source, UnitEntityData target)
+        {
+            if (target == null || target == source) return;
+            var round = SpellSlots.CurrentRound();
+            if (LastRound == round) return;
+            var level = SpellSlots.BurnHighest(target);
+            if (level <= 0) return;
+            LastRound = round;
+            SpellSlots.DealDirectDamage(source, target, 2 * level);
+        }
+    }
+
     [TypeId("f60718293a4b5c6d7e8f90a1b2c3d4e5")]
     public class ManaBreakOnHit : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleAttackWithWeapon>, IInitiatorRulebookSubscriber
     {
-        private int LastRound = -1;
+        private readonly ManaBurner Burner = new();
 
         public void OnEventAboutToTrigger(RuleAttackWithWeapon evt) { }
 
         public void OnEventDidTrigger(RuleAttackWithWeapon evt)
         {
-            if (!evt.AttackRoll.IsHit || evt.Target == null) return;
-            var round = SpellSlots.CurrentRound();
-            if (round == LastRound) return;
-            var level = SpellSlots.BurnHighest(evt.Target);
-            if (level <= 0) return;
-            LastRound = round;
-            SpellSlots.DealDirectDamage(Owner, evt.Target, 2 * level);
+            if (evt.AttackRoll.IsHit) Burner.TryBurn(Owner, evt.Target);
+        }
+    }
+
+    [TypeId("0269a2e308aa441fa6d157db1b6debb8")]
+    public class ManaBreakOnSpell : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleDealDamage>, IInitiatorRulebookSubscriber
+    {
+        private readonly ManaBurner Burner = new();
+
+        public void OnEventAboutToTrigger(RuleDealDamage evt) { }
+
+        public void OnEventDidTrigger(RuleDealDamage evt)
+        {
+            if (evt.Result > 0 && evt.Reason?.Ability?.Spellbook != null) Burner.TryBurn(Owner, evt.Target);
         }
     }
 
@@ -385,7 +521,7 @@ namespace AttributeFeats.New_Feats
 
         public void OnEventDidTrigger(RuleAttackWithWeapon evt)
         {
-            if (!evt.AttackRoll.IsHit || evt.Target == null) return;
+            if (evt.Target == null) return;
             var buff = Buff.Get();
             if (evt.Target != LastTarget)
             {
@@ -415,20 +551,31 @@ namespace AttributeFeats.New_Feats
 
         public void OnEventDidTrigger(RuleAttackRoll evt)
         {
-            if (evt.IsHit) Hits = (Hits + 1) % Every;
+            if (evt.Weapon != null) Hits = (Hits + 1) % Every;
         }
     }
 
     [TypeId("293a4b5c6d7e8f90a1b2c3d4e5f60718")]
-    public class ReturnBlowDamage : UnitFactComponentDelegate, ITargetRulebookHandler<RuleAttackWithWeapon>, ITargetRulebookSubscriber
+    public class ReturnBlowDamage : UnitFactComponentDelegate, ITargetRulebookHandler<RuleDealDamage>, ITargetRulebookSubscriber
     {
-        public void OnEventAboutToTrigger(RuleAttackWithWeapon evt) { }
+        [ThreadStatic] private static bool Retaliating;
 
-        public void OnEventDidTrigger(RuleAttackWithWeapon evt)
+        public void OnEventAboutToTrigger(RuleDealDamage evt) { }
+
+        public void OnEventDidTrigger(RuleDealDamage evt)
         {
-            if (!evt.AttackRoll.IsHit || evt.Weapon?.Blueprint.IsMelee != true || evt.Initiator == Owner) return;
-            var strength = Owner.Stats.Strength.Bonus;
-            SpellSlots.DealDirectDamage(Owner, evt.Initiator, Math.Max(1, Owner.Descriptor.Progression.CharacterLevel / 2 + strength));
+            var attacker = evt.Initiator;
+            if (Retaliating || evt.Result <= 0 || attacker == null || attacker == Owner || !attacker.IsEnemy(Owner)) return;
+            Retaliating = true;
+            try
+            {
+                var strength = Owner.Stats.Strength.Bonus;
+                SpellSlots.DealDirectDamage(Owner, attacker, Math.Max(1, Owner.Descriptor.Progression.CharacterLevel / 2 + strength));
+            }
+            finally
+            {
+                Retaliating = false;
+            }
         }
     }
 
@@ -443,7 +590,7 @@ namespace AttributeFeats.New_Feats
         {
             if (evt.Result <= 0) return;
             Taken += evt.Result;
-            if (Taken < Math.Max(1, Owner.MaxHP / 4)) return;
+            if (Taken < Math.Max(1, Owner.MaxHP / 10)) return;
             Taken = 0;
             foreach (var buff in Owner.Buffs.Enumerable.Where(b => b.Blueprint.Harmful).ToList())
                 buff.Remove();
