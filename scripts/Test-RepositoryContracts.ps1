@@ -33,7 +33,7 @@ function Invoke-Contract([string]$Name, [scriptblock]$Check) {
 }
 
 Invoke-Contract 'Production GUID declarations compile' {
-    $types = @(Add-Type -Path (Join-Path $RepositoryRoot 'src/ACHomebrew.Rules/Guids.cs') -PassThru)
+    $types = @(Add-Type -Path (Join-Path $RepositoryRoot 'src/ACHomebrew.Logic/Guids.cs') -PassThru)
     $rootType = $types | Where-Object FullName -eq 'ACHomebrew.Feats.Guids'
     if (-not $rootType) { throw 'The production Guids type was not found.' }
     $pending = [System.Collections.Generic.Stack[Type]]::new()

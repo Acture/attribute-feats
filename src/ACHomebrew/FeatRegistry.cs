@@ -32,8 +32,14 @@ namespace ACHomebrew.Feats
             succeeded &= TryConfigureFamily(nameof(WeaponDamageFeats), () => WeaponDamageFeats.ConfigureAll());
             succeeded &= TryConfigureFamily(nameof(CastingStatFeats), () => CastingStatFeats.ConfigureAll());
             succeeded &= TryConfigureFamily(nameof(ResourceStatFeats), () => ResourceStatFeats.ConfigureAll());
-            succeeded &= TryConfigureFamily(nameof(PlaystyleFeats), () => PlaystyleFeats.ConfigureAll());
-            succeeded &= TryConfigureFamily(nameof(DotaFeats), () => DotaFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(RetaliationFeats), () => RetaliationFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(MomentumFeats), () => MomentumFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(ExecutionFeats), () => ExecutionFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(ArcanaFeats), () => ArcanaFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(SummonerFeats), () => SummonerFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(StealthFeats), () => StealthFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(SoloFeats), () => SoloFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(GrowthFeats), () => GrowthFeats.ConfigureAll());
             succeeded &= TryConfigure(nameof(MutexPass), () => MutexPass.ApplyAll());
 
             var menusSucceeded = false;

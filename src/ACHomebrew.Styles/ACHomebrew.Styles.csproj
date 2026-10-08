@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<!-- The original attribute feat families. -->
+	<!-- Play styles: stealth, solo play and growth from kills. -->
 	<Import Project="../WrathMod.props" />
 	<ItemGroup>
-		<ProjectReference Include="../ACHomebrew.Rules/ACHomebrew.Rules.csproj" />
+		<ProjectReference Include="../ACHomebrew.Logic/ACHomebrew.Logic.csproj" />
 		<ProjectReference Include="../ACHomebrew.Core/ACHomebrew.Core.csproj" />
 	</ItemGroup>
 	<ItemGroup>

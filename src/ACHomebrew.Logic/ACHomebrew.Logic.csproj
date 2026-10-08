@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<!-- Game-independent rules shared by the mod and its tests. -->
+	<!-- Game-independent logic shared by the mod and its tests: budget, exclusion groups, scoring rules and GUIDs. -->
 	<PropertyGroup>
 		<TargetFrameworks>net48;netstandard2.0</TargetFrameworks>
 		<LangVersion>latest</LangVersion>
@@ -12,9 +12,13 @@
 	<ItemGroup>
 		<InternalsVisibleTo Include="AttributeFeats" />
 		<InternalsVisibleTo Include="ACHomebrew.Core" />
-		<InternalsVisibleTo Include="ACHomebrew.Classic" />
-		<InternalsVisibleTo Include="ACHomebrew.Casting" />
-		<InternalsVisibleTo Include="ACHomebrew.Playstyle" />
+		<InternalsVisibleTo Include="ACHomebrew.Attributes" />
+		<InternalsVisibleTo Include="ACHomebrew.Aptitudes" />
+		<InternalsVisibleTo Include="ACHomebrew.Martial" />
+		<InternalsVisibleTo Include="ACHomebrew.Defense" />
+		<InternalsVisibleTo Include="ACHomebrew.Magic" />
+		<InternalsVisibleTo Include="ACHomebrew.Summoning" />
+		<InternalsVisibleTo Include="ACHomebrew.Styles" />
 		<InternalsVisibleTo Include="FeatBudget.Tests" />
 		<InternalsVisibleTo Include="WeaponDamage.Tests" />
 	</ItemGroup>

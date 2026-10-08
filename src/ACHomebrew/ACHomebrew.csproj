@@ -21,11 +21,15 @@
 	</Target>
 
 	<ItemGroup>
-		<ProjectReference Include="../ACHomebrew.Rules/ACHomebrew.Rules.csproj" />
-		<ProjectReference Include="../ACHomebrew.Core/ACHomebrew.Core.csproj" />
-		<ProjectReference Include="../ACHomebrew.Classic/ACHomebrew.Classic.csproj" />
-		<ProjectReference Include="../ACHomebrew.Casting/ACHomebrew.Casting.csproj" />
-		<ProjectReference Include="../ACHomebrew.Playstyle/ACHomebrew.Playstyle.csproj" />
+		<ProjectReference Include="../ACHomebrew.Logic/ACHomebrew.Logic.csproj" />
+		<ProjectReference Include="../ACHomebrew.Core/ACHomebrew.Core.csproj" />
+		<ProjectReference Include="../ACHomebrew.Attributes/ACHomebrew.Attributes.csproj" />
+		<ProjectReference Include="../ACHomebrew.Aptitudes/ACHomebrew.Aptitudes.csproj" />
+		<ProjectReference Include="../ACHomebrew.Martial/ACHomebrew.Martial.csproj" />
+		<ProjectReference Include="../ACHomebrew.Defense/ACHomebrew.Defense.csproj" />
+		<ProjectReference Include="../ACHomebrew.Magic/ACHomebrew.Magic.csproj" />
+		<ProjectReference Include="../ACHomebrew.Summoning/ACHomebrew.Summoning.csproj" />
+		<ProjectReference Include="../ACHomebrew.Styles/ACHomebrew.Styles.csproj" />
 	</ItemGroup>
 
 	<!-- ModMenu is optional: compile its settings page only when it is installed, never ship it. -->
@@ -61,7 +65,7 @@
 	<Target Name="MergeFeatureAssemblies" AfterTargets="Build" BeforeTargets="Deploy">
 		<ItemGroup>
 			<_MergeInputs Include="$(TargetPath)" />
-			<_MergeInputs Include="$(TargetDir)ACHomebrew.Rules.dll;$(TargetDir)ACHomebrew.Core.dll;$(TargetDir)ACHomebrew.Classic.dll;$(TargetDir)ACHomebrew.Casting.dll;$(TargetDir)ACHomebrew.Playstyle.dll" />
+			<_MergeInputs Include="$(TargetDir)ACHomebrew.Logic.dll;$(TargetDir)ACHomebrew.Core.dll;$(TargetDir)ACHomebrew.Attributes.dll;$(TargetDir)ACHomebrew.Aptitudes.dll;$(TargetDir)ACHomebrew.Martial.dll;$(TargetDir)ACHomebrew.Defense.dll;$(TargetDir)ACHomebrew.Magic.dll;$(TargetDir)ACHomebrew.Summoning.dll;$(TargetDir)ACHomebrew.Styles.dll" />
 			<!-- BlueprintCore ships inside the mod so it does not depend on another mod providing it. -->
 			<_MergeInputs Include="$(TargetDir)BlueprintCore.dll" />
 		</ItemGroup>
@@ -72,7 +76,7 @@
 		<MakeDir Directories="$(_MergedDir)" />
 		<Exec Command="&quot;$(PkgILRepack)\tools\ILRepack.exe&quot; /lib:&quot;$(TargetDir.TrimEnd('\'))&quot; /lib:&quot;$(WrathInstallDir)\Wrath_Data\Managed&quot; /lib:&quot;$(WrathInstallDir)\Mods\ModMenu&quot; /out:&quot;$(_MergedDir)$(TargetFileName)&quot; @(_MergeInputs->'&quot;%(FullPath)&quot;', ' ')" />
 		<Copy SourceFiles="$(_MergedDir)$(TargetFileName);$(_MergedDir)$(TargetName).pdb" DestinationFolder="$(TargetDir)" />
-		<Delete Files="$(TargetDir)ACHomebrew.Rules.dll;$(TargetDir)ACHomebrew.Core.dll;$(TargetDir)ACHomebrew.Classic.dll;$(TargetDir)ACHomebrew.Casting.dll;$(TargetDir)ACHomebrew.Playstyle.dll;$(TargetDir)ACHomebrew.Rules.pdb;$(TargetDir)ACHomebrew.Core.pdb;$(TargetDir)ACHomebrew.Classic.pdb;$(TargetDir)ACHomebrew.Casting.pdb;$(TargetDir)ACHomebrew.Playstyle.pdb" />
+		<Delete Files="$(TargetDir)ACHomebrew.Logic.dll;$(TargetDir)ACHomebrew.Logic.pdb;$(TargetDir)ACHomebrew.Core.dll;$(TargetDir)ACHomebrew.Core.pdb;$(TargetDir)ACHomebrew.Attributes.dll;$(TargetDir)ACHomebrew.Attributes.pdb;$(TargetDir)ACHomebrew.Aptitudes.dll;$(TargetDir)ACHomebrew.Aptitudes.pdb;$(TargetDir)ACHomebrew.Martial.dll;$(TargetDir)ACHomebrew.Martial.pdb;$(TargetDir)ACHomebrew.Defense.dll;$(TargetDir)ACHomebrew.Defense.pdb;$(TargetDir)ACHomebrew.Magic.dll;$(TargetDir)ACHomebrew.Magic.pdb;$(TargetDir)ACHomebrew.Summoning.dll;$(TargetDir)ACHomebrew.Summoning.pdb;$(TargetDir)ACHomebrew.Styles.dll;$(TargetDir)ACHomebrew.Styles.pdb;$(TargetDir)BlueprintCore.dll" />
 	</Target>
 
 	<!-- Deploy to Mods folder + zip -->

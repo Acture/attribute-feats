@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<!-- Casting attribute and resource attribute feats and their patches. -->
+	<!-- Martial play: stances, conditional triggers, distance, momentum and execution. -->
 	<Import Project="../WrathMod.props" />
 	<ItemGroup>
-		<ProjectReference Include="../ACHomebrew.Rules/ACHomebrew.Rules.csproj" />
+		<ProjectReference Include="../ACHomebrew.Logic/ACHomebrew.Logic.csproj" />
 		<ProjectReference Include="../ACHomebrew.Core/ACHomebrew.Core.csproj" />
 	</ItemGroup>
 	<ItemGroup>

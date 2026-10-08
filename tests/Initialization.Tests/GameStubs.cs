@@ -112,8 +112,14 @@ namespace ACHomebrew.Feats
     internal static class WeaponDamageFeats { internal static void ConfigureAll() => World.Register(nameof(WeaponDamageFeats), FeatSelection.WeaponDamage); }
     internal static class CastingStatFeats { internal static void ConfigureAll() => World.Register(nameof(CastingStatFeats), FeatSelection.CastingStat); }
     internal static class ResourceStatFeats { internal static void ConfigureAll() => World.Register(nameof(ResourceStatFeats), FeatSelection.ResourceStat); }
-    internal static class PlaystyleFeats { internal static void ConfigureAll() => World.Register(nameof(PlaystyleFeats), FeatSelection.Retaliation); }
-    internal static class DotaFeats { internal static void ConfigureAll() => World.Register(nameof(DotaFeats), FeatSelection.Execution); }
+    internal static class RetaliationFeats { internal static void ConfigureAll() => World.Register(nameof(RetaliationFeats), FeatSelection.Retaliation); }
+    internal static class MomentumFeats { internal static void ConfigureAll() => World.Register(nameof(MomentumFeats), FeatSelection.Momentum); }
+    internal static class ExecutionFeats { internal static void ConfigureAll() => World.Register(nameof(ExecutionFeats), FeatSelection.Execution); }
+    internal static class ArcanaFeats { internal static void ConfigureAll() => World.Register(nameof(ArcanaFeats), FeatSelection.Arcana); }
+    internal static class SummonerFeats { internal static void ConfigureAll() => World.Register(nameof(SummonerFeats), FeatSelection.Summoner); }
+    internal static class StealthFeats { internal static void ConfigureAll() => World.Register(nameof(StealthFeats), FeatSelection.Stealth); }
+    internal static class SoloFeats { internal static void ConfigureAll() => World.Register(nameof(SoloFeats), FeatSelection.Solo); }
+    internal static class GrowthFeats { internal static void ConfigureAll() => World.Register(nameof(GrowthFeats), FeatSelection.Growth); }
     internal static class MutexPass { internal static void ApplyAll() => World.Register(nameof(MutexPass)); }
     internal static class FeatBudget { internal static void Install() => World.Budgeted.AddRange(FeatSelection.BudgetedFeats()); }
 }

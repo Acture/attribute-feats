@@ -38,7 +38,8 @@ namespace ACHomebrew
             foreach (var assembly in new[]
             {
                 Assembly.GetExecutingAssembly(), typeof(Mod).Assembly, typeof(MainAbilityToEverything_Feats).Assembly,
-                typeof(CastingStatFeats).Assembly, typeof(PlaystyleFeats).Assembly,
+                typeof(SpecializedFeats).Assembly, typeof(StanceFeats).Assembly, typeof(ReactiveArmorFeats).Assembly,
+                typeof(SpellTagFeats).Assembly, typeof(GreaterSummoningFeats).Assembly, typeof(StealthFeats).Assembly,
             }.Distinct())
             {
                 HarmonyInstance.PatchAll(assembly);

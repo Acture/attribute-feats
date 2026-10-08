@@ -241,10 +241,16 @@ replace in-game behavior tests.
 
 | Path | Contents |
 |---|---|
-| `src/ACHomebrew/` | Entry project: UMM loader, registration order, icons, `App.config`, loader `Info.json` and packaging (merges the other projects into `AttributeFeats.dll`, the unchanged DLL name) |
-| `src/ACHomebrew.Rules/` | Game-independent rules, budget costs, exclusion groups and blueprint GUIDs, shared with the tests |
-| `src/ACHomebrew.Core/` | Feat menus, budget and exclusion enforcement, settings, localization and icons loader |
-| `src/ACHomebrew.Classic/`, `.Casting/`, `.Playstyle/` | Feat families: the original families; casting and resource attribute feats; playstyle and Dota-inspired feats |
+| `src/ACHomebrew/` | Entry project: UMM loader, registration order, icons, `App.config`, loader `Info.json`, optional ModMenu page and packaging (merges every project and BlueprintCore into `AttributeFeats.dll`, the unchanged DLL name) |
+| `src/ACHomebrew.Logic/` | Game-independent logic shared with the tests: budget costs, exclusion groups, scoring rules and blueprint GUIDs |
+| `src/ACHomebrew.Core/` | In-game infrastructure: feat menus, budget and exclusion enforcement, settings, localization and shared feat builders |
+| `src/ACHomebrew.Attributes/` | Main Attribute Mastery, Weapon Insight and Extended Replacement, Derived Stat Conversion, Weapon Damage, casting and resource attributes |
+| `src/ACHomebrew.Aptitudes/` | Defensive, Maneuver, Skilled and Arcane aptitudes |
+| `src/ACHomebrew.Martial/` | Stances, Conditional Triggers, distance feats, Long-Reach Gambit, Momentum and Execution |
+| `src/ACHomebrew.Defense/` | Reactive Armor and Retaliation |
+| `src/ACHomebrew.Magic/` | Spell School/Descriptor Specialists and Arcana (spell slots) |
+| `src/ACHomebrew.Summoning/` | Greater Summoning, Summoner Sacrifice and Summoner links |
+| `src/ACHomebrew.Styles/` | Stealth, Solo and Growth |
 | `src/WrathMod.props` | Shared game references and `WrathInstallDir` resolution |
 | `tests/` | Test projects and compatibility baselines |
 | `scripts/`, `.github/` | Local commands and CI workflows |

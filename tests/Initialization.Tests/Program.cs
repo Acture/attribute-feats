@@ -162,7 +162,7 @@ internal static class World
         "MainAbilityToEverything_Feats", "SpecializedFeats", "StanceFeats", "ConditionalFeats",
         "StatReplacementFeats", "ReactiveArmorFeats", "DerivedStatFeats", "GreaterSummoningFeats",
         "SpellTagFeats", "SummonerSacrificeFeats", "PolearmMasterFeats", "DistanceDamageFeats",
-        "WeaponDamageFeats", "CastingStatFeats", "ResourceStatFeats", "PlaystyleFeats", "DotaFeats", "MutexPass",
+        "WeaponDamageFeats", "CastingStatFeats", "ResourceStatFeats", "RetaliationFeats", "MomentumFeats", "ExecutionFeats", "ArcanaFeats", "SummonerFeats", "StealthFeats", "SoloFeats", "GrowthFeats", "MutexPass",
     };
     internal static readonly HashSet<string> FailedRegistrations = new();
     internal static readonly List<string> Attempted = new();

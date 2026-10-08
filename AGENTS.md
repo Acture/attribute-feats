@@ -3,16 +3,18 @@
 ## Repository layout
 
 - The Mod ships as one assembly built from several projects under `src/`:
-  `ACHomebrew` (UMM entry, registration order, `Info.json`, icons and
-  packaging), `ACHomebrew.Rules` (game-independent rules and GUIDs),
-  `ACHomebrew.Core` (menus, budget, exclusion groups, settings and
-  localization) and the feature projects `ACHomebrew.Classic`,
-  `ACHomebrew.Casting` and `ACHomebrew.Playstyle`. The entry project
-  merges them into `AttributeFeats.dll` with ILRepack after build. Keep the UMM
-  Id `AttributeFeats`, the DLL name and the settings XML root unchanged so
-  existing installs, settings and saves keep working. Shared game
-  references live in `src/WrathMod.props`. Open `ACHomebrew.slnx` from the
-  repository root.
+  `ACHomebrew` (UMM entry, registration order, `Info.json`, icons, optional
+  ModMenu page and packaging), `ACHomebrew.Logic` (game-independent logic
+  and GUIDs, referenced by the tests), `ACHomebrew.Core` (menus, budget and
+  exclusion enforcement, settings, localization and shared builders), and
+  theme projects `ACHomebrew.Attributes`, `.Aptitudes`, `.Martial`,
+  `.Defense`, `.Magic`, `.Summoning` and `.Styles`, one file per feat family.
+  Group new families by play theme, not by inspiration source. The entry
+  project merges every project and BlueprintCore into `AttributeFeats.dll`
+  with ILRepack after build. Keep the UMM Id `AttributeFeats`, the DLL name
+  and the settings XML root unchanged so existing installs, settings and
+  saves keep working. Shared game references live in `src/WrathMod.props`.
+  Open `ACHomebrew.slnx` from the repository root.
 - Keep tests in `tests/`, CLI tools in `scripts/`, and workflows in `.github/`.
 - Use `doc/` as the sole public documentation directory and `notes/` for the
   private submodule. Do not recreate a parallel `docs/` directory.
