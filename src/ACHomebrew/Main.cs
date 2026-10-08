@@ -290,6 +290,7 @@ namespace ACHomebrew
                     FeatRegistry.ConfigureAll();
                     Common.RefreshLocale();
                     ModMenuSettings.TryRegister();
+                    ModTagSupport.TryRegister();
                     Log.Log("AttributeFeats: blueprint initialization attempt finished; see registration diagnostics above.");
                 }
                 catch (Exception e)
