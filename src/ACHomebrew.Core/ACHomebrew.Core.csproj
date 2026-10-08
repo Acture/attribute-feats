@@ -6,7 +6,7 @@
 		<EmbeddedResource Include="Localization/FeatText.json" LogicalName="AttributeFeats.Localization.FeatText.json" />
 	</ItemGroup>
 	<ItemGroup>
-		<InternalsVisibleTo Include="AttributeFeats" />
+		<InternalsVisibleTo Include="ACHomebrew" />
 		<InternalsVisibleTo Include="ACHomebrew.Attributes" />
 		<InternalsVisibleTo Include="ACHomebrew.Aptitudes" />
 		<InternalsVisibleTo Include="ACHomebrew.Martial" />

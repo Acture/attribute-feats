@@ -1,6 +1,6 @@
 # AC's Homebrew
 
-> Formerly **AttributeFeats**. The UMM mod Id (`AttributeFeats`), the DLL name and all feat IDs are unchanged, so existing settings and saves keep working.
+> Formerly **AttributeFeats**. The UMM mod Id and install folder (`AttributeFeats`) and all feat IDs are unchanged, so existing settings and saves keep working. The assembly is now `ACHomebrew.dll`.
 
 A Pathfinder: Wrath of the Righteous mod that adds **build-enabling** feats based on character attributes. Choose a Main Attribute feat for broad cross-stat support, or mix focused families to build unconventional defenders, duelists, casters, and summoners.
 
@@ -241,7 +241,7 @@ replace in-game behavior tests.
 
 | Path | Contents |
 |---|---|
-| `src/ACHomebrew/` | Entry project: UMM loader, registration order, icons, `App.config`, loader `Info.json`, optional ModMenu page and packaging (merges every project and BlueprintCore into `AttributeFeats.dll`, the unchanged DLL name) |
+| `src/ACHomebrew/` | Entry project: UMM loader, registration order, icons, `App.config`, loader `Info.json`, optional ModMenu page and packaging (merges every project and BlueprintCore into `ACHomebrew.dll`) |
 | `src/ACHomebrew.Logic/` | Game-independent logic shared with the tests: budget costs, exclusion groups, scoring rules and blueprint GUIDs |
 | `src/ACHomebrew.Core/` | In-game infrastructure: feat menus, budget and exclusion enforcement, settings, localization and shared feat builders |
 | `src/ACHomebrew.Attributes/` | Main Attribute Mastery, Weapon Insight and Extended Replacement, Derived Stat Conversion, Weapon Damage, casting and resource attributes |

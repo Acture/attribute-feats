@@ -98,7 +98,7 @@ def main():
             names = archive.namelist()
             icons = {n.replace('\\','/') for n in names if n.endswith('.png')}
             assert icons == {'Icons/'+r['filename'] for r in manifest}, 'release icon coverage'
-            assert {Path(n).name for n in names if n.endswith('.dll')} == {'AttributeFeats.dll'}, 'game DLLs must not ship'
+            assert {Path(n).name for n in names if n.endswith('.dll')} == {'ACHomebrew.dll'}, 'game DLLs must not ship'
             assert json.loads(archive.read('Info.json')) == json.loads(read(PROJECT/'Info.json'))
             assert not any(n.replace('\\', '/').split('/')[0] in ('notes', 'doc', 'docs') for n in names), 'documentation must not ship in the Mod ZIP'
             for asset in manifest:

@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Changed
+- Renamed the mod to **AC's Homebrew** (Chinese: AC 的家酿规则). The UMM Id and install folder (`AttributeFeats`), settings file and feat IDs are unchanged, so existing installs, settings and saves keep working. The assembly is now `ACHomebrew.dll` and the release ZIP `ACHomebrew-<version>.zip`; after upgrading, a leftover `AttributeFeats.dll` in the mod folder is ignored and can be deleted.
+- BlueprintCore is bundled inside `ACHomebrew.dll`, so the mod no longer depends on another mod providing it.
+- With ModMenu installed, the game's options screen gets an AC's Homebrew page mirroring the UMM settings. ModMenu stays optional.
 ### Added
 - Optional per-character feat budget across all Homebrew feat families: a feat count limit, a point limit with family costs of 1–3, or both. Both are off by default and apply immediately when changed.
 - Feat tooltips show used and maximum feats or points, the feat's cost and why it cannot be chosen, in English and Simplified Chinese. The mod settings list each party member's usage.

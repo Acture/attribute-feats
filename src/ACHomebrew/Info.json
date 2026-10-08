@@ -6,7 +6,7 @@
 	"ManagerVersion": "0.27.11",
 	"Requirements": [],
 	"LoadAfter": [ "ModMenu" ],
-	"AssemblyName": "AttributeFeats.dll",
+	"AssemblyName": "ACHomebrew.dll",
 	"EntryMethod": "ACHomebrew.Main.Load",
 	"HomePage": "https://github.com/Acture/attribute-feats",
 	"Repository": "https://github.com/Acture/attribute-feats"

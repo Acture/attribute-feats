@@ -10,7 +10,7 @@
 		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
 	</ItemGroup>
 	<ItemGroup>
-		<InternalsVisibleTo Include="AttributeFeats" />
+		<InternalsVisibleTo Include="ACHomebrew" />
 		<InternalsVisibleTo Include="ACHomebrew.Core" />
 		<InternalsVisibleTo Include="ACHomebrew.Attributes" />
 		<InternalsVisibleTo Include="ACHomebrew.Aptitudes" />

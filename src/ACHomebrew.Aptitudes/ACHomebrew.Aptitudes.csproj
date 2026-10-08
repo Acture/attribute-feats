@@ -6,6 +6,6 @@
 		<ProjectReference Include="../ACHomebrew.Core/ACHomebrew.Core.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<InternalsVisibleTo Include="AttributeFeats" />
+		<InternalsVisibleTo Include="ACHomebrew" />
 	</ItemGroup>
 </Project>

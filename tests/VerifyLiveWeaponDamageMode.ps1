@@ -5,7 +5,7 @@ param(
 
 # Run with Windows PowerShell 5.1 against the compiled mod and real game types.
 $ErrorActionPreference = 'Stop'
-if (!$ModAssembly) { $ModAssembly = Join-Path (Split-Path $PSScriptRoot -Parent) 'artifacts/bin/ACHomebrew/Debug/AttributeFeats.dll' }
+if (!$ModAssembly) { $ModAssembly = Join-Path (Split-Path $PSScriptRoot -Parent) 'artifacts/bin/ACHomebrew/Debug/ACHomebrew.dll' }
 $managed = Join-Path $WrathInstallDir 'Wrath_Data/Managed'
 foreach ($dependency in @('Assembly-CSharp.dll', 'UnityModManager/UnityModManager.dll', 'UnityModManager/0Harmony.dll')) {
     [void][System.Reflection.Assembly]::LoadFrom((Join-Path $managed $dependency))

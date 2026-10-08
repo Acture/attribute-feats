@@ -10,10 +10,10 @@
   theme projects `ACHomebrew.Attributes`, `.Aptitudes`, `.Martial`,
   `.Defense`, `.Magic`, `.Summoning` and `.Styles`, one file per feat family.
   Group new families by play theme, not by inspiration source. The entry
-  project merges every project and BlueprintCore into `AttributeFeats.dll`
-  with ILRepack after build. Keep the UMM Id `AttributeFeats`, the DLL name
-  and the settings XML root unchanged so existing installs, settings and
-  saves keep working. Shared game references live in `src/WrathMod.props`.
+  project merges every project and BlueprintCore into `ACHomebrew.dll`
+  with ILRepack after build. Keep the UMM Id `AttributeFeats`, the install
+  folder `Mods/AttributeFeats` and the settings XML root unchanged so
+  existing installs, settings and saves keep working. Shared game references live in `src/WrathMod.props`.
   Open `ACHomebrew.slnx` from the repository root.
 - Keep tests in `tests/`, CLI tools in `scripts/`, and workflows in `.github/`.
 - Use `doc/` as the sole public documentation directory and `notes/` for the
