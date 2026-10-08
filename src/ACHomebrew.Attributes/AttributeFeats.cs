@@ -187,11 +187,14 @@ namespace ACHomebrew.Feats
             var guid = (string)typeof(Guids.MainAttribute).GetNestedType(source.key).GetField(target.key).GetValue(null);
             var en = $"<i>Main Attribute Mastery · {source.en} to {target.en}</i>\n\n" +
                 $"<b>Effect:</b> Add your {source.en} modifier (minimum 0) to your {target.en} score as an inherent bonus. " +
-                "Inherent bonuses do not stack with other inherent bonuses, such as those from tomes; only the highest applies.\n\n" +
+                "Inherent bonuses do not stack with other inherent bonuses, such as those from tomes; only the highest applies. " +
+                "If the EnableBAB power option is on, it also adds half the modifier to Base Attack Bonus; with Power Mode on, half the modifier to attack, damage, " +
+                "attacks of opportunity, sneak attack, hit points and speed, plus 1 foot of reach.\n\n" +
                 "<b>Restrictions:</b> While the Main Attribute Mastery exclusion group is on, a character can have only one Main Attribute Mastery feat.";
             var zh = $"<i>主属性专精 · {source.zh}转{target.zh}</i>\n\n" +
                 $"<b>效果：</b>将你的{source.zh}调整值（最低0）作为固有加值加到你的{target.zh}属性值上。" +
-                "固有加值不与其他固有加值（如典籍）叠加，只取最高。\n\n" +
+                "固有加值不与其他固有加值（如典籍）叠加，只取最高。" +
+                "若开启强力选项 EnableBAB，还会将半数调整值加到基础攻击加值；开启威力模式时，还会将半数调整值加到攻击、伤害、借机攻击次数、偷袭、生命值与速度，并使触及+1尺。\n\n" +
                 "<b>限制：</b>启用主属性专精互斥组时，每个角色只能拥有一个主属性专精专长。";
             var cfg = menu.NewFeat(name, guid)
                 .SetDisplayName(Common.L($"{name}.Name", $"{source.en} Mastery: {target.en}", $"{source.zh}专精·{target.zh}"))

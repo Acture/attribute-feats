@@ -144,8 +144,8 @@ namespace ACHomebrew.Feats
             string effectEn,
             string effectZh)
         {
-            var en = $"<i>Summoner Sacrifice · {modeEn}</i>\n{loreEn}\n\n<b>Effect:</b> {effectEn}\n\n<b>Restrictions:</b> When EnableMutex is enabled, mutually exclusive with other Summoner Sacrifice feats.";
-            var zh = $"<i>召唤献祭 · {modeZh}</i>\n{loreZh}\n\n<b>效果：</b>{effectZh}\n\n<b>限制：</b>启用EnableMutex时，与其他“召唤献祭”专长互斥。";
+            var en = $"<i>Summoner Sacrifice · {modeEn}</i>\n{loreEn}\n\n<b>Effect:</b> {effectEn}\n\n<b>Restrictions:</b> While its exclusion group is on (configurable in mod settings), you can have only one Summoner Sacrifice feat.";
+            var zh = $"<i>召唤献祭 · {modeZh}</i>\n{loreZh}\n\n<b>效果：</b>{effectZh}\n\n<b>限制：</b>启用该互斥组时（可在模组设置中调整），只能拥有一个“召唤献祭”专长。";
             return (en, zh);
         }
 

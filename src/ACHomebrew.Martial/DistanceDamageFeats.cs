@@ -200,8 +200,8 @@ namespace ACHomebrew.Feats
             string effectEn,
             string effectZh)
         {
-            var en = $"<i>Distance Damage · {rangeLabelEn}</i>\n{loreEn}\n\n<b>Effect:</b> {effectEn}\n\n<b>Restrictions:</b> Distance Damage feats are independent and do not apply any intra-family mutex.";
-            var zh = $"<i>距离特化 · {rangeLabelZh}</i>\n{loreZh}\n\n<b>效果：</b>{effectZh}\n\n<b>限制：</b>距离伤害专长各自独立生效，无同类互斥限制。";
+            var en = $"<i>Distance Damage · {rangeLabelEn}</i>\n{loreEn}\n\n<b>Effect:</b> {effectEn}\n\n<b>Restrictions:</b> Feats within one distance style stack; feats from different styles exclude each other.";
+            var zh = $"<i>距离特化 · {rangeLabelZh}</i>\n{loreZh}\n\n<b>效果：</b>{effectZh}\n\n<b>限制：</b>同一距离风格的专长可叠加；不同风格互相排斥。";
             return (en, zh);
         }
     }
@@ -254,7 +254,8 @@ namespace ACHomebrew.Feats
                     var feet = (attacker.DistanceTo(target) - target.Corpulence) / Feet.FeetToMetersRatio;
                     var score = CloseQuartersRules.DistanceScore(feet);
                     // Calibration aid for game testing; distances depend on creature corpulence.
-                    Mod.Log?.Log($"AttributeFeats: close-quarters distance {feet:0.00} ft (attacker corpulence {attacker.Corpulence:0.00} m) -> +{score}.");
+                    if (Mod.Settings?.LogDistanceCalibration == true)
+                        Mod.Log?.Log($"AttributeFeats: close-quarters distance {feet:0.00} ft (attacker corpulence {attacker.Corpulence:0.00} m) -> +{score}.");
                     return score;
             }
         }

@@ -234,7 +234,7 @@ Main Attribute Mastery uses **inherent** bonuses, so it does not stack with tome
 ## Save Compatibility
 
 - **Upgrading to AC's Homebrew** keeps every existing feat GUID, the UMM Id and the install folder. The six broad Main feats are retired but stay on characters that have them, with narrowed effects; respec to pick the new Main Attribute Mastery. Several families were narrowed (aptitudes, the Wisdom stance, Defiance at the Precipice, Blade of the Spell-Saint, Summoner Sacrifice) and the distance feats were rebuilt; existing characters get the new effects on load. Exclusion rules are now checked at selection time and no longer stored on blueprints.
-- Settings files without budget, exclusion group, casting or meme fields use the defaults. Settings files without `WeaponDamage` default to `Replace`; Settings files without `WeaponDamage` default to `Replace`; both damage modes use the same new feat GUIDs, so switching modes requires no respec.
+- Settings files without budget, exclusion group, casting or meme fields use the defaults. Settings files without `WeaponDamage` default to `Replace`; both damage modes use the same new feat GUIDs, so switching modes requires no respec.
 - **0.1.1 → 0.1.x is non-breaking.** Settings carry over; XML serialization adds the new `EnableMutex` field as `true` by default.
 - **0.1.0 → 0.1.1 upgrades** keep all existing feats (GUIDs unchanged). New feats appear in the level-up feat list and Commanding Presence Stance now has its 30-ft ally aura wired; its Charisma scaling source still requires in-game verification.
 - 0.0.x → 0.1.x is a redesign; back up saves first.

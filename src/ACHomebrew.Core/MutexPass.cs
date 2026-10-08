@@ -22,7 +22,7 @@ namespace ACHomebrew.Feats
             {
                 Mod.Log?.Log(Mod.Settings != null && !Mod.Settings.EnableMutex
                     ? "AttributeFeats: MutexPass skipped (EnableMutex = OFF; all mutex disabled)."
-                    : "AttributeFeats: MutexPass cross-family pass disabled by design; intra-family mutex applied per family file.");
+                    : "AttributeFeats: exclusion groups are checked at selection time (FeatGroupRules / FeatBudget).");
             }
             catch (Exception e)
             {

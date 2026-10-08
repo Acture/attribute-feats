@@ -196,6 +196,8 @@ namespace ACHomebrew.Feats
         {
             var attacker = evt.Initiator;
             if (Retaliating || evt.Result <= 0 || attacker == null || attacker == Owner || !attacker.IsEnemy(Owner)) return;
+            // Weapon attacks and spells only: no damage-over-time, aura ticks or other reflected damage.
+            if (evt.DamageBundle.Weapon == null && evt.Reason?.Ability?.Spellbook == null) return;
             Retaliating = true;
             try
             {

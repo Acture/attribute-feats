@@ -153,7 +153,7 @@ namespace ACHomebrew.Feats
 
         public void OnEventAboutToTrigger(RuleAttackRoll evt)
         {
-            if (Hits == Every - 1)
+            if (evt.Weapon != null && Hits == Every - 1)
             {
                 evt.AutoCriticalThreat = true;
                 evt.AutoCriticalConfirmation = true;

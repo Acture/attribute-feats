@@ -123,8 +123,9 @@ namespace ACHomebrew.Feats
 
         private static bool AllSpellbooks => Mod.Settings?.CastingScope == CastingAttributeScope.AllSpellbooks;
 
+        // One casting feat per spellbook, whatever the scope; with AllSpellbooks the highest attribute wins.
         private static bool HasOverride(UnitDescriptor unit, BlueprintSpellbook spellbook)
-            => Overrides.TryGetValue(unit, out var entries) && entries.Any(entry => AllSpellbooks || entry.Spellbook == spellbook);
+            => Overrides.TryGetValue(unit, out var entries) && entries.Any(entry => entry.Spellbook == spellbook);
 
         /// <summary>The casting attribute <paramref name="unit"/> uses for <paramref name="spellbook"/>.</summary>
         public static StatType Resolve(BlueprintSpellbook spellbook, UnitDescriptor unit)

@@ -305,8 +305,8 @@ namespace ACHomebrew.Feats
             string loreEn,
             string loreZh)
         {
-            var en = $"<i>Weapon Insight · {statEn}</i>\n{loreEn}\n\n<b>Effect:</b> Your weapon attack rolls use your {statEn} modifier instead of Strength or Dexterity whenever {statEn} would be better.\n\n<b>Restrictions:</b> When EnableMutex is enabled, mutually exclusive with other Weapon Insight feats.";
-            var zh = $"<i>武器洞察 · {statZh}</i>\n{loreZh}\n\n<b>效果：</b>当你的{statZh}调整值更高时，所有武器攻击检定均使用{statZh}调整值替代力量或敏捷调整值。\n\n<b>限制：</b>启用EnableMutex时，与其他“武器洞察”专长互斥。";
+            var en = $"<i>Weapon Insight · {statEn}</i>\n{loreEn}\n\n<b>Effect:</b> Your weapon attack rolls use your {statEn} modifier instead of Strength or Dexterity whenever {statEn} would be better.\n\n<b>Restrictions:</b> While its exclusion group is on (configurable in mod settings), you can have only one Weapon Insight feat.";
+            var zh = $"<i>武器洞察 · {statZh}</i>\n{loreZh}\n\n<b>效果：</b>当你的{statZh}调整值更高时，所有武器攻击检定均使用{statZh}调整值替代力量或敏捷调整值。\n\n<b>限制：</b>启用该互斥组时（可在模组设置中调整），只能拥有一个“武器洞察”专长。";
             return (en, zh);
         }
 

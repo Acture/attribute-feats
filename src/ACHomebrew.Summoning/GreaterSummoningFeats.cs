@@ -184,8 +184,8 @@ namespace ACHomebrew.Feats
             string effectEn,
             string effectZh)
         {
-            var en = $"<i>Greater Summoning · {attrEn}</i>\n{loreEn}\n\n<b>Effect:</b> {effectEn} Attribute modifiers used for these bonuses and matching penalties have a minimum of 0.\n\n<b>Restrictions:</b> When EnableMutex is enabled, mutually exclusive with other Greater Summoning feats.";
-            var zh = $"<i>高等召唤 · {attrZh}</i>\n{loreZh}\n\n<b>效果：</b>{effectZh}这些加值及对应减值均以属性调整值最低0计算。\n\n<b>限制：</b>启用EnableMutex时，与其他“高等召唤”专长互斥。";
+            var en = $"<i>Greater Summoning · {attrEn}</i>\n{loreEn}\n\n<b>Effect:</b> {effectEn} Attribute modifiers used for these bonuses and matching penalties have a minimum of 0.\n\n<b>Restrictions:</b> While its exclusion group is on (configurable in mod settings), you can have only one Greater Summoning feat.";
+            var zh = $"<i>高等召唤 · {attrZh}</i>\n{loreZh}\n\n<b>效果：</b>{effectZh}这些加值及对应减值均以属性调整值最低0计算。\n\n<b>限制：</b>启用该互斥组时（可在模组设置中调整），只能拥有一个“高等召唤”专长。";
             return (en, zh);
         }
     }

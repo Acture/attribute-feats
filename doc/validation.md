@@ -16,7 +16,7 @@ Use PowerShell 7, the .NET 10 SDK and Python 3.10 or newer. Localization tests
 declare Newtonsoft.Json as a NuGet dependency; they need no game assemblies.
 They compile the production text loader and registration/refresh methods with
 an in-memory replacement for the external localization APIs. They check all
-249 bilingual resource entries, the 53 menu/weapon/budget keys, EN → zhCN → EN
+all bilingual resource entries (289 at the time of writing), every menu, weapon and budget key, EN → zhCN → EN
 refresh, runtime budget text, English fallback, compiled fallback and
 encyclopedia tagging calls.
 

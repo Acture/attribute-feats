@@ -210,8 +210,8 @@ namespace ACHomebrew.Feats
             string effectEn,
             string effectZh)
         {
-            var en = $"<i>Stance · {attrEn}</i>\n<i>{loreTitleEn}</i> {loreBodyEn}\n\n<b>Effect:</b> {effectEn}\n\n<b>Activation:</b> Free action to toggle. EnableMutex limits learning to one Stance feat. With EnableMutex disabled, multiple learned stances can be toggled on together; there is no separate activation mutex.\n\n<b>Restrictions:</b> When EnableMutex is enabled, mutually exclusive with other Stance feats.";
-            var zh = $"<i>姿态 · {attrZh}</i>\n<i>{loreTitleZh}</i> {loreBodyZh}\n\n<b>效果：</b>{effectZh}\n\n<b>启动：</b>切换姿态为自由动作。启用EnableMutex时只能学习一种姿态专长；关闭后可学习并同时激活多个姿态，没有单独的启动互斥。\n\n<b>限制：</b>启用EnableMutex时，与其他姿态专长互相排斥。";
+            var en = $"<i>Stance · {attrEn}</i>\n<i>{loreTitleEn}</i> {loreBodyEn}\n\n<b>Effect:</b> {effectEn}\n\n<b>Activation:</b> Free action to toggle. The Stance exclusion group limits learning to one Stance feat. With it off, multiple learned stances can be toggled on together; there is no separate activation limit.\n\n<b>Restrictions:</b> While its exclusion group is on (configurable in mod settings), you can have only one Stance feat.";
+            var zh = $"<i>姿态 · {attrZh}</i>\n<i>{loreTitleZh}</i> {loreBodyZh}\n\n<b>效果：</b>{effectZh}\n\n<b>启动：</b>切换姿态为自由动作。姿态互斥组启用时只能学习一种姿态专长；关闭后可学习并同时激活多个姿态，没有单独的启动互斥。\n\n<b>限制：</b>启用该互斥组时（可在模组设置中调整），只能拥有一个“姿态”专长。";
             return (en, zh);
         }
 

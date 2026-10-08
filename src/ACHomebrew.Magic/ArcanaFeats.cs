@@ -216,7 +216,7 @@ namespace ACHomebrew.Feats
                     if (book.Blueprint.Spontaneous)
                     {
                         var slots = Spontaneous(book);
-                        if (slots == null || slots[level] <= 0) continue;
+                        if (slots == null || level >= slots.Length || slots[level] <= 0) continue;
                         slots[level]--;
                         return level;
                     }

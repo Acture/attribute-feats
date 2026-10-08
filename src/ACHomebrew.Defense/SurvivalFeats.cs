@@ -72,10 +72,9 @@ namespace ACHomebrew.Feats
             // Only the expiring round decides; unloading or leaving an area never kills.
             if (Buff.TimeLeft > TimeSpan.FromSeconds(6)) return;
             if (Owner.HPLeft > -Owner.Stats.Constitution.ModifiedValue) return;
-            Owner.State.Features.Immortality.Release();
-            Owner.State.Features.Ferocity.Release();
-            Buff.Remove();
-            GameHelper.KillUnit(Owner);
+            var owner = Owner;
+            Buff.Remove(); // OnDeactivate releases immortality and ferocity.
+            GameHelper.KillUnit(owner);
         }
     }
 }

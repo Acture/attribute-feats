@@ -68,6 +68,9 @@ namespace ACHomebrew
         // Meme feats are registered only when enabled (requires restarting).
         public bool EnableMemeFeats = false;
 
+        // Logs the measured distance on each close-quarters hit, for calibrating the distance scores.
+        public bool LogDistanceCalibration = false;
+
         // Exclusion group overrides by group setting id. Missing groups use built-in defaults.
         public List<FeatGroupSetting> FeatGroups = new List<FeatGroupSetting>();
 

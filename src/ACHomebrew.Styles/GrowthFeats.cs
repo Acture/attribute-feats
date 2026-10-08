@@ -127,10 +127,10 @@ namespace ACHomebrew.Feats
         {
             var target = evt.Target;
             var killer = evt.Initiator;
-            if (killer == null || (PartyKills ? !Kingmaker.Game.Instance.Player.PartyAndPets.Contains(killer) : killer != Owner)) return;
-            if (target == null || evt.Result <= 0 || !target.IsEnemy(Owner)) return;
+            if (target == null || killer == null || evt.Result <= 0) return;
             // Count the hit that took the target from positive to zero or below only once.
-            if (target.HPLeft > 0 || target.HPLeft + evt.Result <= 0) return;
+            if (target.HPLeft > 0 || target.HPLeft + evt.Result <= 0 || !target.IsEnemy(Owner)) return;
+            if (PartyKills ? !Kingmaker.Game.Instance.Player.PartyAndPets.Contains(killer) : killer != Owner) return;
             if (CasterKillsOnly && !target.Descriptor.Spellbooks.Any()) return;
 
             var counter = Counter.Get();
