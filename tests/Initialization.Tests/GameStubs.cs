@@ -96,7 +96,7 @@ namespace AttributeFeats
 namespace AttributeFeats.New_Feats
 {
     internal static class Common { internal static string L(string key, string text) => text; }
-    internal static class MainAbilityToEverything_Feats { internal static void ConfigureAll() => World.Register(nameof(MainAbilityToEverything_Feats), FeatSelection.MainAttribute); }
+    internal static class MainAbilityToEverything_Feats { internal static void ConfigureAll() => World.Register(nameof(MainAbilityToEverything_Feats), FeatSelection.MainFromStr); }
     internal static class SpecializedFeats { internal static void ConfigureAll() => World.Register(nameof(SpecializedFeats), FeatSelection.Defensive); }
     internal static class StanceFeats { internal static void ConfigureAll() => World.Register(nameof(StanceFeats), FeatSelection.Stance); }
     internal static class ConditionalFeats { internal static void ConfigureAll() => World.Register(nameof(ConditionalFeats), FeatSelection.Conditional); }
@@ -109,5 +109,10 @@ namespace AttributeFeats.New_Feats
     internal static class PolearmMasterFeats { internal static void ConfigureAll() => World.Register(nameof(PolearmMasterFeats), FeatSelection.Root); }
     internal static class DistanceDamageFeats { internal static void ConfigureAll() => World.Register(nameof(DistanceDamageFeats), FeatSelection.DistanceDamage); }
     internal static class WeaponDamageFeats { internal static void ConfigureAll() => World.Register(nameof(WeaponDamageFeats), FeatSelection.WeaponDamage); }
+    internal static class CastingStatFeats { internal static void ConfigureAll() => World.Register(nameof(CastingStatFeats), FeatSelection.CastingStat); }
+    internal static class ResourceStatFeats { internal static void ConfigureAll() => World.Register(nameof(ResourceStatFeats), FeatSelection.ResourceStat); }
+    internal static class PlaystyleFeats { internal static void ConfigureAll() => World.Register(nameof(PlaystyleFeats), FeatSelection.Retaliation); }
+    internal static class DotaFeats { internal static void ConfigureAll() => World.Register(nameof(DotaFeats), FeatSelection.Execution); }
     internal static class MutexPass { internal static void ApplyAll() => World.Register(nameof(MutexPass)); }
+    internal static class FeatBudget { internal static void Install() => World.Budgeted.AddRange(FeatSelection.BudgetedFeats()); }
 }

@@ -27,9 +27,6 @@ namespace AttributeFeats.New_Feats
                 Create(StatType.Wisdom, Guids.WeaponDamage.Wis),
                 Create(StatType.Charisma, Guids.WeaponDamage.Cha),
             };
-            for (var i = 0; i < feats.Length; i++)
-                for (var j = i + 1; j < feats.Length; j++)
-                    Common.AddBidirectionalMutex(feats[i], feats[j]);
         }
 
         private static BlueprintFeature Create(StatType attribute, string guid)

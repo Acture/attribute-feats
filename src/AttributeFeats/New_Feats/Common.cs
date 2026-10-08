@@ -70,26 +70,6 @@ namespace AttributeFeats.New_Feats
                 _ => ContextRankProgression.AsIs,
             };
 
-        public static void AddBidirectionalMutex(BlueprintFeature a, BlueprintFeature b)
-        {
-            if (a == null || b == null)
-            {
-                Main.Log?.Log("AttributeFeats: AddBidirectionalMutex received a null feature reference.");
-                return;
-            }
-
-            if (Main.Settings != null && !Main.Settings.EnableMutex)
-            {
-                return;
-            }
-
-            FeatureConfigurator.For(a)
-                .AddPrerequisiteNoFeature(b)
-                .Configure();
-            FeatureConfigurator.For(b)
-                .AddPrerequisiteNoFeature(a)
-                .Configure();
-        }
 
         public static FeatureConfigurator SetIconIfPresent(this FeatureConfigurator cfg, string internalName)
         {

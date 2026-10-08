@@ -153,11 +153,13 @@ Both modes require an attack that already applies an attribute modifier to weapo
 
 ## Settings
 
-> Weapon Damage Mode applies on the next damage calculation. Other settings require restarting.
+> Weapon Damage Mode applies on the next damage calculation and the feat budget on the next selection check. Other settings require restarting.
 
 | Setting | Default | Effect |
 |---|---|---|
 | Weapon Damage Mode (`WeaponDamage`) | `Replace` | Standalone Weapon Damage feats use a better chosen attribute instead of the existing damage attribute. `Add` adds the positive chosen modifier once. Independent of Main feat settings and Power Mode. |
+| Feat count limit (`EnableFeatCountLimit`, `MaxFeatCount`) | OFF, 6 | Maximum number of AttributeFeats per character. See [Feat Budget](#feat-budget). |
+| Feat point limit (`EnableFeatPointLimit`, `MaxFeatPoints`) | OFF, 10 | Maximum total AttributeFeats cost per character. Can be enabled together with the count limit. |
 | Power Level | `Balanced` | `Balanced`: full scaling for attributes, defenses, maneuvers, skills, caster level, and spell penetration; reduced scaling for spell DC, BAB, and Power Mode bonuses. `Legacy_AllFull`: all rank-based Main feat bonuses use full modifier scaling. |
 | Include Self in Attribute Stack | OFF | A Main feat may add its chosen attribute to itself. |
 | **Enable Mutex** | **ON** | When ON, each family enforces its intra-family mutex. When OFF, every mutex prerequisite is skipped — you may take every feat at once. Cross-family same-attribute mutex was removed in 0.1.1 regardless of this toggle. |
@@ -172,8 +174,28 @@ Both modes require an attack that already applies an attribute modifier to weapo
 | EnableBAB | OFF | Enables reduced Base Attack Bonus scaling. |
 | EnablePowerMode | OFF | Enables attack bonus, damage, AoOs, sneak attack, HP, speed, and fixed +1 reach bonuses. This is intentionally overpowered. |
 
+## Feat Budget
+
+The optional feat budget limits each character's AttributeFeats across all families. Enable a **count limit**, a **point limit**, or both, and set their maximums (0–99) in the mod settings. Changes apply on the next selection check, without restarting.
+
+| Cost | Families |
+|---|---|
+| 3 | Main Attribute Mastery |
+| 2 | Weapon Insight, Extended Replacement, Stance, Greater Summoning, Summoner Sacrifice, Derived Stat Conversion, Spell School Specialist, Spell Descriptor Specialist, Weapon Damage |
+| 1 | Defensive, Maneuver, Skilled and Arcane Adept, Conditional Trigger, Reactive Armor, Distance Damage, Long-Reach Gambit |
+
+- Only feats granted to the character count. Opening Attribute Feats or a family menu is free, and vanilla or other mods' feats are never counted.
+- Each Weapon Damage weapon category is a separate feat with its own cost. A feat with multiple ranks counts once per rank.
+- Picks earlier in the same level-up count toward later picks. Cancelling or changing a pick frees its budget; later picks that no longer fit are removed from the level-up, as with other prerequisites. Respec frees all budget.
+- Feat tooltips show used and maximum feats or points, the feat's cost and why it cannot be chosen. The mod settings list each party member's usage.
+- Effects that ignore feat prerequisites, such as the Trickster's, do not bypass the budget. Intra-family mutual exclusions still apply separately.
+- Lowering a limit or loading an older save never removes feats. A character above the limit keeps every feat and its effects, is shown as over budget, and cannot choose more AttributeFeats until the limit is raised or the character is respecced.
+
+Costs are initial strength tiers. Rebalancing individual feats is tracked separately from the budget.
+
 ## Stacking Rules
 
+- The optional [feat budget](#feat-budget) limits combinations across all families; it does not replace the intra-family mutex.
 - Each family enforces its own intra-family mutex (controlled by `EnableMutex`): Main 6-way, each Specialized subfamily 6-way, Stance 6-way, Weapon Insight 6-way, Weapon Damage 6-way, Greater Summoning 6-way, Summoner Sacrifice 3-way, Spell Tag School 8-way, Spell Tag Descriptor 9-way.
 - **Cross-family same-attribute mutex was removed in 0.1.1.** Combinations like `Titan's Apotheosis` (Str Main) + `Colossus Bastion` (Str Defensive) + `Berserker's Overrun` (Str Stance) are now allowed — same-attribute stacking is a deliberate build option, not a bug.
 - Set `EnableMutex = OFF` in mod settings to disable every mutex prerequisite (including intra-family). You can then take any combination of feats; gather every Specialized stat-bonus for a single attribute, or every Stance, etc. Use at your own risk — this is a power option, not the intended baseline.
@@ -189,7 +211,7 @@ Both modes require an attack that already applies an attribute modifier to weapo
 
 ## Save Compatibility
 
-- Existing feat GUIDs are unchanged. Settings files without `WeaponDamage` default to `Replace`; both damage modes use the same new feat GUIDs, so switching modes requires no respec.
+- Existing feat GUIDs are unchanged. Settings files without budget fields keep both limits off. Settings files without `WeaponDamage` default to `Replace`; both damage modes use the same new feat GUIDs, so switching modes requires no respec.
 - **0.1.1 → 0.1.x is non-breaking.** Settings carry over; XML serialization adds the new `EnableMutex` field as `true` by default.
 - **0.1.0 → 0.1.1 upgrades** keep all existing feats (GUIDs unchanged). New feats appear in the level-up feat list and Commanding Presence Stance now has its 30-ft ally aura wired; its Charisma scaling source still requires in-game verification.
 - 0.0.x → 0.1.x is a redesign; back up saves first.

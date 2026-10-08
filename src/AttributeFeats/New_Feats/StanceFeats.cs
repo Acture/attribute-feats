@@ -139,12 +139,10 @@ namespace AttributeFeats.New_Feats
                         Common.Text("Stance_Wis.Lore", "You quiet the impulse to strike, accepting a gentler attack in exchange for a steadier guard."),
                         Common.Text("Stance_Wis.LoreTitle", "澄澈自照。", true),
                         Common.Text("Stance_Wis.Lore", "你平息急于出手的冲动，以较轻的攻势换取更稳固的守势。", true),
-                        "While active, adds your Wisdom modifier (minimum 0, untyped) to AC and all saving throws. Attack rolls and damage take an equal penalty; this stance does not reduce initiative.",
-                        "激活时，将你的感知调整值（最低0，无类型加值）附加至防御等级（AC）与所有豁免检定。你的攻击检定与伤害检定承受等同于感知调整值（最低0）的减值；此姿态不降低先攻。"),
+                        "While active, adds your Wisdom modifier (minimum 0, untyped) to AC and Will saves. Attack rolls and damage take an equal penalty; this stance does not reduce initiative.",
+                        "激活时，将你的感知调整值（最低0，无类型加值）附加至防御等级（AC）与意志豁免。你的攻击检定与伤害检定承受等同于感知调整值（最低0）的减值；此姿态不降低先攻。"),
                     configureBuff: buff => buff
                         .AddContextStatBonus(StatType.AC, Common.Rank(), descriptor: Desc)
-                        .AddContextStatBonus(StatType.SaveFortitude, Common.Rank(), descriptor: Desc)
-                        .AddContextStatBonus(StatType.SaveReflex, Common.Rank(), descriptor: Desc)
                         .AddContextStatBonus(StatType.SaveWill, Common.Rank(), descriptor: Desc)
                         .AddContextStatBonus(StatType.AdditionalAttackBonus, Common.Rank(), descriptor: Desc, multiplier: -1)
                         .AddContextStatBonus(StatType.AdditionalDamage, Common.Rank(), descriptor: Desc, multiplier: -1)),
@@ -230,13 +228,6 @@ namespace AttributeFeats.New_Feats
 
         private static void ApplyIntraFamilyMutex(IReadOnlyList<BlueprintFeature> feats)
         {
-            for (var i = 0; i < feats.Count; i++)
-            {
-                for (var j = i + 1; j < feats.Count; j++)
-                {
-                    Common.AddBidirectionalMutex(feats[i], feats[j]);
-                }
-            }
         }
 
         private static BlueprintFeature CreateStance(

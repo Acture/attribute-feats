@@ -24,6 +24,16 @@ namespace AttributeFeats.New_Feats
             public const string SpellDescriptor = "90b325a4-0c45-4546-a562-52c4503a212b";
             public const string DistanceDamage = "64c8eb89-87bf-4d13-8e05-ffc603c76c64";
             public const string WeaponDamage = "2cdbd2a6-eef6-4d82-a91b-675cbe28e723";
+            public const string CastingStat = "c218dfc4-aacf-4f2b-ba98-d358adf682ef";
+            public const string ResourceStat = "938135b5-eaaa-42f0-a560-65fef7d1391c";
+            public const string Retaliation = "35f8879b-c4a0-469d-a797-bbad0f107916";
+            public const string Momentum = "50d43f6b-d0b6-4717-9366-d3b01c4f60b3";
+            public const string Stealth = "19b5a1e9-9ba6-4d6b-915d-3049b891f5da";
+            public const string Solo = "3349bd79-1b70-4c17-8f18-38f687cf97c0";
+            public const string Growth = "3c013c4c-3f87-4c0f-bed0-db13a292399e";
+            public const string Execution = "35a9dff3-4ebd-4110-a455-f4ef722bef1c";
+            public const string Arcana = "5725406d-bf42-4b07-b2cd-008d40883fce";
+            public const string Summoner = "393d54be-a075-41d1-9de5-34fb1242a75d";
         }
 
         public static class WeaponDamage
@@ -45,6 +55,140 @@ namespace AttributeFeats.New_Feats
         public const string cha_main_to_everything = "e16525c7-ec29-4904-a69c-8b35f0c60a95";
 
         // NEW — do not change values once committed
+        // Main Attribute Mastery 0.2: source menus and source -> target feats.
+        public static class MainAttribute
+        {
+            public static class Source
+            {
+                public const string Str = "83e9ef2e-30f7-49fb-a72f-3a7d3eeabc97";
+                public const string Dex = "96d93447-bf98-4450-b31d-56b75d7ae437";
+                public const string Con = "77ad460f-7188-4dcd-8c2d-e828eb21c963";
+                public const string Int = "841a0980-3e52-4f78-9b76-c742f5f9a67a";
+                public const string Wis = "dbd431a3-4108-45f9-8561-1c7f883866de";
+                public const string Cha = "b7082ff3-927c-4933-ba50-535914d667eb";
+            }
+
+            public static class Str
+            {
+                public const string Dex = "8cea3f12-e942-41ba-9669-9fc7fb48d9d0";
+                public const string Con = "52ded285-fd1e-4b63-b4ec-df73fbc96465";
+                public const string Int = "d6cb6a76-31f7-4947-89fd-6a4f97b43849";
+                public const string Wis = "bc536c29-7689-4497-b7ee-1ea4d0196671";
+                public const string Cha = "c7d10485-5317-4719-b48e-d8d0fd1b76b7";
+            }
+
+            public static class Dex
+            {
+                public const string Str = "24615e0e-06f0-4a5d-b076-1426eb4f46a9";
+                public const string Con = "3d6bb468-8801-4f63-8247-a6795cbd541f";
+                public const string Int = "48e51cea-c48c-4d6f-9c07-58627e664ec7";
+                public const string Wis = "cb8bb2e6-35e3-4322-8f1b-50ef90a88ff0";
+                public const string Cha = "efe933c2-5a23-46b3-a113-e443ea042b1b";
+            }
+
+            public static class Con
+            {
+                public const string Str = "5af7f34d-2468-4564-9931-568f4dca4fe9";
+                public const string Dex = "3731b263-0b92-45d1-8a57-4791d6fdd9ce";
+                public const string Int = "edb2326f-80f5-4e95-8175-7346828a1ac4";
+                public const string Wis = "d672e017-d41b-4c38-a8bc-d58b451dfbd3";
+                public const string Cha = "6efb96f8-286d-4adf-ae9a-1a96e8ef6f70";
+            }
+
+            public static class Int
+            {
+                public const string Str = "dc77ae4b-049e-4927-8399-e3559ac7b377";
+                public const string Dex = "51295131-f556-43ff-bca8-235c64302919";
+                public const string Con = "e8ce6dd8-06b4-4c35-a90d-5b01e12793eb";
+                public const string Wis = "d9188e46-0d40-42bf-a8be-5a472a721e46";
+                public const string Cha = "c7b34d2c-af87-4d56-8be0-7ce5fb5583aa";
+            }
+
+            public static class Wis
+            {
+                public const string Str = "c6ae2247-6bef-4199-a39b-328dd01830ec";
+                public const string Dex = "ff0a9dfe-53df-4feb-9cc9-73898328c920";
+                public const string Con = "3bcaf1ce-939f-4020-aead-efe7b9eb47d1";
+                public const string Int = "45056296-ce51-4d3f-8802-586c9e61a6a4";
+                public const string Cha = "4caae8d7-84dc-47d8-9495-c3fb6649ba84";
+            }
+
+            public static class Cha
+            {
+                public const string Str = "499aac94-4fa7-449f-bc58-87a911f4257b";
+                public const string Dex = "e865b174-1adc-4b83-b97f-49df48a3f990";
+                public const string Con = "9a9792bf-3bed-4ed8-91ed-10ec39955886";
+                public const string Int = "db05f3d2-5945-48a5-b6b2-ef82fc8325b9";
+                public const string Wis = "0a04c1c2-933c-4fa0-9e46-f108993bdfd8";
+            }
+        }
+
+        public static class CastingStat
+        {
+            public const string Str = "e07385cb-1884-48b1-ab15-1a8ea02a56d2";
+            public const string Dex = "5241ea5e-c0ef-4cb2-bead-9b772715c806";
+            public const string Con = "30d7fa02-c172-498c-a221-7be86d26c6f3";
+        }
+
+        public static class ResourceStat
+        {
+            public const string Str = "8517a08e-8754-49ee-aa9f-b750b49fa398";
+            public const string Dex = "574d2c8f-dfcf-4645-9788-1ed96b86a301";
+            public const string Con = "033bf16d-3d8f-4e72-add7-c5488ad7e3c9";
+            public const string Int = "6dfc88b0-43d1-4547-878c-14524d20ff1e";
+            public const string Wis = "07b1d140-d77a-40b8-9ed2-e13349b32f28";
+            public const string Cha = "89ef1c7a-8625-4a97-8f4b-6ba517c95386";
+        }
+
+        // OSS-318 batch 1 playstyle feats, their buffs and kill counters.
+        public static class Playstyle
+        {
+            public const string CounterAttack = "9db23461-1ff8-4404-a3b9-0b3d51e4df63";
+            public const string MissCounter = "4422f4ca-05b6-401c-9f4a-93c8f7ea22bc";
+            public const string Punisher = "5cac9e2c-aa07-44c6-9c00-53bfe5f0fda2";
+            public const string PunisherMarkBuff = "cdcef3f1-13f8-444b-b83b-62c3ca2e7a27";
+            public const string ParryCrit = "30dac777-16c8-46be-81fd-7fc2336b9fc4";
+            public const string ParryCritBuff = "c86be6f3-0c52-4dc2-a73d-e9f7988d013b";
+            public const string Shove = "7a2d7383-28a3-49c7-91ce-e006f8fc8c15";
+            public const string KillingSpree = "e4ff3f39-aa86-4d98-ad2f-418ca0a18ea4";
+            public const string KillingSpreeBuff = "8af9e8e6-5531-4c03-95d6-70c18602ba9e";
+            public const string BattleRhythm = "c43c0c31-1e7a-483f-b571-4fe0e80c0351";
+            public const string BattleRhythmBuff = "34ccf177-4751-43fc-abcb-0d0f4895b0a9";
+            public const string ReStealth = "4010d909-3561-4155-b328-330c3cc8dd96";
+            public const string ReStealthCooldownBuff = "28babf50-421f-4072-92ea-46256366d68b";
+            public const string LoneWolf = "54299099-a45f-425e-8526-f150a90aac0a";
+            public const string LoneWolfBuff = "57fe88d5-35ad-4b98-b69a-f2739d2285ae";
+            public const string EssenceShift = "6685fc4a-0d41-4328-9e76-2765bf48a73a";
+            public const string EssenceShiftCounter = "7d585ebf-e403-40ce-9b5a-479fdd89422e";
+            public const string FleshHeap = "be2de308-7475-4756-a3b4-fbc53c7cf078";
+            public const string FleshHeapCounter = "e808025d-6095-4c7b-bf9d-33455a4242ff";
+            public const string ArcaneSiphon = "7438f49b-8f36-4c70-a17b-12b3f16ef165";
+            public const string ArcaneSiphonCounter = "c3da67e7-c0da-4d19-8262-1bd0df8aa2a1";
+            public const string DevouredVigor = "fcfb6011-188d-43a1-bde8-811cea9afdc0";
+            public const string DevouredVigorCounter = "9cebae44-2653-4a84-b1f0-6d107a0d2b43";
+        }
+
+        // OSS-318 batch 2: Dota-inspired mechanics.
+        public static class Dota
+        {
+            public const string CorrosiveFinish = "a703f9e3-f64e-4730-92cb-d3ccb7cb1cba";
+            public const string PhoenixFury = "753714da-ac49-4947-94f6-9002775add3b";
+            public const string Feast = "700a33eb-883f-47af-a329-8606fcfb30b4";
+            public const string SlotHarvest = "a4137eb7-3191-4f1a-91e4-1f15c52b75ba";
+            public const string ArcaneOrb = "2be18508-1085-4452-bf28-596f907a1db2";
+            public const string EssenceFlux = "5f826c8b-426c-41ec-8586-56446379370e";
+            public const string ManaBreak = "35d954ee-b092-440f-91e2-c62aae2ad213";
+            public const string Fervor = "1febdb17-692e-4840-85c6-041034e85dac";
+            public const string FervorBuff = "49cc7004-4d5a-4d1f-b537-fac25a83b413";
+            public const string FervorAttackBuff = "def75a34-a507-45d3-b2b4-989d62cc4812";
+            public const string CrushingRhythm = "61e6be19-a6db-4932-a920-991ee8589c25";
+            public const string ReturnBlow = "dab031fc-8dfc-4561-9bf2-ca60af7e38cb";
+            public const string KrakenShell = "059e96fe-0e52-4b81-ae50-076a5782bb07";
+            public const string Necromastery = "d0761e2c-4751-4ba4-b862-1a77dcb5c3d9";
+            public const string NecromasteryBuff = "be4e00ab-3216-4471-992a-d390a784b342";
+            public const string SpiritLink = "524319d6-0ec5-4392-8c59-56759b1d0e91";
+        }
+
         public static class Specialized
         {
             public static class Defensive
@@ -306,6 +450,8 @@ namespace AttributeFeats.New_Feats
             public const string AggressorsEdge = "2d2024c2-4944-4036-9649-a1f6702ca084";
             public const string MarksmansFocus = "499dd915-5ee9-4d3b-acf8-484e401d9835";
             public const string OptimalRange = "f05016c7-5126-4053-bc6b-0283d9b28eca";
+            public const string ShortBlade = "a69e9196-e0dc-469d-942e-4ed94417dc73";
+            public const string CloseQuarters = "8da2c389-77a2-498a-aa83-04ac27480bf1";
 
             public static class Buff
             {

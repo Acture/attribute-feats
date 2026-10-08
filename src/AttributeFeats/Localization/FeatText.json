@@ -996,8 +996,8 @@
   },
   {
     "Key": "AttributeFeatsSelection_MainAttribute.Description",
-    "enGB": "Choose one feat. Each choice grants only the selected feat. You can return to this selection whenever you gain another feat; each feat's normal prerequisites and mutual-exclusion rules still apply.",
-    "zhCN": "选择一项专长。每次选择只获得最终选中的专长。以后每获得一次专长选择机会，都可以再次进入此菜单；各专长的通常先决条件和互斥规则仍然适用。"
+    "enGB": "Choose a source attribute, then the one ability score it improves. A character can normally have only one Main Attribute Mastery feat.",
+    "zhCN": "先选择来源属性，再选择它提升的一项属性。通常每个角色只能拥有一个主属性专精专长。"
   },
   {
     "Key": "AttributeFeatsSelection_Defensive.Name",
@@ -1218,5 +1218,195 @@
     "Key": "WeaponDamage_Charisma.Description",
     "enGB": "<b>Choose a weapon category in which you are proficient.</b>\n\n<b>Replace mode (default):</b> Use your Charisma modifier instead of the weapon's existing damage attribute when this improves damage. The normal weapon damage multiplier is preserved, including two-handed and off-hand use.\n\n<b>Add mode:</b> Add your positive Charisma modifier once to normal weapon damage. This extra bonus is not multiplied or halved for two-handed or off-hand use.\n\nOnly applies to attacks with the chosen category that already use an attribute modifier for damage. Weapons without a damage attribute (such as ordinary crossbows) gain no benefit. Does not change attack rolls, spell damage, or other statistics. Does not require Power Mode.\n\nYou can take this feat again for a different weapon category. When mutual exclusivity is enabled, you can select only one attribute within this family. Choose the active mode in the Weapon Damage setting. Changes apply on the next damage calculation, without restarting or reselecting the feat.",
     "zhCN": "<b>选择一种你已擅长的武器类别。</b>\n\n<b>替代模式（Replace，默认）：</b>如果能提高伤害，就用你的魅力调整值替代武器原有的伤害属性调整值。保留武器通常的伤害属性倍率，包括双手持握和副手攻击的倍率。\n\n<b>叠加模式（Add）：</b>在正常武器伤害上额外加上一次你的正魅力调整值。这项额外加值不会因双手持握而提高，也不会因副手攻击而减半。\n\n仅对所选类别中原本就使用属性调整值计算伤害的武器攻击生效。不使用伤害属性的武器（例如普通弩）无法受益。不改变攻击检定、法术伤害或其他数值。无需开启强力模式（Power Mode）。\n\n你可以再次选择本专长，以应用于不同的武器类别。启用互斥时，同系列只能选择一种属性。在 Weapon Damage 设置中选择生效模式；改动从下一次伤害计算起生效，无需重启或重新选择专长。"
+  },
+  {
+    "Key": "FeatBudget.Count",
+    "enGB": "AttributeFeats used: {0}/{1}",
+    "zhCN": "已用属性专长：{0}/{1} 个"
+  },
+  {
+    "Key": "FeatBudget.Points",
+    "enGB": "AttributeFeats points used: {0}/{1}, this feat costs {2}",
+    "zhCN": "已用属性专长点数：{0}/{1}，本专长消耗 {2} 点"
+  },
+  {
+    "Key": "FeatBudget.CountFull",
+    "enGB": "No AttributeFeats slots remain",
+    "zhCN": "属性专长数量已用完"
+  },
+  {
+    "Key": "FeatBudget.PointsShort",
+    "enGB": "Requires {0} more points",
+    "zhCN": "还差 {0} 点"
+  },
+  {
+    "Key": "FeatBudget.OverBudget",
+    "enGB": "Over budget: existing feats are kept, but no more can be chosen until the limit is raised or the character is respecced",
+    "zhCN": "已超出额度：已选专长全部保留，但在提高额度或洗点之前无法再选择"
+  },
+  {
+    "Key": "FeatGroups.Member",
+    "enGB": "Exclusion groups (others owned/limit): {0}",
+    "zhCN": "互斥组（已有其他/上限）：{0}"
+  },
+  {
+    "Key": "AttributeFeatsSelection_MainAttribute_Str.Name",
+    "enGB": "Strength Mastery",
+    "zhCN": "力量专精"
+  },
+  {
+    "Key": "AttributeFeatsSelection_MainAttribute_Str.Description",
+    "enGB": "Choose the one ability score that your Strength modifier improves. Each choice grants only the selected feat.",
+    "zhCN": "选择一项由你的力量调整值提升的属性。每次选择只获得最终选中的专长。"
+  },
+  {
+    "Key": "AttributeFeatsSelection_MainAttribute_Dex.Name",
+    "enGB": "Dexterity Mastery",
+    "zhCN": "敏捷专精"
+  },
+  {
+    "Key": "AttributeFeatsSelection_MainAttribute_Dex.Description",
+    "enGB": "Choose the one ability score that your Dexterity modifier improves. Each choice grants only the selected feat.",
+    "zhCN": "选择一项由你的敏捷调整值提升的属性。每次选择只获得最终选中的专长。"
+  },
+  {
+    "Key": "AttributeFeatsSelection_MainAttribute_Con.Name",
+    "enGB": "Constitution Mastery",
+    "zhCN": "体质专精"
+  },
+  {
+    "Key": "AttributeFeatsSelection_MainAttribute_Con.Description",
+    "enGB": "Choose the one ability score that your Constitution modifier improves. Each choice grants only the selected feat.",
+    "zhCN": "选择一项由你的体质调整值提升的属性。每次选择只获得最终选中的专长。"
+  },
+  {
+    "Key": "AttributeFeatsSelection_MainAttribute_Int.Name",
+    "enGB": "Intelligence Mastery",
+    "zhCN": "智力专精"
+  },
+  {
+    "Key": "AttributeFeatsSelection_MainAttribute_Int.Description",
+    "enGB": "Choose the one ability score that your Intelligence modifier improves. Each choice grants only the selected feat.",
+    "zhCN": "选择一项由你的智力调整值提升的属性。每次选择只获得最终选中的专长。"
+  },
+  {
+    "Key": "AttributeFeatsSelection_MainAttribute_Wis.Name",
+    "enGB": "Wisdom Mastery",
+    "zhCN": "感知专精"
+  },
+  {
+    "Key": "AttributeFeatsSelection_MainAttribute_Wis.Description",
+    "enGB": "Choose the one ability score that your Wisdom modifier improves. Each choice grants only the selected feat.",
+    "zhCN": "选择一项由你的感知调整值提升的属性。每次选择只获得最终选中的专长。"
+  },
+  {
+    "Key": "AttributeFeatsSelection_MainAttribute_Cha.Name",
+    "enGB": "Charisma Mastery",
+    "zhCN": "魅力专精"
+  },
+  {
+    "Key": "AttributeFeatsSelection_MainAttribute_Cha.Description",
+    "enGB": "Choose the one ability score that your Charisma modifier improves. Each choice grants only the selected feat.",
+    "zhCN": "选择一项由你的魅力调整值提升的属性。每次选择只获得最终选中的专长。"
+  },
+  {
+    "Key": "AttributeFeatsSelection_CastingStat.Name",
+    "enGB": "Casting Attribute",
+    "zhCN": "施法属性"
+  },
+  {
+    "Key": "AttributeFeatsSelection_CastingStat.Description",
+    "enGB": "Choose Strength, Dexterity or Constitution, then the spellbook that uses it as its casting attribute.",
+    "zhCN": "选择力量、敏捷或体质，再选择以它作为施法属性的法术书。"
+  },
+  {
+    "Key": "AttributeFeatsSelection_ResourceStat.Name",
+    "enGB": "Resource Attribute",
+    "zhCN": "资源属性"
+  },
+  {
+    "Key": "AttributeFeatsSelection_ResourceStat.Description",
+    "enGB": "Choose an attribute, then one of your attribute-based resources whose bonus uses it will count.",
+    "zhCN": "选择一项属性，再选择一项改由该属性计算额外次数的资源。"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Retaliation.Name",
+    "enGB": "Retaliation",
+    "zhCN": "反击"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Retaliation.Description",
+    "enGB": "Choose one Retaliation feat. Each choice grants only the selected feat.",
+    "zhCN": "选择一项反击专长。每次选择只获得最终选中的专长。"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Momentum.Name",
+    "enGB": "Momentum",
+    "zhCN": "动能"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Momentum.Description",
+    "enGB": "Choose one Momentum feat. Each choice grants only the selected feat.",
+    "zhCN": "选择一项动能专长。每次选择只获得最终选中的专长。"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Stealth.Name",
+    "enGB": "Stealth",
+    "zhCN": "潜行"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Stealth.Description",
+    "enGB": "Choose one Stealth feat. Each choice grants only the selected feat.",
+    "zhCN": "选择一项潜行专长。每次选择只获得最终选中的专长。"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Solo.Name",
+    "enGB": "Solo",
+    "zhCN": "独行"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Solo.Description",
+    "enGB": "Choose one Solo feat. Each choice grants only the selected feat.",
+    "zhCN": "选择一项独行专长。每次选择只获得最终选中的专长。"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Growth.Name",
+    "enGB": "Growth",
+    "zhCN": "成长"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Growth.Description",
+    "enGB": "Choose one Growth feat. Each choice grants only the selected feat.",
+    "zhCN": "选择一项成长专长。每次选择只获得最终选中的专长。"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Execution.Name",
+    "enGB": "Execution",
+    "zhCN": "处决"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Execution.Description",
+    "enGB": "Choose one Execution feat. Each choice grants only the selected feat.",
+    "zhCN": "选择一项处决专长。每次选择只获得最终选中的专长。"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Arcana.Name",
+    "enGB": "Arcana",
+    "zhCN": "法力"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Arcana.Description",
+    "enGB": "Choose one Arcana feat. Each choice grants only the selected feat.",
+    "zhCN": "选择一项法力专长。每次选择只获得最终选中的专长。"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Summoner.Name",
+    "enGB": "Summoner",
+    "zhCN": "召唤师"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Summoner.Description",
+    "enGB": "Choose one Summoner feat. Each choice grants only the selected feat.",
+    "zhCN": "选择一项召唤师专长。每次选择只获得最终选中的专长。"
   }
 ]

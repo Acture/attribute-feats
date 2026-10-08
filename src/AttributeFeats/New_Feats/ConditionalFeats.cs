@@ -119,13 +119,11 @@ namespace AttributeFeats.New_Feats
                     nameEn: Common.Text("Conditional_EndlessResolve.Name", "Defiance at the Precipice"),
                     nameZh: Common.Text("Conditional_EndlessResolve.Name", "绝境砥柱", true),
                     descKey: "Conditional_EndlessResolve.Buff.Desc",
-                    descEn: "Defiance at the Precipice is active, adding your Constitution modifier as an untyped bonus to AC and all saving throws.",
-                    descZh: "绝境砥柱已激活，将你的体质调整值作为无类型加值附加至防御等级（AC）与所有豁免检定。",
+                    descEn: "Defiance at the Precipice is active, adding your Constitution modifier as an untyped bonus to AC and Fortitude saves.",
+                    descZh: "绝境砥柱已激活，将你的体质调整值作为无类型加值附加至防御等级（AC）与强韧豁免。",
                     baseStat: StatType.Constitution)
                 .AddContextStatBonus(StatType.AC, Common.Rank(), descriptor: ModifierDescriptor.None)
                 .AddContextStatBonus(StatType.SaveFortitude, Common.Rank(), descriptor: ModifierDescriptor.None)
-                .AddContextStatBonus(StatType.SaveReflex, Common.Rank(), descriptor: ModifierDescriptor.None)
-                .AddContextStatBonus(StatType.SaveWill, Common.Rank(), descriptor: ModifierDescriptor.None)
                 .Configure();
         }
 
@@ -229,8 +227,8 @@ namespace AttributeFeats.New_Feats
                         "体质",
                         Common.Text("Conditional_EndlessResolve.Lore", "When injury narrows your choices, you answer with the stubborn patience of a cornered animal."),
                         Common.Text("Conditional_EndlessResolve.Lore", "伤势使选择愈发有限时，你以困兽般的坚忍回应危局。", true),
-                        "While you are below half health, gain a buff that adds your Constitution modifier as an untyped bonus to AC and all saving throws.",
-                        "当生命值低于50%时，获得一个增益状态，将你的体质调整值作为无类型加值附加至防御等级（AC）与所有豁免检定。"))
+                        "While you are below half health, gain a buff that adds your Constitution modifier as an untyped bonus to AC and Fortitude saves.",
+                        "当生命值低于50%时，获得一个增益状态，将你的体质调整值作为无类型加值附加至防御等级（AC）与强韧豁免。"))
                 .AddBuffOnHealthTickingTrigger(healthPercent: 0.5f, triggeredBuff: buff.ToReference<BlueprintBuffReference>())
                 .AddRecalculateOnStatChange(stat: StatType.Constitution)
                 .Configure();

@@ -27,21 +27,6 @@ namespace AttributeFeats.New_Feats
             StatType.Charisma,
         };
 
-        private static readonly StatType[] DefenseStats =
-        {
-            StatType.AC,
-            StatType.AdditionalCMD,
-            StatType.SaveFortitude,
-            StatType.SaveReflex,
-            StatType.SaveWill,
-            StatType.Initiative,
-        };
-
-        private static readonly StatType[] ManeuverStats =
-        {
-            StatType.AdditionalCMB,
-        };
-
         private static readonly StatType[] BABStats =
         {
             StatType.BaseAttackBonus,
@@ -57,29 +42,6 @@ namespace AttributeFeats.New_Feats
             StatType.Speed,
         };
 
-        private static readonly StatType[] CheckStats =
-        {
-            StatType.CheckBluff,
-            StatType.CheckDiplomacy,
-            StatType.CheckIntimidate,
-        };
-
-        private static readonly StatType[] SkillStats =
-        {
-            StatType.SkillAthletics,
-            StatType.SkillKnowledgeArcana,
-            StatType.SkillKnowledgeWorld,
-            StatType.SkillLoreNature,
-            StatType.SkillLoreReligion,
-            StatType.SkillMobility,
-            StatType.SkillPerception,
-            StatType.SkillPersuasion,
-            StatType.SkillStealth,
-            StatType.SkillThievery,
-            StatType.SkillUseMagicDevice,
-        };
-
-        private static readonly StatType[] SkilledStats = SkillStats.Concat(CheckStats).ToArray();
         private static bool Initialized;
 
         public static void ConfigureAll()
@@ -186,13 +148,99 @@ namespace AttributeFeats.New_Feats
                 FeatureConfigurator.For(feat).Configure();
             }
 
-            for (var i = 0; i < feats.Count; i++)
+            ConfigureTargets();
+        }
+
+        private static readonly (StatType stat, string key, string en, string zh, string icon)[] Attributes =
+        {
+            (StatType.Strength, "Str", "Strength", "力量", "ApexPredator"),
+            (StatType.Dexterity, "Dex", "Dexterity", "敏捷", "EmbodiedGrace"),
+            (StatType.Constitution, "Con", "Constitution", "体质", "LivingBulwark"),
+            (StatType.Intelligence, "Int", "Intelligence", "智力", "ArchitectOfSelf"),
+            (StatType.Wisdom, "Wis", "Wisdom", "感知", "WellspringOfInsight"),
+            (StatType.Charisma, "Cha", "Charisma", "魅力", "CrownOfWill"),
+        };
+
+        /// <summary>Main Attribute Mastery: one source attribute improves one chosen target attribute.</summary>
+        private static void ConfigureTargets()
+        {
+            var menus = new[]
             {
-                for (var j = i + 1; j < feats.Count; j++)
+                FeatSelection.MainFromStr, FeatSelection.MainFromDex, FeatSelection.MainFromCon,
+                FeatSelection.MainFromInt, FeatSelection.MainFromWis, FeatSelection.MainFromCha,
+            };
+            for (var i = 0; i < Attributes.Length; i++)
+            {
+                foreach (var target in Attributes)
                 {
-                    Common.AddBidirectionalMutex(feats[i], feats[j]);
+                    if (target.stat != Attributes[i].stat)
+                        CreateTarget(menus[i], Attributes[i], target);
                 }
             }
+        }
+
+        private static void CreateTarget(FeatSelection menu,
+            (StatType stat, string key, string en, string zh, string icon) source,
+            (StatType stat, string key, string en, string zh, string icon) target)
+        {
+            var name = $"MainAttribute_{source.key}_{target.key}";
+            var guid = (string)typeof(Guids.MainAttribute).GetNestedType(source.key).GetField(target.key).GetValue(null);
+            var en = $"<i>Main Attribute Mastery · {source.en} to {target.en}</i>\n\n" +
+                $"<b>Effect:</b> Add your {source.en} modifier (minimum 0) to your {target.en} score as an inherent bonus. " +
+                "Inherent bonuses do not stack with other inherent bonuses, such as those from tomes; only the highest applies.\n\n" +
+                "<b>Restrictions:</b> While the Main Attribute Mastery exclusion group is on, a character can have only one Main Attribute Mastery feat.";
+            var zh = $"<i>主属性专精 · {source.zh}转{target.zh}</i>\n\n" +
+                $"<b>效果：</b>将你的{source.zh}调整值（最低0）作为固有加值加到你的{target.zh}属性值上。" +
+                "固有加值不与其他固有加值（如典籍）叠加，只取最高。\n\n" +
+                "<b>限制：</b>启用主属性专精互斥组时，每个角色只能拥有一个主属性专精专长。";
+            var cfg = menu.NewFeat(name, guid)
+                .SetDisplayName(Common.L($"{name}.Name", $"{source.en} Mastery: {target.en}", $"{source.zh}专精·{target.zh}"))
+                .SetDescription(Common.L($"{name}.Desc", en, zh, tagEncyclopediaEntries: true))
+                .SetIconIfPresent(source.icon);
+
+            var settings = Main.Settings ?? new ModSettings();
+            Common.AddRank(cfg, source.stat, AbilityRankType.Default, Common.ResolveProgression(settings.powerLevel, ScalingIntent.Full));
+            Common.AddRank(cfg, source.stat, AbilityRankType.StatBonus, Common.ResolveProgression(settings.powerLevel, ScalingIntent.Half));
+            cfg.AddComponent<AddContextStatBonus>(c =>
+            {
+                c.Stat = target.stat;
+                c.Descriptor = Desc;
+                c.Value = Common.Rank(AbilityRankType.Default);
+            });
+            AddOptInPowerBonuses(cfg, settings);
+            cfg.AddRecalculateOnStatChange(stat: source.stat);
+            cfg.Configure();
+        }
+
+        // Opt-in settings documented as power options; unchanged from 0.1.x.
+        private static void AddOptInPowerBonuses(FeatureConfigurator cfg, ModSettings settings)
+        {
+            if (settings.EnableBAB)
+            {
+                cfg.AddComponent<AddContextStatBonus>(c =>
+                {
+                    c.Stat = StatType.BaseAttackBonus;
+                    c.Descriptor = Desc;
+                    c.Value = Common.Rank(AbilityRankType.StatBonus);
+                });
+            }
+
+            if (!settings.EnablePowerMode) return;
+            foreach (var stat in PowerStats)
+            {
+                cfg.AddComponent<AddContextStatBonus>(c =>
+                {
+                    c.Stat = stat;
+                    c.Descriptor = Desc;
+                    c.Value = Common.Rank(AbilityRankType.StatBonus);
+                });
+            }
+            cfg.AddComponent<AddStatBonus>(c =>
+            {
+                c.Stat = StatType.Reach;
+                c.Value = 1;
+                c.Descriptor = Desc;
+            });
         }
 
         private static (string en, string zh) BuildDescription(
@@ -203,8 +251,8 @@ namespace AttributeFeats.New_Feats
             string loreTitleZh,
             string loreBodyZh)
         {
-            var en = $"<i>Main Attribute Mastery · {attrEn}</i>\n<i>{loreTitleEn}</i> {loreBodyEn}\n\n<b>Effect:</b> Uses your {attrEn} modifier, minimum 0, for the bonuses enabled in mod settings. Stat bonuses use the inherent type. Attributes, defenses, maneuvers, skills/checks, caster level, and spell penetration use the full modifier. Spell and ability save DC, Base Attack Bonus, and rank-based Power Mode bonuses use half the modifier (rounded down) in Balanced mode and the full modifier in Legacy_AllFull. If self-stacking is enabled it also adds to {attrEn}, and Reach becomes a fixed +1 foot when Power Mode is enabled.\n\n<b>Restrictions:</b> When EnableMutex is enabled, mutually exclusive with the other Main Attribute Mastery feats.";
-            var zh = $"<i>主属性专精 · {attrZh}</i>\n<i>{loreTitleZh}</i> {loreBodyZh}\n\n<b>效果：</b>以你的{attrZh}调整值（最低0）计算模组设置启用的加成；属性类加值使用固有类型。属性、防御、战技、技能/检定、施法者等级与法术抗力穿透使用完整调整值；法术及能力的豁免DC、基础攻击加值（BAB）与按调整值成长的威力模式加成，在Balanced模式下使用半数调整值（向下取整），在Legacy_AllFull模式下使用完整调整值。若启用了自我属性叠加，则同样附加至{attrZh}；若启用了威力模式，触及范围固定增加1英尺。\n\n<b>限制：</b>启用EnableMutex时，与其他主属性专精专长互相排斥。";
+            var en = $"<i>Main Attribute Mastery (retired) · {attrEn}</i>\n<i>{loreTitleEn}</i> {loreBodyEn}\n\n<b>Effect:</b> Adds half your {attrEn} modifier (minimum 0, rounded down; the full modifier in Legacy_AllFull) to your other five ability scores as an inherent bonus, when attribute bonuses are enabled in mod settings. If self-stacking is enabled it also adds to {attrEn}.\n\n<b>Retired:</b> This feat is no longer offered. Characters that already have it keep it. To switch to the new Main Attribute Mastery, which improves one chosen attribute by your full modifier, respec the character.";
+            var zh = $"<i>主属性专精（已停用） · {attrZh}</i>\n<i>{loreTitleZh}</i> {loreBodyZh}\n\n<b>效果：</b>启用属性加成时，将你的{attrZh}调整值的一半（最低0，向下取整；Legacy_AllFull下为完整调整值）作为固有加值加到其他五项属性上。若启用了自我属性叠加，则同样附加至{attrZh}。\n\n<b>已停用：</b>此专长不再提供选择，已拥有的角色继续保留。若想换成新的主属性专精（以完整调整值提升一项所选属性），请为角色洗点。";
             return (en, zh);
         }
 
@@ -218,7 +266,7 @@ namespace AttributeFeats.New_Feats
             string descKey,
             (string en, string zh) desc)
         {
-            var cfg = FeatSelection.MainAttribute.NewFeat(internalName, guid)
+            var cfg = FeatSelection.MainLegacy.NewFeat(internalName, guid)
                 .SetDisplayName(Common.L(nameKey, nameEn, nameZh))
                 .SetDescription(Common.L(descKey, desc.en, desc.zh, tagEncyclopediaEntries: true))
                 .SetIconIfPresent(internalName);
@@ -245,69 +293,10 @@ namespace AttributeFeats.New_Feats
                 var attributeStats = settings.IncludeSelfInAttributeStack
                     ? AttributeStats
                     : AttributeStats.Where(stat => stat != baseStat);
-                AddContextBonuses(attributeStats, AbilityRankType.Default);
+                AddContextBonuses(attributeStats, AbilityRankType.StatBonus);
             }
 
-            if (settings.EnableDefenses)
-                AddContextBonuses(DefenseStats, AbilityRankType.Default);
-
-            if (settings.EnableManeuvers)
-                AddContextBonuses(ManeuverStats, AbilityRankType.Default);
-
-            if (settings.EnableSkills && settings.EnableChecks)
-            {
-                AddContextBonuses(SkilledStats, AbilityRankType.Default);
-            }
-            else
-            {
-                if (settings.EnableSkills)
-                    AddContextBonuses(SkillStats, AbilityRankType.Default);
-
-                if (settings.EnableChecks)
-                    AddContextBonuses(CheckStats, AbilityRankType.Default);
-            }
-
-            if (settings.EnableBAB)
-                AddContextBonuses(BABStats, AbilityRankType.StatBonus);
-
-            if (settings.EnablePowerMode)
-            {
-                AddContextBonuses(PowerStats, AbilityRankType.StatBonus);
-                cfg.AddComponent<AddStatBonus>(c =>
-                {
-                    c.Stat = StatType.Reach;
-                    c.Value = 1;
-                    c.Descriptor = Desc;
-                });
-            }
-
-            if (settings.EnableCasterDC)
-            {
-                cfg.AddComponent<IncreaseAllSpellsDC>(c =>
-                {
-                    c.Value = Common.Rank(AbilityRankType.StatBonus);
-                    c.Descriptor = Desc;
-                    c.SpellsOnly = false;
-                });
-            }
-
-            if (settings.EnableCasterLevel)
-            {
-                cfg.AddComponent<IncreaseCasterLevel>(c =>
-                {
-                    c.Value = Common.Rank(AbilityRankType.Default);
-                    c.Descriptor = Desc;
-                });
-            }
-
-            if (settings.EnableSpellPenetration)
-            {
-                cfg.AddComponent<SpellPenetrationBonus>(c =>
-                {
-                    c.Value = Common.Rank(AbilityRankType.Default);
-                    c.Descriptor = Desc;
-                });
-            }
+            AddOptInPowerBonuses(cfg, settings);
 
             cfg.AddRecalculateOnStatChange(stat: baseStat);
             return cfg.Configure();

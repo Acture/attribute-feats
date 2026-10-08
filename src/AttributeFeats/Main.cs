@@ -1,7 +1,10 @@
 using System;
+using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using AttributeFeats.New_Feats;
 using HarmonyLib;
+using Kingmaker;
 using Kingmaker.Blueprints.JsonSystem;
 using UnityEngine;
 using UnityModManagerNet;
@@ -52,7 +55,7 @@ namespace AttributeFeats
             var changed = false;
 
             GUILayout.Label("<color=cyan><b>[ Global Scaling Configuration ]</b></color>");
-            GUILayout.Label("Weapon Damage Mode applies immediately. Other settings require restarting.");
+            GUILayout.Label("Weapon Damage Mode, Feat Budget and exclusion groups apply immediately. Other settings require restarting.");
 
             GUILayout.BeginVertical("box");
             GUILayout.BeginHorizontal();
@@ -86,8 +89,33 @@ namespace AttributeFeats
             GUILayout.BeginVertical("box");
             changed |= ToggleSetting(ref s.IncludeSelfInAttributeStack, "Include Self in Attribute Stack — a Main feat may add its chosen attribute to itself (default: OFF)");
             GUILayout.Label("<color=grey><size=11>Leave this off for the redesign baseline. Turning it on restores recursive self-stacking behavior.</size></color>");
-            changed |= ToggleSetting(ref s.EnableMutex, "Enable Mutual Exclusivity — enforce intra-family mutex rules (default: ON)");
-            GUILayout.Label("<color=grey><size=11>When ON, each family enforces its intra-family mutex (Main 6-way, Specialized 6-way per subfamily, Stance 6-way, Weapon Insight 6-way, Weapon Damage 6-way, Greater Summoning 6-way, Summoner Sacrifice 3-way, Spell Tag school 8-way + descriptor 9-way). When OFF, all mutex prerequisites are skipped — you may take every feat at once. Cross-family same-attribute mutex is removed in 0.1.1 regardless of this toggle.</size></color>");
+            var mutexChanged = ToggleSetting(ref s.EnableMutex, "Enable Mutual Exclusivity — master switch for the exclusion groups below (default: ON)");
+            GUILayout.Label("<color=grey><size=11>Applies immediately. Each group limits how many of its feats one character may own; switch groups and limits individually below. When OFF, no group is enforced.</size></color>");
+            if (s.EnableMutex)
+            {
+                foreach (var group in FeatGroupRules.Settings)
+                {
+                    var limit = FeatBudget.GroupLimit(group);
+                    var enabled = limit.Enabled;
+                    var max = limit.Max;
+                    GUILayout.BeginHorizontal();
+                    enabled = GUILayout.Toggle(enabled, $"{group.NameEn} (default: {(group.DefaultEnabled ? "ON" : "OFF")}, {group.DefaultMax})", GUILayout.Width(420));
+                    GUILayout.Label($"max <color=yellow>{max}</color>", GUILayout.Width(60));
+                    if (GUILayout.Button("-", GUILayout.Width(30))) max--;
+                    if (GUILayout.Button("+", GUILayout.Width(30))) max++;
+                    GUILayout.FlexibleSpace();
+                    GUILayout.EndHorizontal();
+                    max = FeatBudgetRules.ClampLimit(max);
+                    if (enabled == limit.Enabled && max == limit.Max) continue;
+                    FeatBudget.SetGroupLimit(group, enabled, max);
+                    mutexChanged = true;
+                }
+            }
+            if (mutexChanged)
+            {
+                FeatBudget.SyncVisibility();
+                changed = true;
+            }
             GUILayout.EndVertical();
 
             GUILayout.Space(10);
@@ -109,6 +137,47 @@ namespace AttributeFeats
             GUILayout.EndVertical();
 
             GUILayout.Space(10);
+            GUILayout.Label("<color=green><b>[ Casting Attribute Feats ] — Applies Immediately</b></color>");
+            GUILayout.BeginVertical("box");
+            GUILayout.BeginHorizontal();
+            GUILayout.Label($"Casting Scope: <color=yellow>{s.CastingScope}</color>", GUILayout.Width(300));
+            GUILayout.FlexibleSpace();
+            if (GUILayout.Button("Switch Scope", GUILayout.Width(140)))
+            {
+                s.CastingScope = s.CastingScope == CastingAttributeScope.SelectedSpellbook ? CastingAttributeScope.AllSpellbooks : CastingAttributeScope.SelectedSpellbook;
+                changed = true;
+            }
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+            GUILayout.Label($"Casting Mode: <color=yellow>{s.CastingMode}</color>", GUILayout.Width(300));
+            GUILayout.FlexibleSpace();
+            if (GUILayout.Button("Switch Mode", GUILayout.Width(140)))
+            {
+                s.CastingMode = s.CastingMode == CastingAttributeMode.Always ? CastingAttributeMode.IfHigher : CastingAttributeMode.Always;
+                changed = true;
+            }
+            GUILayout.EndHorizontal();
+            GUILayout.Label("<color=grey><size=11>SelectedSpellbook (default): each Strength/Dexterity/Constitution Spellcasting feat changes the spellbook chosen when it was taken. AllSpellbooks: it changes every spellbook. Always (default): the feat's attribute replaces the spellbook's. IfHigher: the higher of the two is used. The spellbook UI header may still show the original attribute.</size></color>");
+            GUILayout.EndVertical();
+
+            GUILayout.Space(10);
+            GUILayout.Label("<color=green><b>[ Feat Budget ] — Applies Immediately</b></color>");
+            GUILayout.BeginVertical("box");
+            GUILayout.Label("<color=grey><size=11>Limits the AttributeFeats each character can take, across all families. Only chosen feats count; opening Attribute Feats or a family menu is free, and vanilla or other mods' feats are never counted. Both limits can be enabled together. Existing feats are never removed: a character above a lowered limit keeps them, but cannot choose more until the limit is raised or the character is respecced. Exclusion groups still apply separately.</size></color>");
+            var budgetChanged = ToggleSetting(ref s.EnableFeatCountLimit, "Limit the number of AttributeFeats per character (default: OFF)");
+            budgetChanged |= LimitStepper("Maximum feats", ref s.MaxFeatCount);
+            budgetChanged |= ToggleSetting(ref s.EnableFeatPointLimit, "Limit AttributeFeats points per character (default: OFF)");
+            budgetChanged |= LimitStepper("Maximum points", ref s.MaxFeatPoints);
+            GUILayout.Label($"<color=grey><size=11>Point costs — {DescribeCosts()}. Each rank and each Weapon Damage weapon category counts as a separate feat.</size></color>");
+            ShowPartyBudget();
+            GUILayout.EndVertical();
+            if (budgetChanged)
+            {
+                FeatBudget.SyncVisibility();
+                changed = true;
+            }
+
+            GUILayout.Space(10);
             GUILayout.Label("<color=red><b>[ Power Mode ]</b></color>");
             GUILayout.BeginVertical("box");
             GUILayout.Label("<color=red><size=11>Warning: these settings materially increase combat power and are intentionally off by default.</size></color>");
@@ -128,6 +197,53 @@ namespace AttributeFeats
             if (newValue == value) return false;
             value = newValue;
             return true;
+        }
+
+        private static bool LimitStepper(string label, ref int value)
+        {
+            var old = value;
+            GUILayout.BeginHorizontal();
+            GUILayout.Label($"{label}: <color=yellow>{value}</color>", GUILayout.Width(200));
+            if (GUILayout.Button("-", GUILayout.Width(30))) value--;
+            if (GUILayout.Button("+", GUILayout.Width(30))) value++;
+            GUILayout.FlexibleSpace();
+            GUILayout.EndHorizontal();
+            value = FeatBudgetRules.ClampLimit(value);
+            return value != old;
+        }
+
+        private static string DescribeCosts()
+            => string.Join("; ", FeatBudgetRules.Costs
+                .GroupBy(entry => entry.Value)
+                .OrderByDescending(group => group.Key)
+                .Select(group => $"{group.Key}: " + string.Join(", ", group.Select(entry =>
+                    entry.Key == "Root" ? "Long-Reach Gambit" : Regex.Replace(entry.Key, "(?<=[a-z])(?=[A-Z])", " ")))));
+
+        private static void ShowPartyBudget()
+        {
+            var limits = FeatBudget.Limits;
+            if (!limits.AnyEnabled) return;
+            try
+            {
+                var party = Game.Instance?.Player?.PartyAndPets;
+                if (party == null || party.Count == 0) return;
+                GUILayout.Label("<b>Current party</b>");
+                foreach (var unit in party)
+                {
+                    var verdict = FeatBudgetRules.Evaluate(limits, FeatBudget.Usage(unit.Descriptor), 0);
+                    var usage = string.Join(", ", new[]
+                    {
+                        limits.CountEnabled ? $"feats {verdict.Usage.Count}/{limits.MaxCount}" : null,
+                        limits.PointsEnabled ? $"points {verdict.Usage.Points}/{limits.MaxPoints}" : null,
+                    }.Where(part => part != null));
+                    GUILayout.Label($"{unit.CharacterName}: {usage}" +
+                        (verdict.OverBudget ? " <color=orange>(over budget: feats kept, no new choices)</color>" : ""));
+                }
+            }
+            catch (Exception)
+            {
+                // No loaded game (main menu or loading screen).
+            }
         }
 
         private static string GetPowerLevelDescription(PowerLevel level) => level switch

@@ -30,11 +30,16 @@ namespace AttributeFeats.New_Feats
             succeeded &= TryConfigureFamily(nameof(PolearmMasterFeats), () => PolearmMasterFeats.ConfigureAll());
             succeeded &= TryConfigureFamily(nameof(DistanceDamageFeats), () => DistanceDamageFeats.ConfigureAll());
             succeeded &= TryConfigureFamily(nameof(WeaponDamageFeats), () => WeaponDamageFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(CastingStatFeats), () => CastingStatFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(ResourceStatFeats), () => ResourceStatFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(PlaystyleFeats), () => PlaystyleFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(DotaFeats), () => DotaFeats.ConfigureAll());
             succeeded &= TryConfigure(nameof(MutexPass), () => MutexPass.ApplyAll());
 
             var menusSucceeded = false;
             succeeded &= TryConfigure(nameof(FeatSelection), () => menusSucceeded = FeatSelection.ConfigureAll());
             succeeded &= menusSucceeded;
+            succeeded &= TryConfigure(nameof(FeatBudget), FeatBudget.Install);
             Main.Log?.Log(succeeded
                 ? "AttributeFeats: registry initialized."
                 : "AttributeFeats: initialization finished with errors; some feats or menus may be unavailable. See the named failures above.");

@@ -17,41 +17,33 @@ namespace AttributeFeats.New_Feats
         private static readonly ModifierDescriptor Desc = ModifierDescriptor.None;
         private static readonly StatType[] NoStats = new StatType[0];
 
-        private static readonly StatType[] DefenseStats =
-        {
-            StatType.AC,
-            StatType.AdditionalCMD,
-            StatType.SaveFortitude,
-            StatType.SaveReflex,
-            StatType.SaveWill,
-            StatType.Initiative,
-        };
-
         private static readonly StatType[] ManeuverStats =
         {
             StatType.AdditionalCMB,
         };
 
-        private static readonly StatType[] SkillStats =
+        // Each Adept covers two or three themed targets for its attribute.
+        private static readonly Dictionary<StatType, (StatType[] stats, string en, string zh)> DefensiveThemes = new()
         {
-            StatType.SkillAthletics,
-            StatType.SkillKnowledgeArcana,
-            StatType.SkillKnowledgeWorld,
-            StatType.SkillLoreNature,
-            StatType.SkillLoreReligion,
-            StatType.SkillMobility,
-            StatType.SkillPerception,
-            StatType.SkillPersuasion,
-            StatType.SkillStealth,
-            StatType.SkillThievery,
-            StatType.SkillUseMagicDevice,
+            [StatType.Strength] = (new[] { StatType.AdditionalCMD, StatType.SaveFortitude }, "CMD and Fortitude saves", "战技防御（CMD）与强韧豁免"),
+            [StatType.Dexterity] = (new[] { StatType.AC, StatType.SaveReflex }, "AC and Reflex saves", "防御等级（AC）与反射豁免"),
+            [StatType.Constitution] = (new[] { StatType.AC, StatType.SaveFortitude }, "AC and Fortitude saves", "防御等级（AC）与强韧豁免"),
+            [StatType.Intelligence] = (new[] { StatType.Initiative, StatType.SaveReflex }, "Initiative and Reflex saves", "先攻与反射豁免"),
+            [StatType.Wisdom] = (new[] { StatType.SaveWill, StatType.Initiative }, "Will saves and Initiative", "意志豁免与先攻"),
+            [StatType.Charisma] = (new[] { StatType.SaveWill, StatType.AdditionalCMD }, "Will saves and CMD", "意志豁免与战技防御（CMD）"),
         };
 
-        private static readonly StatType[] CheckStats =
+        private static readonly Dictionary<StatType, (StatType[] stats, string en, string zh)> SkilledThemes = new()
         {
-            StatType.CheckBluff,
-            StatType.CheckDiplomacy,
-            StatType.CheckIntimidate,
+            [StatType.Strength] = (new[] { StatType.SkillAthletics, StatType.CheckIntimidate }, "Athletics and Intimidate checks", "运动与威吓检定"),
+            [StatType.Dexterity] = (new[] { StatType.SkillMobility, StatType.SkillStealth, StatType.SkillThievery }, "Mobility, Stealth and Thievery", "灵活、潜行与巧手"),
+            [StatType.Constitution] = (new[] { StatType.SkillAthletics, StatType.SkillPerception }, "Athletics and Perception", "运动与察觉"),
+            [StatType.Intelligence] = (new[] { StatType.SkillKnowledgeArcana, StatType.SkillKnowledgeWorld, StatType.SkillUseMagicDevice },
+                "Knowledge (Arcana), Knowledge (World) and Use Magic Device", "知识（奥秘）、知识（世界）与使用魔法装置"),
+            [StatType.Wisdom] = (new[] { StatType.SkillPerception, StatType.SkillLoreNature, StatType.SkillLoreReligion },
+                "Perception, Lore (Nature) and Lore (Religion)", "察觉、学识（自然）与学识（宗教）"),
+            [StatType.Charisma] = (new[] { StatType.SkillPersuasion, StatType.CheckBluff, StatType.CheckDiplomacy },
+                "Persuasion plus Bluff and Diplomacy checks", "说服，以及欺诈与交涉检定"),
         };
 
         private static bool Initialized;
@@ -74,7 +66,7 @@ namespace AttributeFeats.New_Feats
                 CreateSpecialized(
                     SpecializedFamily.Defensive,
                     StatType.Strength,
-                    DefenseStats,
+                    NoStats,
                     Guids.Specialized.Defensive.Str,
                     "TitansStance",
                     Common.Text("Defensive_Str.Name", "Colossus Bastion"),
@@ -84,7 +76,7 @@ namespace AttributeFeats.New_Feats
                 CreateSpecialized(
                     SpecializedFamily.Defensive,
                     StatType.Dexterity,
-                    DefenseStats,
+                    NoStats,
                     Guids.Specialized.Defensive.Dex,
                     "FlowingForm",
                     Common.Text("Defensive_Dex.Name", "Wind-Dancer's Shroud"),
@@ -94,7 +86,7 @@ namespace AttributeFeats.New_Feats
                 CreateSpecialized(
                     SpecializedFamily.Defensive,
                     StatType.Constitution,
-                    DefenseStats,
+                    NoStats,
                     Guids.Specialized.Defensive.Con,
                     "IronBulwark",
                     Common.Text("Defensive_Con.Name", "Inured Carapace"),
@@ -104,7 +96,7 @@ namespace AttributeFeats.New_Feats
                 CreateSpecialized(
                     SpecializedFamily.Defensive,
                     StatType.Intelligence,
-                    DefenseStats,
+                    NoStats,
                     Guids.Specialized.Defensive.Int,
                     "CalculatedDefense",
                     Common.Text("Defensive_Int.Name", "Analytical Aegis"),
@@ -114,7 +106,7 @@ namespace AttributeFeats.New_Feats
                 CreateSpecialized(
                     SpecializedFamily.Defensive,
                     StatType.Wisdom,
-                    DefenseStats,
+                    NoStats,
                     Guids.Specialized.Defensive.Wis,
                     "StoicVigilance",
                     Common.Text("Defensive_Wis.Name", "Third Eye Vigil"),
@@ -124,7 +116,7 @@ namespace AttributeFeats.New_Feats
                 CreateSpecialized(
                     SpecializedFamily.Defensive,
                     StatType.Charisma,
-                    DefenseStats,
+                    NoStats,
                     Guids.Specialized.Defensive.Cha,
                     "IndomitablePresence",
                     Common.Text("Defensive_Cha.Name", "Majesty's Reproach"),
@@ -202,7 +194,7 @@ namespace AttributeFeats.New_Feats
                 CreateSpecialized(
                     SpecializedFamily.Skilled,
                     StatType.Strength,
-                    SkillStats,
+                    NoStats,
                     Guids.Specialized.Skilled.Str,
                     "PracticedHand",
                     Common.Text("Skilled_Str.Name", "Giantwright's Craft"),
@@ -212,7 +204,7 @@ namespace AttributeFeats.New_Feats
                 CreateSpecialized(
                     SpecializedFamily.Skilled,
                     StatType.Dexterity,
-                    SkillStats,
+                    NoStats,
                     Guids.Specialized.Skilled.Dex,
                     "EffortlessSkill",
                     Common.Text("Skilled_Dex.Name", "Thief-King's Panache"),
@@ -222,7 +214,7 @@ namespace AttributeFeats.New_Feats
                 CreateSpecialized(
                     SpecializedFamily.Skilled,
                     StatType.Constitution,
-                    SkillStats,
+                    NoStats,
                     Guids.Specialized.Skilled.Con,
                     "TirelessPractice",
                     Common.Text("Skilled_Con.Name", "Ascetic Diligence"),
@@ -232,7 +224,7 @@ namespace AttributeFeats.New_Feats
                 CreateSpecialized(
                     SpecializedFamily.Skilled,
                     StatType.Intelligence,
-                    SkillStats,
+                    NoStats,
                     Guids.Specialized.Skilled.Int,
                     "PolymathsTouch",
                     Common.Text("Skilled_Int.Name", "Encyclopedic Synthesis"),
@@ -242,7 +234,7 @@ namespace AttributeFeats.New_Feats
                 CreateSpecialized(
                     SpecializedFamily.Skilled,
                     StatType.Wisdom,
-                    SkillStats,
+                    NoStats,
                     Guids.Specialized.Skilled.Wis,
                     "QuietMastery",
                     Common.Text("Skilled_Wis.Name", "Wanderer's Lucidity"),
@@ -252,7 +244,7 @@ namespace AttributeFeats.New_Feats
                 CreateSpecialized(
                     SpecializedFamily.Skilled,
                     StatType.Charisma,
-                    SkillStats,
+                    NoStats,
                     Guids.Specialized.Skilled.Cha,
                     "InspiredVersatility",
                     Common.Text("Skilled_Cha.Name", "Silver-Tongued Virtuoso"),
@@ -325,10 +317,6 @@ namespace AttributeFeats.New_Feats
                     Common.Text("Arcane_Cha.Lore", "你以宣告法旨般的自信吟诵咒语，让信念为法术的形式添上分量。", true)),
             };
 
-            AddFamilyMutex(defensive);
-            AddFamilyMutex(maneuver);
-            AddFamilyMutex(skilled);
-            AddFamilyMutex(arcane);
         }
 
         private static BlueprintFeature CreateSpecialized(
@@ -350,6 +338,7 @@ namespace AttributeFeats.New_Feats
 
             var desc = BuildDescription(
                 family,
+                baseStat,
                 attributeNameEn,
                 attributeNameZh,
                 loreTextEn,
@@ -383,7 +372,7 @@ namespace AttributeFeats.New_Feats
                 case SpecializedFamily.Defensive:
                     if (settings.EnableDefenses)
                     {
-                        AddContextBonuses(cfg, stats, AbilityRankType.Default);
+                        AddContextBonuses(cfg, DefensiveThemes[baseStat].stats, AbilityRankType.Default);
                     }
                     break;
                 case SpecializedFamily.Maneuver:
@@ -393,14 +382,11 @@ namespace AttributeFeats.New_Feats
                     }
                     break;
                 case SpecializedFamily.Skilled:
-                    if (settings.EnableSkills)
+                    foreach (var stat in SkilledThemes[baseStat].stats)
                     {
-                        AddContextBonuses(cfg, SkillStats, AbilityRankType.Default);
-                    }
-
-                    if (settings.EnableChecks)
-                    {
-                        AddContextBonuses(cfg, CheckStats, AbilityRankType.Default);
+                        var isCheck = stat == StatType.CheckBluff || stat == StatType.CheckDiplomacy || stat == StatType.CheckIntimidate;
+                        if (isCheck ? settings.EnableChecks : settings.EnableSkills)
+                            AddContextBonuses(cfg, new[] { stat }, AbilityRankType.Default);
                     }
                     break;
                 case SpecializedFamily.Arcane:
@@ -438,16 +424,6 @@ namespace AttributeFeats.New_Feats
             return cfg.Configure();
         }
 
-        private static void AddFamilyMutex(IReadOnlyList<BlueprintFeature> feats)
-        {
-            for (var i = 0; i < feats.Count; i++)
-            {
-                for (var j = i + 1; j < feats.Count; j++)
-                {
-                    Common.AddBidirectionalMutex(feats[i], feats[j]);
-                }
-            }
-        }
 
         private static void AddContextBonuses(FeatureConfigurator cfg, IReadOnlyList<StatType> stats, AbilityRankType rankType)
         {
@@ -459,6 +435,7 @@ namespace AttributeFeats.New_Feats
 
         private static (string en, string zh) BuildDescription(
             SpecializedFamily family,
+            StatType baseStat,
             string attributeNameEn,
             string attributeNameZh,
             string loreTextEn,
@@ -466,8 +443,8 @@ namespace AttributeFeats.New_Feats
         {
             var familyNameEn = GetFamilyDisplayName(family);
             var familyNameZh = GetFamilyDisplayNameZh(family);
-            var effectEn = GetEffectText(family, attributeNameEn) + " Attribute-based bonuses use a minimum modifier of 0 and apply only when their corresponding mod settings are enabled.";
-            var effectZh = GetEffectTextZh(family, attributeNameZh) + " 属性加值以调整值最低0计算，且仅在对应模组设置启用时生效。";
+            var effectEn = GetEffectText(family, baseStat, attributeNameEn) + " Attribute-based bonuses use a minimum modifier of 0 and apply only when their corresponding mod settings are enabled.";
+            var effectZh = GetEffectTextZh(family, baseStat, attributeNameZh) + " 属性加值以调整值最低0计算，且仅在对应模组设置启用时生效。";
             var restrictionEn = GetRestrictionText(family);
             var restrictionZh = GetRestrictionTextZh(family);
 
@@ -476,16 +453,16 @@ namespace AttributeFeats.New_Feats
             return (en, zh);
         }
 
-        private static string GetEffectText(SpecializedFamily family, string attributeName)
+        private static string GetEffectText(SpecializedFamily family, StatType baseStat, string attributeName)
         {
             switch (family)
             {
                 case SpecializedFamily.Defensive:
-                    return $"Adds your {attributeName} modifier (untyped) to AC, CMD, Initiative, and all saving throws.";
+                    return $"Adds your {attributeName} modifier (untyped) to {DefensiveThemes[baseStat].en}.";
                 case SpecializedFamily.Maneuver:
                     return $"Adds your {attributeName} modifier (untyped) to CMB.";
                 case SpecializedFamily.Skilled:
-                    return $"Adds your {attributeName} modifier (untyped) to all skills, plus Bluff, Diplomacy, and Intimidate checks.";
+                    return $"Adds your {attributeName} modifier (untyped) to {SkilledThemes[baseStat].en}.";
                 case SpecializedFamily.Arcane:
                     return $"Adds your {attributeName} modifier (untyped) to caster level and spell penetration checks, plus half your {attributeName} modifier (rounded down) to spell and ability save DCs in Balanced mode, or the full modifier in Legacy_AllFull mode.";
                 default:
@@ -493,16 +470,16 @@ namespace AttributeFeats.New_Feats
             }
         }
 
-        private static string GetEffectTextZh(SpecializedFamily family, string attributeZh)
+        private static string GetEffectTextZh(SpecializedFamily family, StatType baseStat, string attributeZh)
         {
             switch (family)
             {
                 case SpecializedFamily.Defensive:
-                    return $"将你的{attributeZh}调整值（无类型加值）附加至防御等级（AC）、战技防御（CMD）、先攻及所有豁免检定。";
+                    return $"将你的{attributeZh}调整值（无类型加值）附加至{DefensiveThemes[baseStat].zh}。";
                 case SpecializedFamily.Maneuver:
                     return $"将你的{attributeZh}调整值（无类型加值）附加至战技加值（CMB）。";
                 case SpecializedFamily.Skilled:
-                    return $"将你的{attributeZh}调整值（无类型加值）附加至所有技能检定，以及欺诈、交涉、威吓检定。";
+                    return $"将你的{attributeZh}调整值（无类型加值）附加至{SkilledThemes[baseStat].zh}。";
                 case SpecializedFamily.Arcane:
                     return $"将你的{attributeZh}调整值（无类型加值）附加至施法者等级与法术抗力穿透检定，在Balanced模式下将半数{attributeZh}调整值（向下取整）附加至法术及能力豁免DC，在Legacy_AllFull模式下使用完整调整值。";
                 default:
@@ -515,13 +492,13 @@ namespace AttributeFeats.New_Feats
             switch (family)
             {
                 case SpecializedFamily.Defensive:
-                    return "When EnableMutex is enabled, mutually exclusive with other Defensive Adept feats.";
+                    return "While its exclusion group is on (configurable in mod settings), you can have only one Defensive Adept feat.";
                 case SpecializedFamily.Maneuver:
-                    return "When EnableMutex is enabled, mutually exclusive with other Maneuver Adept feats.";
+                    return "While its exclusion group is on (configurable in mod settings), you can have only one Maneuver Adept feat.";
                 case SpecializedFamily.Skilled:
-                    return "When EnableMutex is enabled, mutually exclusive with other Skilled feats.";
+                    return "While its exclusion group is on (configurable in mod settings), you can have only one Skilled feat.";
                 case SpecializedFamily.Arcane:
-                    return "When EnableMutex is enabled, mutually exclusive with other Arcane Insight feats.";
+                    return "While its exclusion group is on (configurable in mod settings), you can have only one Arcane Insight feat.";
                 default:
                     return string.Empty;
             }
@@ -532,13 +509,13 @@ namespace AttributeFeats.New_Feats
             switch (family)
             {
                 case SpecializedFamily.Defensive:
-                    return "启用EnableMutex时，与其他防御行家专长互相排斥。";
+                    return "启用该互斥组时（可在模组设置中调整），只能拥有一个防御行家专长。";
                 case SpecializedFamily.Maneuver:
-                    return "启用EnableMutex时，与其他战技行家专长互相排斥。";
+                    return "启用该互斥组时（可在模组设置中调整），只能拥有一个战技行家专长。";
                 case SpecializedFamily.Skilled:
-                    return "启用EnableMutex时，与其他技能行家专长互相排斥。";
+                    return "启用该互斥组时（可在模组设置中调整），只能拥有一个技能行家专长。";
                 case SpecializedFamily.Arcane:
-                    return "启用EnableMutex时，与其他奥术洞察专长互相排斥。";
+                    return "启用该互斥组时（可在模组设置中调整），只能拥有一个奥术洞察专长。";
                 default:
                     return string.Empty;
             }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityModManagerNet;
 
@@ -7,6 +8,25 @@ namespace AttributeFeats
     {
         Balanced,
         Legacy_AllFull,
+    }
+
+    public enum CastingAttributeScope
+    {
+        SelectedSpellbook,
+        AllSpellbooks,
+    }
+
+    public enum CastingAttributeMode
+    {
+        Always,
+        IfHigher,
+    }
+
+    public class FeatGroupSetting
+    {
+        [XmlAttribute] public string Id;
+        [XmlAttribute] public bool Enabled;
+        [XmlAttribute] public int Max;
     }
 
     [XmlRoot("AttributeFeatsSettings")]
@@ -31,6 +51,19 @@ namespace AttributeFeats
         public bool EnableMutex = true;
 
         public WeaponDamageMode WeaponDamage = WeaponDamageMode.Replace;
+
+        // Per-character AttributeFeats budget. Both limits may be enabled together.
+        public bool EnableFeatCountLimit = false;
+        public int MaxFeatCount = 6;
+        public bool EnableFeatPointLimit = false;
+        public int MaxFeatPoints = 10;
+
+        // Casting Attribute feats: which spellbooks they change, and whether only when higher.
+        public CastingAttributeScope CastingScope = CastingAttributeScope.SelectedSpellbook;
+        public CastingAttributeMode CastingMode = CastingAttributeMode.Always;
+
+        // Exclusion group overrides by group setting id. Missing groups use built-in defaults.
+        public List<FeatGroupSetting> FeatGroups = new List<FeatGroupSetting>();
 
         public PowerLevel powerLevel = PowerLevel.Balanced;
 

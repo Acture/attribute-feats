@@ -114,13 +114,6 @@ namespace AttributeFeats.New_Feats
                         Common.Text("WeaponInsight_Cha.Lore", "华丽的虚招引导敌人的目光，兵刃则沿另一条轨迹逼近。", true))),
             };
 
-            for (var i = 0; i < weaponInsights.Count; i++)
-            {
-                for (var j = i + 1; j < weaponInsights.Count; j++)
-                {
-                    Common.AddBidirectionalMutex(weaponInsights[i], weaponInsights[j]);
-                }
-            }
 
             CreateExtendedFeat(
                 StatType.Wisdom,

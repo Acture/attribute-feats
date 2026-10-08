@@ -13,6 +13,10 @@ namespace AttributeFeats.New_Feats
         public static string Text(string key, string fallback, bool chinese = false)
             => FeatTextCatalog.Get(key, fallback, chinese);
 
+        /// <summary>Text for runtime-built UI strings in the active game locale.</summary>
+        public static string CurrentText(string key, string fallback)
+            => FeatTextCatalog.Get(key, fallback, LocalizationManager.CurrentLocale == Locale.zhCN);
+
         public static LocalizedString L(string key, string enValue, string zhValue = null, bool tagEncyclopediaEntries = false)
         {
             enValue = FeatTextCatalog.Get(key, enValue, false);

@@ -29,6 +29,8 @@ jobs:
           dotnet-version: '10.0.x'
       - name: Check weapon damage calculations
         run: dotnet run --project tests/WeaponDamage.Tests --configuration Release
+      - name: Check feat budget rules
+        run: dotnet run --project tests/FeatBudget.Tests --configuration Release
       - name: Check feat registration and menus
         run: dotnet run --project tests/Initialization.Tests --configuration Release
       - name: Check localization registration, refresh and fallbacks

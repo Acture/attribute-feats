@@ -283,8 +283,6 @@ namespace AttributeFeats.New_Feats
                     loreZh: Common.Text("SpellTag_Descriptor_SubtleTyrant.Lore", "你研究影响心灵的魔法如何沿注意力的细线取得立足点。", true))),
             };
 
-            AddFamilyMutex(schools);
-            AddFamilyMutex(descriptors);
         }
 
         private static BlueprintFeature CreateSchoolFeat(SchoolFeatDefinition definition)
@@ -413,16 +411,6 @@ namespace AttributeFeats.New_Feats
             return cfg.Configure();
         }
 
-        private static void AddFamilyMutex(IReadOnlyList<BlueprintFeature> feats)
-        {
-            for (var i = 0; i < feats.Count; i++)
-            {
-                for (var j = i + 1; j < feats.Count; j++)
-                {
-                    Common.AddBidirectionalMutex(feats[i], feats[j]);
-                }
-            }
-        }
 
         private static (string en, string zh) BuildSchoolDescription(SchoolFeatDefinition def)
         {

@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- Optional per-character feat budget across all AttributeFeats families: a feat count limit, a point limit with family costs of 1–3, or both. Both are off by default and apply immediately when changed.
+- Feat tooltips show used and maximum feats or points, the feat's cost and why it cannot be chosen, in English and Simplified Chinese. The mod settings list each party member's usage.
+
+### Changed
+- Only granted feats count. Menus, vanilla feats and other mods' feats do not; each Weapon Damage category and each rank count separately. Prerequisite-ignoring effects do not bypass the budget.
+- Characters above a lowered limit or loaded from an older save keep every feat but cannot choose more until the limit is raised or they are respecced.
+
 ## 0.1.2 — 2026-10-05
 
 ### Added

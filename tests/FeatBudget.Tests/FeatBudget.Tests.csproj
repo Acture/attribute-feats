@@ -5,9 +5,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="../../src/AttributeFeats/New_Feats/FeatRegistry.cs" Link="FeatRegistry.cs" />
-    <Compile Include="../../src/AttributeFeats/New_Feats/FeatSelection.cs" Link="FeatSelection.cs" />
     <Compile Include="../../src/AttributeFeats/New_Feats/FeatBudgetRules.cs" Link="FeatBudgetRules.cs" />
+    <Compile Include="../../src/AttributeFeats/New_Feats/FeatGroupRules.cs" Link="FeatGroupRules.cs" />
     <Compile Include="../../src/AttributeFeats/New_Feats/Guids.cs" Link="Guids.cs" />
+    <Compile Include="../../src/AttributeFeats/New_Feats/CloseQuartersRules.cs" Link="CloseQuartersRules.cs" />
   </ItemGroup>
 </Project>

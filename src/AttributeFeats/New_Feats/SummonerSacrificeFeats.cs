@@ -10,14 +10,11 @@ namespace AttributeFeats.New_Feats
     internal static class SummonerSacrificeFeats
     {
         private const ModifierDescriptor Desc = ModifierDescriptor.None;
-        private static readonly StatType[] AllAttributes =
+        private static readonly StatType[] PhysicalAttributes =
         {
             StatType.Strength,
             StatType.Dexterity,
             StatType.Constitution,
-            StatType.Intelligence,
-            StatType.Wisdom,
-            StatType.Charisma,
         };
 
         private static bool Initialized;
@@ -41,8 +38,8 @@ namespace AttributeFeats.New_Feats
                         modeZh: "等价献祭",
                         loreEn: Common.Text("SummonerSacrifice_BodyOfMyPact.Lore", "You accept a body's burden so that the creatures bound to your call may stand stronger."),
                         loreZh: Common.Text("SummonerSacrifice_BodyOfMyPact.Lore", "你甘愿让自身承受负担，使回应你召唤的生物更加强健。", true),
-                        effectEn: "You take a -4 untyped penalty to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Your summoned creatures gain a +4 untyped bonus to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma.",
-                        effectZh: "你的力量、敏捷、体质、智力、感知和魅力承受-4无类型减值。你召唤的生物的力量、敏捷、体质、智力、感知和魅力获得+4无类型加值。"),
+                        effectEn: "You take a -4 untyped penalty to Strength, Dexterity, and Constitution. Your summoned creatures gain a +4 untyped bonus to Strength, Dexterity, and Constitution.",
+                        effectZh: "你的力量、敏捷和体质承受-4无类型减值。你召唤的生物的力量、敏捷和体质获得+4无类型加值。"),
                     selfBonuses: CreateUniformBonuses(-4),
                     summonBonuses: CreateUniformBonuses(4)),
                 CreateFeat(
@@ -57,8 +54,8 @@ namespace AttributeFeats.New_Feats
                         modeZh: "倍率谐振",
                         loreEn: Common.Text("SummonerSacrifice_DoubledBond.Lore", "An exacting pact magnifies what you surrender, letting sacrifice feed a companion's strength."),
                         loreZh: Common.Text("SummonerSacrifice_DoubledBond.Lore", "严密的契约放大你付出的代价，让牺牲转为伙伴的力量。", true),
-                        effectEn: "You take a -2 untyped penalty to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Your summoned creatures gain a +4 untyped bonus to Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma.",
-                        effectZh: "你的力量、敏捷、体质、智力、感知和魅力承受-2无类型减值。你召唤的生物的力量、敏捷、体质、智力、感知和魅力获得+4无类型加值。"),
+                        effectEn: "You take a -2 untyped penalty to Strength, Dexterity, and Constitution. Your summoned creatures gain a +4 untyped bonus to Strength, Dexterity, and Constitution.",
+                        effectZh: "你的力量、敏捷和体质承受-2无类型减值。你召唤的生物的力量、敏捷和体质获得+4无类型加值。"),
                     selfBonuses: CreateUniformBonuses(-2),
                     summonBonuses: CreateUniformBonuses(4)),
                 CreateFeat(
@@ -79,7 +76,6 @@ namespace AttributeFeats.New_Feats
                     summonBonuses: new[] { new StatBonus(StatType.Strength, 8) }),
             };
 
-            AddFamilyMutex(feats);
         }
 
         private static BlueprintFeature CreateFeat(
@@ -130,25 +126,15 @@ namespace AttributeFeats.New_Feats
 
         private static StatBonus[] CreateUniformBonuses(int value)
         {
-            var bonuses = new StatBonus[AllAttributes.Length];
-            for (var i = 0; i < AllAttributes.Length; i++)
+            var bonuses = new StatBonus[PhysicalAttributes.Length];
+            for (var i = 0; i < PhysicalAttributes.Length; i++)
             {
-                bonuses[i] = new StatBonus(AllAttributes[i], value);
+                bonuses[i] = new StatBonus(PhysicalAttributes[i], value);
             }
 
             return bonuses;
         }
 
-        private static void AddFamilyMutex(IReadOnlyList<BlueprintFeature> feats)
-        {
-            for (var i = 0; i < feats.Count; i++)
-            {
-                for (var j = i + 1; j < feats.Count; j++)
-                {
-                    Common.AddBidirectionalMutex(feats[i], feats[j]);
-                }
-            }
-        }
 
         private static (string en, string zh) BuildDescription(
             string modeEn,

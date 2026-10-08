@@ -119,7 +119,6 @@ namespace AttributeFeats.New_Feats
                     buffedStats: new[] { StatType.AdditionalAttackBonus }),
             };
 
-            AddFamilyMutex(feats);
         }
 
         private static BlueprintFeature CreateFeat(
@@ -176,16 +175,6 @@ namespace AttributeFeats.New_Feats
             }
         }
 
-        private static void AddFamilyMutex(IReadOnlyList<BlueprintFeature> feats)
-        {
-            for (var i = 0; i < feats.Count; i++)
-            {
-                for (var j = i + 1; j < feats.Count; j++)
-                {
-                    Common.AddBidirectionalMutex(feats[i], feats[j]);
-                }
-            }
-        }
 
         private static (string en, string zh) BuildDescription(
             string attrEn,

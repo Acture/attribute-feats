@@ -184,10 +184,10 @@ namespace AttributeFeats.New_Feats
                     "基础攻击加值转化法术DC",
                     Common.Text("Derived_SwordSaint.Lore", "The precision learned with a weapon gives you another way to shape demanding magic."),
                     Common.Text("Derived_SwordSaint.Lore", "从兵刃上学来的精准，为你驾驭复杂魔法提供另一条途径。", true),
-                    "Adds half your base attack bonus as an untyped bonus to the save DC of all your spells and abilities.",
-                    "将你的基础攻击加值（BAB）的一半作为无类型加值附加至所有法术及能力的豁免难度等级（DC）。"))
+                    "Adds half your base attack bonus as an untyped bonus to the save DC of your spells. Class and racial abilities are not affected.",
+                    "将你的基础攻击加值（BAB）的一半作为无类型加值附加至你的法术豁免难度等级（DC）。职业与种族能力不受影响。"))
                 .AddContextRankConfig(ContextRankConfigs.BaseAttack(min: 0).WithDiv2Progression())
-                .AddIncreaseAllSpellsDC(descriptor: Desc, spellsOnly: false, value: Common.Rank())
+                .AddIncreaseAllSpellsDC(descriptor: Desc, spellsOnly: true, value: Common.Rank())
                 .Configure();
         }
 

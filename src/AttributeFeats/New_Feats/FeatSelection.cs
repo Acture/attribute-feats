@@ -31,25 +31,55 @@ namespace AttributeFeats.New_Feats
         public static readonly FeatSelection SpellDescriptor = new("SpellDescriptor", Guids.FeatSelections.SpellDescriptor, "Spell Descriptor Specialist");
         public static readonly FeatSelection DistanceDamage = new("DistanceDamage", Guids.FeatSelections.DistanceDamage, "Distance Damage");
         public static readonly FeatSelection WeaponDamage = new("WeaponDamage", Guids.FeatSelections.WeaponDamage, "Weapon Damage");
+        public static readonly FeatSelection CastingStat = new("CastingStat", Guids.FeatSelections.CastingStat, "Casting Attribute");
+        public static readonly FeatSelection ResourceStat = new("ResourceStat", Guids.FeatSelections.ResourceStat, "Resource Attribute");
+        public static readonly FeatSelection Retaliation = new("Retaliation", Guids.FeatSelections.Retaliation, "Retaliation");
+        public static readonly FeatSelection Momentum = new("Momentum", Guids.FeatSelections.Momentum, "Momentum");
+        public static readonly FeatSelection Stealth = new("Stealth", Guids.FeatSelections.Stealth, "Stealth");
+        public static readonly FeatSelection Solo = new("Solo", Guids.FeatSelections.Solo, "Solo");
+        public static readonly FeatSelection Growth = new("Growth", Guids.FeatSelections.Growth, "Growth");
+        public static readonly FeatSelection Execution = new("Execution", Guids.FeatSelections.Execution, "Execution");
+        public static readonly FeatSelection Arcana = new("Arcana", Guids.FeatSelections.Arcana, "Arcana");
+        public static readonly FeatSelection Summoner = new("Summoner", Guids.FeatSelections.Summoner, "Summoner");
 
+        // Main Attribute Mastery: choose a source attribute, then the one attribute it improves.
+        public static readonly FeatSelection MainFromStr = new("MainAttribute_Str", Guids.MainAttribute.Source.Str, "Strength Mastery", MainAttribute);
+        public static readonly FeatSelection MainFromDex = new("MainAttribute_Dex", Guids.MainAttribute.Source.Dex, "Dexterity Mastery", MainAttribute);
+        public static readonly FeatSelection MainFromCon = new("MainAttribute_Con", Guids.MainAttribute.Source.Con, "Constitution Mastery", MainAttribute);
+        public static readonly FeatSelection MainFromInt = new("MainAttribute_Int", Guids.MainAttribute.Source.Int, "Intelligence Mastery", MainAttribute);
+        public static readonly FeatSelection MainFromWis = new("MainAttribute_Wis", Guids.MainAttribute.Source.Wis, "Wisdom Mastery", MainAttribute);
+        public static readonly FeatSelection MainFromCha = new("MainAttribute_Cha", Guids.MainAttribute.Source.Cha, "Charisma Mastery", MainAttribute);
+
+        // Retired 0.1.x Main feats: kept for existing characters and budgets, never offered.
+        public static readonly FeatSelection MainLegacy = new("MainAttributeLegacy", null, "Main Attribute Mastery (legacy)", hidden: true);
+
+        // Child menus come before their parent so the parent sees their configured selections.
         private static readonly FeatSelection[] Families =
         {
+            MainFromStr, MainFromDex, MainFromCon, MainFromInt, MainFromWis, MainFromCha, MainLegacy,
             MainAttribute, Defensive, Maneuver, Skilled, Arcane, Stance, Conditional,
             WeaponInsight, ExtendedReplacement, GreaterSummoning, SummonerSacrifice,
             ReactiveArmor, DerivedStat, SpellSchool, SpellDescriptor, DistanceDamage, WeaponDamage,
+            CastingStat, ResourceStat, Retaliation, Momentum, Stealth, Solo, Growth, Execution, Arcana, Summoner,
         };
 
+        private readonly string Key;
         private readonly string Name;
         private readonly string Guid;
         private readonly string DisplayName;
+        private readonly FeatSelection Parent;
+        private readonly bool Hidden;
         private readonly Dictionary<BlueprintGuid, BlueprintFeature> Feats = new();
         private bool Configured;
 
-        private FeatSelection(string name, string guid, string displayName)
+        private FeatSelection(string name, string guid, string displayName, FeatSelection parent = null, bool hidden = false)
         {
+            Key = name;
             Name = $"AttributeFeatsSelection_{name}";
             Guid = guid;
             DisplayName = displayName;
+            Parent = parent;
+            Hidden = hidden;
         }
 
         // Keep the Feat group for game mechanics, but expose each feat only inside its family.
@@ -88,6 +118,16 @@ namespace AttributeFeats.New_Feats
             }
         }
 
+        /// <summary>
+        /// Registered leaf feats with their family's budget cost. Menus are excluded, so
+        /// opening the root or a family never consumes budget.
+        /// </summary>
+        internal static IEnumerable<(BlueprintFeature feat, string family, int cost)> BudgetedFeats()
+            => Families.Concat(new[] { Root })
+                .SelectMany(family => family.Feats.Values
+                    .Where(feat => feat is not BlueprintFeatureSelection)
+                    .Select(feat => (feat, family.Key, FeatBudgetRules.FamilyCost(family.Key))));
+
         /// <summary>Publishes successful family menus even when another family's menu fails.</summary>
         public static bool ConfigureAll()
         {
@@ -102,7 +142,7 @@ namespace AttributeFeats.New_Feats
 
         private void Configure()
         {
-            if (Configured || Feats.Count == 0) return;
+            if (Configured || Hidden || Feats.Count == 0) return;
 
             var selection = FeatureSelectionConfigurator.New(Name, Guid, FeatureGroup.Feat)
                 .SkipAddToSelections()
@@ -114,7 +154,8 @@ namespace AttributeFeats.New_Feats
                     "each feat's normal prerequisites and mutual-exclusion rules still apply."))
                 .SetGroup(FeatureGroup.Feat)
                 // Family selections can be revisited; only the final feats must be new.
-                .SetMode(this == Root || this == WeaponDamage ? SelectionMode.Default : SelectionMode.OnlyNew)
+                // Parametrized families can be revisited for a new parameter.
+                .SetMode(this == Root || this == WeaponDamage || this == CastingStat || this == ResourceStat ? SelectionMode.Default : SelectionMode.OnlyNew)
                 .SetIgnorePrerequisites(false)
                 .SetAllFeatures(Feats.Values.Select(feat => (Blueprint<BlueprintFeatureReference>)feat).ToArray())
                 .Configure();
@@ -126,7 +167,7 @@ namespace AttributeFeats.New_Feats
             }
             else
             {
-                Root.Feats[selection.AssetGuid] = selection;
+                (Parent ?? Root).Feats[selection.AssetGuid] = selection;
             }
             Configured = true;
             Main.Log?.Log($"AttributeFeats: grouped {Feats.Count} options under {DisplayName}.");
