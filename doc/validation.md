@@ -38,11 +38,11 @@ identity and component configuration, not proof of combat behavior.
 With a local Wrath installation configured in the ignored root `GamePath.props`:
 
 ```powershell
-dotnet build AttributeFeats.slnx -p:DeployMod=false
+dotnet build ACHomebrew.slnx -p:DeployMod=false
 powershell -NoProfile -File tests/VerifySettings.ps1 -WrathInstallDir "<game directory>"
 powershell -NoProfile -File tests/VerifyLiveWeaponDamageMode.ps1 -WrathInstallDir "<game directory>"
-dotnet build AttributeFeats.slnx -c Release -p:DeployToGame=false
-python scripts/validate_assets.py --release artifacts/packages/AttributeFeats-0.1.2.zip
+dotnet build ACHomebrew.slnx -c Release -p:DeployToGame=false
+python scripts/validate_assets.py --release artifacts/packages/ACHomebrew-0.1.2.zip
 ```
 
 The two reflection checks run in Windows PowerShell 5.1 against installed

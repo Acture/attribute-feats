@@ -1,0 +1,92 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<!-- Entry assembly: UMM loader, registration order, resources and packaging.
+	     Feature projects are merged into AttributeFeats.dll after build, so the
+	     mod still ships as one assembly. -->
+	<Import Project="../WrathMod.props" />
+
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<Version>0.1.2</Version>
+		<AssemblyVersion>0.1.2</AssemblyVersion>
+		<FileVersion>0.1.2</FileVersion>
+		<Authors>AuthorName</Authors>
+		<AssemblyName>AttributeFeats</AssemblyName>
+		<DeployToGame Condition="'$(DeployToGame)'==''">true</DeployToGame>
+	</PropertyGroup>
+
+	<!-- Helpful diagnostics -->
+	<Target Name="PrintPaths" BeforeTargets="CoreCompile">
+		<Message Text="WrathInstallDir=$(WrathInstallDir)" Importance="High" />
+		<Message Text="UMM=$(WrathInstallDir)\Wrath_Data\Managed\UnityModManager\UnityModManager.dll" Importance="High" />
+	</Target>
+
+	<ItemGroup>
+		<ProjectReference Include="../ACHomebrew.Rules/ACHomebrew.Rules.csproj" />
+		<ProjectReference Include="../ACHomebrew.Core/ACHomebrew.Core.csproj" />
+		<ProjectReference Include="../ACHomebrew.Classic/ACHomebrew.Classic.csproj" />
+		<ProjectReference Include="../ACHomebrew.Casting/ACHomebrew.Casting.csproj" />
+		<ProjectReference Include="../ACHomebrew.Playstyle/ACHomebrew.Playstyle.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ILRepack" Version="2.0.34" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" IncludeAssets="build; contentfiles" Version="0.4.2" PrivateAssets="all" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Properties\Settings.Designer.cs">
+	    <DesignTimeSharedInput>True</DesignTimeSharedInput>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Settings.settings</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+	<ItemGroup>
+	  <None Update="Info.json" CopyToOutputDirectory="PreserveNewest" />
+	  <None Update="Icons\*.png" CopyToOutputDirectory="PreserveNewest" />
+	  <None Update="Properties\Settings.settings">
+	    <Generator>SettingsSingleFileGenerator</Generator>
+	    <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+	  </None>
+	</ItemGroup>
+
+	<!-- Merge the feature assemblies into AttributeFeats.dll before deploy/zip. -->
+	<Target Name="MergeFeatureAssemblies" AfterTargets="Build" BeforeTargets="Deploy">
+		<ItemGroup>
+			<_MergeInputs Include="$(TargetPath)" />
+			<_MergeInputs Include="$(TargetDir)ACHomebrew.Rules.dll;$(TargetDir)ACHomebrew.Core.dll;$(TargetDir)ACHomebrew.Classic.dll;$(TargetDir)ACHomebrew.Casting.dll;$(TargetDir)ACHomebrew.Playstyle.dll" />
+		</ItemGroup>
+		<PropertyGroup>
+			<_MergedDir>$(IntermediateOutputPath)merged\</_MergedDir>
+		</PropertyGroup>
+		<!-- The ILRepack MSBuild task fails under the .NET SDK, so run the tool directly. -->
+		<MakeDir Directories="$(_MergedDir)" />
+		<Exec Command="&quot;$(PkgILRepack)\tools\ILRepack.exe&quot; /lib:&quot;$(TargetDir.TrimEnd('\'))&quot; /out:&quot;$(_MergedDir)$(TargetFileName)&quot; @(_MergeInputs->'&quot;%(FullPath)&quot;', ' ')" />
+		<Copy SourceFiles="$(_MergedDir)$(TargetFileName);$(_MergedDir)$(TargetName).pdb" DestinationFolder="$(TargetDir)" />
+		<Delete Files="$(TargetDir)ACHomebrew.Rules.dll;$(TargetDir)ACHomebrew.Core.dll;$(TargetDir)ACHomebrew.Classic.dll;$(TargetDir)ACHomebrew.Casting.dll;$(TargetDir)ACHomebrew.Playstyle.dll;$(TargetDir)ACHomebrew.Rules.pdb;$(TargetDir)ACHomebrew.Core.pdb;$(TargetDir)ACHomebrew.Classic.pdb;$(TargetDir)ACHomebrew.Casting.pdb;$(TargetDir)ACHomebrew.Playstyle.pdb" />
+	</Target>
+
+	<!-- Deploy to Mods folder + zip -->
+	<Target Name="Deploy" AfterTargets="Build" Condition="'$(DeployMod)' != 'false'">
+		<ItemGroup>
+			<Files Include="$(TargetDir)\**\*.*" />
+			<Files Remove="$(TargetDir)\**\*.dll" />
+			<Files Remove="$(TargetDir)\**\*.pdb" />
+			<Files Remove="$(TargetDir)\**\*.cache" />
+			<Files Remove="$(TargetDir)\**\UnityModManager.xml" />
+			<Files Include="$(TargetDir)\**\$(AssemblyName).dll" />
+			<Files Include="$(TargetDir)\**\$(AssemblyName).pdb" />
+			<ToDelete Include="$(TargetDir)\**\*.*" />
+			<ToDelete Remove="@(Files)" />
+		</ItemGroup>
+
+		<Copy SourceFiles="@(Files)" DestinationFiles="@(Files->'$(WrathInstallDir)\Mods\$(AssemblyName)\%(RecursiveDir)%(Filename)%(Extension)')" Condition="'$(DeployToGame)'=='true'" />
+		<Delete Files="@(ToDelete)" />
+		<MakeDir Directories="$(AttributeFeatsRepositoryRoot)artifacts/packages" />
+		<ZipDirectory SourceDirectory="$(TargetDir)" DestinationFile="$(AttributeFeatsRepositoryRoot)artifacts/packages/ACHomebrew-$(Version).zip" Overwrite="true" />
+	</Target>
+
+	<!-- Optional: delete generated props on clean -->
+	<Target Name="DeleteCustomPropsFile" BeforeTargets="Clean">
+		<Delete Files="$(AttributeFeatsRepositoryRoot)GamePath.props" Condition="Exists('$(AttributeFeatsRepositoryRoot)GamePath.props')" />
+	</Target>
+
+</Project>

@@ -9,7 +9,7 @@
 		<LangVersion>latest</LangVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<RootNamespace>AttributeFeats</RootNamespace>
+		<RootNamespace>ACHomebrew</RootNamespace>
 
 		<!-- Where Owlcat writes Player.log. -->
 		<WrathData>$(LocalAppData)Low\Owlcat Games\Pathfinder Wrath Of The Righteous</WrathData>

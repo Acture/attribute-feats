@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ACHomebrew/ACHomebrew.csproj" />
+    <Project Path="src/ACHomebrew.Rules/ACHomebrew.Rules.csproj" />
+    <Project Path="src/ACHomebrew.Core/ACHomebrew.Core.csproj" />
+    <Project Path="src/ACHomebrew.Classic/ACHomebrew.Classic.csproj" />
+    <Project Path="src/ACHomebrew.Casting/ACHomebrew.Casting.csproj" />
+    <Project Path="src/ACHomebrew.Playstyle/ACHomebrew.Playstyle.csproj" />
+  </Folder>
+</Solution>

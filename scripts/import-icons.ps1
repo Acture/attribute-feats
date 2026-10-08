@@ -5,7 +5,7 @@ $taskRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $taskSources = Join-Path $taskRoot 'artifacts/icon-sources'
 [IO.Directory]::CreateDirectory($taskSources) | Out-Null
 foreach ($taskAsset in (Get-Content -LiteralPath $MappingFile -Raw -Encoding UTF8 | ConvertFrom-Json)) {
-    $taskTarget = Join-Path $taskRoot ('src/AttributeFeats/Icons/' + $taskAsset.filename)
+    $taskTarget = Join-Path $taskRoot ('src/ACHomebrew/Icons/' + $taskAsset.filename)
     if (Test-Path -LiteralPath $taskTarget) { throw "Refusing to overwrite $taskTarget" }
     Copy-Item -LiteralPath $taskAsset.source -Destination (Join-Path $taskSources $taskAsset.filename)
     $taskImage = [Drawing.Image]::FromFile($taskAsset.source)

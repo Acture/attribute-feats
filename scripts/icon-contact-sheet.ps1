@@ -16,12 +16,12 @@ $taskFormat.Alignment = [Drawing.StringAlignment]::Center
 try {
     $taskGraphics.Clear([Drawing.Color]::FromArgb(20,23,28))
     $taskGraphics.TextRenderingHint = [Drawing.Text.TextRenderingHint]::AntiAliasGridFit
-    $taskGraphics.DrawString('AttributeFeats · 92 个独立专长图标 · 128 × 128', $taskTitleFont, $taskBrush, 18, 12)
+    $taskGraphics.DrawString('AC''s Homebrew · 92 个独立专长图标 · 128 × 128', $taskTitleFont, $taskBrush, 18, 12)
     for ($taskIndex = 0; $taskIndex -lt $taskAssets.Count; $taskIndex++) {
         $taskAsset = $taskAssets[$taskIndex]
         $taskX = ($taskIndex % $taskColumns) * $taskCellWidth
         $taskY = [Math]::Floor($taskIndex / $taskColumns) * $taskCellHeight + 56
-        $taskIcon = [Drawing.Image]::FromFile((Join-Path $taskRoot ('src/AttributeFeats/Icons/' + $taskAsset.filename)))
+        $taskIcon = [Drawing.Image]::FromFile((Join-Path $taskRoot ('src/ACHomebrew/Icons/' + $taskAsset.filename)))
         try { $taskGraphics.DrawImageUnscaled($taskIcon, [int]($taskX + 18), [int]$taskY) }
         finally { $taskIcon.Dispose() }
         $taskLabel = $taskAsset.nameEn + "`n" + $taskAsset.nameZh

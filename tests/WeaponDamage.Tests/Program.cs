@@ -1,5 +1,5 @@
-using AttributeFeats;
-using AttributeFeats.New_Feats;
+using ACHomebrew;
+using ACHomebrew.Feats;
 
 var failures = 0;
 var cases = 0;

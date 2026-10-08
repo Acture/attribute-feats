@@ -1,0 +1,12 @@
+﻿{
+	"Id": "AttributeFeats",
+	"DisplayName": "AC's Homebrew",
+	"Author": "acturea",
+	"Version": "0.1.2",
+	"ManagerVersion": "0.27.11",
+	"Requirements": [],
+	"AssemblyName": "AttributeFeats.dll",
+	"EntryMethod": "ACHomebrew.Main.Load",
+	"HomePage": "https://github.com/Acture/attribute-feats",
+	"Repository": "https://github.com/Acture/attribute-feats"
+}

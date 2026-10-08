@@ -87,14 +87,14 @@ namespace BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection
     }
 }
 
-namespace AttributeFeats
+namespace ACHomebrew
 {
     internal static class Main { internal static readonly TestLogger Log = new(); }
     internal static class Mod { internal static readonly TestLogger Log = Main.Log; }
     internal class TestLogger { internal void Log(string message) => World.Logs.Add(message); }
 }
 
-namespace AttributeFeats.New_Feats
+namespace ACHomebrew.Feats
 {
     internal static class Common { internal static string L(string key, string text) => text; }
     internal static class MainAbilityToEverything_Feats { internal static void ConfigureAll() => World.Register(nameof(MainAbilityToEverything_Feats), FeatSelection.MainFromStr); }

@@ -1,12 +1,14 @@
-# AttributeFeats
+# AC's Homebrew
+
+> Formerly **AttributeFeats**. The UMM mod Id (`AttributeFeats`), the DLL name and all feat IDs are unchanged, so existing settings and saves keep working.
 
 A Pathfinder: Wrath of the Righteous mod that adds **build-enabling** feats based on character attributes. Choose a Main Attribute feat for broad cross-stat support, or mix focused families to build unconventional defenders, duelists, casters, and summoners.
 
-> **Design philosophy:** AttributeFeats is a *build enabler*, not a power booster. Main feat defaults focus on build-enabling stats. Standalone Weapon Damage feats let you choose attribute-based damage without taking a Main feat; their default Replace mode avoids adding a second attribute bonus.
+> **Design philosophy:** AC's Homebrew is a *build enabler*, not a power booster. Main feat defaults focus on build-enabling stats. Standalone Weapon Damage feats let you choose attribute-based damage without taking a Main feat; their default Replace mode avoids adding a second attribute bonus.
 
 ## Feat Families
 
-During character creation and level-up, expand **Attribute Feats**, then a **feat family**, then choose the **individual feat**. Each family has 2–9 choices; Long-Reach Gambit (formerly Polearm Master) sits directly inside Attribute Feats because it has no variants. Each choice grants one feat, with no extra feat cost for either menu level. You can return to the same family at later feat choices, subject to the selected feat's usual prerequisites and mutual-exclusion rules. Existing characters keep their learned feats and effects.
+During character creation and level-up, expand **AC's Homebrew**, then a **feat family**, then choose the **individual feat**. Each family has 2–9 choices; Long-Reach Gambit (formerly Polearm Master) sits directly inside Attribute Feats because it has no variants. Each choice grants one feat, with no extra feat cost for either menu level. You can return to the same family at later feat choices, subject to the selected feat's usual prerequisites and mutual-exclusion rules. Existing characters keep their learned feats and effects.
 
 The 17 menus are Main Attribute Mastery, Defensive Adept, Maneuver Adept, Skilled Adept, Arcane Adept, Stance, Conditional Trigger, Weapon Insight, Extended Replacement, Greater Summoning, Summoner Sacrifice, Reactive Armor, Derived Stat Conversion, Spell School Specialist, Spell Descriptor Specialist, Distance Damage, and Weapon Damage.
 
@@ -140,7 +142,7 @@ Trade your own ability scores for amplified buffs to your summoned creatures.
 
 ### Weapon Damage (6 feats)
 
-Choose **Attribute Feats → Weapon Damage → an attribute → a proficient weapon category**. The six attributes are Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Each choice costs one feat and changes only weapon damage for that category. You can choose the same attribute again for another category, but cannot take the exact same attribute/category twice.
+Choose **AC's Homebrew → Weapon Damage → an attribute → a proficient weapon category**. The six attributes are Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Each choice costs one feat and changes only weapon damage for that category. You can choose the same attribute again for another category, but cannot take the exact same attribute/category twice.
 
 The **Weapon Damage Mode** setting offers two behaviors. Switching takes effect on the next damage calculation, including already learned feats; no restart or respec is needed:
 
@@ -158,8 +160,8 @@ Both modes require an attack that already applies an attribute modifier to weapo
 | Setting | Default | Effect |
 |---|---|---|
 | Weapon Damage Mode (`WeaponDamage`) | `Replace` | Standalone Weapon Damage feats use a better chosen attribute instead of the existing damage attribute. `Add` adds the positive chosen modifier once. Independent of Main feat settings and Power Mode. |
-| Feat count limit (`EnableFeatCountLimit`, `MaxFeatCount`) | OFF, 6 | Maximum number of AttributeFeats per character. See [Feat Budget](#feat-budget). |
-| Feat point limit (`EnableFeatPointLimit`, `MaxFeatPoints`) | OFF, 10 | Maximum total AttributeFeats cost per character. Can be enabled together with the count limit. |
+| Feat count limit (`EnableFeatCountLimit`, `MaxFeatCount`) | OFF, 6 | Maximum number of Homebrew feats per character. See [Feat Budget](#feat-budget). |
+| Feat point limit (`EnableFeatPointLimit`, `MaxFeatPoints`) | OFF, 10 | Maximum total Homebrew feat cost per character. Can be enabled together with the count limit. |
 | Power Level | `Balanced` | `Balanced`: full scaling for attributes, defenses, maneuvers, skills, caster level, and spell penetration; reduced scaling for spell DC, BAB, and Power Mode bonuses. `Legacy_AllFull`: all rank-based Main feat bonuses use full modifier scaling. |
 | Include Self in Attribute Stack | OFF | A Main feat may add its chosen attribute to itself. |
 | **Enable Mutex** | **ON** | When ON, each family enforces its intra-family mutex. When OFF, every mutex prerequisite is skipped — you may take every feat at once. Cross-family same-attribute mutex was removed in 0.1.1 regardless of this toggle. |
@@ -176,7 +178,7 @@ Both modes require an attack that already applies an attribute modifier to weapo
 
 ## Feat Budget
 
-The optional feat budget limits each character's AttributeFeats across all families. Enable a **count limit**, a **point limit**, or both, and set their maximums (0–99) in the mod settings. Changes apply on the next selection check, without restarting.
+The optional feat budget limits each character's Homebrew feats across all families. Enable a **count limit**, a **point limit**, or both, and set their maximums (0–99) in the mod settings. Changes apply on the next selection check, without restarting.
 
 | Cost | Families |
 |---|---|
@@ -184,12 +186,12 @@ The optional feat budget limits each character's AttributeFeats across all famil
 | 2 | Weapon Insight, Extended Replacement, Stance, Greater Summoning, Summoner Sacrifice, Derived Stat Conversion, Spell School Specialist, Spell Descriptor Specialist, Weapon Damage |
 | 1 | Defensive, Maneuver, Skilled and Arcane Adept, Conditional Trigger, Reactive Armor, Distance Damage, Long-Reach Gambit |
 
-- Only feats granted to the character count. Opening Attribute Feats or a family menu is free, and vanilla or other mods' feats are never counted.
+- Only feats granted to the character count. Opening the AC's Homebrew menu or a family menu is free, and vanilla or other mods' feats are never counted.
 - Each Weapon Damage weapon category is a separate feat with its own cost. A feat with multiple ranks counts once per rank.
 - Picks earlier in the same level-up count toward later picks. Cancelling or changing a pick frees its budget; later picks that no longer fit are removed from the level-up, as with other prerequisites. Respec frees all budget.
 - Feat tooltips show used and maximum feats or points, the feat's cost and why it cannot be chosen. The mod settings list each party member's usage.
 - Effects that ignore feat prerequisites, such as the Trickster's, do not bypass the budget. Intra-family mutual exclusions still apply separately.
-- Lowering a limit or loading an older save never removes feats. A character above the limit keeps every feat and its effects, is shown as over budget, and cannot choose more AttributeFeats until the limit is raised or the character is respecced.
+- Lowering a limit or loading an older save never removes feats. A character above the limit keeps every feat and its effects, is shown as over budget, and cannot choose more Homebrew feats until the limit is raised or the character is respecced.
 
 Costs are initial strength tiers. Rebalancing individual feats is tracked separately from the budget.
 
@@ -205,7 +207,7 @@ Costs are initial strength tiers. Rebalancing individual feats is tracked separa
 ## Installation (Unity Mod Manager)
 
 1. Install [Unity Mod Manager](https://www.nexusmods.com/site/mods/21) for Pathfinder: Wrath of the Righteous.
-2. Build or download `AttributeFeats-0.1.2.zip`.
+2. Build or download `ACHomebrew-0.1.2.zip`.
 3. Drop the zip into UMM.
 4. Enable the mod in-game.
 
@@ -219,10 +221,10 @@ Costs are initial strength tiers. Rebalancing individual feats is tracked separa
 ## Building from Source
 
 - Set `WrathInstallDir`, `WrathPath`, or `WRATH_PATH`, or let the project generate the ignored, repository-root `GamePath.props` from `Player.log`.
-- From the repository root, run `dotnet build AttributeFeats.slnx -p:DeployMod=false` to compile without deploying to the game.
-- To build the release ZIP without deploying to the game, run `dotnet build AttributeFeats.slnx -c Release -p:DeployToGame=false`.
-- Build output is in `artifacts/bin/AttributeFeats/<Configuration>/`; intermediate files are in `artifacts/obj/`.
-- To deploy, run `dotnet build AttributeFeats.slnx`. The Deploy target copies files into the local UMM mod folder and creates `artifacts/packages/AttributeFeats-<Version>.zip`.
+- From the repository root, run `dotnet build ACHomebrew.slnx -p:DeployMod=false` to compile without deploying to the game.
+- To build the release ZIP without deploying to the game, run `dotnet build ACHomebrew.slnx -c Release -p:DeployToGame=false`.
+- Build output is in `artifacts/bin/ACHomebrew/<Configuration>/`; intermediate files are in `artifacts/obj/`.
+- To deploy, run `dotnet build ACHomebrew.slnx`. The Deploy target copies files into the local UMM mod folder and creates `artifacts/packages/ACHomebrew-<Version>.zip`.
 - Run the game-independent repository checks with `pwsh -NoProfile -File scripts/Test-RepositoryContracts.ps1`. These check blueprint IDs and loader metadata; they do not test combat effects.
 
 - Run the standalone damage calculation checks with the .NET 10 SDK: `dotnet run --project tests/WeaponDamage.Tests`.
@@ -239,10 +241,10 @@ replace in-game behavior tests.
 
 | Path | Contents |
 |---|---|
-| `src/AttributeFeats/` | Entry project: UMM loader, registration order, icons, `App.config`, loader `Info.json` and packaging (merges the other projects into `AttributeFeats.dll`) |
-| `src/AttributeFeats.Rules/` | Game-independent rules, budget costs, exclusion groups and blueprint GUIDs, shared with the tests |
-| `src/AttributeFeats.Core/` | Feat menus, budget and exclusion enforcement, settings, localization and icons loader |
-| `src/AttributeFeats.Classic/`, `.Casting/`, `.Playstyle/` | Feat families: the original families; casting and resource attribute feats; playstyle and Dota-inspired feats |
+| `src/ACHomebrew/` | Entry project: UMM loader, registration order, icons, `App.config`, loader `Info.json` and packaging (merges the other projects into `AttributeFeats.dll`, the unchanged DLL name) |
+| `src/ACHomebrew.Rules/` | Game-independent rules, budget costs, exclusion groups and blueprint GUIDs, shared with the tests |
+| `src/ACHomebrew.Core/` | Feat menus, budget and exclusion enforcement, settings, localization and icons loader |
+| `src/ACHomebrew.Classic/`, `.Casting/`, `.Playstyle/` | Feat families: the original families; casting and resource attribute feats; playstyle and Dota-inspired feats |
 | `src/WrathMod.props` | Shared game references and `WrathInstallDir` resolution |
 | `tests/` | Test projects and compatibility baselines |
 | `scripts/`, `.github/` | Local commands and CI workflows |
@@ -250,13 +252,13 @@ replace in-game behavior tests.
 | `notes/` | Optional private notes submodule |
 | `artifacts/` | Ignored build outputs, intermediate files, packages and test reports |
 
-The root keeps `AttributeFeats.slnx`, shared build configuration, repository
+The root keeps `ACHomebrew.slnx`, shared build configuration, repository
 configuration, README, CHANGELOG and `Repository.json`. The local `GamePath.props`
 is shared by the Mod and test projects and must not be committed.
 
 ## Text and Icons
 
-All 98 feats and the 18 selection menus have English and Simplified Chinese names and descriptions. The original 92 feats have individual 128×128 PNG icons; the six new Weapon Damage feats do not yet have bespoke artwork. Names and lore, along with the new menu and Weapon Damage descriptions, live in the embedded [FeatText.json](src/AttributeFeats/Localization/FeatText.json). Other rule templates remain with their implementations.
+All 98 feats and the 18 selection menus have English and Simplified Chinese names and descriptions. The original 92 feats have individual 128×128 PNG icons; the six new Weapon Damage feats do not yet have bespoke artwork. Names and lore, along with the new menu and Weapon Damage descriptions, live in the embedded [FeatText.json](src/ACHomebrew.Core/Localization/FeatText.json). Other rule templates remain with their implementations.
 
 See the [icon contact sheet](doc/feat-icons.png), [asset manifest](doc/icon-manifest.json), and [validation commands and limits](doc/validation.md). The settings UI remains in English. Source checks and builds do not establish actual combat effects or in-game text layout.
 
@@ -377,7 +379,7 @@ specific files you edited; this example stages the project homepage:
 ```powershell
 git -C notes diff --stat
 git -C notes add 首页.md
-git -C notes commit -m "docs: update AttributeFeats design notes"
+git -C notes commit -m "docs: update AC's Homebrew design notes"
 $notesCommonGitDir = git -C notes rev-parse --path-format=absolute --git-common-dir
 python -X utf8 "$notesCommonGitDir/hooks/notes-boundary/submit_project.py" --repo notes
 ```
@@ -408,4 +410,4 @@ and history have been verified separately.
 
 ## Credits
 
-Thanks to @CasDragon for code snippets and ideas. AttributeFeats grew out of earlier Redditor class-feat experiments and was rebuilt for the 0.1.0 build-enabler release.
+Thanks to @CasDragon for code snippets and ideas. AC's Homebrew (formerly AttributeFeats) grew out of earlier Redditor class-feat experiments and was rebuilt for the 0.1.0 build-enabler release.

@@ -5,6 +5,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="../../src/AttributeFeats.Rules/AttributeFeats.Rules.csproj" />
+    <ProjectReference Include="../../src/ACHomebrew.Rules/ACHomebrew.Rules.csproj" />
   </ItemGroup>
 </Project>

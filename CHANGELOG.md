@@ -3,7 +3,7 @@
 ## Unreleased
 
 ### Added
-- Optional per-character feat budget across all AttributeFeats families: a feat count limit, a point limit with family costs of 1–3, or both. Both are off by default and apply immediately when changed.
+- Optional per-character feat budget across all Homebrew feat families: a feat count limit, a point limit with family costs of 1–3, or both. Both are off by default and apply immediately when changed.
 - Feat tooltips show used and maximum feats or points, the feat's cost and why it cannot be chosen, in English and Simplified Chinese. The mod settings list each party member's usage.
 
 ### Changed

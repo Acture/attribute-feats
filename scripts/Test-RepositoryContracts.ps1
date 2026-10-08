@@ -33,8 +33,8 @@ function Invoke-Contract([string]$Name, [scriptblock]$Check) {
 }
 
 Invoke-Contract 'Production GUID declarations compile' {
-    $types = @(Add-Type -Path (Join-Path $RepositoryRoot 'src/AttributeFeats.Rules/Guids.cs') -PassThru)
-    $rootType = $types | Where-Object FullName -eq 'AttributeFeats.New_Feats.Guids'
+    $types = @(Add-Type -Path (Join-Path $RepositoryRoot 'src/ACHomebrew.Rules/Guids.cs') -PassThru)
+    $rootType = $types | Where-Object FullName -eq 'ACHomebrew.Feats.Guids'
     if (-not $rootType) { throw 'The production Guids type was not found.' }
     $pending = [System.Collections.Generic.Stack[Type]]::new()
     $pending.Push($rootType)
@@ -43,7 +43,7 @@ Invoke-Contract 'Production GUID declarations compile' {
         foreach ($nested in $type.GetNestedTypes()) { $pending.Push($nested) }
         foreach ($field in $type.GetFields([Reflection.BindingFlags]'Public, Static, DeclaredOnly')) {
             if ($field.IsLiteral -and $field.FieldType -eq [string]) {
-                $symbol = $type.FullName.Replace('AttributeFeats.New_Feats.', '').Replace('+', '.') + '.' + $field.Name
+                $symbol = $type.FullName.Replace('ACHomebrew.Feats.', '').Replace('+', '.') + '.' + $field.Name
                 $identifiers.Add($symbol, $field.GetRawConstantValue())
             }
         }
@@ -82,8 +82,8 @@ Invoke-Contract 'Published blueprint identities remain stable' {
 }
 
 Invoke-Contract 'Loader metadata matches the project artifact' {
-    $info = Get-Content -LiteralPath (Join-Path $RepositoryRoot 'src/AttributeFeats/Info.json') -Raw | ConvertFrom-Json
-    [xml]$project = Get-Content -LiteralPath (Join-Path $RepositoryRoot 'src/AttributeFeats/AttributeFeats.csproj') -Raw
+    $info = Get-Content -LiteralPath (Join-Path $RepositoryRoot 'src/ACHomebrew/Info.json') -Raw | ConvertFrom-Json
+    [xml]$project = Get-Content -LiteralPath (Join-Path $RepositoryRoot 'src/ACHomebrew/ACHomebrew.csproj') -Raw
     $assemblyName = $project.SelectSingleNode('/Project/PropertyGroup/AssemblyName').InnerText
     $version = $project.SelectSingleNode('/Project/PropertyGroup/Version').InnerText
     if ($info.AssemblyName -cne "$assemblyName.dll") {

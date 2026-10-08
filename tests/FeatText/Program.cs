@@ -2,12 +2,12 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using AttributeFeats.New_Feats;
+using ACHomebrew.Feats;
 using Kingmaker.Localization;
 using Kingmaker.Localization.Shared;
 using Newtonsoft.Json.Linq;
 
-namespace AttributeFeats
+namespace ACHomebrew
 {
     internal static class Mod { internal static Logger Log = new Logger(); }
     internal sealed class Logger { public void Log(string message) => throw new Exception(message); }

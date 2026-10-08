@@ -43,7 +43,7 @@ def main():
     parser.add_argument('--release', type=Path)
     args = parser.parse_args()
     rows = catalog()
-    resources = json.loads(read(ROOT / 'src/AttributeFeats.Core/Localization/FeatText.json'))
+    resources = json.loads(read(ROOT / 'src/ACHomebrew.Core/Localization/FeatText.json'))
     entries = {r['Key']: r for r in resources}
     assert len(entries) == len(resources) == 282
     for entry in resources:

@@ -1,6 +1,6 @@
 # Public documentation
 
-This directory contains the public documentation for AttributeFeats. It is
+This directory contains the public documentation for AC's Homebrew (formerly AttributeFeats). It is
 versioned with the mod's code and is available without access to internal notes.
 
 ## Current guides
