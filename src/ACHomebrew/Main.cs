@@ -288,6 +288,7 @@ namespace ACHomebrew
                     Log.Log("AttributeFeats: patching blueprints...");
                     FeatRegistry.ConfigureAll();
                     Common.RefreshLocale();
+                    ModMenuSettings.TryRegister();
                     Log.Log("AttributeFeats: blueprint initialization attempt finished; see registration diagnostics above.");
                 }
                 catch (Exception e)

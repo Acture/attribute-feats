@@ -28,6 +28,15 @@
 		<ProjectReference Include="../ACHomebrew.Playstyle/ACHomebrew.Playstyle.csproj" />
 	</ItemGroup>
 
+	<!-- ModMenu is optional: compile its settings page only when it is installed, never ship it. -->
+	<PropertyGroup>
+		<ModMenuPath>$(WrathInstallDir)\Mods\ModMenu\ModMenu.dll</ModMenuPath>
+		<DefineConstants Condition="Exists('$(ModMenuPath)')">$(DefineConstants);MODMENU</DefineConstants>
+	</PropertyGroup>
+	<ItemGroup Condition="Exists('$(ModMenuPath)')">
+		<Reference Include="$(ModMenuPath)" Private="false" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="ILRepack" Version="2.0.34" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" IncludeAssets="build; contentfiles" Version="0.4.2" PrivateAssets="all" />
@@ -53,13 +62,15 @@
 		<ItemGroup>
 			<_MergeInputs Include="$(TargetPath)" />
 			<_MergeInputs Include="$(TargetDir)ACHomebrew.Rules.dll;$(TargetDir)ACHomebrew.Core.dll;$(TargetDir)ACHomebrew.Classic.dll;$(TargetDir)ACHomebrew.Casting.dll;$(TargetDir)ACHomebrew.Playstyle.dll" />
+			<!-- BlueprintCore ships inside the mod so it does not depend on another mod providing it. -->
+			<_MergeInputs Include="$(TargetDir)BlueprintCore.dll" />
 		</ItemGroup>
 		<PropertyGroup>
 			<_MergedDir>$(IntermediateOutputPath)merged\</_MergedDir>
 		</PropertyGroup>
 		<!-- The ILRepack MSBuild task fails under the .NET SDK, so run the tool directly. -->
 		<MakeDir Directories="$(_MergedDir)" />
-		<Exec Command="&quot;$(PkgILRepack)\tools\ILRepack.exe&quot; /lib:&quot;$(TargetDir.TrimEnd('\'))&quot; /out:&quot;$(_MergedDir)$(TargetFileName)&quot; @(_MergeInputs->'&quot;%(FullPath)&quot;', ' ')" />
+		<Exec Command="&quot;$(PkgILRepack)\tools\ILRepack.exe&quot; /lib:&quot;$(TargetDir.TrimEnd('\'))&quot; /lib:&quot;$(WrathInstallDir)\Wrath_Data\Managed&quot; /lib:&quot;$(WrathInstallDir)\Mods\ModMenu&quot; /out:&quot;$(_MergedDir)$(TargetFileName)&quot; @(_MergeInputs->'&quot;%(FullPath)&quot;', ' ')" />
 		<Copy SourceFiles="$(_MergedDir)$(TargetFileName);$(_MergedDir)$(TargetName).pdb" DestinationFolder="$(TargetDir)" />
 		<Delete Files="$(TargetDir)ACHomebrew.Rules.dll;$(TargetDir)ACHomebrew.Core.dll;$(TargetDir)ACHomebrew.Classic.dll;$(TargetDir)ACHomebrew.Casting.dll;$(TargetDir)ACHomebrew.Playstyle.dll;$(TargetDir)ACHomebrew.Rules.pdb;$(TargetDir)ACHomebrew.Core.pdb;$(TargetDir)ACHomebrew.Classic.pdb;$(TargetDir)ACHomebrew.Casting.pdb;$(TargetDir)ACHomebrew.Playstyle.pdb" />
 	</Target>
