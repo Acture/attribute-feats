@@ -180,6 +180,8 @@ namespace ACHomebrew
             budgetChanged |= LimitStepper("Maximum feats", ref s.MaxFeatCount);
             budgetChanged |= ToggleSetting(ref s.EnableFeatPointLimit, "Limit Homebrew feat points per character (default: OFF)");
             budgetChanged |= LimitStepper("Maximum points", ref s.MaxFeatPoints);
+            budgetChanged |= ToggleSetting(ref s.TrulySoloCountsPets, "Truly Solo: pets in the party reduce the number of absent companions (default: OFF)");
+            changed |= ToggleSetting(ref s.EnableMemeFeats, "Enable meme feats — joke feats in their own menu, free of budget points; requires restarting (default: OFF)");
             GUILayout.Label($"<color=grey><size=11>Point costs — {DescribeCosts()}. Each rank and each Weapon Damage weapon category counts as a separate feat.</size></color>");
             ShowPartyBudget();
             GUILayout.EndVertical();

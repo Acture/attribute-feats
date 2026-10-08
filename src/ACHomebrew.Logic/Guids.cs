@@ -26,6 +26,8 @@ namespace ACHomebrew.Feats
             public const string WeaponDamage = "2cdbd2a6-eef6-4d82-a91b-675cbe28e723";
             public const string CastingStat = "c218dfc4-aacf-4f2b-ba98-d358adf682ef";
             public const string ResourceStat = "938135b5-eaaa-42f0-a560-65fef7d1391c";
+            public const string Survival = "62c0a731-dba1-47e0-98a4-1b142ea2755e";
+            public const string Meme = "8eee7d40-39bf-4db2-bb10-c2cc5ec3e1ec";
             public const string Retaliation = "35f8879b-c4a0-469d-a797-bbad0f107916";
             public const string Momentum = "50d43f6b-d0b6-4717-9366-d3b01c4f60b3";
             public const string Stealth = "19b5a1e9-9ba6-4d6b-915d-3049b891f5da";
@@ -192,6 +194,31 @@ namespace ACHomebrew.Feats
             public const string Necromastery = "d0761e2c-4751-4ba4-b862-1a77dcb5c3d9";
             public const string NecromasteryBuff = "be4e00ab-3216-4471-992a-d390a784b342";
             public const string SpiritLink = "524319d6-0ec5-4392-8c59-56759b1d0e91";
+        }
+
+        // Summoning feats added after batch 2.
+        public static class Survival
+        {
+            public const string Undying = "6e0f52b6-c1c0-45ce-a97f-ba98c0044a8c";
+            public const string UndyingBuff = "c91d8a11-d93f-48ec-ac04-eebb4f27f4cf";
+        }
+
+        public static class Solo
+        {
+            public const string TrulySolo = "ff26d1a3-6e61-452a-a064-f1525cecf275";
+            public const string TrulySoloBuff = "5a8ebd70-f018-487c-8014-46bee02c6b30";
+        }
+
+        public static class Meme
+        {
+            public const string WhatCanISay = "d940f8a8-8289-4896-9ad9-b5f70cb53bec";
+            public const string NobodyKnowsBetter = "1ef860f5-784a-4f40-bc9a-90aacfceaa1d";
+        }
+
+        public static class Summoning
+        {
+            public const string SwarmCaller = "ecf15a97-3285-4d8f-8f5d-7687db5dcf25";
+            public const string LingeringBond = "e7106057-57e4-459b-9d3d-69997b2c20e1";
         }
 
         public static class Specialized

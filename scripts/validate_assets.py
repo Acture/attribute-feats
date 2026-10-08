@@ -45,7 +45,7 @@ def main():
     rows = catalog()
     resources = json.loads(read(ROOT / 'src/ACHomebrew.Core/Localization/FeatText.json'))
     entries = {r['Key']: r for r in resources}
-    assert len(entries) == len(resources) == 282
+    assert len(entries) == len(resources) == 287
     for entry in resources:
         assert entry['enGB'].strip() and entry['zhCN'].strip(), entry['Key']
         assert re.findall(r'\{\w+\}', entry['enGB']) == re.findall(r'\{\w+\}', entry['zhCN']), entry['Key']
@@ -103,7 +103,7 @@ def main():
             assert not any(n.replace('\\', '/').split('/')[0] in ('notes', 'doc', 'docs') for n in names), 'documentation must not ship in the Mod ZIP'
             for asset in manifest:
                 assert archive.read('Icons/'+asset['filename']) == (PROJECT/'Icons'/asset['filename']).read_bytes()
-    print(f'282 bilingual entries, 92 unique existing feat names, published component calls/inline IDs and {92-len(pending)}/92 icons verified (static checks only).')
+    print(f'287 bilingual entries, 92 unique existing feat names, published component calls/inline IDs and {92-len(pending)}/92 icons verified (static checks only).')
     if args.release: print(f'Release ZIP verified: {args.release}')
 
 

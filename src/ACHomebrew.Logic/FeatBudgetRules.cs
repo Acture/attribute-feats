@@ -105,6 +105,9 @@ namespace ACHomebrew.Feats
             ["Stealth"] = 2,
             ["Solo"] = 2,
             ["Growth"] = 1,
+            ["Survival"] = 2,
+            // Meme feats are jokes and do not consume budget points.
+            ["Meme"] = 0,
             ["Execution"] = 1,
             ["Arcana"] = 2,
             ["Summoner"] = 1,

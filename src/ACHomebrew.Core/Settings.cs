@@ -62,6 +62,12 @@ namespace ACHomebrew
         public CastingAttributeScope CastingScope = CastingAttributeScope.SelectedSpellbook;
         public CastingAttributeMode CastingMode = CastingAttributeMode.Always;
 
+        // Truly Solo: whether pets in the party reduce the number of absent companions.
+        public bool TrulySoloCountsPets = false;
+
+        // Meme feats are registered only when enabled (requires restarting).
+        public bool EnableMemeFeats = false;
+
         // Exclusion group overrides by group setting id. Missing groups use built-in defaults.
         public List<FeatGroupSetting> FeatGroups = new List<FeatGroupSetting>();
 

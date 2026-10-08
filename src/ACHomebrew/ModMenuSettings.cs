@@ -85,6 +85,8 @@ namespace ACHomebrew
                     "Limit Homebrew feat points per character", "限制每个角色的家酿专长点数"))
                 .AddSliderInt(Slider("budget-points-max", d.MaxFeatPoints, () => s.MaxFeatPoints, v => s.MaxFeatPoints = v,
                     "Maximum points", "点数上限"))
+                .AddToggle(Toggle("solo-pets", d.TrulySoloCountsPets, () => s.TrulySoloCountsPets, v => s.TrulySoloCountsPets = v,
+                    "Truly Solo: pets in the party reduce the count", "真·独行：队伍中的宠物抵扣数量"))
                 .AddSubHeader(L("Exclusion", "Exclusion groups (applies immediately)", "互斥组（即时生效）"))
                 .AddToggle(Toggle("mutex", d.EnableMutex, () => s.EnableMutex, v => s.EnableMutex = v,
                     "Enable exclusion groups (master switch)", "启用互斥组（总开关）"));
@@ -125,6 +127,8 @@ namespace ACHomebrew
                 .AddToggle(Toggle("caster-level", d.EnableCasterLevel, () => s.EnableCasterLevel, v => s.EnableCasterLevel = v, "Enable caster level bonuses", "启用施法者等级加成"))
                 .AddToggle(Toggle("spell-penetration", d.EnableSpellPenetration, () => s.EnableSpellPenetration, v => s.EnableSpellPenetration = v,
                     "Enable spell penetration bonuses", "启用法术穿透加成"))
+                .AddToggle(Toggle("meme", d.EnableMemeFeats, () => s.EnableMemeFeats, v => s.EnableMemeFeats = v,
+                    "Enable meme feats", "启用梗专长"))
                 .AddToggle(Toggle("bab", d.EnableBAB, () => s.EnableBAB, v => s.EnableBAB = v, "Enable BAB bonuses (power option)", "启用BAB加成（强力选项）"))
                 .AddToggle(Toggle("power-mode", d.EnablePowerMode, () => s.EnablePowerMode, v => s.EnablePowerMode = v,
                     "Enable Power Mode (power option)", "启用威力模式（强力选项）"));

@@ -40,6 +40,8 @@ namespace ACHomebrew.Feats
             succeeded &= TryConfigureFamily(nameof(StealthFeats), () => StealthFeats.ConfigureAll());
             succeeded &= TryConfigureFamily(nameof(SoloFeats), () => SoloFeats.ConfigureAll());
             succeeded &= TryConfigureFamily(nameof(GrowthFeats), () => GrowthFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(SurvivalFeats), () => SurvivalFeats.ConfigureAll());
+            succeeded &= TryConfigureFamily(nameof(MemeFeats), () => MemeFeats.ConfigureAll());
             succeeded &= TryConfigure(nameof(MutexPass), () => MutexPass.ApplyAll());
 
             var menusSucceeded = false;

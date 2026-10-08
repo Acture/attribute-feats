@@ -66,6 +66,25 @@ namespace ACHomebrew.Feats
                         "30尺内没有清醒的队友时，你的防御等级获得闪避加值，豁免与伤害骰获得加值，每4角色等级+1（最低+1）。召唤物与宠物算作队友。每轮检查一次。"))
                 .AddComponent<LoneWolfCheck>(c => c.Buff = buff.ToReference<BlueprintBuffReference>())
                 .Configure();
+
+            var solo = Buff("TrulySoloBuff", Guids.Solo.TrulySoloBuff, "Truly Solo", "真·独行",
+                    "Per absent companion: +1 to all ability scores, dodge AC, saving throws, attack and damage.",
+                    "每名不在队伍中的同伴：所有属性值、闪避AC、豁免、攻击与伤害+1。")
+                .SetStacking(StackingType.Rank)
+                .SetRanks(5)
+                .AddContextRankConfig(ContextRankConfigs.BuffRank(Guids.Solo.TrulySoloBuff));
+            foreach (var stat in new[] { StatType.Strength, StatType.Dexterity, StatType.Constitution, StatType.Intelligence,
+                StatType.Wisdom, StatType.Charisma, StatType.SaveFortitude, StatType.SaveReflex, StatType.SaveWill,
+                StatType.AdditionalAttackBonus, StatType.AdditionalDamage })
+                solo.AddContextStatBonus(stat, Common.Rank(), descriptor: ModifierDescriptor.UntypedStackable);
+            var soloBuff = solo.AddContextStatBonus(StatType.AC, Common.Rank(), descriptor: ModifierDescriptor.Dodge).Configure();
+            Feat(FeatSelection.Solo, "TrulySolo", Guids.Solo.TrulySolo, "Truly Solo", "真·独行",
+                    Desc("Solo", "独行",
+                        "For each companion who has joined you but is not in your party (up to 5), you gain +1 to all ability scores, dodge AC, saving throws, " +
+                        "attack and damage. Companions who have not joined yet do not count. A setting decides whether pets in the party reduce the count.",
+                        "每有一名已加入但不在队伍中的同伴（最多5名），你的所有属性值、闪避AC、豁免、攻击与伤害+1。尚未加入的同伴不计入。设置可决定队伍中的宠物是否抵扣数量。"))
+                .AddComponent<TrulySoloCheck>(c => c.Buff = soloBuff.ToReference<BlueprintBuffReference>())
+                .Configure();
         }
     }
 
@@ -88,6 +107,33 @@ namespace ACHomebrew.Feats
             var has = Owner.Buffs.GetBuff(buff) != null;
             if (alone && !has) Owner.AddBuff(buff, Context);
             else if (!alone && has) Owner.Buffs.RemoveFact(buff);
+        }
+    }
+
+    /// <summary>Each round, sets the Truly Solo rank to the number of joined companions outside the party.</summary>
+    [TypeId("048b15f72fe04d9b971c048214dc7ba4")]
+    public class TrulySoloCheck : UnitFactComponentDelegate, ITickEachRound
+    {
+        public BlueprintBuffReference Buff;
+
+        protected override void OnActivate() => OnNewRound();
+
+        protected override void OnDeactivate() => Owner.Buffs.RemoveFact(Buff.Get());
+
+        public void OnNewRound()
+        {
+            var player = Kingmaker.Game.Instance.Player;
+            if (player == null) return;
+            var party = player.Party;
+            var absent = player.AllCharacters.Count(unit => unit != Owner && !unit.IsPet && !party.Contains(unit) && !unit.State.IsFinallyDead);
+            if (Mod.Settings?.TrulySoloCountsPets == true) absent -= player.PartyAndPets.Count - party.Count;
+            var rank = Math.Max(0, Math.Min(5, absent));
+
+            var buff = Buff.Get();
+            var current = Owner.Buffs.GetBuff(buff)?.Rank ?? 0;
+            if (current == rank) return;
+            Owner.Buffs.RemoveFact(buff);
+            for (var i = 0; i < rank; i++) Owner.AddBuff(buff, Context);
         }
     }
 }

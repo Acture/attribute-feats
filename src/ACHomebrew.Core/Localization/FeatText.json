@@ -1408,5 +1408,30 @@
     "Key": "AttributeFeatsSelection_Summoner.Description",
     "enGB": "Choose one Summoner feat. Each choice grants only the selected feat.",
     "zhCN": "选择一项召唤师专长。每次选择只获得最终选中的专长。"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Survival.Name",
+    "enGB": "Survival",
+    "zhCN": "生存"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Survival.Description",
+    "enGB": "Choose one Survival feat. Each choice grants only the selected feat.",
+    "zhCN": "选择一项生存专长。每次选择只获得最终选中的专长。"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Meme.Name",
+    "enGB": "Meme",
+    "zhCN": "梗"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Meme.Description",
+    "enGB": "Joke feats. Choose one; they cost no budget points.",
+    "zhCN": "玩梗专长。选择一项，不消耗额度点数。"
+  },
+  {
+    "Key": "Meme.NobodyKnowsBetter.Bark",
+    "enGB": "Nobody knows {0} better than me.",
+    "zhCN": "没有人比我更懂{0}。"
   }
 ]

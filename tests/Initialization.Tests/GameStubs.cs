@@ -120,6 +120,8 @@ namespace ACHomebrew.Feats
     internal static class StealthFeats { internal static void ConfigureAll() => World.Register(nameof(StealthFeats), FeatSelection.Stealth); }
     internal static class SoloFeats { internal static void ConfigureAll() => World.Register(nameof(SoloFeats), FeatSelection.Solo); }
     internal static class GrowthFeats { internal static void ConfigureAll() => World.Register(nameof(GrowthFeats), FeatSelection.Growth); }
+    internal static class SurvivalFeats { internal static void ConfigureAll() => World.Register(nameof(SurvivalFeats), FeatSelection.Survival); }
+    internal static class MemeFeats { internal static void ConfigureAll() => World.Register(nameof(MemeFeats), FeatSelection.Meme); }
     internal static class MutexPass { internal static void ApplyAll() => World.Register(nameof(MutexPass)); }
     internal static class FeatBudget { internal static void Install() => World.Budgeted.AddRange(FeatSelection.BudgetedFeats()); }
 }

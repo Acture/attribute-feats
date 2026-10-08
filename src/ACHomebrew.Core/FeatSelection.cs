@@ -38,6 +38,8 @@ namespace ACHomebrew.Feats
         public static readonly FeatSelection Stealth = new("Stealth", Guids.FeatSelections.Stealth, "Stealth");
         public static readonly FeatSelection Solo = new("Solo", Guids.FeatSelections.Solo, "Solo");
         public static readonly FeatSelection Growth = new("Growth", Guids.FeatSelections.Growth, "Growth");
+        public static readonly FeatSelection Survival = new("Survival", Guids.FeatSelections.Survival, "Survival");
+        public static readonly FeatSelection Meme = new("Meme", Guids.FeatSelections.Meme, "Meme");
         public static readonly FeatSelection Execution = new("Execution", Guids.FeatSelections.Execution, "Execution");
         public static readonly FeatSelection Arcana = new("Arcana", Guids.FeatSelections.Arcana, "Arcana");
         public static readonly FeatSelection Summoner = new("Summoner", Guids.FeatSelections.Summoner, "Summoner");
@@ -60,7 +62,7 @@ namespace ACHomebrew.Feats
             MainAttribute, Defensive, Maneuver, Skilled, Arcane, Stance, Conditional,
             WeaponInsight, ExtendedReplacement, GreaterSummoning, SummonerSacrifice,
             ReactiveArmor, DerivedStat, SpellSchool, SpellDescriptor, DistanceDamage, WeaponDamage,
-            CastingStat, ResourceStat, Retaliation, Momentum, Stealth, Solo, Growth, Execution, Arcana, Summoner,
+            CastingStat, ResourceStat, Retaliation, Momentum, Stealth, Solo, Growth, Execution, Arcana, Summoner, Survival, Meme,
         };
 
         private readonly string Key;
@@ -87,6 +89,9 @@ namespace ACHomebrew.Feats
             => FeatureConfigurator.New(name, guid, FeatureGroup.Feat)
                 .SkipAddToSelections()
                 .OnConfigure(feat => Feats[feat.AssetGuid] = feat);
+
+        /// <summary>Adds an already configured feat to this family.</summary>
+        public void Register(BlueprintFeature feat) => Feats[feat.AssetGuid] = feat;
 
         // Parametrized configurators do not auto-register in outer selections.
         public ParametrizedFeatureConfigurator NewParametrizedFeat(string name, string guid)
@@ -170,7 +175,7 @@ namespace ACHomebrew.Feats
                 .SetGroup(FeatureGroup.Feat)
                 // Family selections can be revisited; only the final feats must be new.
                 // Parametrized families can be revisited for a new parameter.
-                .SetMode(this == Root || this == WeaponDamage || this == CastingStat || this == ResourceStat ? SelectionMode.Default : SelectionMode.OnlyNew)
+                .SetMode(this == Root || this == WeaponDamage || this == CastingStat || this == ResourceStat || this == Meme ? SelectionMode.Default : SelectionMode.OnlyNew)
                 .SetIgnorePrerequisites(false)
                 .SetAllFeatures(Feats.Values.Select(feat => (Blueprint<BlueprintFeatureReference>)feat).ToArray())
                 .Configure();

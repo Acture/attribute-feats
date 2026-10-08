@@ -49,6 +49,21 @@ namespace ACHomebrew.Feats
 
         private static void ConfigureSummoner()
         {
+            Feat(FeatSelection.Summoner, "SwarmCaller", Guids.Summoning.SwarmCaller, "Swarm Caller", "群召",
+                    Desc("Summoner", "召唤师",
+                        "Whenever you summon creatures, you summon one additional creature per 3 caster levels (minimum 1). " +
+                        "This applies to every summoning spell or ability you use, including those from other mods.",
+                        "你每次召唤生物时，每3施法者等级额外召唤一只（至少一只）。适用于你使用的所有召唤法术与能力，包括其他模组添加的。"))
+                .AddComponent<ExtraSummons>()
+                .Configure();
+
+            Feat(FeatSelection.Summoner, "LingeringBond", Guids.Summoning.LingeringBond, "Lingering Bond", "长驻契约",
+                    Desc("Summoner", "召唤师",
+                        "Creatures you summon remain for 24 hours longer than normal.",
+                        "你召唤的生物比正常多停留24小时。"))
+                .AddComponent<LongerSummons>()
+                .Configure();
+
             Feat(FeatSelection.Summoner, "SpiritLink", Guids.Dota.SpiritLink, "Spirit Link", "灵魂链接",
                     Desc("Summoner", "召唤师",
                         "Whenever you are healed, your summoned creatures within 30 feet heal the same amount. Whenever one of your summoned creatures is healed, you heal half that amount. " +
@@ -88,5 +103,27 @@ namespace ACHomebrew.Feats
                 Sharing = false;
             }
         }
+    }
+
+    /// <summary>Adds summoned creatures through the game's summon-count event.</summary>
+    [TypeId("a469ec0c3515441790a96111e172d4e1")]
+    public class ExtraSummons : UnitFactComponentDelegate, Kingmaker.PubSubSystem.ICalculateSummonUnitsCount
+    {
+        public void HandleCalculateSummonUnitsCount(MechanicsContext mechanicsContext, ContextDiceValue contextDiceValue, ref int count)
+        {
+            if (mechanicsContext?.MaybeCaster != Owner || count <= 0) return;
+            count += Math.Max(1, (mechanicsContext.Params?.CasterLevel ?? 0) / 3);
+        }
+    }
+
+    /// <summary>Extends the duration of creatures the owner summons.</summary>
+    [TypeId("bb97efdc5c734c0cbadd5f613d2c46c0")]
+    public class LongerSummons : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleSummonUnit>, IInitiatorRulebookSubscriber
+    {
+        private static readonly Kingmaker.Utility.Rounds OneDay = new(24 * 60 * 10);
+
+        public void OnEventAboutToTrigger(RuleSummonUnit evt) => evt.BonusDuration += OneDay;
+
+        public void OnEventDidTrigger(RuleSummonUnit evt) { }
     }
 }
