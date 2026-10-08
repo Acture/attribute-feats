@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace AttributeFeats
 {
-    internal static class Main { internal static Logger Log = new Logger(); }
+    internal static class Mod { internal static Logger Log = new Logger(); }
     internal sealed class Logger { public void Log(string message) => throw new Exception(message); }
 }
 

@@ -198,7 +198,7 @@ namespace AttributeFeats.New_Feats
                 .SetDescription(Common.L($"{name}.Desc", en, zh, tagEncyclopediaEntries: true))
                 .SetIconIfPresent(source.icon);
 
-            var settings = Main.Settings ?? new ModSettings();
+            var settings = Mod.Settings ?? new ModSettings();
             Common.AddRank(cfg, source.stat, AbilityRankType.Default, Common.ResolveProgression(settings.powerLevel, ScalingIntent.Full));
             Common.AddRank(cfg, source.stat, AbilityRankType.StatBonus, Common.ResolveProgression(settings.powerLevel, ScalingIntent.Half));
             cfg.AddComponent<AddContextStatBonus>(c =>
@@ -271,7 +271,7 @@ namespace AttributeFeats.New_Feats
                 .SetDescription(Common.L(descKey, desc.en, desc.zh, tagEncyclopediaEntries: true))
                 .SetIconIfPresent(internalName);
 
-            var settings = Main.Settings ?? new ModSettings();
+            var settings = Mod.Settings ?? new ModSettings();
             Common.AddRank(cfg, baseStat, AbilityRankType.Default, Common.ResolveProgression(settings.powerLevel, ScalingIntent.Full));
             Common.AddRank(cfg, baseStat, AbilityRankType.StatBonus, Common.ResolveProgression(settings.powerLevel, ScalingIntent.Half));
 

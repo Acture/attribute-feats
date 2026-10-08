@@ -6,7 +6,7 @@ from feat_catalog import ROOT, PROJECT, catalog
 
 
 def main():
-    source = (PROJECT / 'New_Feats/IconLoader.cs').read_text(encoding='utf-8-sig')
+    source = (PROJECT.parent / 'AttributeFeats.Core/IconLoader.cs').read_text(encoding='utf-8-sig')
     aliases = dict(re.findall(r'\{ "([^"]+)", "([^"]+)" \}', source))
     manifest = []
     for row in catalog():

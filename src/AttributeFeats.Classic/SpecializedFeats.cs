@@ -330,7 +330,7 @@ namespace AttributeFeats.New_Feats
             string loreTextEn,
             string loreTextZh)
         {
-            var settings = Main.Settings ?? new ModSettings();
+            var settings = Mod.Settings ?? new ModSettings();
             var attributeKey = GetAttributeKey(baseStat);
             var attributeNameEn = GetAttributeName(baseStat);
             var attributeNameZh = GetAttributeNameZh(baseStat);

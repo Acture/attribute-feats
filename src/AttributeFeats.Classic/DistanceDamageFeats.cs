@@ -218,7 +218,7 @@ namespace AttributeFeats.New_Feats
                     var feet = (attacker.DistanceTo(target) - target.Corpulence) / Feet.FeetToMetersRatio;
                     var score = CloseQuartersRules.DistanceScore(feet);
                     // Calibration aid for game testing; distances depend on creature corpulence.
-                    Main.Log?.Log($"AttributeFeats: close-quarters distance {feet:0.00} ft (attacker corpulence {attacker.Corpulence:0.00} m) -> +{score}.");
+                    Mod.Log?.Log($"AttributeFeats: close-quarters distance {feet:0.00} ft (attacker corpulence {attacker.Corpulence:0.00} m) -> +{score}.");
                     return score;
             }
         }

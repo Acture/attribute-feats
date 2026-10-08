@@ -45,7 +45,7 @@ namespace AttributeFeats.New_Feats
             }
             catch (System.Exception ex)
             {
-                Main.Log?.Log("AttributeFeats: RefreshLocale error: " + ex);
+                Mod.Log?.Log("AttributeFeats: RefreshLocale error: " + ex);
             }
         }
 

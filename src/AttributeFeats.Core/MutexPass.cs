@@ -20,13 +20,13 @@ namespace AttributeFeats.New_Feats
 
             try
             {
-                Main.Log?.Log(Main.Settings != null && !Main.Settings.EnableMutex
+                Mod.Log?.Log(Mod.Settings != null && !Mod.Settings.EnableMutex
                     ? "AttributeFeats: MutexPass skipped (EnableMutex = OFF; all mutex disabled)."
                     : "AttributeFeats: MutexPass cross-family pass disabled by design; intra-family mutex applied per family file.");
             }
             catch (Exception e)
             {
-                Main.Log?.Log("AttributeFeats: MutexPass log failed - " + e);
+                Mod.Log?.Log("AttributeFeats: MutexPass log failed - " + e);
             }
         }
     }

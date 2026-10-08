@@ -58,7 +58,7 @@ namespace AttributeFeats.New_Feats
         IInitiatorRulebookHandler<RuleCalculateWeaponStats>, IInitiatorRulebookSubscriber
     {
         public StatType Attribute;
-        public WeaponDamageMode Mode => Main.Settings?.WeaponDamage ?? WeaponDamageMode.Replace;
+        public WeaponDamageMode Mode => Mod.Settings?.WeaponDamage ?? WeaponDamageMode.Replace;
 
         public void OnEventAboutToTrigger(RuleCalculateWeaponStats evt) { }
 

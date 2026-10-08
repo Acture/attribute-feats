@@ -128,15 +128,30 @@ namespace AttributeFeats.New_Feats
                     .Where(feat => feat is not BlueprintFeatureSelection)
                     .Select(feat => (feat, family.Key, FeatBudgetRules.FamilyCost(family.Key))));
 
+        /// <summary>Logs a failed registration step without preventing unrelated steps from running.</summary>
+        internal static bool TryConfigure(string name, Action configure)
+        {
+            try
+            {
+                configure();
+                return true;
+            }
+            catch (Exception error)
+            {
+                Mod.Log?.Log($"AttributeFeats: {name} failed - {error}");
+                return false;
+            }
+        }
+
         /// <summary>Publishes successful family menus even when another family's menu fails.</summary>
         public static bool ConfigureAll()
         {
             var succeeded = true;
             foreach (var family in Families)
             {
-                succeeded &= FeatRegistry.TryConfigure(family.Name, family.Configure);
+                succeeded &= TryConfigure(family.Name, family.Configure);
             }
-            succeeded &= FeatRegistry.TryConfigure(Root.Name, Root.Configure);
+            succeeded &= TryConfigure(Root.Name, Root.Configure);
             return succeeded;
         }
 
@@ -170,7 +185,7 @@ namespace AttributeFeats.New_Feats
                 (Parent ?? Root).Feats[selection.AssetGuid] = selection;
             }
             Configured = true;
-            Main.Log?.Log($"AttributeFeats: grouped {Feats.Count} options under {DisplayName}.");
+            Mod.Log?.Log($"AttributeFeats: grouped {Feats.Count} options under {DisplayName}.");
         }
     }
 }

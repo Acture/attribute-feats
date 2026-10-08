@@ -49,18 +49,6 @@ namespace AttributeFeats.New_Feats
             => TryConfigure(name, () => FeatSelection.CollectRegistration(configure));
 
         /// <summary>Logs a failed registration step without preventing unrelated steps from running.</summary>
-        internal static bool TryConfigure(string name, Action configure)
-        {
-            try
-            {
-                configure();
-                return true;
-            }
-            catch (Exception error)
-            {
-                Main.Log?.Log($"AttributeFeats: {name} failed - {error}");
-                return false;
-            }
-        }
+        internal static bool TryConfigure(string name, Action configure) => FeatSelection.TryConfigure(name, configure);
     }
 }

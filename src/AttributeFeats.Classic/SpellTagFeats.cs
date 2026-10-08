@@ -288,7 +288,7 @@ namespace AttributeFeats.New_Feats
         private static BlueprintFeature CreateSchoolFeat(SchoolFeatDefinition definition)
         {
             var desc = BuildSchoolDescription(definition);
-            var settings = Main.Settings ?? new ModSettings();
+            var settings = Mod.Settings ?? new ModSettings();
             var cfg = FeatSelection.SpellSchool.NewFeat(definition.InternalName, definition.Guid)
                 .SetDisplayName(Common.L($"SpellTag_School_{definition.InternalName}.Name", definition.NameEn, definition.NameZh))
                 .SetDescription(Common.L(
@@ -351,7 +351,7 @@ namespace AttributeFeats.New_Feats
         private static BlueprintFeature CreateDescriptorFeat(DescriptorFeatDefinition definition)
         {
             var desc = BuildDescriptorDescription(definition);
-            var settings = Main.Settings ?? new ModSettings();
+            var settings = Mod.Settings ?? new ModSettings();
             var cfg = FeatSelection.SpellDescriptor.NewFeat(definition.InternalName, definition.Guid)
                 .SetDisplayName(Common.L($"SpellTag_Descriptor_{definition.InternalName}.Name", definition.NameEn, definition.NameZh))
                 .SetDescription(Common.L(

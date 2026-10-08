@@ -239,7 +239,11 @@ replace in-game behavior tests.
 
 | Path | Contents |
 |---|---|
-| `src/AttributeFeats/` | Mod project, C# sources, resources, `App.config` and loader `Info.json` |
+| `src/AttributeFeats/` | Entry project: UMM loader, registration order, icons, `App.config`, loader `Info.json` and packaging (merges the other projects into `AttributeFeats.dll`) |
+| `src/AttributeFeats.Rules/` | Game-independent rules, budget costs, exclusion groups and blueprint GUIDs, shared with the tests |
+| `src/AttributeFeats.Core/` | Feat menus, budget and exclusion enforcement, settings, localization and icons loader |
+| `src/AttributeFeats.Classic/`, `.Casting/`, `.Playstyle/` | Feat families: the original families; casting and resource attribute feats; playstyle and Dota-inspired feats |
+| `src/WrathMod.props` | Shared game references and `WrathInstallDir` resolution |
 | `tests/` | Test projects and compatibility baselines |
 | `scripts/`, `.github/` | Local commands and CI workflows |
 | [doc/](doc/README.md) | Public documentation |

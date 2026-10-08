@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<!-- The original attribute feat families. -->
+	<Import Project="../WrathMod.props" />
+	<ItemGroup>
+		<ProjectReference Include="../AttributeFeats.Rules/AttributeFeats.Rules.csproj" />
+		<ProjectReference Include="../AttributeFeats.Core/AttributeFeats.Core.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<InternalsVisibleTo Include="AttributeFeats" />
+	</ItemGroup>
+</Project>

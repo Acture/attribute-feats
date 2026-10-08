@@ -17,7 +17,7 @@ namespace AttributeFeats.New_Feats
             {
                 if (s_IconsDirectory == null)
                 {
-                    var modDir = Main.Entry?.Path;
+                    var modDir = Mod.Entry?.Path;
                     if (string.IsNullOrEmpty(modDir))
                     {
                         modDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
@@ -179,7 +179,7 @@ namespace AttributeFeats.New_Feats
             }
             catch (Exception ex)
             {
-                Main.Log?.Log($"[IconLoader] Failed loading icon '{name}': {ex}");
+                Mod.Log?.Log($"[IconLoader] Failed loading icon '{name}': {ex}");
             }
 
             return null;

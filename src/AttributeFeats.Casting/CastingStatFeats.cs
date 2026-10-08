@@ -45,7 +45,7 @@ namespace AttributeFeats.New_Feats
             Create(StatType.Strength, "Str", "Strength", "力量", Guids.CastingStat.Str, spellbooks);
             Create(StatType.Dexterity, "Dex", "Dexterity", "敏捷", Guids.CastingStat.Dex, spellbooks);
             Create(StatType.Constitution, "Con", "Constitution", "体质", Guids.CastingStat.Con, spellbooks);
-            Main.Log?.Log($"AttributeFeats: casting attribute feats cover {spellbooks.Count} spellbooks.");
+            Mod.Log?.Log($"AttributeFeats: casting attribute feats cover {spellbooks.Count} spellbooks.");
         }
 
         public static bool IsCastingFeat(BlueprintFeature feature) => feature != null && FeatGuids.Contains(feature.AssetGuid);
@@ -121,7 +121,7 @@ namespace AttributeFeats.New_Feats
             if (Overrides.TryGetValue(unit, out var entries)) entries.RemoveAll(entry => entry.Fact == fact);
         }
 
-        private static bool AllSpellbooks => Main.Settings?.CastingScope == CastingAttributeScope.AllSpellbooks;
+        private static bool AllSpellbooks => Mod.Settings?.CastingScope == CastingAttributeScope.AllSpellbooks;
 
         private static bool HasOverride(UnitDescriptor unit, BlueprintSpellbook spellbook)
             => Overrides.TryGetValue(unit, out var entries) && entries.Any(entry => AllSpellbooks || entry.Spellbook == spellbook);
@@ -135,7 +135,7 @@ namespace AttributeFeats.New_Feats
             var candidates = entries.Where(entry => AllSpellbooks || entry.Spellbook == spellbook)
                 .Select(entry => entry.Attribute).ToList();
             if (candidates.Count == 0) return original;
-            if (Main.Settings?.CastingMode == CastingAttributeMode.IfHigher) candidates.Add(original);
+            if (Mod.Settings?.CastingMode == CastingAttributeMode.IfHigher) candidates.Add(original);
             return candidates.OrderByDescending(stat => unit.Stats.GetStat(stat)?.ModifiedValue ?? 0).First();
         }
 
@@ -225,7 +225,7 @@ namespace AttributeFeats.New_Feats
                     yield return instruction;
                 }
                 if (replaced == 0)
-                    Main.Log?.Log($"AttributeFeats: casting attribute read not found in {original.DeclaringType?.Name}.{original.Name}.");
+                    Mod.Log?.Log($"AttributeFeats: casting attribute read not found in {original.DeclaringType?.Name}.{original.Name}.");
             }
         }
 

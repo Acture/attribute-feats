@@ -25,13 +25,24 @@ namespace AttributeFeats
             Entry = modEntry;
             Log = modEntry.Logger;
             Settings = UnityModManager.ModSettings.Load<ModSettings>(modEntry);
+            Mod.Entry = Entry;
+            Mod.Log = Log;
+            Mod.Settings = Settings;
 
             modEntry.OnToggle = OnToggle;
             modEntry.OnGUI = OnGUI;
             modEntry.OnSaveGUI = OnSaveGUI;
 
             HarmonyInstance = new Harmony(modEntry.Info.Id);
-            HarmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
+            // Feature projects ship merged into this assembly; Distinct keeps separate builds working too.
+            foreach (var assembly in new[]
+            {
+                Assembly.GetExecutingAssembly(), typeof(Mod).Assembly, typeof(MainAbilityToEverything_Feats).Assembly,
+                typeof(CastingStatFeats).Assembly, typeof(PlaystyleFeats).Assembly,
+            }.Distinct())
+            {
+                HarmonyInstance.PatchAll(assembly);
+            }
 
             Log.Log("AttributeFeats loaded.");
             return true;

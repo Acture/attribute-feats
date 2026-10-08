@@ -205,7 +205,7 @@ namespace AttributeFeats.New_Feats
                     yield return new CodeInstruction(OpCodes.Call, resolve);
                     replaced++;
                 }
-                if (replaced == 0) Main.Log?.Log("AttributeFeats: resource attribute read not found in GetMaxAmount.");
+                if (replaced == 0) Mod.Log?.Log("AttributeFeats: resource attribute read not found in GetMaxAmount.");
             }
         }
     }

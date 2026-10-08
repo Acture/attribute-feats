@@ -7,7 +7,7 @@ import re
 import struct
 import zipfile
 from pathlib import Path
-from feat_catalog import ROOT, PROJECT, catalog, calls, split_args
+from feat_catalog import ROOT, PROJECT, catalog, calls, split_args, source_file
 
 
 def read(path):
@@ -43,7 +43,7 @@ def main():
     parser.add_argument('--release', type=Path)
     args = parser.parse_args()
     rows = catalog()
-    resources = json.loads(read(PROJECT / 'Localization/FeatText.json'))
+    resources = json.loads(read(ROOT / 'src/AttributeFeats.Core/Localization/FeatText.json'))
     entries = {r['Key']: r for r in resources}
     assert len(entries) == len(resources) == 282
     for entry in resources:
@@ -61,7 +61,7 @@ def main():
     baseline = json.loads(read(ROOT / 'tests/baselines/published-mechanics.json'))
     assert set(baseline['files']) == {row['file'] for row in rows}, 'published family coverage'
     for filename, expected in baseline['files'].items():
-        path = PROJECT / 'New_Feats' / filename
+        path = source_file(filename)
         actual = [list(call) for call in mechanics(read(path))]
         assert actual == expected['mechanics'], f'published mechanics changed: {path.name}'
         # Includes all inline GUIDs and component TypeId identities.
@@ -72,7 +72,7 @@ def main():
     manifest = json.loads(read(ROOT / 'doc/icon-manifest.json'))
     assert len(manifest) == len({r['internal'] for r in manifest}) == len({r['filename'] for r in manifest}) == 92
     assert {r['internal'] for r in manifest} == {r['internal'] for r in rows}
-    aliases = dict(re.findall(r'\{ "([^"]+)", "([^"]+)" \}', read(PROJECT/'New_Feats/IconLoader.cs')))
+    aliases = dict(re.findall(r'\{ "([^"]+)", "([^"]+)" \}', read(source_file('IconLoader.cs'))))
     pending = []
     hashes = []
     for asset in manifest:

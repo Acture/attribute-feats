@@ -5,6 +5,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="../../src/AttributeFeats/New_Feats/WeaponDamageRules.cs" Link="WeaponDamageRules.cs" />
+    <ProjectReference Include="../../src/AttributeFeats.Rules/AttributeFeats.Rules.csproj" />
   </ItemGroup>
 </Project>

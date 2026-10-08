@@ -5,9 +5,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="../../src/AttributeFeats/New_Feats/FeatBudgetRules.cs" Link="FeatBudgetRules.cs" />
-    <Compile Include="../../src/AttributeFeats/New_Feats/FeatGroupRules.cs" Link="FeatGroupRules.cs" />
-    <Compile Include="../../src/AttributeFeats/New_Feats/Guids.cs" Link="Guids.cs" />
-    <Compile Include="../../src/AttributeFeats/New_Feats/CloseQuartersRules.cs" Link="CloseQuartersRules.cs" />
+    <ProjectReference Include="../../src/AttributeFeats.Rules/AttributeFeats.Rules.csproj" />
   </ItemGroup>
 </Project>

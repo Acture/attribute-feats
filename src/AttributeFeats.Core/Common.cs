@@ -37,7 +37,7 @@ namespace AttributeFeats.New_Feats
             var key = $"{baseStat}:{type}";
             if (!registrations.Add(key))
             {
-                Main.Log?.Log($"AttributeFeats: duplicate ContextRankConfig skipped for {baseStat}/{type}.");
+                Mod.Log?.Log($"AttributeFeats: duplicate ContextRankConfig skipped for {baseStat}/{type}.");
                 return;
             }
 
@@ -53,7 +53,7 @@ namespace AttributeFeats.New_Feats
                     config = config.WithHalfMoreProgression();
                     break;
                 default:
-                    Main.Log?.Log($"AttributeFeats: unsupported progression {prog}, falling back to AsIs.");
+                    Mod.Log?.Log($"AttributeFeats: unsupported progression {prog}, falling back to AsIs.");
                     break;
             }
 

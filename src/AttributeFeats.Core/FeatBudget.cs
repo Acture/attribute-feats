@@ -32,7 +32,7 @@ namespace AttributeFeats.New_Feats
         {
             get
             {
-                var s = Main.Settings;
+                var s = Mod.Settings;
                 return s == null
                     ? default
                     : new FeatBudgetLimits(s.EnableFeatCountLimit, s.MaxFeatCount, s.EnableFeatPointLimit, s.MaxFeatPoints);
@@ -61,7 +61,7 @@ namespace AttributeFeats.New_Feats
                 configurator.Configure();
             }
             SyncVisibility();
-            Main.Log?.Log($"AttributeFeats: feat budget covers {Costs.Count} feats; {GroupPrerequisites.Count} belong to exclusion groups.");
+            Mod.Log?.Log($"AttributeFeats: feat budget covers {Costs.Count} feats; {GroupPrerequisites.Count} belong to exclusion groups.");
         }
 
         /// <summary>Hides tooltip lines for limits and groups that are currently off.</summary>
@@ -97,7 +97,7 @@ namespace AttributeFeats.New_Feats
 
         public static FeatGroupLimit GroupLimit(FeatGroup group)
         {
-            var s = Main.Settings;
+            var s = Mod.Settings;
             if (s != null && !s.EnableMutex) return new FeatGroupLimit(false, group.DefaultMax);
             var setting = s?.FeatGroups?.FirstOrDefault(entry => entry.Id == group.SettingId);
             return setting == null
@@ -108,7 +108,7 @@ namespace AttributeFeats.New_Feats
         /// <summary>Stores a changed group setting, keeping untouched groups on their defaults.</summary>
         public static void SetGroupLimit(FeatGroup group, bool enabled, int max)
         {
-            var s = Main.Settings;
+            var s = Mod.Settings;
             if (s == null) return;
             s.FeatGroups ??= new List<FeatGroupSetting>();
             var setting = s.FeatGroups.FirstOrDefault(entry => entry.Id == group.SettingId);

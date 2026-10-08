@@ -13,7 +13,7 @@ foreach ($dependency in @('Assembly-CSharp.dll', 'UnityModManager/UnityModManage
 $mod = [System.Reflection.Assembly]::LoadFrom((Resolve-Path $ModAssembly))
 $settingsType = $mod.GetType('AttributeFeats.ModSettings', $true)
 $componentType = $mod.GetType('AttributeFeats.New_Feats.AttributeWeaponDamage', $true)
-$settingsField = $mod.GetType('AttributeFeats.Main', $true).GetField('Settings', [System.Reflection.BindingFlags]'Static,NonPublic')
+$settingsField = $mod.GetType('AttributeFeats.Mod', $true).GetField('Settings', [System.Reflection.BindingFlags]'Static,Public')
 $settings = [Activator]::CreateInstance($settingsType)
 $settingsField.SetValue($null, $settings)
 # No Unity runtime is needed to verify mode lookup on an already existing component.

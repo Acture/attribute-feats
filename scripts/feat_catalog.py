@@ -64,8 +64,19 @@ def named(args):
     return dict(arg.split(":", 1) for arg in args if re.match(r'^\w+:', arg))
 
 
+def source_files():
+    """C# sources of every mod project under src/, excluding build output."""
+    return [p for p in (ROOT / "src").glob("*/*.cs") if "obj" not in p.parts and "bin" not in p.parts]
+
+
+def source_file(name):
+    matches = [p for p in source_files() if p.name == name]
+    assert len(matches) == 1, f"expected one source named {name}, found {matches}"
+    return matches[0]
+
+
 def catalog(sources=None):
-    sources = sources or {p.name: p.read_text(encoding="utf-8-sig") for p in (PROJECT / "New_Feats").glob("*.cs")}
+    sources = sources or {p.name: p.read_text(encoding="utf-8-sig") for p in source_files()}
     records = []
 
     def add(file, family, internal, prefix, en, zh, lore_en, lore_zh):

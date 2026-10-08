@@ -2,8 +2,15 @@
 
 ## Repository layout
 
-- Keep the Mod project, source, resources and loader `Info.json` together in
-  `src/AttributeFeats/`. Open `AttributeFeats.slnx` from the repository root.
+- The Mod ships as one assembly built from several projects under `src/`:
+  `AttributeFeats` (UMM entry, registration order, `Info.json`, icons and
+  packaging), `AttributeFeats.Rules` (game-independent rules and GUIDs),
+  `AttributeFeats.Core` (menus, budget, exclusion groups, settings and
+  localization) and the feature projects `AttributeFeats.Classic`,
+  `AttributeFeats.Casting` and `AttributeFeats.Playstyle`. The entry project
+  merges them into `AttributeFeats.dll` with ILRepack after build. Shared game
+  references live in `src/WrathMod.props`. Open `AttributeFeats.slnx` from the
+  repository root.
 - Keep tests in `tests/`, CLI tools in `scripts/`, and workflows in `.github/`.
 - Use `doc/` as the sole public documentation directory and `notes/` for the
   private submodule. Do not recreate a parallel `docs/` directory.

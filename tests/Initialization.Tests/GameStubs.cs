@@ -90,6 +90,7 @@ namespace BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection
 namespace AttributeFeats
 {
     internal static class Main { internal static readonly TestLogger Log = new(); }
+    internal static class Mod { internal static readonly TestLogger Log = Main.Log; }
     internal class TestLogger { internal void Log(string message) => World.Logs.Add(message); }
 }
 

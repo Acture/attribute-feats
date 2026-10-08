@@ -36,7 +36,7 @@ namespace AttributeFeats.New_Feats
             }
             catch (Exception ex)
             {
-                Main.Log?.Log("AttributeFeats: using compiled text fallbacks: " + ex.Message);
+                Mod.Log?.Log("AttributeFeats: using compiled text fallbacks: " + ex.Message);
             }
             return entries;
         }

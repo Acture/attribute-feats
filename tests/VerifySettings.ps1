@@ -5,7 +5,7 @@ $ErrorActionPreference = 'Stop'
 $root = Split-Path $PSScriptRoot -Parent
 $umm = Join-Path $WrathInstallDir 'Wrath_Data/Managed/UnityModManager/UnityModManager.dll'
 [void][System.Reflection.Assembly]::LoadFrom($umm)
-Add-Type -Path @((Join-Path $root 'src/AttributeFeats/Settings.cs'), (Join-Path $root 'src/AttributeFeats/New_Feats/WeaponDamageRules.cs')) -ReferencedAssemblies @($umm, 'System.Xml.dll')
+Add-Type -Path @((Join-Path $root 'src/AttributeFeats.Core/Settings.cs'), (Join-Path $root 'src/AttributeFeats.Rules/WeaponDamageRules.cs')) -ReferencedAssemblies @($umm, 'System.Xml.dll')
 
 $serializer = New-Object System.Xml.Serialization.XmlSerializer([AttributeFeats.ModSettings])
 $old = $serializer.Deserialize([System.IO.StringReader]::new('<AttributeFeatsSettings><EnableMutex>false</EnableMutex><EnablePowerMode>true</EnablePowerMode></AttributeFeatsSettings>'))
