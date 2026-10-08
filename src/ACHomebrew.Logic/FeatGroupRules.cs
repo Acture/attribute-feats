@@ -61,8 +61,8 @@ namespace ACHomebrew.Feats
         private static readonly string[][] DistanceStyleSets =
         {
             new[] { Guids.DistanceDamage.AggressorsEdge, Guids.DistanceDamage.ShortBlade, Guids.DistanceDamage.CloseQuarters },
-            new[] { Guids.DistanceDamage.OptimalRange },
-            new[] { Guids.DistanceDamage.MarksmansFocus },
+            new[] { Guids.DistanceDamage.OptimalRange, Guids.DistanceDamage.LongHaft, Guids.DistanceDamage.ReachControl },
+            new[] { Guids.DistanceDamage.MarksmansFocus, Guids.DistanceDamage.StrongBow, Guids.DistanceDamage.SteadySniper },
         };
 
         private static IEnumerable<FeatGroup> DistanceStyles()

@@ -264,14 +264,6 @@
           "StatType.AdditionalDamage,SimpleValue(4),descriptor:Desc"
         ],
         [
-          "AddInitiatorAttackWithWeaponTrigger",
-          "action:applyBuff,triggerBeforeAttack:true"
-        ],
-        [
-          "AddInitiatorAttackWithWeaponTrigger",
-          "action:ActionsBuilder.New().RemoveBuff(Guids.DistanceDamage.Buff.FlatBonus,toCaster:false),actionsOnInitiator:true"
-        ],
-        [
           "AddDamageModifier",
           "bonus,Fact"
         ],

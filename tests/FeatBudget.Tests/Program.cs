@@ -239,6 +239,19 @@ Check("distance score is highest when pressed against the target", () =>
     Expect(CloseQuartersRules.DistanceScore(-1f) == 4, "Overlapping bodies");
 });
 
+Check("mid and long range scores", () =>
+{
+    Expect(CloseQuartersRules.MidDistanceScore(0.5f) == 0 && CloseQuartersRules.MidDistanceScore(6f) == 4, "Mid distance");
+    Expect(CloseQuartersRules.ReachWeaponScore(true, true) == 4 && CloseQuartersRules.ReachWeaponScore(true, false) == 2
+        && CloseQuartersRules.ReachWeaponScore(false, false) == 0, "Reach weapon");
+    Expect(CloseQuartersRules.LongReachScore(5) == 0 && CloseQuartersRules.LongReachScore(10) == 2 && CloseQuartersRules.LongReachScore(20) == 4, "Long reach");
+    Expect(CloseQuartersRules.LongDistanceScore(15f) == 0 && CloseQuartersRules.LongDistanceScore(30f) == 2 && CloseQuartersRules.LongDistanceScore(90f) == 4, "Long distance");
+    Expect(CloseQuartersRules.RangedWeaponScore(60) == 4 && CloseQuartersRules.RangedWeaponScore(30) == 2 && CloseQuartersRules.RangedWeaponScore(10) == 0, "Ranged weapon");
+    Expect(CloseQuartersRules.UnengagedScore(false) == 4 && CloseQuartersRules.UnengagedScore(true) == 0, "Unengaged");
+    Expect(CloseQuartersRules.IsRanged(CloseQuartersMeasure.RangedWeapon)
+        && !CloseQuartersRules.IsRanged(CloseQuartersMeasure.MidDistance), "Melee/ranged split");
+});
+
 Check("one distance style: close feats stack, styles exclude each other", () =>
 {
     var distance = FeatGroupRules.Resolve(Array.Empty<(string, string)>());
@@ -247,6 +260,8 @@ Check("one distance style: close feats stack, styles exclude each other", () =>
     Expect(Style(Guids.DistanceDamage.ShortBlade, Guids.DistanceDamage.AggressorsEdge, Guids.DistanceDamage.CloseQuarters).Count == 0, "Close feats do not stack");
     Expect(Style(Guids.DistanceDamage.MarksmansFocus, Guids.DistanceDamage.ShortBlade).SequenceEqual(new[] { "DistanceStyle" }), "Long range mixed with close");
     Expect(Style(Guids.DistanceDamage.OptimalRange, Guids.DistanceDamage.MarksmansFocus).SequenceEqual(new[] { "DistanceStyle" }), "Mid range mixed with long");
+    Expect(Style(Guids.DistanceDamage.LongHaft, Guids.DistanceDamage.OptimalRange, Guids.DistanceDamage.ReachControl).Count == 0, "Mid feats do not stack");
+    Expect(Style(Guids.DistanceDamage.SteadySniper, Guids.DistanceDamage.StrongBow, Guids.DistanceDamage.MarksmansFocus).Count == 0, "Long feats do not stack");
 });
 
 Console.WriteLine($"{cases - failures}/{cases} feat budget and exclusion group rule checks passed (pure rules, not an in-game test).");

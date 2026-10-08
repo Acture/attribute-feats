@@ -497,6 +497,10 @@ namespace ACHomebrew.Feats
             public const string OptimalRange = "f05016c7-5126-4053-bc6b-0283d9b28eca";
             public const string ShortBlade = "a69e9196-e0dc-469d-942e-4ed94417dc73";
             public const string CloseQuarters = "8da2c389-77a2-498a-aa83-04ac27480bf1";
+            public const string LongHaft = "c4f9dc8b-cf65-472f-ac28-91a090f236de";
+            public const string ReachControl = "7cf97e84-1ecb-4ef5-ba2f-9b096eb824af";
+            public const string StrongBow = "7cb66f0f-d2b6-4dd1-9647-92970f2b99c2";
+            public const string SteadySniper = "868619aa-6900-4a27-833c-41ca702680e6";
 
             public static class Buff
             {

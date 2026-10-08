@@ -23,9 +23,6 @@ namespace ACHomebrew.Feats
     internal static class DistanceDamageFeats
     {
         private const ModifierDescriptor Desc = ModifierDescriptor.None;
-        private static readonly Feet MarksmansFocusMinDistanceExclusive = new(29);
-        private static readonly Feet OptimalRangeMinDistanceExclusive = new(14);
-        private static readonly Feet OptimalRangeMaxDistance = new(25);
         private static bool Initialized;
 
         public static void ConfigureAll()
@@ -76,6 +73,50 @@ namespace ACHomebrew.Feats
                 "近战武器攻击按该武器的总触及（自身触及加武器触及）获得无类型伤害加值：5英尺+4，10英尺+2，15英尺及以上无加值。",
                 CloseQuartersMeasure.Reach);
 
+            CreateCloseQuartersFeat(
+                "LongHaft",
+                Guids.DistanceDamage.LongHaft,
+                "Long-Haft Discipline",
+                "长柄心诀",
+                "Weapon Length",
+                "武器长度",
+                "Melee weapon attacks gain an untyped damage bonus by weapon type: +4 with reach weapons, +2 with other two-handed weapons, none otherwise.",
+                "近战武器攻击按武器类型获得无类型伤害加值：长柄（触及）武器+4，其他双手武器+2，其余无加值。",
+                CloseQuartersMeasure.ReachWeapon);
+
+            CreateCloseQuartersFeat(
+                "ReachControl",
+                Guids.DistanceDamage.ReachControl,
+                "Reach Control",
+                "控距",
+                "Total Reach",
+                "总触及",
+                "Melee weapon attacks gain an untyped damage bonus by your total reach with that weapon: none at 5 feet, +2 at 10 feet, +4 at 15 feet or more.",
+                "近战武器攻击按该武器的总触及获得无类型伤害加值：5尺无加值，10尺+2，15尺及以上+4。",
+                CloseQuartersMeasure.LongReach);
+
+            CreateCloseQuartersFeat(
+                "StrongBow",
+                Guids.DistanceDamage.StrongBow,
+                "Long-Range Arms",
+                "强弓",
+                "Weapon Range",
+                "武器射程",
+                "Ranged and thrown weapon attacks gain an untyped damage bonus by the weapon's range: +4 at 50 feet or more, +3 at 40 feet, +2 at 30 feet, +1 at 20 feet.",
+                "远程与投掷武器攻击按武器射程获得无类型伤害加值：50尺及以上+4，40尺+3，30尺+2，20尺+1。",
+                CloseQuartersMeasure.RangedWeapon);
+
+            CreateCloseQuartersFeat(
+                "SteadySniper",
+                Guids.DistanceDamage.SteadySniper,
+                "Steady Sniper",
+                "稳射",
+                "Composure",
+                "从容",
+                "Ranged and thrown weapon attacks gain a +4 untyped damage bonus while no enemy is engaging you in melee.",
+                "没有敌人与你近战缠斗时，远程与投掷武器攻击获得+4无类型伤害加值。",
+                CloseQuartersMeasure.Unengaged);
+
             CreateFeat(
                 internalName: "MarksmansFocus",
                 featureGuid: Guids.DistanceDamage.MarksmansFocus,
@@ -86,10 +127,9 @@ namespace ACHomebrew.Feats
                     rangeLabelZh: "远距绝杀",
                     loreEn: Common.Text("DistanceDamage_MarksmansFocus.Lore", "Distance gives you room to read a target's line and settle the weapon before release."),
                     loreZh: Common.Text("DistanceDamage_MarksmansFocus.Lore", "距离为你留出判断目标轨迹的余地，也让兵刃在出手前更加稳定。", true),
-                    effectEn: "When your weapon attack target is farther than 29 feet away, that attack gains a +4 untyped damage bonus.",
-                    effectZh: "当你的武器攻击目标超过29英尺时，该次攻击获得+4无类型伤害加值。"),
-                distanceConditions: ConditionsBuilder.New()
-                    .DistanceToTarget(MarksmansFocusMinDistanceExclusive));
+                    effectEn: "Ranged and thrown weapon attacks gain an untyped damage bonus of +1 for every full 10 feet beyond 10 feet to the target, up to +4.",
+                    effectZh: "远程与投掷武器攻击按与目标的距离获得无类型伤害加值：超过10尺后每满10尺+1，最高+4。"),
+                closeQuarters: CloseQuartersMeasure.LongDistance);
 
             CreateFeat(
                 internalName: "OptimalRange",
@@ -101,13 +141,13 @@ namespace ACHomebrew.Feats
                     rangeLabelZh: "中距定势",
                     loreEn: Common.Text("DistanceDamage_OptimalRange.Lore", "You study the middle ground of an engagement, where spacing lets a weapon do its best work."),
                     loreZh: Common.Text("DistanceDamage_OptimalRange.Lore", "你研究交锋的中间距离，让恰当间隔帮助兵刃发挥所长。", true),
-                    effectEn: "When your weapon attack target is farther than 14 feet but no farther than 25 feet away, that attack gains a +4 untyped damage bonus.",
-                    effectZh: "当你的武器攻击目标超过14英尺且不超过25英尺时，该次攻击获得+4无类型伤害加值。"),
-                distanceConditions: ConditionsBuilder.New()
-                    .DistanceToTarget(OptimalRangeMinDistanceExclusive)
-                    .DistanceToTarget(OptimalRangeMaxDistance, negate: true));
+                    effectEn: "Melee weapon attacks gain an untyped damage bonus of up to +4 that grows with the distance to the target when you hit: " +
+                        "+1 for every 1.5 feet between you and the target's edge, reaching +4 at the edge of a reach weapon's range.",
+                    effectZh: "近战武器攻击按命中时与目标的距离获得最高+4的无类型伤害加值：你与目标边缘每相隔1.5尺+1，在长柄武器触及边缘达到+4。"),
+                closeQuarters: CloseQuartersMeasure.MidDistance);
         }
 
+        // No longer applied by any feat; kept registered because its GUID was published in 0.1.x.
         private static void ConfigureDamageBuff()
         {
             BuffConfigurator.New("DistanceDamageFlatBonusBuff", Guids.DistanceDamage.Buff.FlatBonus)
@@ -128,38 +168,20 @@ namespace ACHomebrew.Feats
             string nameEn,
             string nameZh,
             (string en, string zh) desc,
-            ConditionsBuilder distanceConditions = null,
-            CloseQuartersMeasure? closeQuarters = null)
-        {
-            var cfg = FeatSelection.DistanceDamage.NewFeat(internalName, featureGuid)
+            CloseQuartersMeasure closeQuarters)
+            => FeatSelection.DistanceDamage.NewFeat(internalName, featureGuid)
                 .SetDisplayName(Common.L($"DistanceDamage_{internalName}.Name", nameEn, nameZh))
                 .SetDescription(Common.L($"DistanceDamage_{internalName}.Desc", desc.en, desc.zh, tagEncyclopediaEntries: true))
-                .SetIconIfPresent(internalName);
-            if (closeQuarters.HasValue)
-                return cfg.AddComponent<CloseQuartersDamage>(c => c.Measure = closeQuarters.Value).Configure();
-
-            var applyBuff = ActionsBuilder.New()
-                .Conditional(
-                    conditions: distanceConditions.Build(),
-                    ifTrue: ActionsBuilder.New()
-                        .ApplyBuff(Guids.DistanceDamage.Buff.FlatBonus, ContextDuration.Fixed(1), toCaster: true)
-                        .Build(),
-                    ifFalse: ActionsBuilder.New().Build());
-
-            return cfg
-                .AddInitiatorAttackWithWeaponTrigger(action: applyBuff, triggerBeforeAttack: true)
-                .AddInitiatorAttackWithWeaponTrigger(
-                    action: ActionsBuilder.New().RemoveBuff(Guids.DistanceDamage.Buff.FlatBonus, toCaster: false),
-                    actionsOnInitiator: true)
+                .SetIconIfPresent(internalName)
+                .AddComponent<CloseQuartersDamage>(c => c.Measure = closeQuarters)
                 .Configure();
-        }
 
         // New close-quarters feats stay out of CreateFeat, which lists the published feats.
         private static BlueprintFeature CreateCloseQuartersFeat(string internalName, string guid, string nameEn, string nameZh,
             string labelEn, string labelZh, string effectEn, string effectZh, CloseQuartersMeasure measure)
         {
-            var en = $"<i>Distance Damage · {labelEn}</i>\n\n<b>Effect:</b> {effectEn}\n\n<b>Stacking:</b> Stacks with the other close-quarters feats (up to +12 together). Ranged and thrown attacks gain nothing.";
-            var zh = $"<i>距离特化 · {labelZh}</i>\n\n<b>效果：</b>{effectZh}\n\n<b>叠加：</b>可与其他近身专长叠加（合计最高+12）。远程与投掷攻击不受益。";
+            var en = $"<i>Distance Damage · {labelEn}</i>\n\n<b>Effect:</b> {effectEn}\n\n<b>Stacking:</b> Stacks with the other feats of the same distance style (up to +12 together).";
+            var zh = $"<i>距离特化 · {labelZh}</i>\n\n<b>效果：</b>{effectZh}\n\n<b>叠加：</b>可与同一距离风格的其他专长叠加（合计最高+12）。";
             return FeatSelection.DistanceDamage.NewFeat(internalName, guid)
                 .SetDisplayName(Common.L($"DistanceDamage_{internalName}.Name", nameEn, nameZh))
                 .SetDescription(Common.L($"DistanceDamage_{internalName}.Desc", en, zh, tagEncyclopediaEntries: true))
@@ -195,7 +217,7 @@ namespace ACHomebrew.Feats
         {
             var weapon = evt.Weapon;
             var target = evt.AttackWithWeapon?.Target;
-            if (weapon == null || target == null || !weapon.Blueprint.IsMelee) return;
+            if (weapon == null || target == null || weapon.Blueprint.IsMelee == CloseQuartersRules.IsRanged(Measure)) return;
 
             var bonus = Score(evt.Initiator, weapon, target);
             if (bonus > 0) evt.AddDamageModifier(bonus, Fact);
@@ -214,6 +236,20 @@ namespace ACHomebrew.Feats
                         blueprint.IsNatural, blueprint.IsUnarmed, weaponReach > 5);
                 case CloseQuartersMeasure.Reach:
                     return CloseQuartersRules.ReachScore(weaponReach + Owner.Stats.ReachRange.Value);
+                case CloseQuartersMeasure.MidDistance:
+                    return CloseQuartersRules.MidDistanceScore(
+                        (attacker.DistanceTo(target) - attacker.Corpulence - target.Corpulence) / Feet.FeetToMetersRatio);
+                case CloseQuartersMeasure.ReachWeapon:
+                    return CloseQuartersRules.ReachWeaponScore(blueprint.IsTwoHanded, weaponReach > 5);
+                case CloseQuartersMeasure.LongReach:
+                    return CloseQuartersRules.LongReachScore(weaponReach + Owner.Stats.ReachRange.Value);
+                case CloseQuartersMeasure.LongDistance:
+                    return CloseQuartersRules.LongDistanceScore(
+                        (attacker.DistanceTo(target) - target.Corpulence) / Feet.FeetToMetersRatio);
+                case CloseQuartersMeasure.RangedWeapon:
+                    return CloseQuartersRules.RangedWeaponScore(blueprint.AttackRange.Value);
+                case CloseQuartersMeasure.Unengaged:
+                    return CloseQuartersRules.UnengagedScore(attacker.CombatState.IsEngaged);
                 default:
                     var feet = (attacker.DistanceTo(target) - target.Corpulence) / Feet.FeetToMetersRatio;
                     var score = CloseQuartersRules.DistanceScore(feet);
