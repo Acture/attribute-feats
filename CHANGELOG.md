@@ -6,9 +6,18 @@
 - Renamed the mod to **AC's Homebrew** (Chinese: AC 的家酿规则). The UMM Id and install folder (`AttributeFeats`), settings file and feat IDs are unchanged, so existing installs, settings and saves keep working. The assembly is now `ACHomebrew.dll` and the release ZIP `ACHomebrew-<version>.zip`; after upgrading, a leftover `AttributeFeats.dll` in the mod folder is ignored and can be deleted.
 - BlueprintCore is bundled inside `ACHomebrew.dll`, so the mod no longer depends on another mod providing it.
 - With ModMenu installed, the game's options screen gets an AC's Homebrew page mirroring the UMM settings. ModMenu stays optional.
+- Main Attribute Mastery now improves one chosen attribute from a chosen source attribute (30 feats, one per character). The six broad Main feats are retired: kept for existing characters, narrowed to half the modifier on the other attributes.
+- Narrowed broad feats to two or three effects: aptitudes (formerly Specialized Adept), the Wisdom stance, Defiance at the Precipice, Blade of the Spell-Saint (spells only) and Summoner Sacrifice (physical attributes).
+- Mutual exclusion is now a set of configurable exclusion groups checked at selection time; `EnableMutex` is the master switch.
+- Distance Damage is rebuilt into close, mid and long styles of three stacking feats each.
+- The source is split into theme projects (Logic, Core, Attributes, Aptitudes, Martial, Defense, Magic, Summoning, Styles) merged into one assembly.
+
 ### Added
 - Optional per-character feat budget across all Homebrew feat families: a feat count limit, a point limit with family costs of 1–3, or both. Both are off by default and apply immediately when changed.
 - Feat tooltips show used and maximum feats or points, the feat's cost and why it cannot be chosen, in English and Simplified Chinese. The mod settings list each party member's usage.
+- New families: Casting Attribute (Str/Dex/Con spellcasting per spellbook), Resource Attribute, Retaliation, Momentum, Execution, Arcana, Summoner, Survival (Undying), Stealth, Solo (Lone Wolf, Truly Solo), Growth (kill-based permanent growth), Penetration (immunity piercing) and an optional Meme menu.
+- ModTagEx shows AC's Homebrew as the source of its content.
+- `tests/VerifyHarmonyTargets.ps1` resolves every Harmony patch target against the installed game.
 
 ### Changed
 - Only granted feats count. Menus, vanilla feats and other mods' feats do not; each Weapon Damage category and each rank count separately. Prerequisite-ignoring effects do not bypass the budget.

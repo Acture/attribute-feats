@@ -7,8 +7,7 @@ versioned with the mod's code and is available without access to internal notes.
 
 - [Feat families and abilities](../README.md#feat-families)
 - [Mod settings](../README.md#settings)
-- [Feat budget](../README.md#feat-budget)
-- [Stacking and mutual exclusions](../README.md#stacking-rules)
+- [Feat budget](../README.md#feat-budget) and [exclusion groups](../README.md#exclusion-groups)
 - [Installation](../README.md#installation-unity-mod-manager)
 - [Save compatibility](../README.md#save-compatibility)
 - [Building from source](../README.md#building-from-source)
