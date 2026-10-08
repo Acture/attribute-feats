@@ -50,7 +50,7 @@ internal static class Program
         using var reader = new StreamReader(stream);
         var resources = JArray.Parse(reader.ReadToEnd());
         var entries = resources.ToDictionary(e => (string)e["Key"]);
-        var menus = new[] { "Root", "MainAttribute", "Defensive", "Maneuver", "Skilled", "Arcane", "Stance", "Conditional", "WeaponInsight", "ExtendedReplacement", "GreaterSummoning", "SummonerSacrifice", "ReactiveArmor", "DerivedStat", "SpellSchool", "SpellDescriptor", "DistanceDamage", "WeaponDamage", "MainAttribute_Str", "MainAttribute_Dex", "MainAttribute_Con", "MainAttribute_Int", "MainAttribute_Wis", "MainAttribute_Cha", "CastingStat", "ResourceStat", "Retaliation", "Momentum", "Stealth", "Solo", "Growth", "Execution", "Arcana", "Summoner", "Survival", "Meme" };
+        var menus = new[] { "Root", "MainAttribute", "Defensive", "Maneuver", "Skilled", "Arcane", "Stance", "Conditional", "WeaponInsight", "ExtendedReplacement", "GreaterSummoning", "SummonerSacrifice", "ReactiveArmor", "DerivedStat", "SpellSchool", "SpellDescriptor", "DistanceDamage", "WeaponDamage", "MainAttribute_Str", "MainAttribute_Dex", "MainAttribute_Con", "MainAttribute_Int", "MainAttribute_Wis", "MainAttribute_Cha", "CastingStat", "ResourceStat", "Retaliation", "Momentum", "Stealth", "Solo", "Growth", "Execution", "Arcana", "Summoner", "Survival", "Meme", "Penetration" };
         var attributes = new[] { "Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma" };
         var newKeys = menus.Select(m => "AttributeFeatsSelection_" + m)
             .Concat(attributes.Select(a => "WeaponDamage_" + a))

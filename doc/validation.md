@@ -41,12 +41,14 @@ With a local Wrath installation configured in the ignored root `GamePath.props`:
 dotnet build ACHomebrew.slnx -p:DeployMod=false
 powershell -NoProfile -File tests/VerifySettings.ps1 -WrathInstallDir "<game directory>"
 powershell -NoProfile -File tests/VerifyLiveWeaponDamageMode.ps1 -WrathInstallDir "<game directory>"
+powershell -NoProfile -File tests/VerifyHarmonyTargets.ps1 -WrathInstallDir "<game directory>"
 dotnet build ACHomebrew.slnx -c Release -p:DeployToGame=false
 python scripts/validate_assets.py --release artifacts/packages/ACHomebrew-0.1.2.zip
 ```
 
-The two reflection checks run in Windows PowerShell 5.1 against installed
-assemblies without starting the game. They check settings serialization, including feat budget defaults, and
+The reflection checks run in Windows PowerShell 5.1 against installed
+assemblies without starting the game. VerifyHarmonyTargets resolves every
+Harmony patch target in the built mod against the game assembly. They check settings serialization, including feat budget defaults, and
 whether an existing weapon-damage component reads changed mode settings.
 The package check verifies loader metadata, icon coverage and bytes, and that
 no dependency/game DLLs or documentation directories are included.

@@ -40,6 +40,7 @@ namespace ACHomebrew.Feats
         public static readonly FeatSelection Growth = new("Growth", Guids.FeatSelections.Growth, "Growth");
         public static readonly FeatSelection Survival = new("Survival", Guids.FeatSelections.Survival, "Survival");
         public static readonly FeatSelection Meme = new("Meme", Guids.FeatSelections.Meme, "Meme");
+        public static readonly FeatSelection Penetration = new("Penetration", Guids.FeatSelections.Penetration, "Penetration");
         public static readonly FeatSelection Execution = new("Execution", Guids.FeatSelections.Execution, "Execution");
         public static readonly FeatSelection Arcana = new("Arcana", Guids.FeatSelections.Arcana, "Arcana");
         public static readonly FeatSelection Summoner = new("Summoner", Guids.FeatSelections.Summoner, "Summoner");
@@ -62,7 +63,7 @@ namespace ACHomebrew.Feats
             MainAttribute, Defensive, Maneuver, Skilled, Arcane, Stance, Conditional,
             WeaponInsight, ExtendedReplacement, GreaterSummoning, SummonerSacrifice,
             ReactiveArmor, DerivedStat, SpellSchool, SpellDescriptor, DistanceDamage, WeaponDamage,
-            CastingStat, ResourceStat, Retaliation, Momentum, Stealth, Solo, Growth, Execution, Arcana, Summoner, Survival, Meme,
+            CastingStat, ResourceStat, Retaliation, Momentum, Stealth, Solo, Growth, Execution, Arcana, Summoner, Survival, Meme, Penetration,
         };
 
         private readonly string Key;

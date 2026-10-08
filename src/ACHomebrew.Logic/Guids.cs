@@ -28,6 +28,7 @@ namespace ACHomebrew.Feats
             public const string ResourceStat = "938135b5-eaaa-42f0-a560-65fef7d1391c";
             public const string Survival = "62c0a731-dba1-47e0-98a4-1b142ea2755e";
             public const string Meme = "8eee7d40-39bf-4db2-bb10-c2cc5ec3e1ec";
+            public const string Penetration = "fea01b71-96e7-4f29-bd44-60301b7c4845";
             public const string Retaliation = "35f8879b-c4a0-469d-a797-bbad0f107916";
             public const string Momentum = "50d43f6b-d0b6-4717-9366-d3b01c4f60b3";
             public const string Stealth = "19b5a1e9-9ba6-4d6b-915d-3049b891f5da";
@@ -213,6 +214,18 @@ namespace ACHomebrew.Feats
         {
             public const string WhatCanISay = "d940f8a8-8289-4896-9ad9-b5f70cb53bec";
             public const string NobodyKnowsBetter = "1ef860f5-784a-4f40-bc9a-90aacfceaa1d";
+        }
+
+        public static class Penetration
+        {
+            public const string MindBreaker = "8c0e895d-a7f2-4861-bb39-d4d85a51a13e";
+            public const string Deathbringer = "20b9120d-3c2e-44fa-8c70-887bbc46604e";
+            public const string Dread = "8401b032-cee0-4533-aa24-dbb41bfaa279";
+            public const string Plaguebearer = "e1d16be0-dbb1-4ca1-b41e-cfbc7a3248ef";
+            public const string Paralyzer = "fed1a0fe-5ac5-4ef0-b402-977427ac041d";
+            public const string ElementalBreach = "ffb3a410-2098-4eda-941a-8eeb63947a54";
+            public const string BoneBreaker = "9eebbe70-02ae-4166-8891-8a539b0a871a";
+            public const string HiddenVitals = "62c3ba8b-7f98-46c6-b0d0-5a18ed604709";
         }
 
         public static class Summoning

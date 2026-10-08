@@ -91,7 +91,7 @@ Check("cost table covers every menu with tiers 1-3", () =>
     var menus = new[] { "MainAttribute_Str", "MainAttribute_Dex", "MainAttribute_Con", "MainAttribute_Int", "MainAttribute_Wis",
         "MainAttribute_Cha", "MainAttributeLegacy", "Defensive", "Maneuver", "Skilled", "Arcane", "Stance", "Conditional",
         "WeaponInsight", "ExtendedReplacement", "GreaterSummoning", "SummonerSacrifice", "ReactiveArmor",
-        "DerivedStat", "SpellSchool", "SpellDescriptor", "DistanceDamage", "WeaponDamage", "CastingStat", "ResourceStat", "Retaliation", "Momentum", "Stealth", "Solo", "Growth", "Execution", "Arcana", "Summoner", "Survival", "Meme", "Root" };
+        "DerivedStat", "SpellSchool", "SpellDescriptor", "DistanceDamage", "WeaponDamage", "CastingStat", "ResourceStat", "Retaliation", "Momentum", "Stealth", "Solo", "Growth", "Execution", "Arcana", "Summoner", "Survival", "Meme", "Penetration", "Root" };
     Expect(FeatBudgetRules.Costs.Keys.OrderBy(k => k).SequenceEqual(menus.OrderBy(k => k)), "Cost table and menu list differ");
     Expect(FeatBudgetRules.Costs.Where(entry => entry.Key != "Meme").All(entry => entry.Value is >= 1 and <= 3), "Cost outside tiers 1-3");
     Expect(FeatBudgetRules.FamilyCost("Meme") == 0, "Meme feats should be free");

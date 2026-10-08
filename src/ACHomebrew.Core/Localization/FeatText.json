@@ -1433,5 +1433,15 @@
     "Key": "Meme.NobodyKnowsBetter.Bark",
     "enGB": "Nobody knows {0} better than me.",
     "zhCN": "没有人比我更懂{0}。"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Penetration.Name",
+    "enGB": "Penetration",
+    "zhCN": "穿透"
+  },
+  {
+    "Key": "AttributeFeatsSelection_Penetration.Description",
+    "enGB": "Choose one Penetration feat. Each pierces one kind of immunity.",
+    "zhCN": "选择一项穿透专长。每项穿透一类免疫。"
   }
 ]
