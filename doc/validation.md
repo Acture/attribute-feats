@@ -63,8 +63,8 @@ This Windows-only check needs the public `external/wotr-testing` submodule
 (`git submodule update --init -- external/wotr-testing`). It loads the installed
 (or `vendor/wotr/` snapshot) game
 assemblies, vanilla blueprints and settings in a .NET Framework test process
-without starting the game. It applies Titan's Apotheosis to a vanilla unit and
-removes it, runs a failure control and probes Bloodline of Beasts through the
+without starting the game. It applies Main Attribute Mastery and the retired
+Titan's Apotheosis to a vanilla unit and removes them, runs a failure control and probes Bloodline of Beasts through the
 game's summon rule. Reports are written to `artifacts/test-results/offline-mechanics/`.
 See [offline-mechanics-testing.md](offline-mechanics-testing.md) for the inputs,
 every environment adaptation, result classes and limits. Public CI does not run

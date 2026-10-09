@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using WotR.Testing.Offline;
+using ACHomebrew.Feats;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.RuleSystem;
@@ -30,9 +31,9 @@ namespace AttributeFeats.OfflineTests
         public void BloodlineOfBeastsBuffsTheSummonFromTheSummonersStrengthOnly()
         {
             fixture.RequireGame();
-            var feat = OfflineGame.Blueprint<BlueprintFeature>(ModGuids.Get("Summon.Feature.BloodlineOfBeasts"));
-            var outerBuff = OfflineGame.Blueprint<BlueprintBuff>(ModGuids.Get("Summon.OuterBuff.BloodlineOfBeasts"));
-            var innerBuff = OfflineGame.Blueprint<BlueprintBuff>(ModGuids.Get("Summon.InnerBuff.BloodlineOfBeasts"));
+            var feat = OfflineGame.Blueprint<BlueprintFeature>(Guids.Summon.Feature.BloodlineOfBeasts);
+            var outerBuff = OfflineGame.Blueprint<BlueprintBuff>(Guids.Summon.OuterBuff.BloodlineOfBeasts);
+            var innerBuff = OfflineGame.Blueprint<BlueprintBuff>(Guids.Summon.InnerBuff.BloodlineOfBeasts);
 
             var summoner = OfflineGame.CreateUnit(MainAttributeFeatTests.VanillaUnit);
             var summonerBefore = MainAttributeFeatTests.Snapshot(summoner);

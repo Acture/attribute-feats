@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <!-- AttributeFeats mechanics tests on WotR.Testing.Offline (external/wotr-testing): real game assemblies and blueprints, no game process. -->
+  <!-- AC's Homebrew (UMM Id AttributeFeats) mechanics tests on WotR.Testing.Offline (external/wotr-testing): real game assemblies and blueprints, no game process. -->
   <Import Project="$(AttributeFeatsRepositoryRoot)GamePath.props" Condition="Exists('$(AttributeFeatsRepositoryRoot)GamePath.props')" />
 
   <PropertyGroup>
@@ -11,7 +11,7 @@
     <IsTestProject>true</IsTestProject>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 
-    <WotrModAssembly>$(AttributeFeatsRepositoryRoot)artifacts/bin/AttributeFeats/$(Configuration)/AttributeFeats.dll</WotrModAssembly>
+    <WotrModAssembly>$(AttributeFeatsRepositoryRoot)artifacts/bin/ACHomebrew/$(Configuration)/ACHomebrew.dll</WotrModAssembly>
     <WotrSnapshotDirectory>$(AttributeFeatsRepositoryRoot)vendor/wotr</WotrSnapshotDirectory>
     <WotrWorkDirectory>$(AttributeFeatsRepositoryRoot)artifacts/obj/OfflineMechanics.Tests/wotr/</WotrWorkDirectory>
     <WotrReportDirectory>$(AttributeFeatsRepositoryRoot)artifacts/test-results/offline-mechanics/</WotrReportDirectory>
@@ -30,7 +30,7 @@
   <ItemGroup>
     <ProjectReference Include="../../external/wotr-testing/src/WotR.Testing.Offline/WotR.Testing.Offline.csproj" AdditionalProperties="WotrInputRoot=$(WotrInputRoot)" />
     <!-- Build the mod from source first, without deploying it, against the same game inputs. -->
-    <ProjectReference Include="../../src/AttributeFeats/AttributeFeats.csproj"
+    <ProjectReference Include="../../src/ACHomebrew/ACHomebrew.csproj"
                       ReferenceOutputAssembly="false"
                       Private="false"
                       AdditionalProperties="DeployMod=false;WrathInstallDir=$(WotrInputRoot)" />

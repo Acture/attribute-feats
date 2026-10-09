@@ -1,6 +1,6 @@
 # Offline mechanics tests
 
-`tests/OfflineMechanics.Tests` runs AttributeFeats against the real Pathfinder:
+`tests/OfflineMechanics.Tests` runs AC's Homebrew (UMM Id `AttributeFeats`) against the real Pathfinder:
 Wrath of the Righteous assemblies, vanilla blueprint pack and settings in an
 ordinary .NET Framework test process. It does not start `Wrath.exe`, the Unity
 player or the Unity Editor, and it does not touch saves or the installed `Mods`
@@ -11,7 +11,7 @@ The game-independent part is
 included as the public submodule `external/wotr-testing`. Its
 [documentation](https://github.com/Acture/wotr-testing/blob/main/docs/offline.md)
 describes how the game runs without Unity, every environment adaptation, the
-result classes and the general limits. This page covers what AttributeFeats tests
+result classes and the general limits. This page covers what the mod's tests
 and what they found.
 
 ## Setup
@@ -59,8 +59,9 @@ mod logs "AttributeFeats: registry initialized.".
 | Environment: no game process | No `Wrath`/Unity process starts; `UnityPlayer.dll`, Unity's Mono runtime and `Wrath.exe` are not loaded |
 | Environment: method bodies | Rewritten `Assembly-CSharp`, `Assembly-CSharp-firstpass` and `Owlcat.Runtime.Core` keep every method body |
 | Environment: mod initialization | `Main.Load` and the `BlueprintsCache.Init` postfix register all families and menus |
-| Main attribute (Titan's Apotheosis) | On a vanilla human pregen, the Strength modifier (minimum 0) appears as an inherent bonus on the other five attributes, AC, CMD, saves, initiative, CMB and skills/checks; removal restores every stat |
-| Failure control | The same assertion fails when the feat's stat components are removed |
+| Main Attribute Mastery (Strength → Dexterity) | On a vanilla human pregen, the Strength modifier (minimum 0) appears as one inherent bonus on Dexterity and nowhere else; removal restores every stat |
+| Retired Titan's Apotheosis | Half the Strength modifier (rounded down) appears as an inherent bonus on the other five attributes and nowhere else; removal restores every stat |
+| Failure control | The same assertion fails when the mastery's stat component is removed |
 | Summoning probe (Bloodline of Beasts) | Runs the game's `RuleSummonUnit` with a pre-made vanilla unit: the summoner keeps only the trigger buff; the summon gets the bonus buff, with the summoner as caster and the summoner's Strength modifier as the value |
 
 These are evidence for the listed feats only. Other families, conditional
@@ -73,9 +74,6 @@ see [validation.md](validation.md) for the remaining checks.
   on Unity's Mono. Confirm important results in the game.
 - **Starting equipment.** The pregen's starting weapons and armor fail to equip
   offline, so weapon and armor feats need this resolved first.
-- **BlueprintCore copy.** The tests load `BlueprintCore.dll` from the mod's build
-  output (2.8.6). The release package does not include BlueprintCore, so in the
-  game the copy comes from another installed mod and its version can differ.
 - **Undead and constructs.** The game gives them no Constitution, so the
   Constitution bonus cannot show on them. The tests check that their unit is a
   living creature.
