@@ -21,7 +21,7 @@ try {
         $taskAsset = $taskAssets[$taskIndex]
         $taskX = ($taskIndex % $taskColumns) * $taskCellWidth
         $taskY = [Math]::Floor($taskIndex / $taskColumns) * $taskCellHeight + 56
-        $taskIcon = [Drawing.Image]::FromFile((Join-Path $taskRoot ('src/ACHomebrew/Icons/' + $taskAsset.filename)))
+        $taskIcon = [Drawing.Image]::FromFile((Join-Path $taskRoot ('src/WotRHomebrew/Icons/' + $taskAsset.filename)))
         try { $taskGraphics.DrawImageUnscaled($taskIcon, [int]($taskX + 18), [int]$taskY) }
         finally { $taskIcon.Dispose() }
         $taskLabel = $taskAsset.nameEn + "`n" + $taskAsset.nameZh

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<!-- Game-independent logic shared by the mod and its tests: budget, exclusion groups, scoring rules and GUIDs. -->
+	<PropertyGroup>
+		<TargetFrameworks>net48;netstandard2.0</TargetFrameworks>
+		<LangVersion>latest</LangVersion>
+		<RootNamespace>WotRHomebrew</RootNamespace>
+		<AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+	</ItemGroup>
+	<ItemGroup>
+		<InternalsVisibleTo Include="WotRHomebrew" />
+		<InternalsVisibleTo Include="WotRHomebrew.Core" />
+		<InternalsVisibleTo Include="WotRHomebrew.Attributes" />
+		<InternalsVisibleTo Include="WotRHomebrew.Aptitudes" />
+		<InternalsVisibleTo Include="WotRHomebrew.Martial" />
+		<InternalsVisibleTo Include="WotRHomebrew.Defense" />
+		<InternalsVisibleTo Include="WotRHomebrew.Magic" />
+		<InternalsVisibleTo Include="WotRHomebrew.Summoning" />
+		<InternalsVisibleTo Include="WotRHomebrew.Styles" />
+		<InternalsVisibleTo Include="FeatBudget.Tests" />
+		<InternalsVisibleTo Include="WeaponDamage.Tests" />
+	</ItemGroup>
+</Project>

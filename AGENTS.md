@@ -1,20 +1,20 @@
-# AC's Homebrew development (formerly AttributeFeats)
+# WotR Homebrew development (formerly AttributeFeats)
 
 ## Repository layout
 
 - The Mod ships as one assembly built from several projects under `src/`:
-  `ACHomebrew` (UMM entry, registration order, `Info.json`, icons, optional
-  ModMenu page and packaging), `ACHomebrew.Logic` (game-independent logic
-  and GUIDs, referenced by the tests), `ACHomebrew.Core` (menus, budget and
+  `WotRHomebrew` (UMM entry, registration order, `Info.json`, icons, optional
+  ModMenu page and packaging), `WotRHomebrew.Logic` (game-independent logic
+  and GUIDs, referenced by the tests), `WotRHomebrew.Core` (menus, budget and
   exclusion enforcement, settings, localization and shared builders), and
-  theme projects `ACHomebrew.Attributes`, `.Aptitudes`, `.Martial`,
+  theme projects `WotRHomebrew.Attributes`, `.Aptitudes`, `.Martial`,
   `.Defense`, `.Magic`, `.Summoning` and `.Styles`, one file per feat family.
   Group new families by play theme, not by inspiration source. The entry
-  project merges every project and BlueprintCore into `ACHomebrew.dll`
+  project merges every project and BlueprintCore into `WotRHomebrew.dll`
   with ILRepack after build. Keep the UMM Id `AttributeFeats`, the install
   folder `Mods/AttributeFeats` and the settings XML root unchanged so
   existing installs, settings and saves keep working. Shared game references live in `src/WrathMod.props`.
-  Open `ACHomebrew.slnx` from the repository root.
+  Open `WotRHomebrew.slnx` from the repository root.
 - Keep tests in `tests/`, CLI tools in `scripts/`, and workflows in `.github/`.
 - Use `doc/` as the sole public documentation directory and `notes/` for the
   private submodule. Do not recreate a parallel `docs/` directory.
@@ -26,10 +26,10 @@
   gitlink here only to a published commit. Keep local game-file snapshots in ignored
   `vendor/wotr/` (`external/wotr-testing/scripts/New-WotrSnapshot.ps1`); never
   commit or publish them.
-- Build for verification with `dotnet build ACHomebrew.slnx -p:DeployMod=false`
+- Build for verification with `dotnet build WotRHomebrew.slnx -p:DeployMod=false`
   to avoid copying files into the installed game. Repository contracts run with
   `pwsh -NoProfile -File scripts/Test-RepositoryContracts.ps1`.
-- Build a release ZIP without deploying via `dotnet build ACHomebrew.slnx
+- Build a release ZIP without deploying via `dotnet build WotRHomebrew.slnx
   -c Release -p:DeployToGame=false`. Follow [doc/validation.md](doc/validation.md)
   for calculation, initialization, localization, asset and package checks.
 
@@ -45,8 +45,8 @@
   the public code repository. Linear remains the source for tasks and status.
 - The submodule path is `notes`, its remote is
   `https://github.com/Acture/obsidian-vault.git`, and the editable project branch is
-  `project/attribute-feats`. Only edit this project's notes at that checkout's root.
-  The central vault's master aggregates them under `attribute-feats/`.
+  `project/wotr-homebrew`. Only edit this project's notes at that checkout's root.
+  The central vault's master aggregates them under `wotr-homebrew/`.
 - Initialize the pinned version with `git submodule update --init --recursive -- notes`.
   Inspect the actual commit, branch and worktree before editing; initialization
   may leave detached HEAD. Preserve unpublished commits and uncommitted changes.
@@ -79,7 +79,7 @@
 
 ## Project notes submission
 
-`doc/` is reserved for public documentation. Private research notes live in `notes/`, which tracks `project/attribute-feats` in `Acture/obsidian-vault`; start at `notes/首页.md`. This checkout's root contains only this project's notes. Master places these notes under `attribute-feats/`. Keep automation and vault configuration on master. Preserve existing local edits when updating a checkout.
+`doc/` is reserved for public documentation. Private research notes live in `notes/`, which tracks `project/wotr-homebrew` in `Acture/obsidian-vault`; start at `notes/首页.md`. This checkout's root contains only this project's notes. Master places these notes under `wotr-homebrew/`. Keep automation and vault configuration on master. Preserve existing local edits when updating a checkout.
 
 Install or refresh the trusted submission tools in Git metadata, including in new clones:
 
@@ -90,4 +90,4 @@ git -C notes show origin/master:.github/scripts/install_push_hook.py | python -X
 $notesCommonGitDir = git -C notes rev-parse --path-format=absolute --git-common-dir
 ```
 
-After committing specific note files, submit through `python -X utf8 "$notesCommonGitDir/hooks/notes-boundary/submit_project.py" --repo notes` with authenticated `gh`. The remote requires `notes-boundary/root/attribute-feats` from GitHub Actions. Only after successful submission should this repository commit and push the `notes` gitlink. See the central repository's `项目接入.md` for initialization, updates and conflict handling.
+After committing specific note files, submit through `python -X utf8 "$notesCommonGitDir/hooks/notes-boundary/submit_project.py" --repo notes` with authenticated `gh`. The remote requires `notes-boundary/root/wotr-homebrew` from GitHub Actions. Only after successful submission should this repository commit and push the `notes` gitlink. See the central repository's `项目接入.md` for initialization, updates and conflict handling.

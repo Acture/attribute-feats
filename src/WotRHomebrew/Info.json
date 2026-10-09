@@ -1,0 +1,13 @@
+﻿{
+	"Id": "AttributeFeats",
+	"DisplayName": "WotR Homebrew",
+	"Author": "acturea",
+	"Version": "0.1.2",
+	"ManagerVersion": "0.27.11",
+	"Requirements": [],
+	"LoadAfter": [ "ModMenu", "ModTagEx" ],
+	"AssemblyName": "WotRHomebrew.dll",
+	"EntryMethod": "WotRHomebrew.Main.Load",
+	"HomePage": "https://github.com/Acture/wotr-homebrew",
+	"Repository": "https://github.com/Acture/wotr-homebrew"
+}

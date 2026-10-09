@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<!-- Play styles: stealth, solo play and growth from kills. -->
+	<Import Project="../WrathMod.props" />
+	<ItemGroup>
+		<ProjectReference Include="../WotRHomebrew.Logic/WotRHomebrew.Logic.csproj" />
+		<ProjectReference Include="../WotRHomebrew.Core/WotRHomebrew.Core.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<InternalsVisibleTo Include="WotRHomebrew" />
+	</ItemGroup>
+</Project>

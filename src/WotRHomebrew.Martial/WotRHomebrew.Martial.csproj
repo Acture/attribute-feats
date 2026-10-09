@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<!-- Martial play: stances, conditional triggers, distance, momentum and execution. -->
+	<Import Project="../WrathMod.props" />
+	<ItemGroup>
+		<ProjectReference Include="../WotRHomebrew.Logic/WotRHomebrew.Logic.csproj" />
+		<ProjectReference Include="../WotRHomebrew.Core/WotRHomebrew.Core.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<InternalsVisibleTo Include="WotRHomebrew" />
+	</ItemGroup>
+</Project>
