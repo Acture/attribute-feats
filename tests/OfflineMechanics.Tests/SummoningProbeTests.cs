@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using WotR.Testing.Offline;
-using ACHomebrew.Feats;
+using WotRHomebrew.Feats;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.RuleSystem;

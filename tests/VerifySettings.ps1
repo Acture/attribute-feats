@@ -5,16 +5,16 @@ $ErrorActionPreference = 'Stop'
 $root = Split-Path $PSScriptRoot -Parent
 $umm = Join-Path $WrathInstallDir 'Wrath_Data/Managed/UnityModManager/UnityModManager.dll'
 [void][System.Reflection.Assembly]::LoadFrom($umm)
-Add-Type -Path @((Join-Path $root 'src/ACHomebrew.Core/Settings.cs'), (Join-Path $root 'src/ACHomebrew.Logic/WeaponDamageRules.cs')) -ReferencedAssemblies @($umm, 'System.Xml.dll')
+Add-Type -Path @((Join-Path $root 'src/WotRHomebrew.Core/Settings.cs'), (Join-Path $root 'src/WotRHomebrew.Logic/WeaponDamageRules.cs')) -ReferencedAssemblies @($umm, 'System.Xml.dll')
 
-$serializer = New-Object System.Xml.Serialization.XmlSerializer([ACHomebrew.ModSettings])
+$serializer = New-Object System.Xml.Serialization.XmlSerializer([WotRHomebrew.ModSettings])
 $old = $serializer.Deserialize([System.IO.StringReader]::new('<AttributeFeatsSettings><EnableMutex>false</EnableMutex><EnablePowerMode>true</EnablePowerMode></AttributeFeatsSettings>'))
-if ($old.WeaponDamage -ne [ACHomebrew.WeaponDamageMode]::Replace -or $old.EnableMutex -ne $false -or $old.EnablePowerMode -ne $true) { throw 'Old settings compatibility failed' }
+if ($old.WeaponDamage -ne [WotRHomebrew.WeaponDamageMode]::Replace -or $old.EnableMutex -ne $false -or $old.EnablePowerMode -ne $true) { throw 'Old settings compatibility failed' }
 if ($old.EnableFeatCountLimit -or $old.EnableFeatPointLimit -or $old.MaxFeatCount -ne 6 -or $old.MaxFeatPoints -ne 10) { throw 'Old settings did not default to an unlimited feat budget' }
 if ($old.FeatGroups -eq $null -or $old.FeatGroups.Count -ne 0) { throw 'Old settings did not default to built-in exclusion groups' }
 $old.EnableFeatCountLimit = $true; $old.MaxFeatCount = 4; $old.EnableFeatPointLimit = $true; $old.MaxFeatPoints = 7
-$group = New-Object ACHomebrew.FeatGroupSetting; $group.Id = 'Conditional'; $group.Enabled = $false; $group.Max = 3; $old.FeatGroups.Add($group)
-foreach ($mode in @([ACHomebrew.WeaponDamageMode]::Replace, [ACHomebrew.WeaponDamageMode]::Add)) {
+$group = New-Object WotRHomebrew.FeatGroupSetting; $group.Id = 'Conditional'; $group.Enabled = $false; $group.Max = 3; $old.FeatGroups.Add($group)
+foreach ($mode in @([WotRHomebrew.WeaponDamageMode]::Replace, [WotRHomebrew.WeaponDamageMode]::Add)) {
     $old.WeaponDamage = $mode
     $writer = [System.IO.StringWriter]::new()
     $serializer.Serialize($writer, $old)

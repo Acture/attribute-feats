@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<!-- Attribute conversion: Main Attribute Mastery, replacements, derived stats, weapon damage, casting and resource attributes. -->
+	<Import Project="../WrathMod.props" />
+	<ItemGroup>
+		<ProjectReference Include="../WotRHomebrew.Logic/WotRHomebrew.Logic.csproj" />
+		<ProjectReference Include="../WotRHomebrew.Core/WotRHomebrew.Core.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<InternalsVisibleTo Include="WotRHomebrew" />
+	</ItemGroup>
+</Project>

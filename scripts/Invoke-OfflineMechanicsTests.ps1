@@ -1,4 +1,4 @@
-# Requires PowerShell 7 on Windows. Runs the AttributeFeats offline mechanics tests with the wotr-testing runner
+# Requires PowerShell 7 on Windows. Runs the WotR Homebrew offline mechanics tests with the wotr-testing runner
 # (external/wotr-testing). Initialize it first: git submodule update --init -- external/wotr-testing
 [CmdletBinding()]
 param(

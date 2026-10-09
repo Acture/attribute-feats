@@ -1,6 +1,6 @@
-# AC's Homebrew
+# WotR Homebrew
 
-> Formerly **AttributeFeats**. The UMM mod Id and install folder (`AttributeFeats`) and all feat IDs are unchanged, so existing settings and saves keep working. The assembly is now `ACHomebrew.dll`.
+> Formerly **AttributeFeats**. The UMM mod Id and install folder (`AttributeFeats`) and all feat IDs are unchanged, so existing settings and saves keep working. The assembly is now `WotRHomebrew.dll`.
 
 A Pathfinder: Wrath of the Righteous mod of homebrew feats that open up play styles: attribute conversion, close-quarters and long-range fighting, retaliation, stealth, solo play, summoning swarms, spell-slot tricks, immunity piercing and more.
 
@@ -8,7 +8,7 @@ A Pathfinder: Wrath of the Righteous mod of homebrew feats that open up play sty
 
 ## Feat Families
 
-During character creation and level-up, expand **AC's Homebrew**, then a **feat family**, then choose the **individual feat** (Main Attribute Mastery has one more level: source attribute, then target). Each choice grants one feat. You can return to a family at later feat choices, subject to prerequisites, the [feat budget](#feat-budget) and [exclusion groups](#exclusion-groups). Existing characters keep their learned feats.
+During character creation and level-up, expand **WotR Homebrew**, then a **feat family**, then choose the **individual feat** (Main Attribute Mastery has one more level: source attribute, then target). Each choice grants one feat. You can return to a family at later feat choices, subject to prerequisites, the [feat budget](#feat-budget) and [exclusion groups](#exclusion-groups). Existing characters keep their learned feats.
 
 Families are grouped by play theme below. Numbers are first-pass values, and **nothing in this release has been verified in the game yet**; see [validation](doc/validation.md).
 
@@ -169,7 +169,7 @@ Maneuver adds the modifier to CMB. Arcane adds it to caster level and spell pene
 
 ## Settings
 
-> Applied immediately: Weapon Damage Mode, the feat budget, exclusion groups, Casting Scope/Mode and Truly Solo pets. Other settings require restarting. With [ModMenu](https://www.nexusmods.com/pathfinderwrathoftherighteous) installed, the same settings also appear on an AC's Homebrew page in the game's options screen; both write the same settings file.
+> Applied immediately: Weapon Damage Mode, the feat budget, exclusion groups, Casting Scope/Mode and Truly Solo pets. Other settings require restarting. With [ModMenu](https://www.nexusmods.com/pathfinderwrathoftherighteous) installed, the same settings also appear on an WotR Homebrew page in the game's options screen; both write the same settings file.
 
 | Setting | Default | Effect |
 |---|---|---|
@@ -198,7 +198,7 @@ The optional feat budget limits each character's Homebrew feats across all famil
 | 1 | Defensive, Maneuver, Skilled and Arcane aptitudes, Resource Attribute, Conditional Trigger, Distance Damage, Long-Reach Gambit, Momentum, Execution, Reactive Armor, Retaliation, Summoner, Growth |
 | 0 | Meme |
 
-- Only feats granted to the character count. Opening the AC's Homebrew menu or a family menu is free, and vanilla or other mods' feats are never counted.
+- Only feats granted to the character count. Opening the WotR Homebrew menu or a family menu is free, and vanilla or other mods' feats are never counted.
 - Each parametrized choice (for example each Weapon Damage weapon category or Casting Attribute spellbook) is a separate feat with its own cost. A feat with multiple ranks counts once per rank.
 - Picks earlier in the same level-up count toward later picks. Cancelling or changing a pick frees its budget; later picks that no longer fit are removed from the level-up, as with other prerequisites. Respec frees all budget.
 - Feat tooltips show used and maximum feats or points, the feat's cost and why it cannot be chosen. The mod settings list each party member's usage.
@@ -227,13 +227,13 @@ Main Attribute Mastery uses **inherent** bonuses, so it does not stack with tome
 ## Installation (Unity Mod Manager)
 
 1. Install [Unity Mod Manager](https://www.nexusmods.com/site/mods/21) for Pathfinder: Wrath of the Righteous.
-2. Build or download `ACHomebrew-0.1.2.zip`.
+2. Build or download `WotRHomebrew-0.1.2.zip`.
 3. Drop the zip into UMM.
 4. Enable the mod in-game.
 
 ## Save Compatibility
 
-- **Upgrading to AC's Homebrew** keeps every existing feat GUID, the UMM Id and the install folder. The six broad Main feats are retired but stay on characters that have them, with narrowed effects; respec to pick the new Main Attribute Mastery. Several families were narrowed (aptitudes, the Wisdom stance, Defiance at the Precipice, Blade of the Spell-Saint, Summoner Sacrifice) and the distance feats were rebuilt; existing characters get the new effects on load. Exclusion rules are now checked at selection time and no longer stored on blueprints.
+- **Upgrading to WotR Homebrew** keeps every existing feat GUID, the UMM Id and the install folder. The six broad Main feats are retired but stay on characters that have them, with narrowed effects; respec to pick the new Main Attribute Mastery. Several families were narrowed (aptitudes, the Wisdom stance, Defiance at the Precipice, Blade of the Spell-Saint, Summoner Sacrifice) and the distance feats were rebuilt; existing characters get the new effects on load. Exclusion rules are now checked at selection time and no longer stored on blueprints.
 - Settings files without budget, exclusion group, casting or meme fields use the defaults. Settings files without `WeaponDamage` default to `Replace`; both damage modes use the same new feat GUIDs, so switching modes requires no respec.
 - **0.1.1 → 0.1.x is non-breaking.** Settings carry over; XML serialization adds the new `EnableMutex` field as `true` by default.
 - **0.1.0 → 0.1.1 upgrades** keep all existing feats (GUIDs unchanged). New feats appear in the level-up feat list and Commanding Presence Stance now has its 30-ft ally aura wired; its Charisma scaling source still requires in-game verification.
@@ -242,10 +242,10 @@ Main Attribute Mastery uses **inherent** bonuses, so it does not stack with tome
 ## Building from Source
 
 - Set `WrathInstallDir`, `WrathPath`, or `WRATH_PATH`, or let the project generate the ignored, repository-root `GamePath.props` from `Player.log`.
-- From the repository root, run `dotnet build ACHomebrew.slnx -p:DeployMod=false` to compile without deploying to the game.
-- To build the release ZIP without deploying to the game, run `dotnet build ACHomebrew.slnx -c Release -p:DeployToGame=false`.
-- Build output is in `artifacts/bin/ACHomebrew/<Configuration>/`; intermediate files are in `artifacts/obj/`.
-- To deploy, run `dotnet build ACHomebrew.slnx`. The Deploy target copies files into the local UMM mod folder and creates `artifacts/packages/ACHomebrew-<Version>.zip`.
+- From the repository root, run `dotnet build WotRHomebrew.slnx -p:DeployMod=false` to compile without deploying to the game.
+- To build the release ZIP without deploying to the game, run `dotnet build WotRHomebrew.slnx -c Release -p:DeployToGame=false`.
+- Build output is in `artifacts/bin/WotRHomebrew/<Configuration>/`; intermediate files are in `artifacts/obj/`.
+- To deploy, run `dotnet build WotRHomebrew.slnx`. The Deploy target copies files into the local UMM mod folder and creates `artifacts/packages/WotRHomebrew-<Version>.zip`.
 - Run the game-independent repository checks with `pwsh -NoProfile -File scripts/Test-RepositoryContracts.ps1`. These check blueprint IDs and loader metadata; they do not test combat effects.
 
 - Run the standalone damage calculation checks with the .NET 10 SDK: `dotnet run --project tests/WeaponDamage.Tests`.
@@ -263,16 +263,16 @@ replace in-game behavior tests.
 
 | Path | Contents |
 |---|---|
-| `src/ACHomebrew/` | Entry project: UMM loader, registration order, icons, `App.config`, loader `Info.json`, optional ModMenu page and packaging (merges every project and BlueprintCore into `ACHomebrew.dll`) |
-| `src/ACHomebrew.Logic/` | Game-independent logic shared with the tests: budget costs, exclusion groups, scoring rules and blueprint GUIDs |
-| `src/ACHomebrew.Core/` | In-game infrastructure: feat menus, budget and exclusion enforcement, settings, localization and shared feat builders |
-| `src/ACHomebrew.Attributes/` | Main Attribute Mastery, Weapon Insight and Extended Replacement, Derived Stat Conversion, Weapon Damage, casting and resource attributes |
-| `src/ACHomebrew.Aptitudes/` | Defensive, Maneuver, Skilled and Arcane aptitudes |
-| `src/ACHomebrew.Martial/` | Stances, Conditional Triggers, distance feats, Long-Reach Gambit, Momentum and Execution |
-| `src/ACHomebrew.Defense/` | Reactive Armor and Retaliation |
-| `src/ACHomebrew.Magic/` | Spell School/Descriptor Specialists and Arcana (spell slots) |
-| `src/ACHomebrew.Summoning/` | Greater Summoning, Summoner Sacrifice and Summoner links |
-| `src/ACHomebrew.Styles/` | Stealth, Solo and Growth |
+| `src/WotRHomebrew/` | Entry project: UMM loader, registration order, icons, `App.config`, loader `Info.json`, optional ModMenu page and packaging (merges every project and BlueprintCore into `WotRHomebrew.dll`) |
+| `src/WotRHomebrew.Logic/` | Game-independent logic shared with the tests: budget costs, exclusion groups, scoring rules and blueprint GUIDs |
+| `src/WotRHomebrew.Core/` | In-game infrastructure: feat menus, budget and exclusion enforcement, settings, localization and shared feat builders |
+| `src/WotRHomebrew.Attributes/` | Main Attribute Mastery, Weapon Insight and Extended Replacement, Derived Stat Conversion, Weapon Damage, casting and resource attributes |
+| `src/WotRHomebrew.Aptitudes/` | Defensive, Maneuver, Skilled and Arcane aptitudes |
+| `src/WotRHomebrew.Martial/` | Stances, Conditional Triggers, distance feats, Long-Reach Gambit, Momentum and Execution |
+| `src/WotRHomebrew.Defense/` | Reactive Armor and Retaliation |
+| `src/WotRHomebrew.Magic/` | Spell School/Descriptor Specialists and Arcana (spell slots) |
+| `src/WotRHomebrew.Summoning/` | Greater Summoning, Summoner Sacrifice and Summoner links |
+| `src/WotRHomebrew.Styles/` | Stealth, Solo and Growth |
 | `src/WrathMod.props` | Shared game references and `WrathInstallDir` resolution |
 | `tests/` | Test projects and compatibility baselines |
 | `external/wotr-testing/` | Public submodule with the offline game test library and runner |
@@ -282,13 +282,13 @@ replace in-game behavior tests.
 | `artifacts/` | Ignored build outputs, intermediate files, packages and test reports |
 | `vendor/wotr/` | Optional ignored snapshot of game files for offline tests; never committed |
 
-The root keeps `ACHomebrew.slnx`, shared build configuration, repository
+The root keeps `WotRHomebrew.slnx`, shared build configuration, repository
 configuration, README, CHANGELOG and `Repository.json`. The local `GamePath.props`
 is shared by the Mod and test projects and must not be committed.
 
 ## Text and Icons
 
-Every feat and selection menu has English and Simplified Chinese names and descriptions. The original 92 feats and 60 feats added in AC's Homebrew have individual 128×128 PNG icons ([contact sheet](doc/feat-icons.png)). Main Attribute Mastery feats reuse their source attribute's icon; the six Weapon Damage feats do not yet have bespoke artwork. Names and lore, along with the new menu and Weapon Damage descriptions, live in the embedded [FeatText.json](src/ACHomebrew.Core/Localization/FeatText.json). Other rule templates remain with their implementations.
+Every feat and selection menu has English and Simplified Chinese names and descriptions. The original 92 feats and 60 feats added in WotR Homebrew have individual 128×128 PNG icons ([contact sheet](doc/feat-icons.png)). Main Attribute Mastery feats reuse their source attribute's icon; the six Weapon Damage feats do not yet have bespoke artwork. Names and lore, along with the new menu and Weapon Damage descriptions, live in the embedded [FeatText.json](src/WotRHomebrew.Core/Localization/FeatText.json). Other rule templates remain with their implementations.
 
 See the [icon contact sheet](doc/feat-icons.png), [asset manifest](doc/icon-manifest.json), and [validation commands and limits](doc/validation.md). The settings UI remains in English. Source checks and builds do not establish actual combat effects or in-game text layout.
 
@@ -312,7 +312,7 @@ without it.
 Design proposals, compatibility investigations and testing research live in the
 private [project notes](notes/首页.md). The `notes/` Git submodule
 uses the existing [Acture/obsidian-vault](https://github.com/Acture/obsidian-vault)
-repository and its `project/attribute-feats` branch. Only edit this project's notes
+repository and its `project/wotr-homebrew` branch. Only edit this project's notes
 at that checkout's root. Public installation instructions and the changelog remain
 in this repository; building or using the mod does not require private notes access.
 
@@ -332,14 +332,14 @@ project; they do not set up another synchronization system.
 For public code and documentation, skip the optional private submodule:
 
 ```powershell
-git clone --no-recurse-submodules https://github.com/Acture/attribute-feats.git
+git clone --no-recurse-submodules https://github.com/Acture/wotr-homebrew.git
 ```
 
 With authenticated access to the private notes repository:
 
 ```powershell
-git clone --recurse-submodules https://github.com/Acture/attribute-feats.git
-cd attribute-feats
+git clone --recurse-submodules https://github.com/Acture/wotr-homebrew.git
+cd wotr-homebrew
 ```
 
 For an existing clone or a new worktree, initialize the version recorded by its
@@ -366,21 +366,21 @@ project branch:
 
 ```powershell
 git -C notes fetch origin
-git -C notes log --oneline origin/project/attribute-feats..HEAD
+git -C notes log --oneline origin/project/wotr-homebrew..HEAD
 ```
 
 If the last command lists commits, stop and reconcile that work before switching.
 For the first edit in a newly initialized clone, create the local tracking branch:
 
 ```powershell
-git -C notes switch -c project/attribute-feats --track origin/project/attribute-feats
+git -C notes switch -c project/wotr-homebrew --track origin/project/wotr-homebrew
 ```
 
-If that local branch already exists, use `git -C notes switch project/attribute-feats`
+If that local branch already exists, use `git -C notes switch project/wotr-homebrew`
 instead. Then update without rewriting history:
 
 ```powershell
-git -C notes merge --ff-only origin/project/attribute-feats
+git -C notes merge --ff-only origin/project/wotr-homebrew
 git -C notes branch --show-current
 ```
 
@@ -409,7 +409,7 @@ specific files you edited; this example stages the project homepage:
 ```powershell
 git -C notes diff --stat
 git -C notes add 首页.md
-git -C notes commit -m "docs: update AC's Homebrew design notes"
+git -C notes commit -m "docs: update WotR Homebrew design notes"
 $notesCommonGitDir = git -C notes rev-parse --path-format=absolute --git-common-dir
 python -X utf8 "$notesCommonGitDir/hooks/notes-boundary/submit_project.py" --repo notes
 ```
@@ -419,7 +419,7 @@ pointer. Run each step only if the preceding command succeeds:
 
 ```powershell
 git -C notes fetch origin
-git -C notes merge-base --is-ancestor HEAD origin/project/attribute-feats
+git -C notes merge-base --is-ancestor HEAD origin/project/wotr-homebrew
 git diff --submodule=log -- notes
 git add -- notes
 git commit -m "docs: update project notes reference"
@@ -440,7 +440,7 @@ and history have been verified separately.
 
 ## Credits
 
-Thanks to @CasDragon for code snippets and ideas. AC's Homebrew (formerly AttributeFeats) grew out of earlier Redditor class-feat experiments and was rebuilt for the 0.1.0 build-enabler release.
+Thanks to @CasDragon for code snippets and ideas. WotR Homebrew (formerly AttributeFeats) grew out of earlier Redditor class-feat experiments and was rebuilt for the 0.1.0 build-enabler release.
 
 ## License
 

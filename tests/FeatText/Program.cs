@@ -2,12 +2,12 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using ACHomebrew.Feats;
+using WotRHomebrew.Feats;
 using Kingmaker.Localization;
 using Kingmaker.Localization.Shared;
 using Newtonsoft.Json.Linq;
 
-namespace ACHomebrew
+namespace WotRHomebrew
 {
     internal static class Mod { internal static Logger Log = new Logger(); }
     internal sealed class Logger { public void Log(string message) => throw new Exception(message); }

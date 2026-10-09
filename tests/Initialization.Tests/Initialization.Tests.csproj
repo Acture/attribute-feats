@@ -5,9 +5,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="../../src/ACHomebrew/FeatRegistry.cs" Link="FeatRegistry.cs" />
-    <Compile Include="../../src/ACHomebrew.Core/FeatSelection.cs" Link="FeatSelection.cs" />
-    <Compile Include="../../src/ACHomebrew.Logic/FeatBudgetRules.cs" Link="FeatBudgetRules.cs" />
-    <Compile Include="../../src/ACHomebrew.Logic/Guids.cs" Link="Guids.cs" />
+    <Compile Include="../../src/WotRHomebrew/FeatRegistry.cs" Link="FeatRegistry.cs" />
+    <Compile Include="../../src/WotRHomebrew.Core/FeatSelection.cs" Link="FeatSelection.cs" />
+    <Compile Include="../../src/WotRHomebrew.Logic/FeatBudgetRules.cs" Link="FeatBudgetRules.cs" />
+    <Compile Include="../../src/WotRHomebrew.Logic/Guids.cs" Link="Guids.cs" />
   </ItemGroup>
 </Project>
