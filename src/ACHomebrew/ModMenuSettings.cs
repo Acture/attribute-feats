@@ -74,15 +74,15 @@ namespace ACHomebrew
         {
             var s = Main.Settings;
             var d = new ModSettings();
-            var builder = SettingsBuilder.New(Prefix, L("Title", "AC's Homebrew", "AC 的家酿规则"))
+            var builder = SettingsBuilder.New(Prefix, L("Title", "AC's Homebrew", "AC 的房规手册"))
                 .SetMod(Main.Entry, false)
                 .AddSubHeader(L("Budget", "Feat budget (applies immediately)", "专长额度（即时生效）"), true)
                 .AddToggle(Toggle("budget-count", d.EnableFeatCountLimit, () => s.EnableFeatCountLimit, v => s.EnableFeatCountLimit = v,
-                    "Limit the number of Homebrew feats per character", "限制每个角色的家酿专长数量"))
+                    "Limit the number of Homebrew feats per character", "限制每个角色的房规专长数量"))
                 .AddSliderInt(Slider("budget-count-max", d.MaxFeatCount, () => s.MaxFeatCount, v => s.MaxFeatCount = v,
                     "Maximum feats", "专长数量上限"))
                 .AddToggle(Toggle("budget-points", d.EnableFeatPointLimit, () => s.EnableFeatPointLimit, v => s.EnableFeatPointLimit = v,
-                    "Limit Homebrew feat points per character", "限制每个角色的家酿专长点数"))
+                    "Limit Homebrew feat points per character", "限制每个角色的房规专长点数"))
                 .AddSliderInt(Slider("budget-points-max", d.MaxFeatPoints, () => s.MaxFeatPoints, v => s.MaxFeatPoints = v,
                     "Maximum points", "点数上限"))
                 .AddToggle(Toggle("solo-pets", d.TrulySoloCountsPets, () => s.TrulySoloCountsPets, v => s.TrulySoloCountsPets = v,

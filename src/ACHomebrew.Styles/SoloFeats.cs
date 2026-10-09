@@ -49,7 +49,7 @@ namespace ACHomebrew.Feats
 
         private static void ConfigureSolo()
         {
-            var buff = Buff("LoneWolfBuff", Guids.Playstyle.LoneWolfBuff, "Lone Wolf", "独狼",
+            var buff = Buff("LoneWolfBuff", Guids.Playstyle.LoneWolfBuff, "Lone Wolf", "孤鸿涉远",
                     "No ally is within 30 feet: dodge bonus to AC, bonus on saving throws and damage of +1 per 4 character levels (minimum +1).",
                     "30尺内没有队友：防御等级获得闪避加值，豁免与伤害获得加值，每4角色等级+1（最低+1）。")
                 .AddContextRankConfig(ContextRankConfigs.CharacterLevel(min: 1).WithDivStepProgression(4))
@@ -59,7 +59,7 @@ namespace ACHomebrew.Feats
                 .AddContextStatBonus(StatType.SaveWill, Common.Rank(), descriptor: ModifierDescriptor.UntypedStackable)
                 .AddContextStatBonus(StatType.AdditionalDamage, Common.Rank(), descriptor: ModifierDescriptor.UntypedStackable)
                 .Configure();
-            Feat(FeatSelection.Solo, "LoneWolf", Guids.Playstyle.LoneWolf, "Lone Wolf", "独狼",
+            Feat(FeatSelection.Solo, "LoneWolf", Guids.Playstyle.LoneWolf, "Lone Wolf", "孤鸿涉远",
                     Desc("Solo", "独行",
                         "While no conscious ally is within 30 feet of you, you gain a dodge bonus to AC and a bonus on saving throws and damage rolls " +
                         "equal to +1 per 4 character levels (minimum +1). Summoned creatures and pets count as allies. Checked each round.",

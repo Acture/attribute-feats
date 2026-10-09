@@ -50,19 +50,19 @@ namespace ACHomebrew.Feats
 
         private static void ConfigureKillGrowth()
         {
-            Growth("EssenceShift", Guids.Playstyle.EssenceShift, Guids.Playstyle.EssenceShiftCounter, "Essence Thief", "精华窃取",
+            Growth("EssenceShift", Guids.Playstyle.EssenceShift, Guids.Playstyle.EssenceShiftCounter, "Stolen Grace", "掠影炼魄",
                 StatType.Dexterity, 100, casterKillsOnly: false, partyKills: false,
                 "Every 100 enemies you kill permanently increase your Dexterity by 1. There is no limit.",
                 "你每击杀100名敌人，永久提升1点敏捷，没有上限。");
-            Growth("FleshHeap", Guids.Playstyle.FleshHeap, Guids.Playstyle.FleshHeapCounter, "Flesh Heap", "腐肉堆积",
+            Growth("FleshHeap", Guids.Playstyle.FleshHeap, Guids.Playstyle.FleshHeapCounter, "Corpse-Forged Bulk", "尸山淬躯",
                 StatType.Strength, 100, casterKillsOnly: false, partyKills: true,
                 "Every 100 enemies killed by your party (including pets) permanently increase your Strength by 1. There is no limit.",
                 "你的队伍（含宠物）每击杀100名敌人，你永久提升1点力量，没有上限。");
-            Growth("ArcaneSiphon", Guids.Playstyle.ArcaneSiphon, Guids.Playstyle.ArcaneSiphonCounter, "Arcane Siphon", "智慧之刃",
+            Growth("ArcaneSiphon", Guids.Playstyle.ArcaneSiphon, Guids.Playstyle.ArcaneSiphonCounter, "Stolen Epiphany", "掠识开慧",
                 StatType.Intelligence, 10, casterKillsOnly: true, partyKills: false,
                 "Every 10 spellcasting enemies you kill permanently increase your Intelligence by 1. There is no limit.",
                 "你每击杀10名施法者敌人，永久提升1点智力，没有上限。");
-            Growth("DevouredVigor", Guids.Playstyle.DevouredVigor, Guids.Playstyle.DevouredVigorCounter, "Devoured Vigor", "噬魂",
+            Growth("DevouredVigor", Guids.Playstyle.DevouredVigor, Guids.Playstyle.DevouredVigorCounter, "Siphoned Vitality", "噬元固魄",
                 StatType.HitPoints, 10, casterKillsOnly: false, partyKills: false,
                 "Every 10 enemies you kill permanently increase your maximum hit points by 1. There is no limit.",
                 "你每击杀10名敌人，永久提升1点生命上限，没有上限。");
@@ -101,7 +101,7 @@ namespace ACHomebrew.Feats
                 .AddContextRankConfig(ContextRankConfigs.BuffRank(Guids.Dota.NecromasteryBuff).WithDivStepProgression(2))
                 .AddContextStatBonus(StatType.AdditionalDamage, Common.Rank(), descriptor: ModifierDescriptor.UntypedStackable)
                 .Configure();
-            Feat(FeatSelection.Growth, "Necromastery", Guids.Dota.Necromastery, "Necromastery", "魂之挽歌",
+            Feat(FeatSelection.Growth, "Necromastery", Guids.Dota.Necromastery, "Soul-Tether Harvest", "拘魂蓄怨",
                     Desc("Growth", "成长",
                         "Each enemy you kill grants a soul, up to twice your character level (and never more than 40). You deal +1 damage per 2 souls. Souls persist until you die.",
                         "你每击杀一名敌人获得一个灵魂，上限为角色等级的2倍（不超过40）。每2个灵魂伤害+1。灵魂保留到你死亡为止。"))

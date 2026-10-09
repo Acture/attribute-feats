@@ -16,7 +16,7 @@ $taskFormat.Alignment = [Drawing.StringAlignment]::Center
 try {
     $taskGraphics.Clear([Drawing.Color]::FromArgb(20,23,28))
     $taskGraphics.TextRenderingHint = [Drawing.Text.TextRenderingHint]::AntiAliasGridFit
-    $taskGraphics.DrawString('AC''s Homebrew · 92 个独立专长图标 · 128 × 128', $taskTitleFont, $taskBrush, 18, 12)
+    $taskGraphics.DrawString(('AC''s Homebrew · ' + $taskAssets.Count + ' 个独立专长图标 · 128 × 128'), $taskTitleFont, $taskBrush, 18, 12)
     for ($taskIndex = 0; $taskIndex -lt $taskAssets.Count; $taskIndex++) {
         $taskAsset = $taskAssets[$taskIndex]
         $taskX = ($taskIndex % $taskColumns) * $taskCellWidth

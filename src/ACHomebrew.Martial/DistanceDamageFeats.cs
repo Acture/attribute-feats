@@ -64,8 +64,8 @@ namespace ACHomebrew.Feats
             CreateCloseQuartersFeat(
                 "CloseQuarters",
                 Guids.DistanceDamage.CloseQuarters,
-                "Close-Quarters Footwork",
-                "贴身步法",
+                "In-Fighting Stride",
+                "欺身锁步",
                 "Total Reach",
                 "总触及",
                 "Melee weapon attacks gain an untyped damage bonus by your total reach with that weapon (your own reach plus the weapon's): " +
@@ -87,8 +87,8 @@ namespace ACHomebrew.Feats
             CreateCloseQuartersFeat(
                 "ReachControl",
                 Guids.DistanceDamage.ReachControl,
-                "Reach Control",
-                "控距",
+                "Measured Distance",
+                "掌距控势",
                 "Total Reach",
                 "总触及",
                 "Melee weapon attacks gain an untyped damage bonus by your total reach with that weapon: none at 5 feet, +2 at 10 feet, +4 at 15 feet or more.",
@@ -98,8 +98,8 @@ namespace ACHomebrew.Feats
             CreateCloseQuartersFeat(
                 "StrongBow",
                 Guids.DistanceDamage.StrongBow,
-                "Long-Range Arms",
-                "强弓",
+                "Far-Reaching Arms",
+                "挽弓及远",
                 "Weapon Range",
                 "武器射程",
                 "Ranged and thrown weapon attacks gain an untyped damage bonus by the weapon's range: +4 at 50 feet or more, +3 at 40 feet, +2 at 30 feet, +1 at 20 feet.",
@@ -109,8 +109,8 @@ namespace ACHomebrew.Feats
             CreateCloseQuartersFeat(
                 "SteadySniper",
                 Guids.DistanceDamage.SteadySniper,
-                "Steady Sniper",
-                "稳射",
+                "Unhurried Aim",
+                "静息稳射",
                 "Composure",
                 "从容",
                 "Ranged and thrown weapon attacks gain a +4 untyped damage bonus while no enemy is engaging you in melee.",
@@ -182,9 +182,11 @@ namespace ACHomebrew.Feats
         {
             var en = $"<i>Distance Damage · {labelEn}</i>\n\n<b>Effect:</b> {effectEn}\n\n<b>Stacking:</b> Stacks with the other feats of the same distance style (up to +12 together).";
             var zh = $"<i>距离特化 · {labelZh}</i>\n\n<b>效果：</b>{effectZh}\n\n<b>叠加：</b>可与同一距离风格的其他专长叠加（合计最高+12）。";
+            (en, zh) = FeatLore.Apply(internalName, (en, zh));
             return FeatSelection.DistanceDamage.NewFeat(internalName, guid)
                 .SetDisplayName(Common.L($"DistanceDamage_{internalName}.Name", nameEn, nameZh))
                 .SetDescription(Common.L($"DistanceDamage_{internalName}.Desc", en, zh, tagEncyclopediaEntries: true))
+                .SetIconIfPresent(internalName)
                 .AddComponent<CloseQuartersDamage>(c => c.Measure = measure)
                 .Configure();
         }

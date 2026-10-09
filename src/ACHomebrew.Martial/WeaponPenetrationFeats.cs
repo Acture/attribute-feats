@@ -12,14 +12,14 @@ namespace ACHomebrew.Feats
             if (Initialized) return;
             Initialized = true;
 
-            Feat(FeatSelection.Penetration, "BoneBreaker", Guids.Penetration.BoneBreaker, "Bone Breaker", "碎骨",
+            Feat(FeatSelection.Penetration, "BoneBreaker", Guids.Penetration.BoneBreaker, "Bone Breaker", "碎骨断筋",
                     Desc("Penetration", "穿透",
                         "Your critical hits apply even to creatures immune to critical hits.",
                         "你的重击对免疫重击的生物同样生效。"))
                 .AddComponent<Kingmaker.Designers.Mechanics.Facts.IgnoreCritImmunity>()
                 .Configure();
 
-            Feat(FeatSelection.Penetration, "HiddenVitals", Guids.Penetration.HiddenVitals, "Hidden Vitals", "寻隙",
+            Feat(FeatSelection.Penetration, "HiddenVitals", Guids.Penetration.HiddenVitals, "Hidden Vitals", "寻隙刺要",
                     Desc("Penetration", "穿透",
                         "Your sneak attacks and other precision damage apply even to creatures immune to precision damage.",
                         "你的偷袭与其他精准伤害对免疫精准伤害的生物同样生效。"))

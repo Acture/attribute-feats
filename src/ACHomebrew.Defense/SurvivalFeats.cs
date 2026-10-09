@@ -21,12 +21,12 @@ namespace ACHomebrew.Feats
             if (Initialized) return;
             Initialized = true;
 
-            var undying = Buff("UndyingBuff", Guids.Survival.UndyingBuff, "Undying", "不死",
+            var undying = Buff("UndyingBuff", Guids.Survival.UndyingBuff, "Undying", "向死而生",
                     "You cannot die and keep acting at negative hit points. When this ends, you die if your hit points are still at or below the negative of your Constitution score.",
                     "你不会死亡，生命值为负时仍可行动。效果结束时，若生命值仍不高于负的体质值，你将死亡。")
                 .AddComponent<UndyingState>()
                 .Configure();
-            Feat(FeatSelection.Survival, "Undying", Guids.Survival.Undying, "Undying", "不死",
+            Feat(FeatSelection.Survival, "Undying", Guids.Survival.Undying, "Undying", "向死而生",
                     Desc("Survival", "生存",
                         "When damage reduces you to 0 hit points or fewer, you become Undying for 1 hour: you cannot die and keep acting at negative hit points. " +
                         "If you are not healed above the death threshold (negative Constitution score) before it ends, you die. It can trigger again after it ends.",

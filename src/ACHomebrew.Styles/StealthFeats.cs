@@ -50,15 +50,15 @@ namespace ACHomebrew.Feats
 
         private static void ConfigureStealth()
         {
-            var cooldown = Buff("ReStealthCooldownBuff", Guids.Playstyle.ReStealthCooldownBuff, "Fading Step (used)", "隐退（已触发）",
-                    "Fading Step has triggered this round.", "隐退本轮已触发。")
+            var cooldown = Buff("ReStealthCooldownBuff", Guids.Playstyle.ReStealthCooldownBuff, "Vanishing Stroke (used)", "刃落无影（已触发）",
+                    "Vanishing Stroke has triggered this round.", "刃落无影本轮已触发。")
                 .Configure();
             var vanish = ActionsBuilder.New().Conditional(
                 ConditionsBuilder.New().HasBuff(cooldown, negate: true),
                 ifTrue: ActionsBuilder.New()
                     .ApplyBuff(VanillaGreaterInvisibilityBuff, Rounds(1))
                     .ApplyBuff(cooldown, Rounds(1)));
-            Feat(FeatSelection.Stealth, "ReStealth", Guids.Playstyle.ReStealth, "Fading Step", "隐退",
+            Feat(FeatSelection.Stealth, "ReStealth", Guids.Playstyle.ReStealth, "Vanishing Stroke", "刃落无影",
                     Desc("Stealth", "潜行",
                         "Once per round, when your weapon attack drops an enemy, scores a critical hit, or deals sneak attack damage, you become greatly invisible for 1 round.",
                         "每轮一次，你的武器攻击使敌人倒下、造成重击或造成偷袭伤害时，你获得1轮高等隐身。"))

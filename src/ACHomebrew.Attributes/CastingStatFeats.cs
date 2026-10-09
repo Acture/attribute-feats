@@ -42,9 +42,9 @@ namespace ACHomebrew.Feats
             Initialized = true;
 
             var spellbooks = CollectSpellbooks();
-            Create(StatType.Strength, "Str", "Strength", "力量", Guids.CastingStat.Str, spellbooks);
-            Create(StatType.Dexterity, "Dex", "Dexterity", "敏捷", Guids.CastingStat.Dex, spellbooks);
-            Create(StatType.Constitution, "Con", "Constitution", "体质", Guids.CastingStat.Con, spellbooks);
+            Create(StatType.Strength, "Str", "Strength", "力量", "Somatic Force", "力擎法脉", Guids.CastingStat.Str, spellbooks);
+            Create(StatType.Dexterity, "Dex", "Dexterity", "敏捷", "Sleight of Arcana", "巧指弄玄", Guids.CastingStat.Dex, spellbooks);
+            Create(StatType.Constitution, "Con", "Constitution", "体质", "Sanguine Incantation", "气血炼真", Guids.CastingStat.Con, spellbooks);
             Mod.Log?.Log($"AttributeFeats: casting attribute feats cover {spellbooks.Count} spellbooks.");
         }
 
@@ -63,7 +63,7 @@ namespace ACHomebrew.Feats
                 .ToList();
         }
 
-        private static void Create(StatType attribute, string key, string en, string zh, string guid, List<BlueprintSpellbook> spellbooks)
+        private static void Create(StatType attribute, string key, string en, string zh, string titleEn, string titleZh, string guid, List<BlueprintSpellbook> spellbooks)
         {
             var name = $"CastingStat_{key}";
             var descEn = $"<i>Casting Attribute · {en}</i>\n\n" +
@@ -76,9 +76,11 @@ namespace ACHomebrew.Feats
                 $"<b>效果：</b>选择你的一本法术书，其施法属性改为{zh}：法术豁免DC、额外法术位、各环法术所需的最低属性值与专注都改用该属性。\n\n" +
                 $"<b>设置：</b>“施法范围”可改为作用于你的全部法术书；“施法模式”可改为仅在{zh}高于法术书原属性时生效。\n\n" +
                 "<b>限制：</b>每本法术书只能有一个施法属性专长。可再次选取本专长用于另一本法术书。";
+            (descEn, descZh) = FeatLore.Apply(name, (descEn, descZh));
             var feat = FeatSelection.CastingStat.NewParametrizedFeat(name, guid)
-                .SetDisplayName(Common.L($"{name}.Name", $"{en} Spellcasting", $"{zh}施法"))
+                .SetDisplayName(Common.L($"{name}.Name", titleEn, titleZh))
                 .SetDescription(Common.L($"{name}.Desc", descEn, descZh, tagEncyclopediaEntries: true))
+                .SetIconIfPresent(name)
                 .SetParameterType(FeatureParameterType.Custom)
                 .AddComponent<CastingAttributeOverride>(c => c.Attribute = attribute)
                 .Configure();

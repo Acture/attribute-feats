@@ -53,9 +53,9 @@ Families are grouped by play theme below. Numbers are first-pass values, and **n
 | Replace (default) | `1d8 + 5` |
 | Add | `1d8 + 1 + 5` |
 
-**Casting Attribute (3)** — Strength, Dexterity or Constitution Spellcasting: choose one of your spellbooks; it uses that attribute for save DCs, bonus spell slots, the minimum score to cast and concentration. Settings: *Casting Scope* (selected spellbook or all spellbooks) and *Casting Mode* (always, or only when higher). The spellbook screen header may still show the original attribute.
+**Casting Attribute (3)** — Somatic Force (力擎法脉, Strength), Sleight of Arcana (巧指弄玄, Dexterity) or Sanguine Incantation (气血炼真, Constitution): choose one of your spellbooks; it uses that attribute for save DCs, bonus spell slots, the minimum score to cast and concentration. Settings: *Casting Scope* (selected spellbook or all spellbooks) and *Casting Mode* (always, or only when higher). The spellbook screen header may still show the original attribute.
 
-**Resource Attribute (6)** — one per attribute: choose one of your resources whose uses grow with an ability modifier (channel energy, ki, lay on hands, performance, bloodline or domain powers, including resources from other mods); its bonus uses come from that attribute. The new maximum applies the next time the resource is restored.
+**Resource Attribute (6)** — one per attribute (Reservoir of Might 巨力盈渊, Springs of Agility 灵动渊源, Font of Endurance 骨髓蓄沛, Well of Thought 识海蕴灵, Meditative Spring 澄心源流, Sovereign Font 华威盈座): choose one of your resources whose uses grow with an ability modifier (channel energy, ki, lay on hands, performance, bloodline or domain powers, including resources from other mods); its bonus uses come from that attribute. The new maximum applies the next time the resource is restored.
 
 ### Aptitudes
 
@@ -100,21 +100,21 @@ Maneuver adds the modifier to CMB. Arcane adds it to caster level and spell pene
 |---|---|---|
 | Close (melee) | Point-Blank Ruin (咫尺绝杀) | Hit distance: +4 pressed against the target, −1 per 1.5 ft |
 | | Short-Blade Discipline (短刃心诀) | Light/unarmed/natural 4, one-handed 3, two-handed 2, reach 0 |
-| | Close-Quarters Footwork (贴身步法) | Total reach 5 ft 4, 10 ft 2, 15 ft+ 0 |
+| | In-Fighting Stride (欺身锁步) | Total reach 5 ft 4, 10 ft 2, 15 ft+ 0 |
 | Mid (melee) | Harmonic Cleave (流光截角) | Hit distance: +1 per 1.5 ft from the target's edge, up to 4 |
 | | Long-Haft Discipline (长柄心诀) | Reach weapons 4, other two-handed 2 |
-| | Reach Control (控距) | Total reach 5 ft 0, 10 ft 2, 15 ft+ 4 |
+| | Measured Distance (掌距控势) | Total reach 5 ft 0, 10 ft 2, 15 ft+ 4 |
 | Long (ranged, thrown) | Horizon's Deadeye (苍穹神击) | +1 per 10 ft beyond 10 ft, up to 4 |
-| | Long-Range Arms (强弓) | Weapon range 50 ft+ 4, 40 ft 3, 30 ft 2, 20 ft 1 |
-| | Steady Sniper (稳射) | +4 while no enemy engages you in melee |
+| | Far-Reaching Arms (挽弓及远) | Weapon range 50 ft+ 4, 40 ft 3, 30 ft 2, 20 ft 1 |
+| | Unhurried Aim (静息稳射) | +4 while no enemy engages you in melee |
 
 **Long-Reach Gambit (长锋险势)** — reach × 2 with −4 weapon damage.
 
-**Momentum** — Killing Spree (kills stack +2 attack and +10 ft speed, up to 3), Battle Rhythm (hits stack +1 attack/+2 damage up to 3; being hit removes one), Fervor (repeated attacks on one target build dodge AC, then an extra attack), Crushing Rhythm (every fourth attack is a guaranteed critical).
+**Momentum** — Cascading Carnage (浴血连斩: kills stack +2 attack and +10 ft speed, up to 3), Unbroken Measure (连绵战韵: hits stack +1 attack/+2 damage up to 3; being hit removes one), Quarry's Obsession (步步紧逼: repeated attacks on one target build dodge AC, then an extra attack), Fourth-Beat Ruin (叠浪惊雷: every fourth attack is a guaranteed critical).
 
-**Execution** — Corrosive Finish (damage grows with the target's missing HP and your level), Burning Desperation (fire aura scaled by your missing HP), Feast / Opening Bite / Arcane Feast / Savage Feast (bonus damage from the target's maximum or current HP via weapons, spells or natural attacks; Savage Feast also heals), Lifesteal (heal 15% of weapon damage).
+**Execution** — Deepening the Cleft (乘隙溃创: damage grows with the target's missing HP and your level), Pyre of Defiance (残躯燃焰: fire aura scaled by your missing HP), Colossus Reaver / Vanguard's Sunder / Arcane Resection / Primal Gluttony (猎巨诛命 / 挫敌锐芒 / 崩元析命 / 荒蛮撕嚼: bonus damage from the target's maximum or current HP via weapons, spells or natural attacks; Primal Gluttony also heals), Sanguine Tithe (饮血淬芒: heal 15% of weapon damage).
 
-**Penetration (weapons)** — Bone Breaker (critical hits ignore critical-hit immunity), Hidden Vitals (sneak attack and precision damage ignore precision immunity).
+**Penetration (weapons)** — Bone Breaker (碎骨断筋: critical hits ignore critical-hit immunity), Hidden Vitals (寻隙刺要: sneak attack and precision damage ignore precision immunity).
 
 ### Defense
 
@@ -122,9 +122,9 @@ Maneuver adds the modifier to CMB. Arcane adds it to caster level and spell pene
 - **Barbed Carapace (逆鳞铁刺)** — In armor, return 1d6 + armor bonus as untyped damage on melee hit.
 - **Citadel of Steel (铸铁城阙)** — In medium/heavy armor, refresh temporary HP equal to armor bonus each round.
 
-**Retaliation** — Riposte Reflex (spend an attack of opportunity to strike back at melee attackers), Punish the Opening (a missed melee attack against you triggers a free counter, once per round), Punisher (bonus against enemies that attacked you this round), Read the Blade (after a parry, the next attack is a guaranteed critical), Shoving Blows (bull rush after every attack you make or receive), Return Blow (enemies that damage you take half your level plus Strength), Kraken Shell (DR, and harmful effects are purged after taking a tenth of your maximum HP).
+**Retaliation** — Riposte Reflex (截锋逆击: spend an attack of opportunity to strike back at melee attackers), Punish the Overreach (乘虚落刃: a missed melee attack against you triggers a free counter, once per round), Blood-Debt Reckoning (睚眦必报: bonus against enemies that attacked you this round), Read the Blade (明镜识锋: after a parry, the next attack is a guaranteed critical), Batter and Displace (撼步冲撞: bull rush after every attack you make or receive), Anvil's Retribution (铁砧反震: enemies that damage you take half your level plus Strength), Leviathan's Carapace (渊海甲胄: DR, and harmful effects are purged after taking a tenth of your maximum HP).
 
-**Survival** — Undying: when damage drops you to 0 HP or lower, you cannot die and keep acting for 1 hour; if you are not healed above the death threshold by then, you die.
+**Survival** — Undying (向死而生): when damage drops you to 0 HP or lower, you cannot die and keep acting for 1 hour; if you are not healed above the death threshold by then, you die.
 
 ### Magic
 
@@ -133,9 +133,9 @@ Maneuver adds the modifier to CMB. Arcane adds it to caster level and spell pene
 - **School:** Aegis of the Pure Warder / 绝界镇魔使 (Abjuration / Wis), Sovereign Gatekeeper / 统界辟门者 (Conjuration / Cha), Eye of the Chronomancer / 溯时先知 (Divination / Int), Sovereign of the Heart / 倾心国主 (Enchantment / Cha), Pyre of the Architect / 灾变筑城师 (Evocation / Int), Phantasmagoria Maestro / 织影幻圣 (Illusion / Cha), Harvester of the Boneyard / 冥河渡魂人 (Necromancy / Wis), Sculptor of Prime Matter / 塑质造化使 (Transmutation / Int).
 - **Descriptor:** Pyre of the Phoenix / 炽皇凤涅 (Fire / Cha), Stillness of the Glacial Void / 极渊玄冰 (Cold / Wis), Tempest-Dancer / 御雷疾影 (Electricity / Dex), Vitriolic Equation / 腐解算律 (Acid / Int), Herald of the Shattered Sky / 破霄神音 (Sonic / Cha), Axiom of Unseen Force / 虚空定则 (Force / Int), Fountain of Solar Dawn / 金阳圣晖 (Positive Energy / Cha), Vigil of the Gloom / 死寂枯荣 (Negative Energy / Wis), Puppeteer of the Mind / 惑魂主宰 (Mind-Affecting / Cha).
 
-**Arcana** — Harvest of Power (an enemy you damaged dies: regain a spell slot up to half its HD, once per round), Arcane Orb (cantrips deal extra damage from your remaining slot levels), Essence Flux (15% chance to refund a spell slot), Mana Break and Mana Void (weapon hits or spells burn an enemy caster's highest slot and deal twice its level, once per round).
+**Arcana** — Spell-Reaper's Tithe (萃魂蕴法: an enemy you damaged dies: regain a spell slot up to half its HD, once per round), Brimming Reservoir (盈渊射诀: cantrips deal extra damage from your remaining slot levels), Arcane Recirculation (灵脉返流: 15% chance to refund a spell slot), Spell-Shatter Edge and Spell-Well Collapse (断法绝流 / 枯泉引爆: weapon hits or spells burn an enemy caster's highest slot and deal twice its level, once per round).
 
-**Penetration (spells)** — Mind Breaker (mind-affecting, charm, compulsion, emotion), Deathbringer (death), Dread Presence (fear), Plaguebearer (poison, disease), Overwhelming Force (paralysis, stun, daze, sleep): your effects of those kinds ignore immunity to them. Elemental Breach: creatures immune to an energy type take half your damage of that type instead, and are never healed by it.
+**Penetration (spells)** — Mind Breaker (破心夺志: mind-affecting, charm, compulsion, emotion), Deathbringer (索命无赦: death), Dread Presence (慑魄凶威: fear), Plaguebearer (疫毒蚀骨: poison, disease), Overwhelming Force (镇岳缚形: paralysis, stun, daze, sleep): your effects of those kinds ignore immunity to them. Elemental Breach (破元裂障): creatures immune to an energy type take half your damage of that type instead, and are never healed by it.
 
 ### Summoning
 
@@ -155,15 +155,15 @@ Maneuver adds the modifier to CMB. Arcane adds it to caster level and spell pene
 - **Eldritch Crucible (双生法炼)** — −2 Str/Dex/Con on yourself, +4 Str/Dex/Con on summons.
 - **Tribute of Iron Dominion (夺冕化蛮)** — −4 Charisma on yourself, +8 Strength on summons.
 
-**Summoner** — Spirit Link (healing is shared between you and nearby summons, without bouncing back), Swarm Caller (+1 summoned creature per 3 caster levels for every summoning spell or ability, including modded ones), Lingering Bond (summons last 24 hours longer).
+**Summoner** — Summoner's Tether (契魂连理: healing is shared between you and nearby summons, without bouncing back), Swarm Caller (万灵应召: +1 summoned creature per 3 caster levels for every summoning spell or ability, including modded ones), Lingering Bond (契约长存: summons last 24 hours longer).
 
 ### Styles
 
-**Stealth** — Fading Step: a kill, critical hit or sneak attack grants 1 round of greater invisibility, once per round.
+**Stealth** — Vanishing Stroke (刃落无影): a kill, critical hit or sneak attack grants 1 round of greater invisibility, once per round.
 
-**Solo** — Lone Wolf (bonus to dodge AC, saves and damage while no ally is within 30 ft, growing with level) and Truly Solo (+1 to attributes, dodge AC, saves, attack and damage per joined companion who is not in the party, up to 5).
+**Solo** — Lone Wolf (孤鸿涉远: bonus to dodge AC, saves and damage while no ally is within 30 ft, growing with level) and Truly Solo (+1 to attributes, dodge AC, saves, attack and damage per joined companion who is not in the party, up to 5).
 
-**Growth** — permanent, uncapped growth from kills: Essence Thief (+1 Dex per 100 kills), Flesh Heap (+1 Str per 100 party kills), Arcane Siphon (+1 Int per 10 caster kills), Devoured Vigor (+1 max HP per 10 kills), and Necromastery (souls from kills add damage, up to twice your level).
+**Growth** — permanent, uncapped growth from kills: Stolen Grace (掠影炼魄: +1 Dex per 100 kills), Corpse-Forged Bulk (尸山淬躯: +1 Str per 100 party kills), Stolen Epiphany (掠识开慧: +1 Int per 10 caster kills), Siphoned Vitality (噬元固魄: +1 max HP per 10 kills), and Soul-Tether Harvest (拘魂蓄怨: souls from kills add damage, up to twice your level).
 
 **Meme** (off by default; enable in settings and restart; free of budget points) — Man, What Can I Say (a speech bubble on kills and critical hits) and Nobody Knows It Better (+2 to a chosen skill and a speech bubble when you use it).
 
@@ -285,7 +285,7 @@ is shared by the Mod and test projects and must not be committed.
 
 ## Text and Icons
 
-Every feat and selection menu has English and Simplified Chinese names and descriptions. The original 92 feats have individual 128×128 PNG icons; the six Weapon Damage feats and the feats added in AC's Homebrew do not yet have bespoke artwork. Names and lore, along with the new menu and Weapon Damage descriptions, live in the embedded [FeatText.json](src/ACHomebrew.Core/Localization/FeatText.json). Other rule templates remain with their implementations.
+Every feat and selection menu has English and Simplified Chinese names and descriptions. The original 92 feats and 60 feats added in AC's Homebrew have individual 128×128 PNG icons ([contact sheet](doc/feat-icons.png)). Main Attribute Mastery feats reuse their source attribute's icon; the six Weapon Damage feats do not yet have bespoke artwork. Names and lore, along with the new menu and Weapon Damage descriptions, live in the embedded [FeatText.json](src/ACHomebrew.Core/Localization/FeatText.json). Other rule templates remain with their implementations.
 
 See the [icon contact sheet](doc/feat-icons.png), [asset manifest](doc/icon-manifest.json), and [validation commands and limits](doc/validation.md). The settings UI remains in English. Source checks and builds do not establish actual combat effects or in-game text layout.
 

@@ -36,6 +36,7 @@ namespace ACHomebrew.Feats
             ParametrizedFeatureConfigurator.New("NobodyKnowsBetter", Guids.Meme.NobodyKnowsBetter)
                 .SetGroups(Kingmaker.Blueprints.Classes.FeatureGroup.Feat)
                 .SetDisplayName(Common.L("NobodyKnowsBetter.Name", "Nobody Knows It Better", "没有人比我更懂"))
+                .SetIconIfPresent("NobodyKnowsBetter")
                 .SetDescription(Common.L("NobodyKnowsBetter.Desc",
                     Desc("Meme", "梗", "Choose a skill. You gain +2 on it, and whenever you use it you announce that nobody knows it better than you (at most once per round).",
                         "选择一项技能，该技能+2；每次使用该技能时，你都会宣称没有人比你更懂它（每轮最多一次）。").en,

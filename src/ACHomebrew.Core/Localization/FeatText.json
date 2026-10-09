@@ -982,7 +982,7 @@
   {
     "Key": "AttributeFeatsSelection_Root.Name",
     "enGB": "AC's Homebrew",
-    "zhCN": "AC 的家酿规则"
+    "zhCN": "AC 的房规手册"
   },
   {
     "Key": "AttributeFeatsSelection_Root.Description",
@@ -1222,17 +1222,17 @@
   {
     "Key": "FeatBudget.Count",
     "enGB": "Homebrew feats used: {0}/{1}",
-    "zhCN": "已用家酿专长：{0}/{1} 个"
+    "zhCN": "已用房规专长：{0}/{1} 个"
   },
   {
     "Key": "FeatBudget.Points",
     "enGB": "Homebrew feat points used: {0}/{1}, this feat costs {2}",
-    "zhCN": "已用家酿专长点数：{0}/{1}，本专长消耗 {2} 点"
+    "zhCN": "已用房规专长点数：{0}/{1}，本专长消耗 {2} 点"
   },
   {
     "Key": "FeatBudget.CountFull",
     "enGB": "No Homebrew feat slots remain",
-    "zhCN": "家酿专长数量已用完"
+    "zhCN": "房规专长数量已用完"
   },
   {
     "Key": "FeatBudget.PointsShort",

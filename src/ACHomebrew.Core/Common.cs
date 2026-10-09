@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.Configurators.Classes.Selection;
 using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints.Classes;
@@ -72,6 +73,16 @@ namespace ACHomebrew.Feats
 
 
         public static FeatureConfigurator SetIconIfPresent(this FeatureConfigurator cfg, string internalName)
+        {
+            var icon = IconLoader.Get(internalName);
+            if (icon != null)
+            {
+                cfg.SetIcon(icon);
+            }
+            return cfg;
+        }
+
+        public static ParametrizedFeatureConfigurator SetIconIfPresent(this ParametrizedFeatureConfigurator cfg, string internalName)
         {
             var icon = IconLoader.Get(internalName);
             if (icon != null)

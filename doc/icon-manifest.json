@@ -734,5 +734,485 @@
     "nameEn": "Long-Reach Gambit",
     "nameZh": "长锋险势",
     "sha256": "deb72d58290d8ab6faa6c0a96b7275813058355e76312a669e3500fabd56efe1"
+  },
+  {
+    "internal": "CounterAttack",
+    "family": "Retaliation",
+    "filename": "CounterAttack.png",
+    "nameEn": "Riposte Reflex",
+    "nameZh": "截锋逆击",
+    "sha256": "344fdbb8deeb32d5f059f9e0bcec03a09807655a899e85f203ea66ff6d3e4a87"
+  },
+  {
+    "internal": "MissCounter",
+    "family": "Retaliation",
+    "filename": "MissCounter.png",
+    "nameEn": "Punish the Overreach",
+    "nameZh": "乘虚落刃",
+    "sha256": "944ef338ac540ee39ee72b4e32366c253dc4370176f2753f5c7e90d0f9b1fb9a"
+  },
+  {
+    "internal": "Punisher",
+    "family": "Retaliation",
+    "filename": "Punisher.png",
+    "nameEn": "Blood-Debt Reckoning",
+    "nameZh": "睚眦必报",
+    "sha256": "e68bf80bcfe31ec3c6f13355e30f827b7ed3bee8b251f97804d70f8ffd6349fb"
+  },
+  {
+    "internal": "ParryCrit",
+    "family": "Retaliation",
+    "filename": "ParryCrit.png",
+    "nameEn": "Read the Blade",
+    "nameZh": "明镜识锋",
+    "sha256": "03b776ea28e6cc194cde7259ca013818dad83825131f530240d6230dc7ffae38"
+  },
+  {
+    "internal": "Shove",
+    "family": "Retaliation",
+    "filename": "Shove.png",
+    "nameEn": "Batter and Displace",
+    "nameZh": "撼步冲撞",
+    "sha256": "059862ab8ee9eb86cadcddc0217bd2f86e01513aeb39b224ab60345c4a82fc31"
+  },
+  {
+    "internal": "ReturnBlow",
+    "family": "Retaliation",
+    "filename": "ReturnBlow.png",
+    "nameEn": "Anvil's Retribution",
+    "nameZh": "铁砧反震",
+    "sha256": "071eea345f629c80d22546dd9337a19b28e42cb6cc8e561b5840052fb2ff7ae5"
+  },
+  {
+    "internal": "KrakenShell",
+    "family": "Retaliation",
+    "filename": "KrakenShell.png",
+    "nameEn": "Leviathan's Carapace",
+    "nameZh": "渊海甲胄",
+    "sha256": "6c4dd306cefa0d02d02aba4fad29599c024183a42ba2dda96f1d373e35103fb5"
+  },
+  {
+    "internal": "Undying",
+    "family": "Survival",
+    "filename": "Undying.png",
+    "nameEn": "Undying",
+    "nameZh": "向死而生",
+    "sha256": "0e29f18010a6b48e43b2cd1680ea6cf9337c4ad702eb2654ced65e17bb7eb337"
+  },
+  {
+    "internal": "KillingSpree",
+    "family": "Momentum",
+    "filename": "KillingSpree.png",
+    "nameEn": "Cascading Carnage",
+    "nameZh": "浴血连斩",
+    "sha256": "03a3c561b692826a94bf75cf4306e885db29e5c0418c7ccb6dff5bdf1ce2f3c5"
+  },
+  {
+    "internal": "BattleRhythm",
+    "family": "Momentum",
+    "filename": "BattleRhythm.png",
+    "nameEn": "Unbroken Measure",
+    "nameZh": "连绵战韵",
+    "sha256": "2ca1925456204b41d63add87f063a2e2b441670e41e8659d68ea79a07c8b4d2a"
+  },
+  {
+    "internal": "Fervor",
+    "family": "Momentum",
+    "filename": "Fervor.png",
+    "nameEn": "Quarry's Obsession",
+    "nameZh": "步步紧逼",
+    "sha256": "8aab42e60072d4a8c9423a3b492849aa80f49a2820d8dec087902283fcf2e497"
+  },
+  {
+    "internal": "CrushingRhythm",
+    "family": "Momentum",
+    "filename": "CrushingRhythm.png",
+    "nameEn": "Fourth-Beat Ruin",
+    "nameZh": "叠浪惊雷",
+    "sha256": "e3bd1473414ffcbecf0cc33af3e03910f52ce83c0d18946b0161bcd4163000cd"
+  },
+  {
+    "internal": "CorrosiveFinish",
+    "family": "Execution",
+    "filename": "CorrosiveFinish.png",
+    "nameEn": "Deepening the Cleft",
+    "nameZh": "乘隙溃创",
+    "sha256": "934c0997344aec9d8d145f1a1b1a092f05766bc3922a9d5ae3f6c7a01ebaa583"
+  },
+  {
+    "internal": "PhoenixFury",
+    "family": "Execution",
+    "filename": "PhoenixFury.png",
+    "nameEn": "Pyre of Defiance",
+    "nameZh": "残躯燃焰",
+    "sha256": "aea492836e4eb72e9f2f9b23e2073b9a53d9ed627d1bccdb52d84854aa288858"
+  },
+  {
+    "internal": "Feast",
+    "family": "Execution",
+    "filename": "Feast.png",
+    "nameEn": "Colossus Reaver",
+    "nameZh": "猎巨诛命",
+    "sha256": "e3285773d1ca2066419da1f61f1bbf50d58116105680af45ef5e6a893b84372f"
+  },
+  {
+    "internal": "FeastCurrent",
+    "family": "Execution",
+    "filename": "FeastCurrent.png",
+    "nameEn": "Vanguard's Sunder",
+    "nameZh": "挫敌锐芒",
+    "sha256": "51a3b0d91007f6da85f307ae9f58db4c8133b14162749406c77c2d7fb67f6f22"
+  },
+  {
+    "internal": "FeastSpell",
+    "family": "Execution",
+    "filename": "FeastSpell.png",
+    "nameEn": "Arcane Resection",
+    "nameZh": "崩元析命",
+    "sha256": "cb45a2bcb1a285f7334903def90a98dc0200ae702620965f68e1b902076dbc51"
+  },
+  {
+    "internal": "FeastNatural",
+    "family": "Execution",
+    "filename": "FeastNatural.png",
+    "nameEn": "Primal Gluttony",
+    "nameZh": "荒蛮撕嚼",
+    "sha256": "8adc62209d225ed38665b63bce428d6f109da73b227e310938df23f25fa25551"
+  },
+  {
+    "internal": "Lifesteal",
+    "family": "Execution",
+    "filename": "Lifesteal.png",
+    "nameEn": "Sanguine Tithe",
+    "nameZh": "饮血淬芒",
+    "sha256": "2685166c156521b1924dbd9113dffb73ea9d3b081229c40dfb129fdb0de5a404"
+  },
+  {
+    "internal": "SlotHarvest",
+    "family": "Arcana",
+    "filename": "SlotHarvest.png",
+    "nameEn": "Spell-Reaper's Tithe",
+    "nameZh": "萃魂蕴法",
+    "sha256": "2d50488dfc4e21b12c78ca7e7448fea3515283c8434987b9c447fd813e4f21d6"
+  },
+  {
+    "internal": "ArcaneOrb",
+    "family": "Arcana",
+    "filename": "ArcaneOrb.png",
+    "nameEn": "Brimming Reservoir",
+    "nameZh": "盈渊射诀",
+    "sha256": "10c818b285cb3d930083f873a2a172021f70e76363033095f2a9ed6ae2297ccf"
+  },
+  {
+    "internal": "EssenceFlux",
+    "family": "Arcana",
+    "filename": "EssenceFlux.png",
+    "nameEn": "Arcane Recirculation",
+    "nameZh": "灵脉返流",
+    "sha256": "bf35b39ec0d38715b79b43cac516095343314b5db6eef923ec6ee8fabd8b7b5e"
+  },
+  {
+    "internal": "ManaBreak",
+    "family": "Arcana",
+    "filename": "ManaBreak.png",
+    "nameEn": "Spell-Shatter Edge",
+    "nameZh": "断法绝流",
+    "sha256": "9814815295ece4de76f45b29cff90596d1af4c81408758ddb145731f03f5b2f4"
+  },
+  {
+    "internal": "ManaBreakSpell",
+    "family": "Arcana",
+    "filename": "ManaBreakSpell.png",
+    "nameEn": "Spell-Well Collapse",
+    "nameZh": "枯泉引爆",
+    "sha256": "c056866509cb623cc5666c0054c2586117d9dc4162de090b4a1ae4dade24ec37"
+  },
+  {
+    "internal": "MindBreaker",
+    "family": "Penetration",
+    "filename": "MindBreaker.png",
+    "nameEn": "Mind Breaker",
+    "nameZh": "破心夺志",
+    "sha256": "3279a365cabb8537b997952490dd89f0f3756c87051144d366cdfe39966de868"
+  },
+  {
+    "internal": "Deathbringer",
+    "family": "Penetration",
+    "filename": "Deathbringer.png",
+    "nameEn": "Deathbringer",
+    "nameZh": "索命无赦",
+    "sha256": "a130477c575da167844ce4fa124b5015379e84d08fcb6d47a6c809f53941cdfd"
+  },
+  {
+    "internal": "Dread",
+    "family": "Penetration",
+    "filename": "Dread.png",
+    "nameEn": "Dread Presence",
+    "nameZh": "慑魄凶威",
+    "sha256": "e99c029b2e421aeeb608e60c26e13c98adbd411226041f87de1a195bcf17655e"
+  },
+  {
+    "internal": "Plaguebearer",
+    "family": "Penetration",
+    "filename": "Plaguebearer.png",
+    "nameEn": "Plaguebearer",
+    "nameZh": "疫毒蚀骨",
+    "sha256": "16d7a2c9433abad3b1fa07751f0547ed02c65010c2fe85f63158b6e15e9beb6b"
+  },
+  {
+    "internal": "Paralyzer",
+    "family": "Penetration",
+    "filename": "Paralyzer.png",
+    "nameEn": "Overwhelming Force",
+    "nameZh": "镇岳缚形",
+    "sha256": "3a9bd259dba2352175b62a44755ed960e2a55c1fa59bb889d263776dd8027e04"
+  },
+  {
+    "internal": "ElementalBreach",
+    "family": "Penetration",
+    "filename": "ElementalBreach.png",
+    "nameEn": "Elemental Breach",
+    "nameZh": "破元裂障",
+    "sha256": "f460f7a07cf635aa652edd7b5d376d9e2216e34ef4f54da80cb811f9df50d449"
+  },
+  {
+    "internal": "BoneBreaker",
+    "family": "Penetration",
+    "filename": "BoneBreaker.png",
+    "nameEn": "Bone Breaker",
+    "nameZh": "碎骨断筋",
+    "sha256": "7657b33fd41170e7ba18621b6cd03a3a331a547d3f64d6b25eb914d3a28fdedb"
+  },
+  {
+    "internal": "HiddenVitals",
+    "family": "Penetration",
+    "filename": "HiddenVitals.png",
+    "nameEn": "Hidden Vitals",
+    "nameZh": "寻隙刺要",
+    "sha256": "c328c65b93ddc565c2a2065170046d9cc9964ae3a8452c056231551603bdf80b"
+  },
+  {
+    "internal": "ShortBlade",
+    "family": "DistanceDamage",
+    "filename": "ShortBlade.png",
+    "nameEn": "Short-Blade Discipline",
+    "nameZh": "短刃心诀",
+    "sha256": "d1d2397eb192b5a135303a6faf654c3a69f7b8e36623c35191791cc702fff575"
+  },
+  {
+    "internal": "CloseQuarters",
+    "family": "DistanceDamage",
+    "filename": "CloseQuarters.png",
+    "nameEn": "In-Fighting Stride",
+    "nameZh": "欺身锁步",
+    "sha256": "36fa4c79cb7246697a407f4af408645a035ae926b3d3c15485b9cb58e511b6cf"
+  },
+  {
+    "internal": "LongHaft",
+    "family": "DistanceDamage",
+    "filename": "LongHaft.png",
+    "nameEn": "Long-Haft Discipline",
+    "nameZh": "长柄心诀",
+    "sha256": "73a3fd6b23f18642e84cf3076c3ff3b6b176a5539a5748a1ecc6b42be7efd965"
+  },
+  {
+    "internal": "ReachControl",
+    "family": "DistanceDamage",
+    "filename": "ReachControl.png",
+    "nameEn": "Measured Distance",
+    "nameZh": "掌距控势",
+    "sha256": "d6f28cf62417c3f86f78ade203480ff645facdfe345d42ca812833a7c3c0f02c"
+  },
+  {
+    "internal": "StrongBow",
+    "family": "DistanceDamage",
+    "filename": "StrongBow.png",
+    "nameEn": "Far-Reaching Arms",
+    "nameZh": "挽弓及远",
+    "sha256": "7828da46fcc6a83c733d6fcc994f7f556924900362eca8640dc783420c2c244a"
+  },
+  {
+    "internal": "SteadySniper",
+    "family": "DistanceDamage",
+    "filename": "SteadySniper.png",
+    "nameEn": "Unhurried Aim",
+    "nameZh": "静息稳射",
+    "sha256": "abbdf9ea01a91290edaca2ca041f6ba179e6dc8340e599350a291f445709e172"
+  },
+  {
+    "internal": "CastingStat_Str",
+    "family": "CastingStat",
+    "filename": "CastingStat_Str.png",
+    "nameEn": "Somatic Force",
+    "nameZh": "力擎法脉",
+    "sha256": "7c1b9852b3e939ec12f1d10d42acfe769543a707e81e956ad4c949db8deda6d4"
+  },
+  {
+    "internal": "CastingStat_Dex",
+    "family": "CastingStat",
+    "filename": "CastingStat_Dex.png",
+    "nameEn": "Sleight of Arcana",
+    "nameZh": "巧指弄玄",
+    "sha256": "3e589f154c7e5fa26b1e1c8619c6255f97085a4ddc517ed7e9066946c550f041"
+  },
+  {
+    "internal": "CastingStat_Con",
+    "family": "CastingStat",
+    "filename": "CastingStat_Con.png",
+    "nameEn": "Sanguine Incantation",
+    "nameZh": "气血炼真",
+    "sha256": "b45a3b317b22ed65612de8d07e4a29067d2661cf67e0435b3dfba13910075396"
+  },
+  {
+    "internal": "ResourceStat_Str",
+    "family": "ResourceStat",
+    "filename": "ResourceStat_Str.png",
+    "nameEn": "Reservoir of Might",
+    "nameZh": "巨力盈渊",
+    "sha256": "2bb0f4dc4fde82ed0ac1b7ca1169f758edb33db63f0129eacc2e3134b0a0970e"
+  },
+  {
+    "internal": "ResourceStat_Dex",
+    "family": "ResourceStat",
+    "filename": "ResourceStat_Dex.png",
+    "nameEn": "Springs of Agility",
+    "nameZh": "灵动渊源",
+    "sha256": "d849d9485a9c17a195b25e2984450a25fbe7fa15bdb6a230636e0c8cb0b01232"
+  },
+  {
+    "internal": "ResourceStat_Con",
+    "family": "ResourceStat",
+    "filename": "ResourceStat_Con.png",
+    "nameEn": "Font of Endurance",
+    "nameZh": "骨髓蓄沛",
+    "sha256": "31ce3483bd7384d2ea7c21ef795308f907f1da8df514c1bdb10d461c13b93ed3"
+  },
+  {
+    "internal": "ResourceStat_Int",
+    "family": "ResourceStat",
+    "filename": "ResourceStat_Int.png",
+    "nameEn": "Well of Thought",
+    "nameZh": "识海蕴灵",
+    "sha256": "a24d602d5471d6ce1b65d752ac3897177837b17a67f19795279d8362cfc2a132"
+  },
+  {
+    "internal": "ResourceStat_Wis",
+    "family": "ResourceStat",
+    "filename": "ResourceStat_Wis.png",
+    "nameEn": "Meditative Spring",
+    "nameZh": "澄心源流",
+    "sha256": "df7a56bf451678e22e69614d2c9e14f3d6858ea47fcadbf9d311ede885927837"
+  },
+  {
+    "internal": "ResourceStat_Cha",
+    "family": "ResourceStat",
+    "filename": "ResourceStat_Cha.png",
+    "nameEn": "Sovereign Font",
+    "nameZh": "华威盈座",
+    "sha256": "b93af5b7aec78ba02d772bd99b23ff381a190169327801d56cf35dfd278ee631"
+  },
+  {
+    "internal": "SpiritLink",
+    "family": "Summoner",
+    "filename": "SpiritLink.png",
+    "nameEn": "Summoner's Tether",
+    "nameZh": "契魂连理",
+    "sha256": "800f533c2aa769fc24a0042586195a99284b1278185ddb371fd7dbf627c98603"
+  },
+  {
+    "internal": "SwarmCaller",
+    "family": "Summoner",
+    "filename": "SwarmCaller.png",
+    "nameEn": "Swarm Caller",
+    "nameZh": "万灵应召",
+    "sha256": "b7114e45843d24e6966a64eca3e376af41057b62969e82cfe9568d25750901a0"
+  },
+  {
+    "internal": "LingeringBond",
+    "family": "Summoner",
+    "filename": "LingeringBond.png",
+    "nameEn": "Lingering Bond",
+    "nameZh": "契约长存",
+    "sha256": "0c4b7df291363cd3b6d9797d300c48bd1eed2f116e7db946eabb8e3e6da90369"
+  },
+  {
+    "internal": "ReStealth",
+    "family": "Stealth",
+    "filename": "ReStealth.png",
+    "nameEn": "Vanishing Stroke",
+    "nameZh": "刃落无影",
+    "sha256": "1bffbcda92ef30d63350a74e68b704fc542add836d53dd48f1b5902c05078c65"
+  },
+  {
+    "internal": "LoneWolf",
+    "family": "Solo",
+    "filename": "LoneWolf.png",
+    "nameEn": "Lone Wolf",
+    "nameZh": "孤鸿涉远",
+    "sha256": "c36ad3b17488cf551929943f8a510cdee92e95114062ded072e58535254dd878"
+  },
+  {
+    "internal": "TrulySolo",
+    "family": "Solo",
+    "filename": "TrulySolo.png",
+    "nameEn": "Truly Solo",
+    "nameZh": "真·独行",
+    "sha256": "b020bf1730a304e02407648604efd2246d9f0f13e9f06c155169052af2fc3448"
+  },
+  {
+    "internal": "EssenceShift",
+    "family": "Growth",
+    "filename": "EssenceShift.png",
+    "nameEn": "Stolen Grace",
+    "nameZh": "掠影炼魄",
+    "sha256": "861396519f3da1e1ec252398be92c947a0762ccebf011857c3dd6a95e25918d7"
+  },
+  {
+    "internal": "FleshHeap",
+    "family": "Growth",
+    "filename": "FleshHeap.png",
+    "nameEn": "Corpse-Forged Bulk",
+    "nameZh": "尸山淬躯",
+    "sha256": "c3db64165ea573fb9475a8c76174fbae54476c48dd58404cba529812237ab7d5"
+  },
+  {
+    "internal": "ArcaneSiphon",
+    "family": "Growth",
+    "filename": "ArcaneSiphon.png",
+    "nameEn": "Stolen Epiphany",
+    "nameZh": "掠识开慧",
+    "sha256": "8e3e22befc9e493dc8adf823177b867ef240dab4d9db6c6a93acafc96aeeb2f6"
+  },
+  {
+    "internal": "DevouredVigor",
+    "family": "Growth",
+    "filename": "DevouredVigor.png",
+    "nameEn": "Siphoned Vitality",
+    "nameZh": "噬元固魄",
+    "sha256": "dc19ba10eeb7af6a5ac4c8a4c18a3c6b9bc90786e1bd8ae98538b141192db048"
+  },
+  {
+    "internal": "Necromastery",
+    "family": "Growth",
+    "filename": "Necromastery.png",
+    "nameEn": "Soul-Tether Harvest",
+    "nameZh": "拘魂蓄怨",
+    "sha256": "398bcbe7638443d496b5dead7d6d497ca9b0aca3e1e23d54f5380aabd33c39e4"
+  },
+  {
+    "internal": "WhatCanISay",
+    "family": "Meme",
+    "filename": "WhatCanISay.png",
+    "nameEn": "Man, What Can I Say",
+    "nameZh": "曼巴语录",
+    "sha256": "cd0ca80b58194614eb647003ae7371556d5ea6fdb03610eba96fbb2cf0af3d96"
+  },
+  {
+    "internal": "NobodyKnowsBetter",
+    "family": "Meme",
+    "filename": "NobodyKnowsBetter.png",
+    "nameEn": "Nobody Knows It Better",
+    "nameZh": "没有人比我更懂",
+    "sha256": "d78d514c56e69744b33983ee002a74047cab9865f6f5006067558189a6e3f4c3"
   }
 ]

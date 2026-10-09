@@ -49,28 +49,28 @@ namespace ACHomebrew.Feats
 
         private static void ConfigureArcana()
         {
-            Feat(FeatSelection.Arcana, "SlotHarvest", Guids.Dota.SlotHarvest, "Harvest of Power", "夺能",
+            Feat(FeatSelection.Arcana, "SlotHarvest", Guids.Dota.SlotHarvest, "Spell-Reaper's Tithe", "萃魂蕴法",
                     Desc("Arcana", "法力",
                         "Once per round, when an enemy you damaged dies, regain one spent spell slot of a level no higher than half that enemy's Hit Dice (minimum 1).",
                         "每轮一次，被你伤害的敌人死亡时，恢复一个已消耗的法术位，其环级不高于该敌人生命骰的一半（最低1环）。"))
                 .AddComponent<SlotHarvestOnKill>()
                 .Configure();
 
-            Feat(FeatSelection.Arcana, "ArcaneOrb", Guids.Dota.ArcaneOrb, "Arcane Orb", "奥术天球",
+            Feat(FeatSelection.Arcana, "ArcaneOrb", Guids.Dota.ArcaneOrb, "Brimming Reservoir", "盈渊射诀",
                     Desc("Arcana", "法力",
                         "Your cantrips deal extra damage equal to the total spell levels of your unspent spell slots divided by 5.",
                         "你的戏法额外造成伤害，数值等于你未消耗法术位的环级总和除以5。"))
                 .AddComponent<ArcaneOrbDamage>()
                 .Configure();
 
-            Feat(FeatSelection.Arcana, "EssenceFlux", Guids.Dota.EssenceFlux, "Essence Flux", "精华流转",
+            Feat(FeatSelection.Arcana, "EssenceFlux", Guids.Dota.EssenceFlux, "Arcane Recirculation", "灵脉返流",
                     Desc("Arcana", "法力",
                         "When you cast a spell of 1st level or higher from a spellbook, there is a 15% chance the spell slot is restored.",
                         "你从法术书施放1环或以上的法术时，有15%的几率恢复该法术位。"))
                 .AddComponent<EssenceFluxRefund>()
                 .Configure();
 
-            Feat(FeatSelection.Arcana, "ManaBreak", Guids.Dota.ManaBreak, "Mana Break", "法力损毁",
+            Feat(FeatSelection.Arcana, "ManaBreak", Guids.Dota.ManaBreak, "Spell-Shatter Edge", "断法绝流",
                     Desc("Arcana", "法力",
                         "When your weapon hits a spellcaster, it loses its highest unspent spell slot and takes extra damage equal to twice that slot's level. " +
                         "Once per round.",
@@ -78,7 +78,7 @@ namespace ACHomebrew.Feats
                 .AddComponent<ManaBreakOnHit>()
                 .Configure();
 
-            Feat(FeatSelection.Arcana, "ManaBreakSpell", Guids.Dota.ManaBreakSpell, "Mana Void", "法力虚空",
+            Feat(FeatSelection.Arcana, "ManaBreakSpell", Guids.Dota.ManaBreakSpell, "Spell-Well Collapse", "枯泉引爆",
                     Desc("Arcana", "法力",
                         "When your spell damages a spellcaster, it loses its highest unspent spell slot and takes extra damage equal to twice that slot's level. " +
                         "Once per round.",

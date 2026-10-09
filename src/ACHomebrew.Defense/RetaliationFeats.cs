@@ -50,7 +50,7 @@ namespace ACHomebrew.Feats
 
         private static void ConfigureCounters()
         {
-            Feat(FeatSelection.Retaliation, "CounterAttack", Guids.Playstyle.CounterAttack, "Riposte Reflex", "还手本能",
+            Feat(FeatSelection.Retaliation, "CounterAttack", Guids.Playstyle.CounterAttack, "Riposte Reflex", "截锋逆击",
                     Desc("Retaliation", "反击",
                         "When an enemy makes a melee attack against you, you make an attack of opportunity against it if it is within your reach. " +
                         "This uses one of your attacks of opportunity for the round, so Combat Reflexes increases how often you can counter.",
@@ -58,7 +58,7 @@ namespace ACHomebrew.Feats
                 .AddComponent<CounterAttackOnMelee>(c => c.Mode = CounterAttackMode.AnyAttack)
                 .Configure();
 
-            Feat(FeatSelection.Retaliation, "MissCounter", Guids.Playstyle.MissCounter, "Punish the Opening", "破绽反击",
+            Feat(FeatSelection.Retaliation, "MissCounter", Guids.Playstyle.MissCounter, "Punish the Overreach", "乘虚落刃",
                     Desc("Retaliation", "反击",
                         "Once per round, when an enemy's melee attack misses you, you make an attack against it if it is within your reach. " +
                         "This counterattack does not use your attacks of opportunity.",
@@ -66,10 +66,10 @@ namespace ACHomebrew.Feats
                 .AddComponent<CounterAttackOnMelee>(c => c.Mode = CounterAttackMode.FreeOnMiss)
                 .Configure();
 
-            var mark = Buff("PunisherMarkBuff", Guids.Playstyle.PunisherMarkBuff, "Marked for Punishment", "惩戒标记",
-                    "This creature attacked someone with the Punisher feat this round.", "该生物本轮攻击过拥有惩戒者专长的角色。")
+            var mark = Buff("PunisherMarkBuff", Guids.Playstyle.PunisherMarkBuff, "Blood Debt", "血债",
+                    "This creature attacked someone with the Blood-Debt Reckoning feat this round.", "该生物本轮攻击过拥有睚眦必报专长的角色。")
                 .Configure();
-            Feat(FeatSelection.Retaliation, "Punisher", Guids.Playstyle.Punisher, "Punisher", "惩戒者",
+            Feat(FeatSelection.Retaliation, "Punisher", Guids.Playstyle.Punisher, "Blood-Debt Reckoning", "睚眦必报",
                     Desc("Retaliation", "反击",
                         "Against enemies that attacked you this round, you gain +1 on attack and damage rolls per 4 character levels (minimum +1, maximum +5).",
                         "对本轮攻击过你的敌人，你的攻击检定与伤害骰每4角色等级获得+1（最低+1，最高+5）。"))
@@ -83,14 +83,14 @@ namespace ACHomebrew.Feats
                     "Your next attack is a confirmed critical hit.", "你的下一次攻击必定为重击。")
                 .AddComponent<NextAttackCritical>()
                 .Configure();
-            Feat(FeatSelection.Retaliation, "ParryCrit", Guids.Playstyle.ParryCrit, "Read the Blade", "看破招架",
+            Feat(FeatSelection.Retaliation, "ParryCrit", Guids.Playstyle.ParryCrit, "Read the Blade", "明镜识锋",
                     Desc("Retaliation", "反击",
                         "After you successfully parry an attack, your next attack within 2 rounds is an automatically confirmed critical hit.",
                         "成功招架一次攻击后，你在2轮内的下一次攻击自动成为确认的重击。"))
                 .AddComponent<ApplyBuffOnParry>(c => c.Buff = crit.ToReference<BlueprintBuffReference>())
                 .Configure();
 
-            Feat(FeatSelection.Retaliation, "Shove", Guids.Playstyle.Shove, "Shoving Blows", "推搡",
+            Feat(FeatSelection.Retaliation, "Shove", Guids.Playstyle.Shove, "Batter and Displace", "撼步冲撞",
                     Desc("Retaliation", "反击",
                         "After each of your weapon attacks and after each weapon attack against you, hit or miss, you attempt a bull rush against that enemy. " +
                         "This bull rush does not provoke attacks of opportunity.",
@@ -102,14 +102,14 @@ namespace ACHomebrew.Feats
 
         private static void ConfigureReturnDamage()
         {
-            Feat(FeatSelection.Retaliation, "ReturnBlow", Guids.Dota.ReturnBlow, "Return Blow", "反伤",
+            Feat(FeatSelection.Retaliation, "ReturnBlow", Guids.Dota.ReturnBlow, "Anvil's Retribution", "铁砧反震",
                     Desc("Retaliation", "反击",
                         "Whenever an enemy damages you with a melee or ranged attack or a spell, it takes damage equal to half your character level plus your Strength modifier (minimum 1).",
                         "敌人以近战、远程攻击或法术对你造成伤害时，受到等于你角色等级一半加力量调整值的伤害（最低1）。"))
                 .AddComponent<ReturnBlowDamage>()
                 .Configure();
 
-            Feat(FeatSelection.Retaliation, "KrakenShell", Guids.Dota.KrakenShell, "Kraken Shell", "海妖外壳",
+            Feat(FeatSelection.Retaliation, "KrakenShell", Guids.Dota.KrakenShell, "Leviathan's Carapace", "渊海甲胄",
                     Desc("Retaliation", "反击",
                         "You gain DR 1/— plus 1 per 4 character levels. After you take damage totalling a tenth of your maximum hit points, " +
                         "all harmful effects on you are removed and the count resets.",

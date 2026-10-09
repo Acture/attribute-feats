@@ -12,14 +12,19 @@ namespace ACHomebrew.Feats
             => ($"<i>{familyEn}</i>\n\n<b>Effect:</b> {effectEn}", $"<i>{familyZh}</i>\n\n<b>效果：</b>{effectZh}");
 
         public static FeatureConfigurator Feat(FeatSelection family, string name, string guid, string nameEn, string nameZh, (string en, string zh) desc)
-            => family.NewFeat(name, guid)
+        {
+            desc = FeatLore.Apply(name, desc);
+            return family.NewFeat(name, guid)
                 .SetDisplayName(Common.L($"{name}.Name", nameEn, nameZh))
-                .SetDescription(Common.L($"{name}.Desc", desc.en, desc.zh, tagEncyclopediaEntries: true));
+                .SetDescription(Common.L($"{name}.Desc", desc.en, desc.zh, tagEncyclopediaEntries: true))
+                .SetIconIfPresent(name);
+        }
 
         public static BuffConfigurator Buff(string name, string guid, string nameEn, string nameZh, string descEn, string descZh)
             => BuffConfigurator.New(name, guid)
                 .SetDisplayName(Common.L($"{name}.Name", nameEn, nameZh))
-                .SetDescription(Common.L($"{name}.Desc", descEn, descZh));
+                .SetDescription(Common.L($"{name}.Desc", descEn, descZh))
+                .SetIconIfPresent(name);
 
         public static ContextDurationValue Rounds(int rounds) => ContextDuration.Fixed(rounds);
     }

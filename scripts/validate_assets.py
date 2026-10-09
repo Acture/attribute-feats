@@ -70,15 +70,17 @@ def main():
     # Named blueprint GUID compatibility is checked by Test-RepositoryContracts.ps1.
 
     manifest = json.loads(read(ROOT / 'doc/icon-manifest.json'))
-    assert len(manifest) == len({r['internal'] for r in manifest}) == len({r['filename'] for r in manifest}) == 92
-    assert {r['internal'] for r in manifest} == {r['internal'] for r in rows}
+    assert len(manifest) == len({r['internal'] for r in manifest}) == len({r['filename'] for r in manifest})
+    # The 92 catalog feats come first; newer feats follow with curated names.
+    assert {r['internal'] for r in manifest[:92]} == {r['internal'] for r in rows}
     aliases = dict(re.findall(r'\{ "([^"]+)", "([^"]+)" \}', read(source_file('IconLoader.cs'))))
     pending = []
     hashes = []
     for asset in manifest:
         assert set(asset) == {'internal', 'family', 'filename', 'nameEn', 'nameZh', 'sha256'}, 'public manifest fields'
-        row = next(row for row in rows if row['internal'] == asset['internal'])
-        assert (asset['nameEn'], asset['nameZh']) == (row['en'], row['zh']), asset['internal']
+        row = next((row for row in rows if row['internal'] == asset['internal']), None)
+        if row is not None:
+            assert (asset['nameEn'], asset['nameZh']) == (row['en'], row['zh']), asset['internal']
         path = PROJECT/'Icons'/asset['filename']
         if not path.exists():
             pending.append(asset['filename']); continue
@@ -90,7 +92,7 @@ def main():
         assert aliases.get(asset['internal'],asset['internal']) == path.stem, asset['internal']
     if not args.allow_pending_icons:
         assert not pending, f'missing icons: {pending}'
-        assert len(set(hashes)) == 92, 'duplicate icon images'
+        assert len(set(hashes)) == len(manifest), 'duplicate icon images'
         assert {p.name for p in (PROJECT/'Icons').glob('*.png')} == {r['filename'] for r in manifest}, 'extra icon files'
     if args.release:
         assert not pending
@@ -103,7 +105,7 @@ def main():
             assert not any(n.replace('\\', '/').split('/')[0] in ('notes', 'doc', 'docs') for n in names), 'documentation must not ship in the Mod ZIP'
             for asset in manifest:
                 assert archive.read('Icons/'+asset['filename']) == (PROJECT/'Icons'/asset['filename']).read_bytes()
-    print(f'289 bilingual entries, 92 unique existing feat names, published component calls/inline IDs and {92-len(pending)}/92 icons verified (static checks only).')
+    print(f'289 bilingual entries, 92 unique existing feat names, published component calls/inline IDs and {len(manifest)-len(pending)}/{len(manifest)} icons verified (static checks only).')
     if args.release: print(f'Release ZIP verified: {args.release}')
 
 

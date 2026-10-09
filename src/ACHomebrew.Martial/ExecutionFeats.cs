@@ -49,14 +49,14 @@ namespace ACHomebrew.Feats
 
         private static void ConfigureExecution()
         {
-            Feat(FeatSelection.Execution, "CorrosiveFinish", Guids.Dota.CorrosiveFinish, "Corrosive Finish", "腐蚀处决",
+            Feat(FeatSelection.Execution, "CorrosiveFinish", Guids.Dota.CorrosiveFinish, "Deepening the Cleft", "乘隙溃创",
                     Desc("Execution", "处决",
                         "For every 10% of hit points the target is missing (up to 90%), your weapon attacks deal +1 damage plus 1 per 10 character levels.",
                         "目标每损失10%生命值（最多计90%），你的武器攻击对其伤害+1，每10角色等级再+1。"))
                 .AddComponent<MissingHealthDamage>(c => c.UseTarget = true)
                 .Configure();
 
-            Feat(FeatSelection.Execution, "PhoenixFury", Guids.Dota.PhoenixFury, "Burning Desperation", "涅槃之怒",
+            Feat(FeatSelection.Execution, "PhoenixFury", Guids.Dota.PhoenixFury, "Pyre of Defiance", "残躯燃焰",
                     Desc("Execution", "处决",
                         "At the start of each round in combat, enemies within 15 feet take fire damage equal to half your character level (minimum 1), " +
                         "increased by the percentage of hit points you are missing (for example, +50% when you are at half health).",
@@ -64,21 +64,21 @@ namespace ACHomebrew.Feats
                 .AddComponent<BurningAura>()
                 .Configure();
 
-            Feat(FeatSelection.Execution, "Feast", Guids.Dota.Feast, "Feast", "盛宴",
+            Feat(FeatSelection.Execution, "Feast", Guids.Dota.Feast, "Colossus Reaver", "猎巨诛命",
                     Desc("Execution", "处决",
                         "Your weapon hits deal extra damage equal to 2% of the target's maximum hit points (minimum 1, at most three times your character level).",
                         "你的武器命中额外造成目标最大生命值2%的伤害（最低1，最多为角色等级的3倍）。"))
                 .AddComponent<PercentHealthDamage>(c => c.FromCurrent = false)
                 .Configure();
 
-            Feat(FeatSelection.Execution, "FeastCurrent", Guids.Dota.FeastCurrent, "Opening Bite", "先手撕咬",
+            Feat(FeatSelection.Execution, "FeastCurrent", Guids.Dota.FeastCurrent, "Vanguard's Sunder", "挫敌锐芒",
                     Desc("Execution", "处决",
                         "Your weapon hits deal extra damage equal to 3% of the target's current hit points (minimum 1, at most three times your character level).",
                         "你的武器命中额外造成目标当前生命值3%的伤害（最低1，最多为角色等级的3倍）。"))
                 .AddComponent<PercentHealthDamage>(c => c.FromCurrent = true)
                 .Configure();
 
-            Feat(FeatSelection.Execution, "FeastSpell", Guids.Dota.FeastSpell, "Arcane Feast", "法术盛宴",
+            Feat(FeatSelection.Execution, "FeastSpell", Guids.Dota.FeastSpell, "Arcane Resection", "崩元析命",
                     Desc("Execution", "处决",
                         "When your spell damages an enemy, it takes extra damage equal to 2% of its maximum hit points " +
                         "(minimum 1, at most three times your character level). Once per target for each spell you cast.",
@@ -86,7 +86,7 @@ namespace ACHomebrew.Feats
                 .AddComponent<SpellFeastDamage>()
                 .Configure();
 
-            Feat(FeatSelection.Execution, "FeastNatural", Guids.Dota.FeastNatural, "Savage Feast", "天武盛宴",
+            Feat(FeatSelection.Execution, "FeastNatural", Guids.Dota.FeastNatural, "Primal Gluttony", "荒蛮撕嚼",
                     Desc("Execution", "处决",
                         "Your natural attacks deal extra damage equal to 2% of the target's maximum hit points " +
                         "(minimum 1, at most three times your character level), and you heal the same amount.",
@@ -99,7 +99,7 @@ namespace ACHomebrew.Feats
                 })
                 .Configure();
 
-            Feat(FeatSelection.Execution, "Lifesteal", Guids.Dota.Lifesteal, "Lifesteal", "吸血",
+            Feat(FeatSelection.Execution, "Lifesteal", Guids.Dota.Lifesteal, "Sanguine Tithe", "饮血淬芒",
                     Desc("Execution", "处决",
                         "You heal 15% of the damage your weapon attacks deal.",
                         "你回复武器攻击所造成伤害的15%。"))
