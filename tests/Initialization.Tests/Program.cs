@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Reflection;
-using AttributeFeats.New_Feats;
+using ACHomebrew.Feats;
 
 var failures = 0;
 var cases = 0;
@@ -50,6 +50,36 @@ foreach (var family in World.RegistrationNames)
         Expect(!World.Logs.Any(log => log.Contains("98 total")), "Logged a full roster after partial failure");
     });
 }
+
+Check("feat budget covers leaves only, priced by family", () =>
+{
+    FeatRegistry.ConfigureAll();
+    ExpectRoot();
+    var budgeted = World.Budgeted.ToDictionary(entry => entry.feat.Name, entry => entry.cost);
+    Expect(budgeted.Count == World.RegistrationNames.Length - 1, $"Expected one budgeted leaf per family, got {budgeted.Count}");
+    Expect(!World.Budgeted.Any(entry => entry.feat is Kingmaker.Blueprints.Classes.Selection.BlueprintFeatureSelection), "A menu consumes budget");
+    Expect(budgeted["MainAbilityToEverything_Feats"] == 2, "Main source-menu cost not applied");
+    Expect(budgeted["SpecializedFeats"] == 1, "Defensive family cost not applied");
+    Expect(budgeted["PolearmMasterFeats"] == 1, "Direct root feat cost not applied");
+});
+
+Check("a failed batch is not budgeted", () =>
+{
+    World.PartialFailure = "SpecializedFeats";
+    FeatRegistry.ConfigureAll();
+    Expect(!World.Budgeted.Any(entry => entry.feat.Name.StartsWith("SpecializedFeats") || entry.feat.Name.StartsWith("Partial")), "Rolled-back feat was budgeted");
+    Expect(World.Budgeted.Any(entry => entry.feat.Name == "WeaponDamageFeats"), "Healthy feat lost its budget");
+});
+
+Check("Main source menus nest under Main Attribute Mastery", () =>
+{
+    FeatRegistry.ConfigureAll();
+    ExpectRoot();
+    var main = World.Published[0].Children.OfType<Kingmaker.Blueprints.Classes.Selection.BlueprintFeatureSelection>()
+        .Single(child => child.AssetGuid.Value == Guids.FeatSelections.MainAttribute);
+    Expect(main.Children.Any(child => child.AssetGuid.Value == Guids.MainAttribute.Source.Str), "Source menu not nested");
+    Expect(!World.RootContains(Guids.MainAttribute.Source.Str), "Source menu also published at the root");
+});
 
 Check("a failed family menu does not stop later menus or root publication", () =>
 {
@@ -132,11 +162,12 @@ internal static class World
         "MainAbilityToEverything_Feats", "SpecializedFeats", "StanceFeats", "ConditionalFeats",
         "StatReplacementFeats", "ReactiveArmorFeats", "DerivedStatFeats", "GreaterSummoningFeats",
         "SpellTagFeats", "SummonerSacrificeFeats", "PolearmMasterFeats", "DistanceDamageFeats",
-        "WeaponDamageFeats", "MutexPass",
+        "WeaponDamageFeats", "CastingStatFeats", "ResourceStatFeats", "RetaliationFeats", "MomentumFeats", "ExecutionFeats", "ArcanaFeats", "SummonerFeats", "StealthFeats", "SoloFeats", "GrowthFeats", "SurvivalFeats", "MemeFeats", "PenetrationFeats", "WeaponPenetrationFeats", "MutexPass",
     };
     internal static readonly HashSet<string> FailedRegistrations = new();
     internal static readonly List<string> Attempted = new();
     internal static readonly List<string> Logs = new();
+    internal static readonly List<(Kingmaker.Blueprints.Classes.BlueprintFeature feat, string family, int cost)> Budgeted = new();
     internal static readonly List<Kingmaker.Blueprints.Classes.Selection.BlueprintFeatureSelection> Published = new();
     internal static string FailedMenu;
     internal static string PartialFailure;
@@ -168,6 +199,7 @@ internal static class World
         FailedRegistrations.Clear();
         Attempted.Clear();
         Logs.Clear();
+        Budgeted.Clear();
         Published.Clear();
         FailedMenu = null;
         PartialFailure = null;

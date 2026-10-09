@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ACHomebrew/ACHomebrew.csproj" />
+    <Project Path="src/ACHomebrew.Logic/ACHomebrew.Logic.csproj" />
+    <Project Path="src/ACHomebrew.Core/ACHomebrew.Core.csproj" />
+    <Project Path="src/ACHomebrew.Attributes/ACHomebrew.Attributes.csproj" />
+    <Project Path="src/ACHomebrew.Aptitudes/ACHomebrew.Aptitudes.csproj" />
+    <Project Path="src/ACHomebrew.Martial/ACHomebrew.Martial.csproj" />
+    <Project Path="src/ACHomebrew.Defense/ACHomebrew.Defense.csproj" />
+    <Project Path="src/ACHomebrew.Magic/ACHomebrew.Magic.csproj" />
+    <Project Path="src/ACHomebrew.Summoning/ACHomebrew.Summoning.csproj" />
+    <Project Path="src/ACHomebrew.Styles/ACHomebrew.Styles.csproj" />
+  </Folder>
+</Solution>

@@ -6,8 +6,16 @@
     "AttributeFeats.cs": {
       "mechanics": [
         [
-          "AddBidirectionalMutex",
-          "feats[i],feats[j]"
+          "AddRank",
+          "cfg,source.stat,AbilityRankType.Default,Common.ResolveProgression(settings.powerLevel,ScalingIntent.Full)"
+        ],
+        [
+          "AddRank",
+          "cfg,source.stat,AbilityRankType.StatBonus,Common.ResolveProgression(settings.powerLevel,ScalingIntent.Half)"
+        ],
+        [
+          "AddRecalculateOnStatChange",
+          "stat:source.stat"
         ],
         [
           "AddRank",
@@ -20,6 +28,10 @@
         [
           "AddRecalculateOnStatChange",
           "stat:baseStat"
+        ],
+        [
+          "New",
+          "name,guid"
         ],
         [
           "New",
@@ -49,14 +61,6 @@
         [
           "AddContextStatBonus",
           "StatType.SaveFortitude,Common.Rank(),descriptor:ModifierDescriptor.None"
-        ],
-        [
-          "AddContextStatBonus",
-          "StatType.SaveReflex,Common.Rank(),descriptor:ModifierDescriptor.None"
-        ],
-        [
-          "AddContextStatBonus",
-          "StatType.SaveWill,Common.Rank(),descriptor:ModifierDescriptor.None"
         ],
         [
           "AddContextStatBonus",
@@ -197,7 +201,7 @@
         ],
         [
           "AddIncreaseAllSpellsDC",
-          "descriptor:Desc,spellsOnly:false,value:Common.Rank()"
+          "descriptor:Desc,spellsOnly:true,value:Common.Rank()"
         ],
         [
           "SetBaseValue",
@@ -260,12 +264,8 @@
           "StatType.AdditionalDamage,SimpleValue(4),descriptor:Desc"
         ],
         [
-          "AddInitiatorAttackWithWeaponTrigger",
-          "action:applyBuff,triggerBeforeAttack:true"
-        ],
-        [
-          "AddInitiatorAttackWithWeaponTrigger",
-          "action:ActionsBuilder.New().RemoveBuff(Guids.DistanceDamage.Buff.FlatBonus,toCaster:false),actionsOnInitiator:true"
+          "AddDamageModifier",
+          "bonus,Fact"
         ],
         [
           "New",
@@ -274,9 +274,15 @@
         [
           "New",
           "internalName,featureGuid"
+        ],
+        [
+          "New",
+          "internalName,guid"
         ]
       ],
-      "inlineIds": []
+      "inlineIds": [
+        "\"23590e2e43ad4616b25dbeaea472167f\""
+      ]
     },
     "GreaterSummoningFeats.cs": {
       "mechanics": [
@@ -295,10 +301,6 @@
         [
           "AddContextStatBonus",
           "stat,Common.Rank(),Desc"
-        ],
-        [
-          "AddBidirectionalMutex",
-          "feats[i],feats[j]"
         ],
         [
           "New",
@@ -380,10 +382,6 @@
           "stat:baseStat"
         ],
         [
-          "AddBidirectionalMutex",
-          "feats[i],feats[j]"
-        ],
-        [
           "AddContextStatBonus",
           "stat,Common.Rank(rankType),Desc"
         ],
@@ -411,10 +409,6 @@
         [
           "AddRecalculateOnStatChange",
           "stat:definition.Attribute"
-        ],
-        [
-          "AddBidirectionalMutex",
-          "feats[i],feats[j]"
         ],
         [
           "AddBonusDC",
@@ -504,14 +498,6 @@
         ],
         [
           "AddContextStatBonus",
-          "StatType.SaveFortitude,Common.Rank(),descriptor:Desc"
-        ],
-        [
-          "AddContextStatBonus",
-          "StatType.SaveReflex,Common.Rank(),descriptor:Desc"
-        ],
-        [
-          "AddContextStatBonus",
           "StatType.SaveWill,Common.Rank(),descriptor:Desc"
         ],
         [
@@ -567,10 +553,6 @@
           "ContextRankConfigs.StatBonus(baseStat,Desc,AbilityRankType.StatBonus,min:0).WithMultiplyByModifierProgression(-1)"
         ],
         [
-          "AddBidirectionalMutex",
-          "feats[i],feats[j]"
-        ],
-        [
           "AddRecalculateOnStatChange",
           "stat:baseStat"
         ],
@@ -624,10 +606,6 @@
     "StatReplacementFeats.cs": {
       "mechanics": [
         [
-          "AddBidirectionalMutex",
-          "weaponInsights[i],weaponInsights[j]"
-        ],
-        [
           "AddRank",
           "cfg,baseStat,AbilityRankType.Default,ContextRankProgression.AsIs"
         ],
@@ -667,10 +645,6 @@
         [
           "AddStatBonus",
           "descriptor:Desc,stat:bonus.Stat,value:bonus.Value"
-        ],
-        [
-          "AddBidirectionalMutex",
-          "feats[i],feats[j]"
         ],
         [
           "New",

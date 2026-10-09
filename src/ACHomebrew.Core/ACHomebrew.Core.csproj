@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<!-- In-game infrastructure: menus, budget and exclusion enforcement, settings, localization and shared builders. -->
+	<Import Project="../WrathMod.props" />
+	<ItemGroup>
+		<ProjectReference Include="../ACHomebrew.Logic/ACHomebrew.Logic.csproj" />
+		<EmbeddedResource Include="Localization/FeatText.json" LogicalName="AttributeFeats.Localization.FeatText.json" />
+	</ItemGroup>
+	<ItemGroup>
+		<InternalsVisibleTo Include="ACHomebrew" />
+		<InternalsVisibleTo Include="ACHomebrew.Attributes" />
+		<InternalsVisibleTo Include="ACHomebrew.Aptitudes" />
+		<InternalsVisibleTo Include="ACHomebrew.Martial" />
+		<InternalsVisibleTo Include="ACHomebrew.Defense" />
+		<InternalsVisibleTo Include="ACHomebrew.Magic" />
+		<InternalsVisibleTo Include="ACHomebrew.Summoning" />
+		<InternalsVisibleTo Include="ACHomebrew.Styles" />
+	</ItemGroup>
+</Project>

@@ -1,19 +1,30 @@
-# AttributeFeats development
+# AC's Homebrew development (formerly AttributeFeats)
 
 ## Repository layout
 
-- Keep the Mod project, source, resources and loader `Info.json` together in
-  `src/AttributeFeats/`. Open `AttributeFeats.slnx` from the repository root.
+- The Mod ships as one assembly built from several projects under `src/`:
+  `ACHomebrew` (UMM entry, registration order, `Info.json`, icons, optional
+  ModMenu page and packaging), `ACHomebrew.Logic` (game-independent logic
+  and GUIDs, referenced by the tests), `ACHomebrew.Core` (menus, budget and
+  exclusion enforcement, settings, localization and shared builders), and
+  theme projects `ACHomebrew.Attributes`, `.Aptitudes`, `.Martial`,
+  `.Defense`, `.Magic`, `.Summoning` and `.Styles`, one file per feat family.
+  Group new families by play theme, not by inspiration source. The entry
+  project merges every project and BlueprintCore into `ACHomebrew.dll`
+  with ILRepack after build. Keep the UMM Id `AttributeFeats`, the install
+  folder `Mods/AttributeFeats` and the settings XML root unchanged so
+  existing installs, settings and saves keep working. Shared game references live in `src/WrathMod.props`.
+  Open `ACHomebrew.slnx` from the repository root.
 - Keep tests in `tests/`, CLI tools in `scripts/`, and workflows in `.github/`.
 - Use `doc/` as the sole public documentation directory and `notes/` for the
   private submodule. Do not recreate a parallel `docs/` directory.
 - Build outputs, intermediate files, packages and test reports go in ignored
   `artifacts/`. Keep the shared local `GamePath.props` at the root and untracked.
 - Keep `Repository.json` at the root for existing release metadata consumers.
-- Build for verification with `dotnet build AttributeFeats.slnx -p:DeployMod=false`
+- Build for verification with `dotnet build ACHomebrew.slnx -p:DeployMod=false`
   to avoid copying files into the installed game. Repository contracts run with
   `pwsh -NoProfile -File scripts/Test-RepositoryContracts.ps1`.
-- Build a release ZIP without deploying via `dotnet build AttributeFeats.slnx
+- Build a release ZIP without deploying via `dotnet build ACHomebrew.slnx
   -c Release -p:DeployToGame=false`. Follow [doc/validation.md](doc/validation.md)
   for calculation, initialization, localization, asset and package checks.
 

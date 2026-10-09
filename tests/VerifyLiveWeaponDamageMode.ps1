@@ -5,15 +5,15 @@ param(
 
 # Run with Windows PowerShell 5.1 against the compiled mod and real game types.
 $ErrorActionPreference = 'Stop'
-if (!$ModAssembly) { $ModAssembly = Join-Path (Split-Path $PSScriptRoot -Parent) 'artifacts/bin/AttributeFeats/Debug/AttributeFeats.dll' }
+if (!$ModAssembly) { $ModAssembly = Join-Path (Split-Path $PSScriptRoot -Parent) 'artifacts/bin/ACHomebrew/Debug/ACHomebrew.dll' }
 $managed = Join-Path $WrathInstallDir 'Wrath_Data/Managed'
 foreach ($dependency in @('Assembly-CSharp.dll', 'UnityModManager/UnityModManager.dll', 'UnityModManager/0Harmony.dll')) {
     [void][System.Reflection.Assembly]::LoadFrom((Join-Path $managed $dependency))
 }
 $mod = [System.Reflection.Assembly]::LoadFrom((Resolve-Path $ModAssembly))
-$settingsType = $mod.GetType('AttributeFeats.ModSettings', $true)
-$componentType = $mod.GetType('AttributeFeats.New_Feats.AttributeWeaponDamage', $true)
-$settingsField = $mod.GetType('AttributeFeats.Main', $true).GetField('Settings', [System.Reflection.BindingFlags]'Static,NonPublic')
+$settingsType = $mod.GetType('ACHomebrew.ModSettings', $true)
+$componentType = $mod.GetType('ACHomebrew.Feats.AttributeWeaponDamage', $true)
+$settingsField = $mod.GetType('ACHomebrew.Mod', $true).GetField('Settings', [System.Reflection.BindingFlags]'Static,Public')
 $settings = [Activator]::CreateInstance($settingsType)
 $settingsField.SetValue($null, $settings)
 # No Unity runtime is needed to verify mode lookup on an already existing component.

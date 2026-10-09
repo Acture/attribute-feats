@@ -1,0 +1,77 @@
+<Project InitialTargets="GenerateCustomPropsFile">
+	<!-- Shared settings for every project that compiles against Wrath of the Righteous. -->
+
+	<!-- If GamePath.props exists, import it (generated or user-provided). -->
+	<Import Project="$(AttributeFeatsRepositoryRoot)GamePath.props" Condition="Exists('$(AttributeFeatsRepositoryRoot)GamePath.props')" />
+
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<RootNamespace>ACHomebrew</RootNamespace>
+
+		<!-- Where Owlcat writes Player.log. -->
+		<WrathData>$(LocalAppData)Low\Owlcat Games\Pathfinder Wrath Of The Righteous</WrathData>
+
+		<!-- WrathInstallDir fallback chain: /p:WrathInstallDir, /p:WrathPath, then environment variables. -->
+		<WrathInstallDir Condition="'$(WrathInstallDir)'==''">$(WrathPath)</WrathInstallDir>
+		<WrathInstallDir Condition="'$(WrathInstallDir)'==''">$([System.Environment]::GetEnvironmentVariable('WrathPath'))</WrathInstallDir>
+		<WrathInstallDir Condition="'$(WrathInstallDir)'==''">$([System.Environment]::GetEnvironmentVariable('WRATH_PATH'))</WrathInstallDir>
+	</PropertyGroup>
+
+	<!-- Fail fast if still not resolved (after GenerateCustomPropsFile has run). -->
+	<Target Name="EnsureWrathInstallDir" BeforeTargets="PrepareForBuild" Condition="'$(WrathInstallDir)'==''">
+		<Error Text="WrathInstallDir is not set. Provide /p:WrathInstallDir=... or set env WrathPath/WRATH_PATH or make sure Player.log exists under $(WrathData)." />
+	</Target>
+
+	<ItemGroup>
+		<!-- Unity / Core / Owlcat -->
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\Unity*.dll" />
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\Core*.dll" />
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\Owlcat*.dll" />
+
+		<!-- Game assemblies -->
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\Assembly-CSharp.dll" />
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\Assembly-CSharp-firstpass.dll" />
+
+		<!-- UnityModManager + Harmony -->
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\UnityModManager\UnityModManager.dll" />
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\UnityModManager\0Harmony.dll" />
+
+		<!-- Common deps -->
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\Newtonsoft.Json.dll" />
+		<Reference Include="$(WrathInstallDir)\Wrath_Data\Managed\UniRx.dll" Private="false" Condition="Exists('$(WrathInstallDir)\Wrath_Data\Managed\UniRx.dll')" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+		<PackageReference Include="WW-Blueprint-Core" Version="2.8.6" />
+		<PackageReference Include="MicroUtils.HarmonyAnalyzers" Version="*" />
+	</ItemGroup>
+
+	<!-- Auto-generate GamePath.props by parsing Player.log when WrathInstallDir is still empty. -->
+	<Target Name="GenerateCustomPropsFile" Condition="'$(WrathInstallDir)'==''">
+		<PropertyGroup>
+			<_PlayerLog>$(WrathData)\Player.log</_PlayerLog>
+			<_MonoPathRegex>^Mono path\[0\] = '(.*?)/Wrath_Data/Managed'$</_MonoPathRegex>
+		</PropertyGroup>
+
+		<Message Text="WrathInstallDir not set; trying to parse: $(_PlayerLog)" Importance="High" Condition="Exists('$(_PlayerLog)')" />
+		<Message Text="Player.log not found at: $(_PlayerLog). You can launch the game once, or set WrathInstallDir/WrathPath." Importance="High" Condition="!Exists('$(_PlayerLog)')" />
+
+		<Exec Command="findstr /C:&quot;Mono path[0]&quot; &quot;$(_PlayerLog)&quot;" IgnoreExitCode="true" ConsoleToMSBuild="true" Condition="Exists('$(_PlayerLog)')">
+			<Output TaskParameter="ConsoleOutput" PropertyName="_MonoPathLine" />
+		</Exec>
+
+		<PropertyGroup Condition="'$(_MonoPathLine)'!=''">
+			<WrathInstallDir>$([System.Text.RegularExpressions.Regex]::Match($(_MonoPathLine), $(_MonoPathRegex)).Groups[1].Value)</WrathInstallDir>
+		</PropertyGroup>
+
+		<Error Text="Failed to parse WrathInstallDir from Player.log. Set /p:WrathInstallDir=... or env WrathPath/WRATH_PATH." Condition="'$(WrathInstallDir)'==''" />
+
+		<WriteLinesToFile File="$(AttributeFeatsRepositoryRoot)GamePath.props" Lines="&lt;Project xmlns='http://schemas.microsoft.com/developer/msbuild/2003'&gt;&#xD;&#xA;  &lt;PropertyGroup&gt;&#xD;&#xA;    &lt;WrathInstallDir&gt;$(WrathInstallDir)&lt;/WrathInstallDir&gt;&#xD;&#xA;  &lt;/PropertyGroup&gt;&#xD;&#xA;&lt;/Project&gt;" Overwrite="true" Encoding="utf-8" />
+
+		<Message Text="Generated GamePath.props with WrathInstallDir=$(WrathInstallDir)" Importance="High" />
+	</Target>
+</Project>
