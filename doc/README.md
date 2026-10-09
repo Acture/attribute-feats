@@ -12,6 +12,7 @@ versioned with the mod's code and is available without access to internal notes.
 - [Save compatibility](../README.md#save-compatibility)
 - [Building from source](../README.md#building-from-source)
 - [Validation commands and limits](validation.md)
+- [Offline mechanics tests against the real game files](offline-mechanics-testing.md)
 - [English/Chinese feat catalog](feat-catalog.md)
 - [Icon contact sheet](feat-icons.png)
 - [Changelog](../CHANGELOG.md)

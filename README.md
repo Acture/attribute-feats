@@ -252,6 +252,7 @@ Main Attribute Mastery uses **inherent** bonuses, so it does not stack with tome
 - Run initialization failure checks with `dotnet run --project tests/Initialization.Tests`. These exercise the real registry and menu orchestration with stand-ins for game/BlueprintCore APIs and family creation; they do not start Unity or verify in-game UI behavior.
 - With Windows PowerShell 5.1, check settings compatibility using `powershell.exe -NoProfile -ExecutionPolicy Bypass -File tests/VerifySettings.ps1 -WrathInstallDir "<game directory>"`.
 - After compiling, verify live mode switching on an existing component with `powershell.exe -NoProfile -ExecutionPolicy Bypass -File tests/VerifyLiveWeaponDamageMode.ps1 -WrathInstallDir "<game directory>"`. This loads the compiled mod and game types without starting Unity.
+- With a local game installation, run `pwsh -NoProfile -File scripts/Invoke-OfflineMechanicsTests.ps1`. It uses the public [wotr-testing](https://github.com/Acture/wotr-testing) submodule (`git submodule update --init -- external/wotr-testing`), loads the real game assemblies and blueprint pack in a test process without starting the game, and applies feats to vanilla units. See [offline mechanics tests](doc/offline-mechanics-testing.md) for inputs, adaptations and limits.
 
 GitHub Actions runs the repository checks on Windows and Linux. GitHub-managed
 CodeQL default setup scans C# and Actions for security issues; review its results
@@ -274,10 +275,12 @@ replace in-game behavior tests.
 | `src/ACHomebrew.Styles/` | Stealth, Solo and Growth |
 | `src/WrathMod.props` | Shared game references and `WrathInstallDir` resolution |
 | `tests/` | Test projects and compatibility baselines |
+| `external/wotr-testing/` | Public submodule with the offline game test library and runner |
 | `scripts/`, `.github/` | Local commands and CI workflows |
 | [doc/](doc/README.md) | Public documentation |
 | `notes/` | Optional private notes submodule |
 | `artifacts/` | Ignored build outputs, intermediate files, packages and test reports |
+| `vendor/wotr/` | Optional ignored snapshot of game files for offline tests; never committed |
 
 The root keeps `ACHomebrew.slnx`, shared build configuration, repository
 configuration, README, CHANGELOG and `Repository.json`. The local `GamePath.props`
@@ -438,3 +441,9 @@ and history have been verified separately.
 ## Credits
 
 Thanks to @CasDragon for code snippets and ideas. AC's Homebrew (formerly AttributeFeats) grew out of earlier Redditor class-feat experiments and was rebuilt for the 0.1.0 build-enabler release.
+
+## License
+
+[GNU Affero General Public License v3.0](LICENSE), with an
+[additional permission](LICENSE-EXCEPTION.md) to link and convey it together with
+the proprietary game and Unity engine assemblies.

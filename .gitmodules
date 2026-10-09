@@ -2,3 +2,6 @@
 	path = notes
 	url = https://github.com/Acture/obsidian-vault.git
 	branch = project/attribute-feats
+[submodule "external/wotr-testing"]
+	path = external/wotr-testing
+	url = https://github.com/Acture/wotr-testing.git

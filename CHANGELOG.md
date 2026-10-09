@@ -24,6 +24,10 @@
 - Only granted feats count. Menus, vanilla feats and other mods' feats do not; each Weapon Damage category and each rank count separately. Prerequisite-ignoring effects do not bypass the budget.
 - Characters above a lowered limit or loaded from an older save keep every feat but cannot choose more until the limit is raised or they are respecced.
 
+### Development
+- Added offline mechanics tests (`scripts/Invoke-OfflineMechanicsTests.ps1`) that load the real game assemblies, blueprint pack and settings in a test process without starting the game. They apply Titan's Apotheosis to a vanilla unit and remove it, include a failure control, and probe Bloodline of Beasts through the game's summon rule. Game files stay local or in an ignored `vendor/wotr/` snapshot. The game-independent part lives in the public [wotr-testing](https://github.com/Acture/wotr-testing) repository, included as the `external/wotr-testing` submodule.
+- Licensed the project under the GNU Affero General Public License v3.0, with an additional permission to link with the proprietary game and Unity assemblies.
+
 ## 0.1.2 — 2026-10-05
 
 ### Added

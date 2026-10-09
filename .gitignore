@@ -364,3 +364,6 @@ FodyWeavers.xsd
 
 Directory.Build.user.props
 /GamePath.props
+
+# Local WotR inputs for offline tests: licensed game files, never commit
+/vendor/wotr/
