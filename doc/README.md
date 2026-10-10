@@ -1,6 +1,6 @@
 # Public documentation
 
-This directory contains the public documentation for WotR Homebrew (formerly AttributeFeats). It is
+This directory contains the public documentation for AC's Homebrew (formerly AttributeFeats). It is
 versioned with the mod's code and is available without access to internal notes.
 
 ## Current guides
@@ -15,6 +15,7 @@ versioned with the mod's code and is available without access to internal notes.
 - [Offline mechanics tests against the real game files](offline-mechanics-testing.md)
 - [English/Chinese feat catalog](feat-catalog.md)
 - [Icon contact sheet](feat-icons.png)
+- [Nexus release description (BBCode)](nexus-description.bbcode)
 - [Changelog](../CHANGELOG.md)
 
 These links retain the existing public guides as the source of truth. Add longer
@@ -24,7 +25,7 @@ link them from this index.
 ## Clone the public project
 
 ```powershell
-git clone --no-recurse-submodules https://github.com/Acture/wotr-homebrew.git
+git clone --no-recurse-submodules https://github.com/Acture/ac-homebrew.git
 ```
 
 Internal design drafts, research and experiment records are maintained separately

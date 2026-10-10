@@ -2,14 +2,14 @@
 	<!-- Shared settings for every project that compiles against Wrath of the Righteous. -->
 
 	<!-- If GamePath.props exists, import it (generated or user-provided). -->
-	<Import Project="$(WotRHomebrewRepositoryRoot)GamePath.props" Condition="Exists('$(WotRHomebrewRepositoryRoot)GamePath.props')" />
+	<Import Project="$(ACHomebrewRepositoryRoot)GamePath.props" Condition="Exists('$(ACHomebrewRepositoryRoot)GamePath.props')" />
 
 	<PropertyGroup>
 		<TargetFramework>net48</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<RootNamespace>WotRHomebrew</RootNamespace>
+		<RootNamespace>ACHomebrew</RootNamespace>
 
 		<!-- Where Owlcat writes Player.log. -->
 		<WrathData>$(LocalAppData)Low\Owlcat Games\Pathfinder Wrath Of The Righteous</WrathData>
@@ -70,7 +70,7 @@
 
 		<Error Text="Failed to parse WrathInstallDir from Player.log. Set /p:WrathInstallDir=... or env WrathPath/WRATH_PATH." Condition="'$(WrathInstallDir)'==''" />
 
-		<WriteLinesToFile File="$(WotRHomebrewRepositoryRoot)GamePath.props" Lines="&lt;Project xmlns='http://schemas.microsoft.com/developer/msbuild/2003'&gt;&#xD;&#xA;  &lt;PropertyGroup&gt;&#xD;&#xA;    &lt;WrathInstallDir&gt;$(WrathInstallDir)&lt;/WrathInstallDir&gt;&#xD;&#xA;  &lt;/PropertyGroup&gt;&#xD;&#xA;&lt;/Project&gt;" Overwrite="true" Encoding="utf-8" />
+		<WriteLinesToFile File="$(ACHomebrewRepositoryRoot)GamePath.props" Lines="&lt;Project xmlns='http://schemas.microsoft.com/developer/msbuild/2003'&gt;&#xD;&#xA;  &lt;PropertyGroup&gt;&#xD;&#xA;    &lt;WrathInstallDir&gt;$(WrathInstallDir)&lt;/WrathInstallDir&gt;&#xD;&#xA;  &lt;/PropertyGroup&gt;&#xD;&#xA;&lt;/Project&gt;" Overwrite="true" Encoding="utf-8" />
 
 		<Message Text="Generated GamePath.props with WrathInstallDir=$(WrathInstallDir)" Importance="High" />
 	</Target>

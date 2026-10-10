@@ -1,9 +1,9 @@
 <Project>
   <PropertyGroup>
-    <WotRHomebrewRepositoryRoot>$(MSBuildThisFileDirectory)</WotRHomebrewRepositoryRoot>
-    <BaseOutputPath>$(WotRHomebrewRepositoryRoot)artifacts/bin/$(MSBuildProjectName)/</BaseOutputPath>
-    <BaseIntermediateOutputPath>$(WotRHomebrewRepositoryRoot)artifacts/obj/$(MSBuildProjectName)/</BaseIntermediateOutputPath>
+    <ACHomebrewRepositoryRoot>$(MSBuildThisFileDirectory)</ACHomebrewRepositoryRoot>
+    <BaseOutputPath>$(ACHomebrewRepositoryRoot)artifacts/bin/$(MSBuildProjectName)/</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(ACHomebrewRepositoryRoot)artifacts/obj/$(MSBuildProjectName)/</BaseIntermediateOutputPath>
     <!-- Private notes and future code examples are not mod build inputs. -->
-    <DefaultItemExcludes>$(DefaultItemExcludes);$(WotRHomebrewRepositoryRoot)notes/**;$(WotRHomebrewRepositoryRoot)artifacts/**</DefaultItemExcludes>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(ACHomebrewRepositoryRoot)notes/**;$(ACHomebrewRepositoryRoot)artifacts/**</DefaultItemExcludes>
   </PropertyGroup>
 </Project>

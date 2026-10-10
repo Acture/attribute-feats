@@ -6,7 +6,7 @@ param(
 # Run with Windows PowerShell 5.1 against the compiled mod and the installed game.
 # Resolves every Harmony patch target without applying patches or starting the game.
 $ErrorActionPreference = 'Stop'
-if (!$ModAssembly) { $ModAssembly = Join-Path (Split-Path $PSScriptRoot -Parent) 'artifacts/bin/WotRHomebrew/Debug/WotRHomebrew.dll' }
+if (!$ModAssembly) { $ModAssembly = Join-Path (Split-Path $PSScriptRoot -Parent) 'artifacts/bin/ACHomebrew/Debug/ACHomebrew.dll' }
 $managed = Join-Path $WrathInstallDir 'Wrath_Data/Managed'
 foreach ($dependency in @('Assembly-CSharp.dll', 'UnityModManager/UnityModManager.dll', 'UnityModManager/0Harmony.dll')) {
     [void][System.Reflection.Assembly]::LoadFrom((Join-Path $managed $dependency))
@@ -20,7 +20,7 @@ $types = try { $mod.GetTypes() } catch [System.Reflection.ReflectionTypeLoadExce
 $checked = 0
 $failures = @()
 foreach ($type in $types) {
-    if ($type.Namespace -notlike 'WotRHomebrew*') { continue }
+    if ($type.Namespace -notlike 'ACHomebrew*') { continue }
     $attributes = @($type.GetCustomAttributes($true) | Where-Object { $_.GetType().FullName -eq 'HarmonyLib.HarmonyPatch' })
     if ($attributes.Count -eq 0) { continue }
 

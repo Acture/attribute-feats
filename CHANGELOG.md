@@ -1,11 +1,11 @@
 # Changelog
 
-## Unreleased
+## 0.2.0 — 2026-10-11 (Public beta)
 
 ### Changed
-- Renamed the mod to **WotR Homebrew** (Chinese: WotR 房规手册). The UMM Id and install folder (`AttributeFeats`), settings file and feat IDs are unchanged, so existing installs, settings and saves keep working. The assembly is now `WotRHomebrew.dll` and the release ZIP `WotRHomebrew-<version>.zip`; after upgrading, a leftover `AttributeFeats.dll` in the mod folder is ignored and can be deleted.
-- BlueprintCore is bundled inside `WotRHomebrew.dll`, so the mod no longer depends on another mod providing it.
-- With ModMenu installed, the game's options screen gets a WotR Homebrew page mirroring the UMM settings. ModMenu stays optional.
+- Renamed the mod to **AC's Homebrew** (Chinese: AC 的房规手册). The UMM Id and install folder (`AttributeFeats`), settings file and feat IDs are unchanged, so existing installs, settings and saves keep working. The assembly is now `ACHomebrew.dll` and the release ZIP `ACHomebrew-<version>.zip`; after upgrading, a leftover `AttributeFeats.dll` in the mod folder is ignored and can be deleted.
+- BlueprintCore is bundled inside `ACHomebrew.dll`, so the mod no longer depends on another mod providing it.
+- With ModMenu installed, the game's options screen gets a AC's Homebrew page mirroring the UMM settings. ModMenu stays optional.
 - Main Attribute Mastery now improves one chosen attribute from a chosen source attribute (30 feats, one per character). The six broad Main feats are retired: kept for existing characters, narrowed to half the modifier on the other attributes.
 - Narrowed broad feats to two or three effects: aptitudes (formerly Specialized Adept), the Wisdom stance, Defiance at the Precipice, Blade of the Spell-Saint (spells only) and Summoner Sacrifice (physical attributes).
 - Mutual exclusion is now a set of configurable exclusion groups checked at selection time; `EnableMutex` is the master switch.
@@ -16,7 +16,7 @@
 - Optional per-character feat budget across all Homebrew feat families: a feat count limit, a point limit with family costs of 1–3, or both. Both are off by default and apply immediately when changed.
 - Feat tooltips show used and maximum feats or points, the feat's cost and why it cannot be chosen, in English and Simplified Chinese. The mod settings list each party member's usage.
 - New families: Casting Attribute (Str/Dex/Con spellcasting per spellbook), Resource Attribute, Retaliation, Momentum, Execution, Arcana, Summoner, Survival (Undying), Stealth, Solo (Lone Wolf, Truly Solo), Growth (kill-based permanent growth), Penetration (immunity piercing) and an optional Meme menu.
-- ModTagEx shows WotR Homebrew as the source of its content.
+- ModTagEx shows AC's Homebrew as the source of its content.
 - Themed English and Chinese names, a line of flavour text and individual icons for the new feats.
 - `tests/VerifyHarmonyTargets.ps1` resolves every Harmony patch target against the installed game.
 
