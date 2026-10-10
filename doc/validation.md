@@ -1,7 +1,7 @@
 # Validation
 
-Run these checks from the repository root. They do not need the private `notes`
-submodule. GitHub Actions runs the first six commands on Windows and Linux.
+Run these checks from the repository root. GitHub Actions runs the first six
+commands on Windows and Linux.
 
 ```powershell
 pwsh -NoProfile -File scripts/Test-RepositoryContracts.ps1
@@ -91,5 +91,4 @@ python scripts/update_icon_manifest.py
 powershell -NoProfile -File scripts/icon-contact-sheet.ps1
 ```
 
-The contact-sheet command requires Windows/System.Drawing. Internal artwork
-prompts and design/audit records belong in the private notes repository.
+The contact-sheet command requires Windows/System.Drawing.

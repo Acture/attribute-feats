@@ -17,7 +17,7 @@ and what they found.
 ## Setup
 
 - Windows, PowerShell 7 and the .NET 10 SDK.
-- Initialize the submodule (it is public; `notes` stays optional):
+- Initialize the test library submodule:
 
   ```powershell
   git submodule update --init -- external/wotr-testing
