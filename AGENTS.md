@@ -16,7 +16,7 @@
   existing installs, settings and saves keep working. Shared game references live in `src/WrathMod.props`.
   Open `ACHomebrew.slnx` from the repository root.
 - Keep tests in `tests/`, CLI tools in `scripts/`, and workflows in `.github/`.
-- Use `doc/` for mod documentation. Do not create a parallel `docs/` directory.
+- Use `docs/` for mod documentation.
 - Build outputs, intermediate files, packages and test reports go in ignored
   `artifacts/`. Keep the shared local `GamePath.props` at the root and untracked.
 - Keep `Repository.json` at the root for existing release metadata consumers.
@@ -29,14 +29,14 @@
   to avoid copying files into the installed game. Repository contracts run with
   `pwsh -NoProfile -File scripts/Test-RepositoryContracts.ps1`.
 - Build a release ZIP without deploying via `dotnet build ACHomebrew.slnx
-  -c Release -p:DeployToGame=false`. Follow [doc/validation.md](doc/validation.md)
+  -c Release -p:DeployToGame=false`. Follow [docs/validation.md](docs/validation.md)
   for calculation, initialization, localization, asset and package checks.
 
 ## Documentation
 
 - Read [README.md](README.md) for the project, installation and build instructions.
 - Put reviewed usage, configuration, integration and contributor documentation
-  in [doc/](doc/README.md). Keep README as the entry point and CHANGELOG for releases.
+  in [docs/](docs/README.md). Keep README as the entry point and CHANGELOG for releases.
 
 ## Validation
 

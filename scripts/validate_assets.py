@@ -69,7 +69,7 @@ def main():
         assert re.findall(pattern, read(path)) == expected['inlineIds'], path.name
     # Named blueprint GUID compatibility is checked by Test-RepositoryContracts.ps1.
 
-    manifest = json.loads(read(ROOT / 'doc/icon-manifest.json'))
+    manifest = json.loads(read(ROOT / 'docs/icon-manifest.json'))
     assert len(manifest) == len({r['internal'] for r in manifest}) == len({r['filename'] for r in manifest})
     # The 92 catalog feats come first; newer feats follow with curated names.
     assert {r['internal'] for r in manifest[:92]} == {r['internal'] for r in rows}

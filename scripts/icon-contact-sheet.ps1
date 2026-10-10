@@ -1,7 +1,7 @@
 ﻿$ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Drawing
 $taskRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-$taskAssets = Get-Content -LiteralPath (Join-Path $taskRoot 'doc/icon-manifest.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+$taskAssets = Get-Content -LiteralPath (Join-Path $taskRoot 'docs/icon-manifest.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 $taskColumns = 12
 $taskCellWidth = 164
 $taskCellHeight = 192
@@ -28,9 +28,9 @@ try {
         $taskRect = New-Object Drawing.RectangleF ($taskX + 3),($taskY + 131),158,57
         $taskGraphics.DrawString($taskLabel, $taskFont, $taskBrush, $taskRect, $taskFormat)
     }
-    $taskSheet.Save((Join-Path $taskRoot 'doc/feat-icons.png'), [Drawing.Imaging.ImageFormat]::Png)
+    $taskSheet.Save((Join-Path $taskRoot 'docs/feat-icons.png'), [Drawing.Imaging.ImageFormat]::Png)
 } finally {
     $taskFormat.Dispose(); $taskBrush.Dispose(); $taskFont.Dispose(); $taskTitleFont.Dispose()
     $taskGraphics.Dispose(); $taskSheet.Dispose()
 }
-Write-Output 'doc/feat-icons.png'
+Write-Output 'docs/feat-icons.png'

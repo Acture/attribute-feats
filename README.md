@@ -10,7 +10,7 @@ A Pathfinder: Wrath of the Righteous mod of homebrew feats that open up play sty
 
 During character creation and level-up, expand **AC's Homebrew**, then a **feat family**, then choose the **individual feat** (Main Attribute Mastery has one more level: source attribute, then target). Each choice grants one feat. You can return to a family at later feat choices, subject to prerequisites, the [feat budget](#feat-budget) and [exclusion groups](#exclusion-groups). Existing characters keep their learned feats.
 
-Families are grouped by play theme below. Numbers are first-pass values, and **nothing in this release has been verified in the game yet**; see [validation](doc/validation.md).
+Families are grouped by play theme below. Numbers are first-pass values, and **nothing in this release has been verified in the game yet**; see [validation](docs/validation.md).
 
 ### Attributes
 
@@ -257,7 +257,7 @@ cd ac-homebrew
 - Run initialization failure checks with `dotnet run --project tests/Initialization.Tests`. These exercise the real registry and menu orchestration with stand-ins for game/BlueprintCore APIs and family creation; they do not start Unity or verify in-game UI behavior.
 - With Windows PowerShell 5.1, check settings compatibility using `powershell.exe -NoProfile -ExecutionPolicy Bypass -File tests/VerifySettings.ps1 -WrathInstallDir "<game directory>"`.
 - After compiling, verify live mode switching on an existing component with `powershell.exe -NoProfile -ExecutionPolicy Bypass -File tests/VerifyLiveWeaponDamageMode.ps1 -WrathInstallDir "<game directory>"`. This loads the compiled mod and game types without starting Unity.
-- With a local game installation, run `pwsh -NoProfile -File scripts/Invoke-OfflineMechanicsTests.ps1`. It uses the public [wotr-testing](https://github.com/Acture/wotr-testing) submodule (`git submodule update --init -- external/wotr-testing`), loads the real game assemblies and blueprint pack in a test process without starting the game, and applies feats to vanilla units. See [offline mechanics tests](doc/offline-mechanics-testing.md) for inputs, adaptations and limits.
+- With a local game installation, run `pwsh -NoProfile -File scripts/Invoke-OfflineMechanicsTests.ps1`. It uses the public [wotr-testing](https://github.com/Acture/wotr-testing) submodule (`git submodule update --init -- external/wotr-testing`), loads the real game assemblies and blueprint pack in a test process without starting the game, and applies feats to vanilla units. See [offline mechanics tests](docs/offline-mechanics-testing.md) for inputs, adaptations and limits.
 
 GitHub Actions runs the repository checks on Windows and Linux. GitHub-managed
 CodeQL default setup scans C# and Actions for security issues; review its results
@@ -282,7 +282,7 @@ replace in-game behavior tests.
 | `tests/` | Test projects and compatibility baselines |
 | `external/wotr-testing/` | Public submodule with the offline game test library and runner |
 | `scripts/`, `.github/` | Local commands and CI workflows |
-| [doc/](doc/README.md) | Public documentation |
+| [docs/](docs/README.md) | Public documentation |
 | `artifacts/` | Ignored build outputs, intermediate files, packages and test reports |
 | `vendor/wotr/` | Optional ignored snapshot of game files for offline tests; never committed |
 
@@ -292,9 +292,9 @@ is shared by the Mod and test projects and must not be committed.
 
 ## Text and Icons
 
-Every feat and selection menu has English and Simplified Chinese names and descriptions. The original 92 feats and 60 feats added in AC's Homebrew have individual 128×128 PNG icons ([contact sheet](doc/feat-icons.png)). Main Attribute Mastery feats reuse their source attribute's icon; the six Weapon Damage feats do not yet have bespoke artwork. Names and lore, along with the new menu and Weapon Damage descriptions, live in the embedded [FeatText.json](src/ACHomebrew.Core/Localization/FeatText.json). Other rule templates remain with their implementations.
+Every feat and selection menu has English and Simplified Chinese names and descriptions. The original 92 feats and 60 feats added in AC's Homebrew have individual 128×128 PNG icons ([contact sheet](docs/feat-icons.png)). Main Attribute Mastery feats reuse their source attribute's icon; the six Weapon Damage feats do not yet have bespoke artwork. Names and lore, along with the new menu and Weapon Damage descriptions, live in the embedded [FeatText.json](src/ACHomebrew.Core/Localization/FeatText.json). Other rule templates remain with their implementations.
 
-See the [icon contact sheet](doc/feat-icons.png), [asset manifest](doc/icon-manifest.json), and [validation commands and limits](doc/validation.md). The settings UI remains in English. Source checks and builds do not establish actual combat effects or in-game text layout.
+See the [icon contact sheet](docs/feat-icons.png), [asset manifest](docs/icon-manifest.json), and [validation commands and limits](docs/validation.md). The settings UI remains in English. Source checks and builds do not establish actual combat effects or in-game text layout.
 
 ## Changelog
 
@@ -302,7 +302,7 @@ See [CHANGELOG.md](./CHANGELOG.md).
 
 ## Documentation
 
-See [doc/](doc/README.md) for usage guides, the feat catalog, and validation
+See [docs/](docs/README.md) for usage guides, the feat catalog, and validation
 instructions. Release changes are recorded in [CHANGELOG.md](CHANGELOG.md).
 
 ## Credits
