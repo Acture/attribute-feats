@@ -16,8 +16,7 @@
   existing installs, settings and saves keep working. Shared game references live in `src/WrathMod.props`.
   Open `ACHomebrew.slnx` from the repository root.
 - Keep tests in `tests/`, CLI tools in `scripts/`, and workflows in `.github/`.
-- Use `doc/` as the sole documentation directory. Do not recreate a parallel
-  `docs/` directory.
+- Use `doc/` for mod documentation. Do not create a parallel `docs/` directory.
 - Build outputs, intermediate files, packages and test reports go in ignored
   `artifacts/`. Keep the shared local `GamePath.props` at the root and untracked.
 - Keep `Repository.json` at the root for existing release metadata consumers.
