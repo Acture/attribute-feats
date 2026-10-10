@@ -6,7 +6,7 @@ from feat_catalog import ROOT, PROJECT, catalog
 
 
 def main():
-    source = (PROJECT.parent / 'WotRHomebrew.Core/IconLoader.cs').read_text(encoding='utf-8-sig')
+    source = (PROJECT.parent / 'ACHomebrew.Core/IconLoader.cs').read_text(encoding='utf-8-sig')
     aliases = dict(re.findall(r'\{ "([^"]+)", "([^"]+)" \}', source))
     manifest = []
     rows = catalog()

@@ -22,7 +22,7 @@ namespace AttributeFeats.OfflineTests
             Assert.StartsWith(runtime, typeof(Kingmaker.Game).Assembly.Location, StringComparison.OrdinalIgnoreCase);
             Assert.StartsWith(runtime, typeof(UnityEngine.Object).Assembly.Location, StringComparison.OrdinalIgnoreCase);
 
-            var mod = typeof(WotRHomebrew.Main).Assembly;
+            var mod = typeof(ACHomebrew.Main).Assembly;
             Assert.StartsWith(runtime, mod.Location, StringComparison.OrdinalIgnoreCase);
             Assert.Equal(OfflineRuntime.FileSha256(OfflineRuntime.Inputs.ModAssembly), OfflineRuntime.FileSha256(mod.Location));
             fixture.Observations["modAssembly"] = new { source = OfflineRuntime.Inputs.ModAssembly, sha256 = OfflineRuntime.FileSha256(mod.Location), version = mod.GetName().Version.ToString() };

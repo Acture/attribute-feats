@@ -1,6 +1,6 @@
 # Offline mechanics tests
 
-`tests/OfflineMechanics.Tests` runs WotR Homebrew (UMM Id `AttributeFeats`) against the real Pathfinder:
+`tests/OfflineMechanics.Tests` runs AC's Homebrew (UMM Id `AttributeFeats`) against the real Pathfinder:
 Wrath of the Righteous assemblies, vanilla blueprint pack and settings in an
 ordinary .NET Framework test process. It does not start `Wrath.exe`, the Unity
 player or the Unity Editor, and it does not touch saves or the installed `Mods`

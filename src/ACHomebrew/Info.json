@@ -1,0 +1,13 @@
+﻿{
+	"Id": "AttributeFeats",
+	"DisplayName": "AC's Homebrew",
+	"Author": "acturea",
+	"Version": "0.2.0",
+	"ManagerVersion": "0.27.11",
+	"Requirements": [],
+	"LoadAfter": [ "ModMenu", "ModTagEx" ],
+	"AssemblyName": "ACHomebrew.dll",
+	"EntryMethod": "ACHomebrew.Main.Load",
+	"HomePage": "https://github.com/Acture/ac-homebrew",
+	"Repository": "https://github.com/Acture/ac-homebrew"
+}
