@@ -10,7 +10,7 @@ A Pathfinder: Wrath of the Righteous mod of homebrew feats that open up play sty
 
 During character creation and level-up, expand **AC's Homebrew**, then a **feat family**, then choose the **individual feat** (Main Attribute Mastery has one more level: source attribute, then target). Each choice grants one feat. You can return to a family at later feat choices, subject to prerequisites, the [feat budget](#feat-budget) and [exclusion groups](#exclusion-groups). Existing characters keep their learned feats.
 
-Families are grouped by play theme below. Numbers are first-pass values, and **nothing in this release has been verified in the game yet**; see [validation](doc/validation.md).
+Families are grouped by play theme below. Numbers are first-pass values, and **nothing in this release has been verified in the game yet**; see [validation](docs/validation.md).
 
 ### Attributes
 
@@ -241,6 +241,11 @@ Main Attribute Mastery uses **inherent** bonuses, so it does not stack with tome
 
 ## Building from Source
 
+```powershell
+git clone --no-recurse-submodules https://github.com/Acture/ac-homebrew.git
+cd ac-homebrew
+```
+
 - Set `WrathInstallDir`, `WrathPath`, or `WRATH_PATH`, or let the project generate the ignored, repository-root `GamePath.props` from `Player.log`.
 - From the repository root, run `dotnet build ACHomebrew.slnx -p:DeployMod=false` to compile without deploying to the game.
 - To build the release ZIP without deploying to the game, run `dotnet build ACHomebrew.slnx -c Release -p:DeployToGame=false`.
@@ -252,7 +257,7 @@ Main Attribute Mastery uses **inherent** bonuses, so it does not stack with tome
 - Run initialization failure checks with `dotnet run --project tests/Initialization.Tests`. These exercise the real registry and menu orchestration with stand-ins for game/BlueprintCore APIs and family creation; they do not start Unity or verify in-game UI behavior.
 - With Windows PowerShell 5.1, check settings compatibility using `powershell.exe -NoProfile -ExecutionPolicy Bypass -File tests/VerifySettings.ps1 -WrathInstallDir "<game directory>"`.
 - After compiling, verify live mode switching on an existing component with `powershell.exe -NoProfile -ExecutionPolicy Bypass -File tests/VerifyLiveWeaponDamageMode.ps1 -WrathInstallDir "<game directory>"`. This loads the compiled mod and game types without starting Unity.
-- With a local game installation, run `pwsh -NoProfile -File scripts/Invoke-OfflineMechanicsTests.ps1`. It uses the public [wotr-testing](https://github.com/Acture/wotr-testing) submodule (`git submodule update --init -- external/wotr-testing`), loads the real game assemblies and blueprint pack in a test process without starting the game, and applies feats to vanilla units. See [offline mechanics tests](doc/offline-mechanics-testing.md) for inputs, adaptations and limits.
+- With a local game installation, run `pwsh -NoProfile -File scripts/Invoke-OfflineMechanicsTests.ps1`. It uses the public [wotr-testing](https://github.com/Acture/wotr-testing) submodule (`git submodule update --init -- external/wotr-testing`), loads the real game assemblies and blueprint pack in a test process without starting the game, and applies feats to vanilla units. See [offline mechanics tests](docs/offline-mechanics-testing.md) for inputs, adaptations and limits.
 
 GitHub Actions runs the repository checks on Windows and Linux. GitHub-managed
 CodeQL default setup scans C# and Actions for security issues; review its results
@@ -277,8 +282,7 @@ replace in-game behavior tests.
 | `tests/` | Test projects and compatibility baselines |
 | `external/wotr-testing/` | Public submodule with the offline game test library and runner |
 | `scripts/`, `.github/` | Local commands and CI workflows |
-| [doc/](doc/README.md) | Public documentation |
-| `notes/` | Optional private notes submodule |
+| [docs/](docs/README.md) | Public documentation |
 | `artifacts/` | Ignored build outputs, intermediate files, packages and test reports |
 | `vendor/wotr/` | Optional ignored snapshot of game files for offline tests; never committed |
 
@@ -288,9 +292,9 @@ is shared by the Mod and test projects and must not be committed.
 
 ## Text and Icons
 
-Every feat and selection menu has English and Simplified Chinese names and descriptions. The original 92 feats and 60 feats added in AC's Homebrew have individual 128×128 PNG icons ([contact sheet](doc/feat-icons.png)). Main Attribute Mastery feats reuse their source attribute's icon; the six Weapon Damage feats do not yet have bespoke artwork. Names and lore, along with the new menu and Weapon Damage descriptions, live in the embedded [FeatText.json](src/ACHomebrew.Core/Localization/FeatText.json). Other rule templates remain with their implementations.
+Every feat and selection menu has English and Simplified Chinese names and descriptions. The original 92 feats and 60 feats added in AC's Homebrew have individual 128×128 PNG icons ([contact sheet](docs/feat-icons.png)). Main Attribute Mastery feats reuse their source attribute's icon; the six Weapon Damage feats do not yet have bespoke artwork. Names and lore, along with the new menu and Weapon Damage descriptions, live in the embedded [FeatText.json](src/ACHomebrew.Core/Localization/FeatText.json). Other rule templates remain with their implementations.
 
-See the [icon contact sheet](doc/feat-icons.png), [asset manifest](doc/icon-manifest.json), and [validation commands and limits](doc/validation.md). The settings UI remains in English. Source checks and builds do not establish actual combat effects or in-game text layout.
+See the [icon contact sheet](docs/feat-icons.png), [asset manifest](docs/icon-manifest.json), and [validation commands and limits](docs/validation.md). The settings UI remains in English. Source checks and builds do not establish actual combat effects or in-game text layout.
 
 ## Changelog
 
@@ -298,145 +302,8 @@ See [CHANGELOG.md](./CHANGELOG.md).
 
 ## Documentation
 
-| Location | Audience and content | Access |
-|---|---|---|
-| [doc/](doc/README.md), README and CHANGELOG | Public usage, setup, supported behavior and contributor documentation | Included in the public code repository |
-| `notes/` | Internal design drafts, investigations, experiment records and local mod inventories | Optional submodule; separate private-repository permission required |
-
-Publish reviewed, user-facing documentation in `doc/` with the code. Keep internal
-working records in `notes/`; public documentation and builds must remain usable
-without it.
-
-## Internal design and research notes
-
-Design proposals, compatibility investigations and testing research live in the
-private [project notes](notes/首页.md). The `notes/` Git submodule
-uses the existing [Acture/obsidian-vault](https://github.com/Acture/obsidian-vault)
-repository and its `project/ac-homebrew` branch. Only edit this project's notes
-at that checkout's root. Public installation instructions and the changelog remain
-in this repository; building or using the mod does not require private notes access.
-
-Cloning or forking this public repository does not grant access to the private
-vault. The public `.gitmodules` file and gitlink expose its repository URL,
-configured branch and pinned commit ID, but do not contain the notes or their Git
-history. GitHub still requires separate authorization to fetch those contents.
-Without it, recursive cloning or initializing `notes/` will fail at that step;
-use the public clone command below instead.
-
-The central vault's [project onboarding guide](https://github.com/Acture/obsidian-vault/blob/master/项目接入.md)
-owns the shared workflow and push checks. The commands below apply it to this
-project; they do not set up another synchronization system.
-
-### Clone and initialize
-
-For public code and documentation, skip the optional private submodule:
-
-```powershell
-git clone --no-recurse-submodules https://github.com/Acture/ac-homebrew.git
-```
-
-With authenticated access to the private notes repository:
-
-```powershell
-git clone --recurse-submodules https://github.com/Acture/ac-homebrew.git
-cd ac-homebrew
-```
-
-For an existing clone or a new worktree, initialize the version recorded by its
-current code commit:
-
-```powershell
-git submodule update --init --recursive -- notes
-git submodule status -- notes
-git -C notes rev-parse HEAD
-```
-
-The parent repository records an exact notes commit. Initialization normally
-leaves the submodule in detached HEAD; the `branch` entry in `.gitmodules` selects
-the remote update source, but does not automatically check out an editable branch.
-Use `git submodule update --init --recursive -- notes` after switching code
-versions to restore their recorded notes version, only when the notes worktree is clean.
-
-### Update and edit
-
-First inspect `git status` and `git -C notes status`. Preserve any uncommitted
-notes and unpublished commits before switching branches or updating the gitlink.
-Fetch and check that the current notes commit is already part of the published
-project branch:
-
-```powershell
-git -C notes fetch origin
-git -C notes log --oneline origin/project/ac-homebrew..HEAD
-```
-
-If the last command lists commits, stop and reconcile that work before switching.
-For the first edit in a newly initialized clone, create the local tracking branch:
-
-```powershell
-git -C notes switch -c project/ac-homebrew --track origin/project/ac-homebrew
-```
-
-If that local branch already exists, use `git -C notes switch project/ac-homebrew`
-instead. Then update without rewriting history:
-
-```powershell
-git -C notes merge --ff-only origin/project/ac-homebrew
-git -C notes branch --show-current
-```
-
-Stop on divergence; do not force-push, discard local work, or merge the entire
-vault `master` into this project branch. Follow the central guide for bringing
-back changes made to this project's notes in the total vault.
-
-Install the central repository's mandatory push boundary check in each notes
-clone, and refresh it when the central checker changes. These PowerShell commands
-use UTF-8 for Python on Windows and load the installer from the trusted vault:
-
-```powershell
-$env:PYTHONUTF8 = "1"
-git -C notes fetch origin refs/heads/master:refs/remotes/origin/master
-git -C notes show origin/master:.github/scripts/install_push_hook.py | python -X utf8 -c "import sys; exec(sys.stdin.read())" --repo notes --source-ref origin/master
-```
-
-This requires Python 3.10+, Git and authenticated `gh`. Keep `PYTHONUTF8=1` in the Windows shell used
-for notes pushes. The installer preserves existing custom hooks and stops if they
-need reconciliation. Hooks are local to a clone, are not copied by Git, and must
-not be bypassed with `--no-verify`.
-
-Edit files under `notes/`, then commit and submit the notes first. Stage only the
-specific files you edited; this example stages the project homepage:
-
-```powershell
-git -C notes diff --stat
-git -C notes add 首页.md
-git -C notes commit -m "docs: update AC's Homebrew design notes"
-$notesCommonGitDir = git -C notes rev-parse --path-format=absolute --git-common-dir
-python -X utf8 "$notesCommonGitDir/hooks/notes-boundary/submit_project.py" --repo notes
-```
-
-Only after that push succeeds, verify the published history and commit the parent
-pointer. Run each step only if the preceding command succeeds:
-
-```powershell
-git -C notes fetch origin
-git -C notes merge-base --is-ancestor HEAD origin/project/ac-homebrew
-git diff --submodule=log -- notes
-git add -- notes
-git commit -m "docs: update project notes reference"
-git push
-```
-
-The ancestor check must exit with code 0. Keep unrelated staged work out of the
-pointer commit and use the code repository's normal review branch for delivery.
-The vault's existing project-to-master aggregation is separate from updating this
-repository's gitlink.
-
-To follow the latest published notes without editing, start with clean, fully
-published notes and run `git submodule update --remote --checkout -- notes`.
-Review and commit the resulting parent pointer using the same steps above.
-Avoid this command when reproducing a fixed code version; normal initialization
-uses the pinned commit instead. Any legacy `doc` branch remains until its content
-and history have been verified separately.
+See [docs/](docs/README.md) for usage guides, the feat catalog, and validation
+instructions. Release changes are recorded in [CHANGELOG.md](CHANGELOG.md).
 
 ## Credits
 

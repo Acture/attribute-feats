@@ -1,7 +1,7 @@
 # Public documentation
 
-This directory contains the public documentation for AC's Homebrew (formerly AttributeFeats). It is
-versioned with the mod's code and is available without access to internal notes.
+This directory contains the documentation for AC's Homebrew (formerly
+AttributeFeats), versioned with the mod's code.
 
 ## Current guides
 
@@ -27,7 +27,3 @@ link them from this index.
 ```powershell
 git clone --no-recurse-submodules https://github.com/Acture/ac-homebrew.git
 ```
-
-Internal design drafts, research and experiment records are maintained separately
-in the optional private `notes/` submodule. Reading these public guides and
-building the mod do not require that repository or its credentials.

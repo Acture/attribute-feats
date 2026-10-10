@@ -17,7 +17,7 @@ def main():
                              filename=filename, nameEn=row['en'], nameZh=row['zh'],
                              sha256=hashlib.sha256(data).hexdigest()))
     # Newer feats are not in the published catalog; keep their curated entries and refresh hashes.
-    path = ROOT / 'doc/icon-manifest.json'
+    path = ROOT / 'docs/icon-manifest.json'
     known = {row['internal'] for row in rows}
     newer = [entry for entry in json.loads(path.read_text(encoding='utf-8')) if entry['internal'] not in known]
     for entry in newer:

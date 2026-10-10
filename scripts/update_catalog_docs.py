@@ -14,8 +14,8 @@ def main():
     for row in rows:
         lines.append(f"| {row['family']} | `{row['internal']}` | {row['en']} | {row['zh']} |")
     lines += ['', 'See [the contact sheet](feat-icons.png) and [validation](validation.md).', '']
-    (ROOT / 'doc/feat-catalog.md').write_text('\n'.join(lines), encoding='utf-8')
-    print('Updated doc/feat-catalog.md.')
+    (ROOT / 'docs/feat-catalog.md').write_text('\n'.join(lines), encoding='utf-8')
+    print('Updated docs/feat-catalog.md.')
 
 
 if __name__ == '__main__':

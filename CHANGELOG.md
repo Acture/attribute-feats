@@ -40,7 +40,7 @@
 - Grouped 98 feats under Attribute Feats, with 17 family menus and Long-Reach Gambit directly in the root. Each choice grants one feat; menus can be revisited subject to normal prerequisites and optional family mutex.
 - Refined the original 92 English/Chinese feat names and lore. Clarified scaling, settings gates, minimum modifiers, trigger timing, distance thresholds and spell-tag penalties in their descriptions.
 - Preserved published blueprint IDs, existing mechanics and saved settings. Embedded 244 bilingual text entries with English and compiled-text fallbacks; language changes refresh registered strings.
-- Moved the project to `src/AttributeFeats`, public documentation to `doc`, and private notes to an optional `notes` submodule. Outputs are under ignored `artifacts`.
+- Moved the project to `src/AttributeFeats` and consolidated documentation. Outputs are under ignored `artifacts`.
 - Added `-p:DeployToGame=false` for release packaging without copying files into the game.
 
 ### Fixed
